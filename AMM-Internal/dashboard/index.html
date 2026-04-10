@@ -1,0 +1,2197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AMM Intelligence Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+  <script src="chart.min.js"></script>
+  <script src="data.js"></script>
+  <script src="actions.js"></script>
+  <script src="comments.js"></script>
+  <script src="timeline.js"></script>
+  <link rel="stylesheet" href="gap-notes.css" />
+  <script src="gap-notes.js"></script>
+  <style>
+    /* ─── Reset + Variables ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #F8F9FA;
+      --bg-card:     #FFFFFF;
+      --bg-card2:    #F1F5F9;
+      --border:      #E2E8F0;
+      --border-mid:  #CBD5E1;
+      --border-hi:   #94A3B8;
+      --text:        #0F172A;
+      --text-2:      #334155;
+      --muted:       #64748B;
+      --green:       #16A34A;
+      --yellow:      #D97706;
+      --red:         #DC2626;
+      --blue:        #2563EB;
+      --sky:         #0284C7;
+      --orange:      #EA580C;
+      --purple:      #7C3AED;
+      --amber:       #D97706;
+      --radius:      6px;
+      --radius-sm:   3px;
+      --font:        'Plus Jakarta Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family:    var(--font);
+      background:     var(--bg);
+      color:          var(--text);
+      min-height:     100vh;
+      line-height:    1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Typography ────────────────────────────────────────── */
+    h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 800; line-height: 1.15; }
+    h2 { font-size: clamp(1.125rem, 2.5vw, 1.5rem); font-weight: 700; line-height: 1.2; }
+    h3 { font-size: 1rem; font-weight: 700; line-height: 1.3; }
+
+    /* ─── Layout ────────────────────────────────────────────── */
+    .container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
+
+    section { padding: 60px 0; }
+    section + section { border-top: 1px solid var(--border); }
+
+    /* ─── Top Nav ───────────────────────────────────────────── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 1400px; margin: 0 auto;
+      display: flex; align-items: center; gap: 24px;
+      height: 52px; padding: 0 24px;
+    }
+
+    .nav-brand {
+      font-size: 0.8125rem; font-weight: 800;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text); white-space: nowrap;
+    }
+
+    .nav-sep { width: 1px; height: 20px; background: var(--border-mid); flex-shrink: 0; }
+
+    .nav-links { display: flex; gap: 2px; list-style: none; }
+
+    .nav-links a {
+      display: block; padding: 5px 12px;
+      font-size: 0.8125rem; font-weight: 500;
+      color: var(--muted); text-decoration: none;
+      border-radius: var(--radius-sm);
+      transition: color 150ms cubic-bezier(0.23,1,0.32,1),
+                  background 150ms cubic-bezier(0.23,1,0.32,1);
+    }
+
+    .nav-links a:hover { color: var(--text); background: var(--bg-card2); }
+
+    .nav-meta {
+      margin-left: auto; display: flex; align-items: center; gap: 8px;
+      font-size: 0.75rem; color: var(--muted);
+    }
+
+    .live-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--green);
+      animation: livepulse 2.4s ease-in-out infinite;
+    }
+
+    @keyframes livepulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.85)} }
+
+    /* ─── Hero ──────────────────────────────────────────────── */
+    .hero { padding: 52px 0 0; }
+
+    .hero-top {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 24px;
+      flex-wrap: wrap; margin-bottom: 40px;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.6875rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--amber); margin-bottom: 10px;
+    }
+
+    .hero-title { margin-bottom: 8px; color: var(--text); }
+
+    .hero-sub { font-size: 1rem; color: var(--muted); margin: 0; }
+
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 8px 16px;
+      font-size: 0.8125rem; color: var(--muted);
+      white-space: nowrap; margin-top: 4px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+
+    /* ─── KPI Strip ─────────────────────────────────────────── */
+    .kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: -1px;
+    }
+
+    .kpi-card {
+      background: var(--bg-card); padding: 24px 20px;
+      transition: background 150ms cubic-bezier(0.23,1,0.32,1);
+    }
+
+    .kpi-card:hover { background: var(--bg-card2); }
+
+    .kpi-label {
+      font-size: 0.6875rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 10px;
+    }
+
+    .kpi-value {
+      font-size: 2.5rem; font-weight: 800;
+      line-height: 1; margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .kpi-sub { font-size: 0.75rem; color: var(--muted); line-height: 1.4; }
+
+    /* ─── Section Headers ───────────────────────────────────── */
+    .section-hdr {
+      display: flex; align-items: center;
+      gap: 12px; margin-bottom: 28px; flex-wrap: wrap;
+    }
+
+    .section-hdr h2 { flex: 1; }
+
+    .chip {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 3px 12px;
+      font-size: 0.75rem; color: var(--muted); white-space: nowrap;
+    }
+
+    /* ─── Filter Bar ────────────────────────────────────────── */
+    .filter-bar { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+
+    .f-btn {
+      padding: 6px 16px; font-size: 0.8125rem; font-weight: 500;
+      font-family: var(--font); color: var(--muted);
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); cursor: pointer;
+      transition: color 150ms cubic-bezier(0.23,1,0.32,1),
+                  border-color 150ms cubic-bezier(0.23,1,0.32,1),
+                  background 150ms cubic-bezier(0.23,1,0.32,1);
+    }
+    .f-btn:hover { color: var(--text); border-color: var(--border-mid); }
+    .f-btn:active { transform: scale(0.97); }
+
+    .f-btn.active {
+      color: var(--text); background: var(--text);
+      color: #fff; border-color: var(--text);
+    }
+
+    /* ─── Member Grid ───────────────────────────────────────── */
+    .member-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(370px, 1fr));
+      gap: 16px;
+    }
+
+    .m-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 22px;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      transition: border-color 150ms cubic-bezier(0.23,1,0.32,1),
+                  box-shadow 150ms cubic-bezier(0.23,1,0.32,1);
+    }
+
+    .m-card:hover {
+      border-color: var(--border-mid);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+
+    .m-card.expanded { border-color: var(--amber); }
+    .m-card.hidden   { display: none; }
+
+    .m-card-top {
+      display: flex; align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .m-avatar {
+      width: 64px; height: 64px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.125rem; font-weight: 800; flex-shrink: 0;
+      letter-spacing: -0.02em;
+      border: 3px solid transparent;
+    }
+
+    .m-avatar img { width:100%; height:100%; object-fit:cover; border-radius:50%; display:block; }
+
+    .m-card-info { flex: 1; min-width: 0; }
+    .m-name { font-size: 0.9375rem; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+    .m-agency { font-size: 0.75rem; color: var(--muted); }
+
+    .m-chevron {
+      flex-shrink: 0; margin-top: 2px;
+      transition: transform 250ms cubic-bezier(0.23,1,0.32,1);
+      color: var(--muted);
+    }
+
+    .m-card.expanded .m-chevron { transform: rotate(180deg); }
+
+    /* ─── Badge Row ─────────────────────────────────────────── */
+    .badge-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+
+    .bdg {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 3px 9px; border-radius: var(--radius);
+      font-size: 0.625rem; font-weight: 700;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .bdg-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+
+    /* tier */
+    .t-advanced  { background: #DCFCE7; color: #15803D; }
+    .t-growing   { background: #DBEAFE; color: #1D4ED8; }
+    .t-starting  { background: #FEF9C3; color: #A16207; }
+    .t-risk      { background: #FEE2E2; color: #B91C1C; }
+
+    /* sa alignment */
+    .sa-in-platform { background: #DCFCE7; color: #15803D; }
+    .sa-mixed       { background: #FFEDD5; color: #C2410C; }
+    .sa-around      { background: #FEE2E2; color: #B91C1C; }
+    .sa-unknown     { background: var(--bg-card2); color: var(--muted); border: 1px solid var(--border); }
+
+    /* support */
+    .s-high    { background: #FEE2E2; color: #B91C1C; }
+    .s-medium  { background: #FEF9C3; color: #A16207; }
+    .s-low     { background: #DCFCE7; color: #15803D; }
+    .s-none    { background: var(--bg-card2); color: var(--muted); border: 1px solid var(--border); }
+    .s-unknown { background: var(--bg-card2); color: var(--muted); border: 1px solid var(--border); }
+
+    /* engagement */
+    .e-champion     { background: #F3E8FF; color: #6D28D9; }
+    .e-collaborative{ background: #DBEAFE; color: #1D4ED8; }
+    .e-quiet        { background: var(--bg-card2); color: var(--muted); border: 1px solid var(--border); }
+    .e-silent       { background: #FEE2E2; color: #B91C1C; }
+
+    /* ─── Personality Block ─────────────────────────────────── */
+    .personality {
+      background: var(--bg-card2); border-radius: var(--radius);
+      padding: 14px 16px; margin-bottom: 14px;
+      font-size: 0.8125rem; color: var(--text-2); line-height: 1.65;
+      border: 1px solid var(--border);
+    }
+
+    /* ─── Expand Button ─────────────────────────────────────── */
+    .expand-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 0.75rem; font-weight: 600; color: var(--amber);
+      background: none; border: none; font-family: var(--font);
+      padding: 0; cursor: pointer;
+      transition: opacity 150ms cubic-bezier(0.23,1,0.32,1);
+    }
+
+    .expand-btn:hover { opacity: 0.7; }
+    .expand-btn:active { transform: scale(0.97); }
+
+    /* ─── Expandable Content ────────────────────────────────── */
+    .m-detail { display: none; margin-top: 16px; }
+    .m-card.expanded .m-detail { display: block; }
+
+    .detail-label {
+      font-size: 0.625rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted); margin: 14px 0 6px;
+    }
+
+    .detail-label:first-child { margin-top: 0; }
+
+    .build-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+
+    .build-list li {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 0.8125rem; color: var(--text-2);
+    }
+
+    .build-list li::before {
+      content: '';
+      width: 4px; height: 4px; border-radius: 50%;
+      background: var(--border-hi); flex-shrink: 0;
+      margin-top: 7px;
+    }
+
+    .m-quote {
+      border-left: 2px solid var(--amber);
+      padding: 8px 0 8px 14px; margin-top: 14px;
+    }
+
+    .m-quote q {
+      display: block; font-size: 0.8125rem;
+      font-style: italic; color: var(--text-2);
+      quotes: none; line-height: 1.6;
+    }
+
+    .m-quote cite {
+      display: block; font-size: 0.6875rem;
+      color: var(--muted); margin-top: 4px; font-style: normal;
+    }
+
+    .setup-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+
+    .setup-chip {
+      background: var(--bg-card2); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 2px 8px;
+      font-size: 0.6875rem; color: var(--muted);
+    }
+
+    /* ─── Table Container ───────────────────────────────────── */
+    .tbl-wrap {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow-x: auto;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+
+    /* ─── Platform Gaps Table ───────────────────────────────── */
+    .gaps-tbl { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+
+    .gaps-tbl th {
+      text-align: left; padding: 14px 18px;
+      font-size: 0.625rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted); background: var(--bg-card2);
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    .gaps-tbl td { padding: 16px 18px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .gaps-tbl tr:last-child td { border-bottom: none; }
+    .gaps-tbl tr:hover td { background: var(--bg-card2); }
+
+    .gap-title { font-size: 0.875rem; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .gap-desc  { font-size: 0.8125rem; color: var(--muted); line-height: 1.55; }
+    .gap-note  { font-size: 0.75rem; color: var(--sky); margin-top: 5px; }
+    .gap-who   { font-size: 0.75rem; color: var(--muted); }
+
+    .shared-badge {
+      display: inline-flex; align-items: center;
+      margin-left: 6px;
+      background: #FEF3C7; color: #92400E;
+      font-size: .5625rem; font-weight: 800;
+      padding: 1px 5px; border-radius: 10px;
+      letter-spacing: .02em; vertical-align: middle;
+      cursor: help;
+    }
+    [data-theme="dark"] .shared-badge { background: rgba(217,119,6,.2); color: #FCD34D; }
+
+    .gap-members-wrap { display: flex; flex-direction: column; gap: 4px; }
+    .gap-member-count {
+      display: inline-flex; align-items: center; gap: 3px;
+      font-size: .5625rem; font-weight: 700;
+      background: rgba(37,99,235,.1); color: var(--blue);
+      padding: 2px 7px; border-radius: 10px; width: fit-content;
+    }
+    .gap-prod  {
+      display:inline-block; font-size:.625rem; font-weight:700;
+      text-transform:uppercase; letter-spacing:.05em;
+      background:#DBEAFE; color:#1D4ED8;
+      padding:2px 8px; border-radius:var(--radius-sm); white-space:nowrap;
+    }
+
+    /* priority badges */
+    .p-critical { background:#FEE2E2; color:#B91C1C; padding:3px 10px; border-radius:var(--radius); font-size:.625rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; white-space:nowrap; }
+    .p-high     { background:#FFEDD5; color:#C2410C; padding:3px 10px; border-radius:var(--radius); font-size:.625rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; white-space:nowrap; }
+    .p-medium   { background:#FEF9C3; color:#A16207; padding:3px 10px; border-radius:var(--radius); font-size:.625rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; white-space:nowrap; }
+    .p-low      { background:var(--bg-card2); color:var(--muted); border:1px solid var(--border); padding:3px 10px; border-radius:var(--radius); font-size:.625rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; white-space:nowrap; }
+
+    /* status text */
+    .st-open        { color: var(--yellow); font-size: 0.8125rem; font-weight: 600; }
+    .st-in-progress { color: var(--blue);   font-size: 0.8125rem; font-weight: 600; }
+    .st-resolved    { color: var(--green);  font-size: 0.8125rem; font-weight: 600; }
+
+    /* ─── Agenda Grid ───────────────────────────────────────── */
+    .agenda-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    .ag-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      transition: border-color 150ms cubic-bezier(0.23,1,0.32,1),
+                  box-shadow 150ms cubic-bezier(0.23,1,0.32,1);
+    }
+
+    .ag-card:hover {
+      border-color: var(--border-mid);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+
+    .ag-num {
+      font-size: 0.625rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 4px;
+    }
+
+    .ag-pillar {
+      font-size: 0.6875rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--amber); margin-bottom: 6px;
+    }
+
+    .ag-title { font-size: 1.0625rem; font-weight: 700; margin-bottom: 10px; color: var(--text); }
+
+    .ag-desc {
+      font-size: 0.8125rem; color: var(--muted);
+      line-height: 1.65; margin-bottom: 18px;
+    }
+
+    .ag-meta {
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 8px;
+      margin-bottom: 18px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .ag-owner { font-size: 0.75rem; color: var(--muted); }
+    .ag-q     { font-size: 0.75rem; color: var(--muted); }
+
+    /* agenda status */
+    .as-in-planning      { background:#DBEAFE; color:#1D4ED8; padding:3px 10px; border-radius:var(--radius); font-size:.625rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; }
+    .as-needs-definition { background:#FFEDD5; color:#C2410C; padding:3px 10px; border-radius:var(--radius); font-size:.625rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; }
+    .as-structure-only   { background:var(--bg-card2); color:var(--muted); border:1px solid var(--border); padding:3px 10px; border-radius:var(--radius); font-size:.625rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; }
+    .as-on-hold          { background:#FEE2E2; color:#B91C1C; padding:3px 10px; border-radius:var(--radius); font-size:.625rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; }
+
+    .ag-items { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+
+    .ag-items li {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 0.8125rem; color: var(--muted); line-height: 1.5;
+    }
+
+    .ag-items li svg { flex-shrink: 0; margin-top: 2px; }
+
+    /* ─── Actions Table ─────────────────────────────────────── */
+    .actions-tbl { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+
+    .actions-tbl th {
+      text-align: left; padding: 14px 18px;
+      font-size: 0.625rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted); background: var(--bg-card2);
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    .actions-tbl td { padding: 14px 18px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .actions-tbl tr:last-child td { border-bottom: none; }
+    .actions-tbl tr:hover td { background: var(--bg-card2); }
+
+    .act-owner  { font-size:.875rem; font-weight:700; color:var(--text); white-space:nowrap; }
+    .act-text   { font-size:.8125rem; color:var(--text-2); }
+    .act-due    { font-size:.8125rem; color:var(--muted); white-space:nowrap; }
+    .act-src    { font-size:.75rem; color:var(--muted); white-space:nowrap; }
+
+    .act-resolved-row td { opacity: 1; }
+
+    /* ─── Footer ────────────────────────────────────────────── */
+    .footer {
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.75rem; color: var(--muted);
+    }
+
+    /* ─── Responsive ────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .kpi-strip { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links  { display: none; }
+      .hero-top   { flex-direction: column; }
+      .kpi-strip  { grid-template-columns: repeat(2, 1fr); }
+      .member-grid { grid-template-columns: 1fr; }
+      .agenda-grid { grid-template-columns: 1fr; }
+      .col-who, .col-cat, .col-prod { display: none; }
+      .col-act-src { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .kpi-strip { grid-template-columns: 1fr; }
+      .container { padding: 0 16px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+
+    /* ─── Icon Button Row ───────────────────────────────────── */
+    .m-icon-btns { display:flex; gap:5px; flex-shrink:0; }
+    .m-icon-btn {
+      width:30px; height:30px; border-radius:var(--radius);
+      display:flex; align-items:center; justify-content:center;
+      background:var(--bg-card2); border:1px solid var(--border);
+      cursor:pointer; font-size:13px; flex-shrink:0;
+      transition: transform 150ms cubic-bezier(0.23,1,0.32,1),
+                  border-color 150ms cubic-bezier(0.23,1,0.32,1),
+                  background 150ms cubic-bezier(0.23,1,0.32,1);
+      position:relative; line-height:1;
+    }
+    .m-icon-btn:hover  { border-color:var(--border-hi); transform:scale(1.08); }
+    .m-icon-btn:active { transform:scale(0.95); }
+    .m-icon-btn.has-items.builds-btn  { border-color:#86EFAC; background:#F0FDF4; }
+    .m-icon-btn.has-items.blockers-btn{ border-color:#FCA5A5; background:#FEF2F2; }
+    .m-icon-btn.has-items.wishlist-btn{ border-color:#D8B4FE; background:#FAF5FF; }
+
+    /* ─── New Badge System ──────────────────────────────────── */
+    .bdg2 {
+      display:inline-flex; align-items:center; gap:4px;
+      padding:3px 8px; border-radius:var(--radius); white-space:nowrap;
+    }
+    .bdg2-cat {
+      font-size:.5rem; font-weight:800; text-transform:uppercase;
+      letter-spacing:.07em; opacity:.55;
+    }
+    .bdg2-sep { opacity:.3; font-size:.6rem; }
+    .bdg2-val { font-size:.625rem; font-weight:700; letter-spacing:.04em; }
+
+    /* ─── Setup Status ──────────────────────────────────────── */
+    .m-setup-row {
+      display:flex; align-items:center; gap:6px;
+      font-size:.75rem; color:var(--muted); margin-bottom:10px;
+    }
+    .setup-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+
+    /* ─── Inline View Sections ──────────────────────────────── */
+    .m-inline-section {
+      display: none;
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      padding: 14px 0 4px;
+    }
+    .m-inline-section.vis {
+      display: block;
+      animation: slideDownInline 180ms cubic-bezier(0.23,1,0.32,1);
+    }
+    @keyframes slideDownInline {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .m-inline-lbl {
+      font-size:.5625rem; font-weight:800; letter-spacing:.1em;
+      text-transform:uppercase; color:var(--muted); margin-bottom:6px;
+    }
+
+    /* ─── Global Popover ────────────────────────────────────── */
+    #m-popover {
+      position:fixed; z-index:600;
+      background:#FFFFFF; border:1px solid var(--border);
+      border-radius:var(--radius); padding:14px 16px;
+      min-width:260px; max-width:360px;
+      box-shadow:0 8px 32px rgba(0,0,0,0.12);
+      pointer-events:auto;
+      opacity:0; transition:opacity 120ms cubic-bezier(0.23,1,0.32,1);
+    }
+    #m-popover.vis { opacity:1; }
+    .pop-title {
+      font-size:.5625rem; font-weight:800; letter-spacing:.1em;
+      text-transform:uppercase; color:var(--muted); margin-bottom:10px;
+    }
+    .pop-list { list-style:none; display:flex; flex-direction:column; gap:7px; }
+    .pop-list li {
+      font-size:.8125rem; color:var(--text-2); line-height:1.55;
+      display:flex; gap:8px; align-items:flex-start;
+    }
+    .pop-list li::before {
+      content:''; width:4px; height:4px; border-radius:50%;
+      background:var(--border-hi); flex-shrink:0; margin-top:7px;
+    }
+    .pop-list a { color:var(--sky); text-decoration:none; }
+    .pop-list a:hover { text-decoration:underline; }
+    .pop-copy-row { display:flex; gap:6px; margin-top:10px; flex-wrap:wrap; }
+    .pop-copy-btn {
+      display:inline-flex; align-items:center; gap:4px;
+      background:none; border:1px solid var(--border); border-radius:var(--radius);
+      padding:4px 10px; font-size:.6875rem; font-weight:600;
+      color:var(--muted); cursor:pointer; font-family:var(--font);
+      transition: color 150ms cubic-bezier(0.23,1,0.32,1),
+                  border-color 150ms cubic-bezier(0.23,1,0.32,1);
+    }
+    .pop-copy-btn:hover  { color:var(--text); border-color:var(--border-hi); }
+    .pop-copy-btn:active { transform:scale(0.97); }
+    .pop-empty { font-size:.8125rem; color:var(--muted); font-style:italic; }
+
+    /* ─── Health Score ──────────────────────────────────────── */
+    .m-health {
+      display:inline-flex; align-items:center; gap:5px;
+      font-size:.625rem; font-weight:800; letter-spacing:.04em;
+      padding:3px 8px; border-radius:var(--radius); flex-shrink:0;
+    }
+    .health-bar {
+      width:38px; height:4px; border-radius:2px;
+      background:var(--border); overflow:hidden;
+    }
+    .health-fill { height:100%; border-radius:2px; transition:width 600ms cubic-bezier(0.23,1,0.32,1); }
+
+    /* ─── Personality Bullets ───────────────────────────────── */
+    .pers-bullets {
+      list-style:none; display:flex; flex-direction:column; gap:5px;
+      font-size:.8125rem; color:var(--text-2); line-height:1.6;
+    }
+    .pers-bullets li {
+      display:flex; gap:8px; align-items:flex-start;
+    }
+    .pers-bullets li::before {
+      content:''; width:4px; height:4px; border-radius:50%;
+      background:var(--border-hi); flex-shrink:0; margin-top:8px;
+    }
+
+    /* ─── View Toggle ───────────────────────────────────────── */
+    .filter-sep { width:1px; height:22px; background:var(--border-mid); flex-shrink:0; align-self:center; }
+    .v-btn {
+      padding:6px 14px; font-size:.8125rem; font-weight:600;
+      font-family:var(--font); color:var(--muted);
+      background:var(--bg-card); border:1px solid var(--border);
+      border-radius:var(--radius); cursor:pointer; display:inline-flex;
+      align-items:center; gap:5px;
+      transition: color 150ms cubic-bezier(0.23,1,0.32,1),
+                  border-color 150ms cubic-bezier(0.23,1,0.32,1),
+                  background 150ms cubic-bezier(0.23,1,0.32,1);
+    }
+    .v-btn:hover  { color:var(--text); border-color:var(--border-mid); }
+    .v-btn:active { transform:scale(0.97); }
+    .v-btn.active { color:#fff; background:var(--text); border-color:var(--text); }
+
+    /* ─── Dark Mode Override ────────────────────────────────── */
+    [data-theme="dark"] {
+      --bg:          #020617;
+      --bg-card:     #0F172A;
+      --bg-card2:    #1E293B;
+      --border:      #1E293B;
+      --border-mid:  #334155;
+      --border-hi:   #475569;
+      --text:        #F8FAFC;
+      --text-2:      #CBD5E1;
+      --muted:       #94A3B8;
+      --green:       #22C55E;
+      --yellow:      #D97706;
+      --red:         #EF4444;
+      --blue:        #3B82F6;
+      --sky:         #38BDF8;
+      --orange:      #F97316;
+      --purple:      #A855F7;
+      --amber:       #F59E0B;
+    }
+    [data-theme="dark"] .t-advanced  { background:rgba(34,197,94,.12);  color:#4ade80; }
+    [data-theme="dark"] .t-growing   { background:rgba(59,130,246,.12); color:#60a5fa; }
+    [data-theme="dark"] .t-starting  { background:rgba(234,179,8,.12);  color:#facc15; }
+    [data-theme="dark"] .t-risk      { background:rgba(239,68,68,.12);  color:#f87171; }
+    [data-theme="dark"] .sa-in-platform { background:rgba(34,197,94,.1);  color:#86efac; }
+    [data-theme="dark"] .sa-mixed       { background:rgba(249,115,22,.1); color:#fb923c; }
+    [data-theme="dark"] .sa-around      { background:rgba(239,68,68,.1);  color:#f87171; }
+    [data-theme="dark"] .sa-unknown     { background:rgba(148,163,184,.08); color:var(--muted); border:none; }
+    [data-theme="dark"] .s-high    { background:rgba(239,68,68,.1);   color:#f87171; }
+    [data-theme="dark"] .s-medium  { background:rgba(234,179,8,.1);   color:#fbbf24; }
+    [data-theme="dark"] .s-low     { background:rgba(34,197,94,.08);  color:#86efac; }
+    [data-theme="dark"] .s-none,
+    [data-theme="dark"] .s-unknown { background:rgba(148,163,184,.08); color:var(--muted); border:none; }
+    [data-theme="dark"] .e-champion     { background:rgba(168,85,247,.1);  color:#c084fc; }
+    [data-theme="dark"] .e-collaborative{ background:rgba(59,130,246,.1);  color:#60a5fa; }
+    [data-theme="dark"] .e-quiet        { background:rgba(148,163,184,.08); color:var(--muted); border:none; }
+    [data-theme="dark"] .e-silent       { background:rgba(239,68,68,.08);   color:#f87171; }
+    [data-theme="dark"] .p-critical { background:rgba(239,68,68,.12);  color:#f87171; border:none; }
+    [data-theme="dark"] .p-high     { background:rgba(249,115,22,.12); color:#fb923c; border:none; }
+    [data-theme="dark"] .p-medium   { background:rgba(234,179,8,.12);  color:#fbbf24; border:none; }
+    [data-theme="dark"] .p-low      { background:rgba(148,163,184,.1); color:var(--muted); border:none; }
+    [data-theme="dark"] .gap-prod   { background:rgba(59,130,246,.12); color:#60a5fa; }
+    [data-theme="dark"] .as-in-planning      { background:rgba(59,130,246,.12);  color:#60a5fa; }
+    [data-theme="dark"] .as-needs-definition { background:rgba(249,115,22,.12);  color:#fb923c; }
+    [data-theme="dark"] .as-structure-only   { background:rgba(148,163,184,.1);  color:var(--muted); border:none; }
+    [data-theme="dark"] .as-on-hold          { background:rgba(239,68,68,.1);    color:#f87171; }
+    [data-theme="dark"] .m-icon-btn.has-items.builds-btn   { border-color:rgba(34,197,94,.4);  background:rgba(34,197,94,.07);  }
+    [data-theme="dark"] .m-icon-btn.has-items.blockers-btn { border-color:rgba(239,68,68,.4);  background:rgba(239,68,68,.07);  }
+    [data-theme="dark"] .m-icon-btn.has-items.wishlist-btn { border-color:rgba(168,85,247,.4); background:rgba(168,85,247,.07); }
+    [data-theme="dark"] .m-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.4); }
+    [data-theme="dark"] .tbl-wrap  { box-shadow: none; }
+    [data-theme="dark"] .nav { background: #0F172A; }
+    [data-theme="dark"] .hero-pill { background: #1E293B; border-color: #334155; }
+    [data-theme="dark"] .gaps-tbl tr:hover td { background: rgba(255,255,255,.02); }
+    [data-theme="dark"] .actions-tbl tr:hover td { background: rgba(255,255,255,.02); }
+    [data-theme="dark"] #m-popover { background:#0F172A; border-color:rgba(255,255,255,.12); box-shadow:0 8px 32px rgba(0,0,0,.5); }
+
+    /* ─── Theme Toggle Button ───────────────────────────────── */
+    .theme-btn {
+      width:32px; height:32px; border-radius:var(--radius);
+      display:flex; align-items:center; justify-content:center;
+      background:var(--bg-card2); border:1px solid var(--border);
+      cursor:pointer; color:var(--muted); flex-shrink:0;
+      transition: color 150ms cubic-bezier(0.23,1,0.32,1),
+                  background 150ms cubic-bezier(0.23,1,0.32,1),
+                  border-color 150ms cubic-bezier(0.23,1,0.32,1);
+    }
+    .theme-btn:hover  { color:var(--text); border-color:var(--border-mid); }
+    .theme-btn:active { transform:scale(0.92); }
+
+    /* ─── Health Tooltip ────────────────────────────────────── */
+    #health-tip {
+      position:fixed; z-index:700;
+      background: var(--bg-card); border:1px solid var(--border);
+      border-radius: var(--radius); padding:12px 14px;
+      min-width:220px; max-width:280px;
+      box-shadow:0 8px 24px rgba(0,0,0,.12);
+      pointer-events:none;
+      opacity:0; transition:opacity 120ms;
+    }
+    #health-tip.vis { opacity:1; }
+    .ht-title {
+      font-size:.5rem; font-weight:800; letter-spacing:.1em;
+      text-transform:uppercase; color:var(--muted); margin-bottom:8px;
+    }
+    .ht-score-big {
+      font-size:1.5rem; font-weight:800; line-height:1;
+      margin-bottom:8px;
+    }
+    .ht-bar-wrap { display:flex; flex-direction:column; gap:5px; }
+    .ht-row { display:flex; align-items:center; gap:8px; }
+    .ht-label { font-size:.625rem; font-weight:600; color:var(--muted); flex:1; min-width:0; }
+    .ht-track {
+      width:64px; height:5px; border-radius:2px;
+      background:var(--border); overflow:hidden; flex-shrink:0;
+    }
+    .ht-fill { height:100%; border-radius:2px; }
+    .ht-pct  { font-size:.5625rem; font-weight:700; color:var(--muted); min-width:22px; text-align:right; }
+
+    /* ─── SVG icon buttons ──────────────────────────────────── */
+    .m-icon-btn svg { pointer-events:none; }
+
+    /* ─── Radar Charts ──────────────────────────────────────── */
+    #insights { padding: 60px 0; }
+    .insights-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .radar-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 28px;
+      box-shadow: 0 1px 3px rgba(0,0,0,.04);
+    }
+    .radar-card-title {
+      font-size: .875rem; font-weight: 700; color: var(--text);
+      margin-bottom: 4px;
+    }
+    .radar-card-sub {
+      font-size: .75rem; color: var(--muted); margin-bottom: 20px; line-height: 1.5;
+    }
+    .radar-legend {
+      display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px;
+    }
+    .radar-legend-item {
+      display: flex; align-items: center; gap: 6px;
+      font-size: .6875rem; color: var(--muted);
+    }
+    .radar-legend-dot {
+      width: 10px; height: 3px; border-radius: 2px; flex-shrink: 0;
+    }
+    .radar-wrap { position: relative; height: 280px; width: 100%; }
+    .radar-wrap canvas { position: absolute; top: 0; left: 0; width: 100% !important; height: 100% !important; }
+    @media (max-width: 768px) { .insights-grid { grid-template-columns: 1fr; } }
+    .radar-session-toggles { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+    .radar-session-btn {
+      padding: 4px 12px; font-size: .6875rem; font-weight: 600;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      background: var(--bg-card); color: var(--muted);
+      cursor: pointer; font-family: var(--font);
+      transition: all 150ms;
+    }
+    .radar-session-btn.active {
+      background: rgba(37,99,235, var(--alpha));
+      color: #fff; border-color: transparent;
+    }
+    [data-theme="light"] .radar-session-btn.active { color: var(--bg-card); }
+
+    /* ─── View Panel ────────────────────────────────────────── */
+    #view-panel { display: none; margin-bottom: 8px; }
+    #view-panel.vis { display: block; }
+    .vp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+    }
+    .vp-row { background: var(--bg-card); padding: 18px 20px; }
+    .vp-member { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .vp-avatar-sm {
+      width: 34px; height: 34px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .6875rem; font-weight: 700; flex-shrink: 0;
+      border: 1.5px solid transparent; overflow: hidden;
+    }
+    .vp-avatar-sm img { width: 100%; height: 100%; object-fit: cover; }
+    .vp-name { font-size: .875rem; font-weight: 700; color: var(--text); }
+    .vp-sub  { font-size: .6875rem; color: var(--muted); }
+    .vp-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 5px; }
+    .vp-list li { font-size: .8125rem; color: var(--text-2); line-height: 1.4; padding-left: 14px; position: relative; }
+    .vp-list li::before { content: '·'; position: absolute; left: 0; color: var(--muted); font-weight: 700; }
+    .vp-empty { font-size: .8125rem; color: var(--muted); font-style: italic; margin: 0; }
+    #memberGrid.vp-hidden { display: none; }
+    @media (max-width: 768px) { .vp-grid { grid-template-columns: 1fr; } }
+
+    /* ─── Sortable Table Headers ───────────────────────────── */
+    .gaps-tbl th.th-sort { cursor: pointer; user-select: none; }
+    .gaps-tbl th.th-sort:hover { background: var(--border); color: var(--text-2); }
+    .sort-icon { opacity: .45; font-size: .625rem; margin-left: 3px; }
+    .gaps-tbl th.th-sort:hover .sort-icon { opacity: 1; }
+    .th-sort.sort-active { color: var(--text); }
+    .th-sort.sort-active .sort-icon { opacity: 1; color: var(--blue); }
+
+    /* ─── Skill Tags & Filter Bar ─── */
+    .s-btn {
+      padding: 5px 12px; font-size: .75rem; font-weight: 500;
+      font-family: var(--font); color: var(--muted);
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); cursor: pointer; transition: all 150ms;
+    }
+    .s-btn.active { color: var(--purple); border-color: var(--purple); background: rgba(124,58,237,.06); }
+    .s-btn:hover { color: var(--text); border-color: var(--border-mid); }
+    .clear-filters-btn {
+      font-size: .75rem; color: var(--muted); background: none;
+      border: none; cursor: pointer; font-family: var(--font);
+      padding: 5px 8px; text-decoration: underline; text-underline-offset: 2px;
+      white-space: nowrap;
+    }
+    .clear-filters-btn:hover { color: var(--red, #ef4444); }
+    .m-skills { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; margin-bottom: 2px; }
+    .m-skill-tag {
+      font-size: .625rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .05em; padding: 2px 8px;
+      background: rgba(124,58,237,.08); color: var(--purple);
+      border: 1px solid rgba(124,58,237,.2); border-radius: 10px;
+      cursor: pointer; transition: background 150ms;
+    }
+    .m-skill-tag:hover { background: rgba(124,58,237,.16); }
+
+    /* ─── Filter Groups ─────────────────────────────────── */
+    .fg {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 4px 6px 4px 10px;
+      flex-shrink: 0; transition: border-color 150ms;
+    }
+    .fg:hover { border-color: var(--border-mid); }
+    .fg-lbl {
+      font-size: .5rem; font-weight: 800; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted);
+      padding-right: 8px; margin-right: 2px;
+      border-right: 1px solid var(--border-mid);
+      white-space: nowrap; flex-shrink: 0; align-self: center;
+    }
+    .fg.fg-skills { position: relative; }
+    .fg-clear { align-self: center; margin-left: 2px; }
+
+    /* ─── Skills Dropdown ────────────────────────────────── */
+    .skill-dd-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 10px; font-size: .8125rem; font-weight: 500;
+      font-family: var(--font); color: var(--text-2);
+      background: none; border: none; cursor: pointer;
+      border-radius: calc(var(--radius) - 2px);
+      transition: color 150ms, background 150ms;
+    }
+    .skill-dd-btn:hover { color: var(--text); background: var(--bg-card2); }
+    .skill-dd-btn.has-active { color: var(--purple); font-weight: 600; }
+    .skill-dd-btn svg { transition: transform 200ms cubic-bezier(0.23,1,0.32,1); flex-shrink:0; }
+    .skill-dd-btn.open svg { transform: rotate(180deg); }
+    .skill-dd-count {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 16px; height: 16px; padding: 0 4px;
+      background: var(--purple); color: #fff;
+      border-radius: 8px; font-size: .5625rem; font-weight: 800;
+    }
+    .skill-dd-panel {
+      position: absolute; top: calc(100% + 8px); left: 0;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 8px;
+      min-width: 220px; max-width: 340px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.12);
+      display: none; flex-wrap: wrap; gap: 5px;
+      z-index: 500;
+      animation: ddReveal 160ms cubic-bezier(0.23,1,0.32,1) both;
+    }
+    .skill-dd-panel.open { display: flex; }
+    @keyframes ddReveal {
+      from { opacity: 0; transform: translateY(-4px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .skill-dd-item {
+      padding: 4px 10px; font-size: .75rem; font-weight: 500;
+      font-family: var(--font); color: var(--muted);
+      background: var(--bg-card2); border: 1px solid var(--border);
+      border-radius: 10px; cursor: pointer; transition: all 150ms;
+      white-space: nowrap;
+    }
+    .skill-dd-item:hover { color: var(--text); border-color: var(--border-mid); }
+    .skill-dd-item.active {
+      color: var(--purple); border-color: var(--purple);
+      background: rgba(124,58,237,.08); font-weight: 700;
+    }
+
+    /* ─── View-Active Mode (single-column pile) ─────────── */
+    #memberGrid.view-active {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    .view-active .m-card {
+      transition: box-shadow 180ms cubic-bezier(0.23,1,0.32,1);
+    }
+    .view-active .personality,
+    .view-active .m-quote { display: none !important; }
+    .view-active .expand-btn { display: none !important; }
+    .view-active .m-detail { display: none !important; }
+    .view-active .m-inline-lbl { display: none !important; }
+    .view-active .m-inline-section {
+      display: none !important;
+    }
+    .view-active .m-inline-section.vis {
+      display: block !important;
+      border-top: 1px solid var(--border);
+      padding: 12px 0 4px;
+      animation: vaReveal 220ms cubic-bezier(0.23,1,0.32,1) both;
+    }
+    @keyframes vaReveal {
+      from { opacity: 0; transform: translateY(5px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .view-active .m-inline-section.vis li {
+      animation: vaItem 190ms cubic-bezier(0.23,1,0.32,1) both;
+    }
+    .view-active .m-inline-section.vis li:nth-child(1) { animation-delay: 30ms; }
+    .view-active .m-inline-section.vis li:nth-child(2) { animation-delay: 60ms; }
+    .view-active .m-inline-section.vis li:nth-child(3) { animation-delay: 90ms; }
+    .view-active .m-inline-section.vis li:nth-child(4) { animation-delay: 120ms; }
+    .view-active .m-inline-section.vis li:nth-child(5) { animation-delay: 150ms; }
+    .view-active .m-inline-section.vis li:nth-child(6) { animation-delay: 180ms; }
+    @keyframes vaItem {
+      from { opacity: 0; transform: translateX(-5px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── Nav ─────────────────────────────────────────────── -->
+<nav class="nav">
+  <div class="nav-inner">
+    <span class="nav-brand">AMM</span>
+    <div class="nav-sep"></div>
+    <ul class="nav-links">
+      <li><a href="#members">Members</a></li>
+      <li><a href="#gaps">Platform Gaps</a></li>
+      <li><a href="#agenda">Roadmap</a></li>
+      <li><a href="#actions">Actions</a></li>
+      <li><a href="#insights">Group Intelligence</a></li>
+    </ul>
+    <div class="nav-meta">
+      <span class="live-dot"></span>
+      <span id="navDate"></span>
+      <button class="theme-btn" id="themeToggle" title="Toggle dark/light mode" onclick="toggleTheme()">
+        <svg id="themeIcon" width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="7.5" cy="7.5" r="3"/>
+          <line x1="7.5" y1="1" x2="7.5" y2="2.5"/>
+          <line x1="7.5" y1="12.5" x2="7.5" y2="14"/>
+          <line x1="1" y1="7.5" x2="2.5" y2="7.5"/>
+          <line x1="12.5" y1="7.5" x2="14" y2="7.5"/>
+          <line x1="2.9" y1="2.9" x2="3.95" y2="3.95"/>
+          <line x1="11.05" y1="11.05" x2="12.1" y2="12.1"/>
+          <line x1="12.1" y1="2.9" x2="11.05" y2="3.95"/>
+          <line x1="3.95" y1="11.05" x2="2.9" y2="12.1"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ─── Health Tooltip ──────────────────────────────────── -->
+<div id="health-tip"></div>
+
+<!-- ─── Hero ─────────────────────────────────────────────── -->
+<div class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div>
+        <div class="hero-eyebrow">Executive Intelligence Dashboard</div>
+        <h1 class="hero-title" id="heroTitle"></h1>
+        <p class="hero-sub" id="heroSub"></p>
+      </div>
+      <div class="hero-pill">
+        <span class="live-dot"></span>
+        <span id="heroPill"></span>
+      </div>
+    </div>
+    <div class="kpi-strip" id="kpiStrip"></div>
+  </div>
+</div>
+
+<!-- ─── Members ─────────────────────────────────────────── -->
+<section id="members">
+  <div class="container">
+    <div class="section-hdr">
+      <h2>Member Profiles</h2>
+      <span class="chip" id="memberChip"></span>
+    </div>
+    <div class="filter-bar" id="filterBar"></div>
+    <div id="view-panel"></div>
+    <div class="member-grid" id="memberGrid"></div>
+  </div>
+</section>
+
+<!-- ─── Platform Gaps ──────────────────────────────────── -->
+<section id="gaps">
+  <div class="container">
+    <div class="section-hdr">
+      <h2>Platform Gaps</h2>
+      <span class="chip" id="gapsChip"></span>
+    </div>
+    <div class="tbl-wrap">
+      <table class="gaps-tbl">
+        <thead id="gapsHead">
+          <tr>
+            <th class="th-sort sort-active" data-sort="priority" onclick="sortGaps('priority')">Priority<span class="sort-icon">↑</span></th>
+            <th>Gap</th>
+            <th class="col-who">Members</th>
+            <th class="th-sort col-prod" data-sort="product" onclick="sortGaps('product')">Product<span class="sort-icon">⇅</span></th>
+            <th class="th-sort col-cat" data-sort="category" onclick="sortGaps('category')">Category<span class="sort-icon">⇅</span></th>
+            <th class="th-sort" data-sort="status" onclick="sortGaps('status')">Status<span class="sort-icon">⇅</span></th>
+          </tr>
+        </thead>
+        <tbody id="gapsBody"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Roadmap ─────────────────────────────────────────── -->
+<section id="agenda">
+  <div class="container">
+    <div class="section-hdr">
+      <h2>Restructuring Roadmap</h2>
+      <span class="chip">Q2 2026 · Priority Order</span>
+    </div>
+    <div class="agenda-grid" id="agendaGrid"></div>
+  </div>
+</section>
+
+<!-- ─── Action Items ────────────────────────────────────── -->
+<section id="actions">
+  <div class="container">
+    <div class="section-hdr">
+      <h2>Action Items</h2>
+      <span class="chip" id="actionsChip"></span>
+    </div>
+    <div class="tbl-wrap">
+      <table class="actions-tbl">
+        <thead>
+          <tr>
+            <th>Assignee</th>
+            <th>Task</th>
+            <th>Due</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="actionsBody"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Action Modal (populated by actions.js) ──────────── -->
+<div id="actionModal"></div>
+
+<!-- ─── Group Intelligence ──────────────────────────────── -->
+<section id="insights">
+  <div class="container">
+    <div class="section-hdr">
+      <h2>Group Intelligence</h2>
+      <span class="chip">Trend Analysis · Based on 6 Transcripts</span>
+    </div>
+    <div class="insights-grid">
+      <div class="radar-card">
+        <div class="radar-card-title">Discussion Priority Shifts</div>
+        <div class="radar-card-sub">What topics dominated each session — how group focus has evolved from onboarding through restructuring.</div>
+        <div class="radar-session-toggles" id="radarTopicsToggles"></div>
+        <div class="radar-wrap"><canvas id="radarTopics"></canvas></div>
+        <div class="radar-legend" id="radarTopicsLegend"></div>
+      </div>
+      <div class="radar-card">
+        <div class="radar-card-title">Group Morale & Energy</div>
+        <div class="radar-card-sub">Composite sentiment derived from member quotes, engagement patterns, and session dynamics across all recorded calls.</div>
+        <div class="radar-session-toggles" id="radarMoraleToggles"></div>
+        <div class="radar-wrap"><canvas id="radarMorale"></canvas></div>
+        <div class="radar-legend" id="radarMoraleLegend"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Footer ─────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="container">
+    <p id="footerText"></p>
+  </div>
+</footer>
+
+<script>
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+const initials = n => n.split(' ').map(x=>x[0]).join('').slice(0,2).toUpperCase();
+
+const tierMeta = {
+  advanced: { label:'Advanced',       cls:'t-advanced',  color:'#16A34A' },
+  growing:  { label:'Growing',        cls:'t-growing',   color:'#2563EB' },
+  starting: { label:'Getting Started',cls:'t-starting',  color:'#D97706' },
+  risk:     { label:'At Risk',        cls:'t-risk',      color:'#DC2626' }
+};
+
+const saMeta = {
+  'in-platform': { label:'In Platform',       cls:'sa-in-platform' },
+  mixed:         { label:'Mixed',              cls:'sa-mixed'       },
+  around:        { label:'Around Platform',   cls:'sa-around'      },
+  unknown:       { label:'Unknown',            cls:'sa-unknown'     }
+};
+
+const supportMeta = {
+  high:    { label:'High Support',    cls:'s-high'    },
+  medium:  { label:'Med Support',     cls:'s-medium'  },
+  low:     { label:'Low Support',     cls:'s-low'     },
+  none:    { label:'Self-Sufficient', cls:'s-none'    },
+  unknown: { label:'?',               cls:'s-unknown' }
+};
+
+const engMeta = {
+  champion:     { label:'Champion',      cls:'e-champion'      },
+  collaborative:{ label:'Collaborative', cls:'e-collaborative' },
+  quiet:        { label:'Quiet',         cls:'e-quiet'         },
+  silent:       { label:'Silent',        cls:'e-silent'        }
+};
+
+const prioMeta = {
+  critical: { label:'Critical', cls:'p-critical' },
+  high:     { label:'High',     cls:'p-high'     },
+  medium:   { label:'Medium',   cls:'p-medium'   },
+  low:      { label:'Low',      cls:'p-low'      }
+};
+
+const prioOrder = { critical:0, high:1, medium:2, low:3 };
+
+const statusText = {
+  open:           ['st-open',        'Open'],
+  'in-progress':  ['st-in-progress', 'In Progress'],
+  resolved:       ['st-resolved',    'Resolved']
+};
+
+const agStatusMeta = {
+  'in-planning':      { label:'In Planning',       cls:'as-in-planning'      },
+  'needs-definition': { label:'Needs Definition',  cls:'as-needs-definition' },
+  'structure-only':   { label:'Structure Only',    cls:'as-structure-only'   },
+  'on-hold':          { label:'On Hold',            cls:'as-on-hold'          }
+};
+
+function badge(meta, key) {
+  const m = meta[key] || { label:key, cls:'' };
+  return `<span class="bdg ${m.cls}">${m.label}</span>`;
+}
+
+function countUp(el, target, ms=1100) {
+  const s = performance.now();
+  (function tick(ts) {
+    const p = Math.min((ts-s)/ms,1);
+    const e = 1-Math.pow(1-p,3);
+    el.textContent = Math.round(e*target);
+    if(p<1) requestAnimationFrame(tick);
+  })(s);
+}
+
+// ─── SVG Icons ───────────────────────────────────────────────────────────────
+const chevronSVG = `<svg class="m-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 6 8 10 12 6"/></svg>`;
+
+const checkSVG = `<svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#475569" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="6.5" r="5.5"/><polyline points="4 6.5 5.8 8.3 9 5"/></svg>`;
+
+// ─── Render Header ────────────────────────────────────────────────────────────
+function renderHeader() {
+  const m = AMM_DATA.meta;
+  document.getElementById('heroTitle').textContent = m.program;
+  document.getElementById('heroSub').textContent = `${m.cohort} · Member Intelligence & Platform Analysis`;
+  document.getElementById('heroPill').textContent = `Updated ${m.lastUpdated} · Project Manager: ${m.projectManager} · Host: ${m.host}`;
+  document.getElementById('navDate').textContent = m.lastUpdated;
+  document.getElementById('footerText').textContent =
+    `${m.program} · ${m.cohort} · Project Manager: ${m.projectManager} · Host: ${m.host} · Last updated ${m.lastUpdated}`;
+}
+
+// ─── Render KPIs ─────────────────────────────────────────────────────────────
+function renderKPIs() {
+  const k = AMM_DATA.kpis;
+  const items = [
+    { label:'Total Members',       val:k.totalMembers,          sub:`${k.activeMembers} active · ${k.atRiskMembers} at risk`,      color:'var(--text)' },
+    { label:'Inside Platform',     val:k.membersInsidePlatform, sub:'Primarily using SA tools',                                    color:'#15803D' },
+    { label:'Mixed or Around',     val:k.membersMixed+k.membersAroundPlatform, sub:'Building outside SA ecosystem',               color:'#C2410C' },
+    { label:'Platform Gaps',       val:k.platformGapsOpen,      sub:'Documented from member sessions',                            color:'#B91C1C' },
+    { label:'Open Actions',        val:k.openActionItems,       sub:'Across both April 9 sessions',                               color:'#1D4ED8' },
+  ];
+
+  document.getElementById('kpiStrip').innerHTML = items.map(i=>`
+    <div class="kpi-card">
+      <div class="kpi-label">${i.label}</div>
+      <div class="kpi-value" style="color:${i.color}" data-target="${i.val}">0</div>
+      <div class="kpi-sub">${i.sub}</div>
+    </div>
+  `).join('');
+
+  document.querySelectorAll('.kpi-value[data-target]').forEach(el=>{
+    countUp(el, parseInt(el.dataset.target));
+  });
+}
+
+// ─── Member Filter + View ─────────────────────────────────────────────────────
+let activeFilter       = 'all';
+let activeView         = 'none';      // 'none' | 'builds' | 'blockers' | 'wishlist'
+let activeSkillFilters = new Set();   // multi-select skill filters
+let _sharedBlockers    = {};          // built in init()
+let _sharedBuilds      = {};
+let _sharedWishlist    = {};
+
+function buildSharedIndex(field) {
+  const map = {};
+  AMM_DATA.members.forEach(m => {
+    (m[field] || []).forEach(item => {
+      const key = item.toLowerCase().replace(/\s+/g,' ').trim();
+      if(!map[key]) map[key] = [];
+      map[key].push(m.name);
+    });
+  });
+  return Object.fromEntries(Object.entries(map).filter(([,v]) => v.length > 1));
+}
+
+function buildSharedBlockersIndex() {
+  return buildSharedIndex('blockers');
+}
+
+const filters = [
+  { key:'all',          label:'All Members' },
+  { key:'advanced',     label:'Advanced' },
+  { key:'risk',         label:'At Risk' },
+  { key:'around',       label:'Around Platform' },
+  { key:'high-support', label:'High Support' },
+];
+
+const viewBtns = [
+  { key:'builds',   label:'Builds',   emoji:'🔨' },
+  { key:'blockers', label:'Blockers', emoji:'⚠' },
+  { key:'wishlist', label:'Wishlist', emoji:'✨' },
+];
+
+const _vIcons = {
+  builds:   `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>`,
+  blockers: `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
+  wishlist: `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+};
+const _chevronDown = `<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,3.5 5,6.5 8,3.5"/></svg>`;
+
+let _skillDDOpen = false;
+
+function renderFilterBar() {
+  const hasActive = activeFilter !== 'all' || activeView !== 'none' || activeSkillFilters.size > 0;
+
+  // Group 1 — Filter
+  const filterBtns = filters.map(f =>
+    `<button class="f-btn ${f.key===activeFilter?'active':''}" data-filter="${f.key}" title="Show: ${f.label}">${f.label}</button>`
+  ).join('');
+  const filterGroup = `<div class="fg"><span class="fg-lbl">Filter</span>${filterBtns}</div>`;
+
+  // Group 2 — View
+  const viewBtnHtml = viewBtns.map(v =>
+    `<button class="v-btn ${v.key===activeView?'active':''}" data-view="${v.key}" title="Show ${v.label} across all cards">${_vIcons[v.key] || ''} ${v.label}</button>`
+  ).join('');
+  const viewGroup = `<div class="fg"><span class="fg-lbl">View</span>${viewBtnHtml}</div>`;
+
+  // Group 3 — Skills dropdown
+  const skillCount = activeSkillFilters.size;
+  const countBadge = skillCount > 0 ? `<span class="skill-dd-count">${skillCount}</span>` : '';
+  const ddBtnLabel = skillCount > 0 ? `Skills ${countBadge}` : `Skills ${_chevronDown}`;
+  const ddItems = getUniqueSkills().map(s =>
+    `<button class="skill-dd-item ${activeSkillFilters.has(s)?'active':''}" data-skill="${escapeStr(s)}" title="${escapeStr(s)}">${escapeStr(s)}</button>`
+  ).join('');
+  const clearBtn = hasActive
+    ? `<button class="clear-filters-btn fg-clear" onclick="clearAllFilters()" title="Reset all filters">&#x2715; Clear</button>`
+    : '';
+  const skillsGroup = `
+    <div class="fg fg-skills" id="skillFg">
+      <span class="fg-lbl">Skills</span>
+      <button class="skill-dd-btn ${_skillDDOpen?'open':''} ${skillCount>0?'has-active':''}" id="skillDdBtn">
+        ${skillCount > 0 ? `${skillCount} selected ${skillCount>0?countBadge:''} ${_chevronDown}` : `All skills ${_chevronDown}`}
+      </button>
+      <div class="skill-dd-panel ${_skillDDOpen?'open':''}" id="skillDdPanel">${ddItems}</div>
+      ${clearBtn}
+    </div>`;
+
+  document.getElementById('filterBar').innerHTML = filterGroup + viewGroup + skillsGroup;
+
+  // Filter buttons
+  document.querySelectorAll('.f-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeFilter = btn.dataset.filter;
+      renderFilterBar();
+      applyFilter();
+    });
+  });
+
+  // View buttons
+  document.querySelectorAll('.v-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeView = (activeView === btn.dataset.view) ? 'none' : btn.dataset.view;
+      renderFilterBar();
+      applyViewFilter();
+    });
+  });
+
+  // Skills dropdown toggle
+  const ddBtn = document.getElementById('skillDdBtn');
+  if (ddBtn) {
+    ddBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      _skillDDOpen = !_skillDDOpen;
+      renderFilterBar();
+    });
+  }
+
+  // Skill items in dropdown
+  document.querySelectorAll('.skill-dd-item').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const s = btn.dataset.skill;
+      if (activeSkillFilters.has(s)) activeSkillFilters.delete(s);
+      else activeSkillFilters.add(s);
+      renderFilterBar();
+      applyFilter();
+    });
+  });
+}
+
+// Close skill dropdown on outside click
+document.addEventListener('click', e => {
+  if (_skillDDOpen && !e.target.closest('#skillFg')) {
+    _skillDDOpen = false;
+    renderFilterBar();
+  }
+});
+
+function getUniqueSkills() {
+  const set = new Set();
+  AMM_DATA.members.forEach(m => (m.skills||[]).forEach(s => set.add(s)));
+  return [...set].sort();
+}
+
+function setSkillFilter(skill) {
+  if (activeSkillFilters.has(skill)) activeSkillFilters.delete(skill);
+  else activeSkillFilters.add(skill);
+  renderFilterBar();
+  applyFilter();
+}
+
+function clearAllFilters() {
+  activeFilter      = 'all';
+  activeView        = 'none';
+  activeSkillFilters.clear();
+  _skillDDOpen      = false;
+  renderFilterBar();
+  applyFilter();
+  applyViewFilter();
+}
+
+function applyFilter() {
+  let visible = 0;
+  document.querySelectorAll('.m-card').forEach(card => {
+    const tierOk =
+      activeFilter === 'all'          ? true :
+      activeFilter === 'advanced'     ? card.dataset.tier === 'advanced' :
+      activeFilter === 'risk'         ? card.dataset.tier === 'risk' :
+      activeFilter === 'around'       ? card.dataset.sa === 'around' :
+      activeFilter === 'high-support' ? card.dataset.support === 'high' : true;
+
+    const cardSkills = (card.dataset.skills || '').split(',');
+    const skillOk = activeSkillFilters.size === 0 ||
+      [...activeSkillFilters].some(s => cardSkills.includes(s));
+
+    const show = tierOk && skillOk;
+    card.classList.toggle('hidden', !show);
+    if(show) visible++;
+  });
+  const chip = document.getElementById('memberChip');
+  if(chip) chip.textContent = `${visible} of ${AMM_DATA.members.length} members`;
+}
+
+function applyViewFilter() {
+  const grid = document.getElementById('memberGrid');
+  const isActive = activeView !== 'none';
+  grid.classList.toggle('view-active', isActive);
+
+  document.querySelectorAll('.m-inline-section').forEach(sec => {
+    const wasVis = sec.classList.contains('vis');
+    const show = isActive && sec.dataset.view === activeView;
+    // Remove old vis first to re-trigger animation when switching views
+    if (wasVis && !show) sec.classList.remove('vis');
+    if (show && !wasVis) sec.classList.add('vis');
+    if (!isActive) sec.classList.remove('vis');
+  });
+}
+// renderViewPanel is no longer needed but keep the function stub to avoid errors
+function renderViewPanel(view) {}
+
+function toggleViewFilter(view) {
+  activeView = (activeView === view) ? 'none' : view;
+  renderFilterBar();
+  applyViewFilter();
+}
+
+// ─── Helper functions ─────────────────────────────────────────────────────────
+function escapeStr(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function linkify(text) {
+  return escapeStr(text).replace(
+    /(https?:\/\/[^\s<>"']+)/g,
+    '<a href="$1" target="_blank" rel="noopener">$1</a>'
+  );
+}
+
+async function copyText(txt) {
+  try { await navigator.clipboard.writeText(txt); } catch(_) {}
+}
+
+function setupDotCls(status) {
+  return { complete:'background:#16A34A', 'in-progress':'background:#D97706',
+    blocked:'background:#DC2626', unknown:'background:#94A3B8' }[status] || 'background:#94A3B8';
+}
+function setupLbl(status) {
+  return { complete:'Setup Complete', 'in-progress':'Setup In Progress',
+    blocked:'Setup Blocked', unknown:'Setup Unknown' }[status] || status;
+}
+
+// New readable badge: shows category label + value
+function renderBdg2(category, valueLabel, bgRgba, color) {
+  return `<span class="bdg2" style="background:${bgRgba};color:${color};">
+    <span class="bdg2-cat">${escapeStr(category)}</span>
+    <span class="bdg2-sep">·</span>
+    <span class="bdg2-val">${escapeStr(valueLabel)}</span>
+  </span>`;
+}
+
+const tierBdg = {
+  advanced: ['Tier','Advanced',    '#DCFCE7','#15803D'],
+  growing:  ['Tier','Growing',     '#DBEAFE','#1D4ED8'],
+  starting: ['Tier','Starting',    '#FEF9C3','#A16207'],
+  risk:     ['Tier','At Risk',     '#FEE2E2','#B91C1C'],
+};
+const saBdg = {
+  'in-platform':['SA Alignment','In Platform', '#DCFCE7','#15803D'],
+  mixed:         ['SA Alignment','Mixed',        '#FFEDD5','#C2410C'],
+  around:        ['SA Alignment','Around SA',    '#FEE2E2','#B91C1C'],
+  unknown:       ['SA Alignment','Unknown',      '#F1F5F9','#64748B'],
+};
+const supportBdg = {
+  high:   ['Support','High',           '#FEE2E2','#B91C1C'],
+  medium: ['Support','Medium',         '#FEF9C3','#A16207'],
+  low:    ['Support','Low',            '#DCFCE7','#15803D'],
+  none:   ['Support','Self-Sufficient','#F1F5F9','#64748B'],
+  unknown:['Support','Unknown',        '#F1F5F9','#64748B'],
+};
+const engBdg = {
+  champion:     ['Style','Champion',     '#F3E8FF','#6D28D9'],
+  collaborative:['Style','Collaborative','#DBEAFE','#1D4ED8'],
+  quiet:        ['Style','Quiet',        '#F1F5F9','#64748B'],
+  silent:       ['Style','Silent',       '#FEE2E2','#B91C1C'],
+};
+
+function bdg2(map, key) {
+  const d = map[key];
+  if(!d) return '';
+  return renderBdg2(d[0], d[1], d[2], d[3]);
+}
+
+// ─── Health Score ──────────────────────────────────────────────────────────
+function memberHealthScore(m) {
+  const tierW    = ({advanced:4, growing:3, starting:2, risk:1})[m.tier]          ?? 2;
+  const engW     = ({champion:4, collaborative:3, quiet:2, silent:1})[m.engagementStyle] ?? 2;
+  const setupW   = ({complete:4,'in-progress':2, blocked:1, unknown:1})[m.setupStatus] ?? 1;
+  const saW      = ({'in-platform':4, mixed:3, around:2, unknown:1})[m.saAlignment] ?? 2;
+  const supW     = ({none:4, low:3, medium:2, high:1, unknown:2})[m.supportDemand] ?? 2;
+  const blockerW = (m.blockers||[]).length === 0 ? 4 : (m.blockers||[]).length === 1 ? 3 : 2;
+  const lastAct  = m.lastActive ? (Date.now() - new Date(m.lastActive)) / 86400000 : 30;
+  const activeW  = lastAct < 3 ? 4 : lastAct < 7 ? 3 : lastAct < 14 ? 2 : 1;
+
+  // Weighted: tier 25%, engagement 22%, setup 18%, sa 15%, support 10%, blockers 5%, recency 5%
+  const raw = tierW*0.25 + engW*0.22 + setupW*0.18 + saW*0.15 + supW*0.10 + blockerW*0.05 + activeW*0.05;
+  return Math.round((raw / 4) * 100);
+}
+
+function healthColor(score) {
+  if(score >= 80) return { bg:'#DCFCE7', fg:'#15803D', bar:'#16A34A' };
+  if(score >= 60) return { bg:'#DBEAFE', fg:'#1D4ED8', bar:'#2563EB' };
+  if(score >= 40) return { bg:'#FEF9C3', fg:'#A16207', bar:'#D97706' };
+  return { bg:'#FEE2E2', fg:'#B91C1C', bar:'#DC2626' };
+}
+
+// ─── Personality → Bullets ─────────────────────────────────────────────────
+function personalityBullets(text) {
+  // Split on sentence boundaries (period/! followed by space + capital)
+  const sentences = text.trim().split(/(?<=[.!?])\s+(?=[A-Z"'])/).filter(s=>s.trim());
+  if(sentences.length <= 1) {
+    return `<ul class="pers-bullets"><li>${escapeStr(text)}</li></ul>`;
+  }
+  return `<ul class="pers-bullets">${sentences.map(s=>`<li>${escapeStr(s.trim())}</li>`).join('')}</ul>`;
+}
+
+// ── Popover ──
+let _popHideTimer = null;
+let _popEl = null;
+
+function getMPop() {
+  if(!_popEl) _popEl = document.getElementById('m-popover');
+  return _popEl;
+}
+
+function showMemberPopover(type, memberId, anchorEl) {
+  clearTimeout(_popHideTimer);
+  const m = AMM_DATA.members.find(x=>x.id===memberId);
+  if(!m) return;
+  const pop = getMPop();
+
+  let title, items, isBuilds = false;
+  if(type==='builds') {
+    title='🔨 Current Builds'; items=m.currentBuilds||[]; isBuilds=true;
+  } else if(type==='blockers') {
+    title='⚠ Active Blockers'; items=m.blockers||[];
+  } else {
+    title='✨ Wishlist / Feature Requests'; items=m.featureRequests||[];
+  }
+
+  const listHtml = items.length
+    ? `<ul class="pop-list">${items.map(i=>`<li>${isBuilds?linkify(i):escapeStr(i)}</li>`).join('')}</ul>`
+    : `<p class="pop-empty">Nothing listed yet</p>`;
+
+  pop.innerHTML = `<div class="pop-title">${title}</div>${listHtml}`;
+
+  // Position near anchor
+  const rect = anchorEl.getBoundingClientRect();
+  const pw = 340;
+  let left = rect.left;
+  if(left + pw > window.innerWidth - 12) left = window.innerWidth - pw - 12;
+  pop.style.left = Math.max(8, left) + 'px';
+  const top = rect.bottom + 8;
+  pop.style.top = (top + 260 > window.innerHeight ? rect.top - 260 : top) + 'px';
+  pop.classList.add('vis');
+}
+
+function scheduleMemberPopoverHide() {
+  _popHideTimer = setTimeout(()=>{ getMPop().classList.remove('vis'); }, 180);
+}
+
+// ─── Render Members ───────────────────────────────────────────────────────────
+function renderMembers() {
+  const grid = document.getElementById('memberGrid');
+  grid.innerHTML = AMM_DATA.members.map(m=>{
+    const t = tierMeta[m.tier] || tierMeta.growing;
+    const avatarBg  = t.color + '1a';
+    const avatarClr = t.color;
+
+    // Avatar: photo if available, else initials
+    const avatarInner = m.avatarUrl
+      ? `<img src="${escapeStr(m.avatarUrl)}" alt="${escapeStr(m.name)}">`
+      : initials(m.name);
+
+    // Icon buttons (SVG icons)
+    const hasBlds = (m.currentBuilds||[]).length > 0;
+    const hasBlck = (m.blockers||[]).length > 0;
+    const hasWish = (m.featureRequests||[]).length > 0;
+
+    // SVG: hammer (builds), triangle-warning (blockers), star (wishlist)
+    const svgHammer  = `<svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3.5l2.5 2.5-5 5H4V8.5l5-5z"/><path d="M11.5 1L14 3.5"/></svg>`;
+    const svgWarning = `<svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 1L14 13H1L7.5 1z"/><line x1="7.5" y1="6" x2="7.5" y2="9"/><circle cx="7.5" cy="11" r=".6" fill="currentColor" stroke="none"/></svg>`;
+    const svgStar    = `<svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="7.5,1.5 9.5,5.5 14,6 10.75,9 11.5,13.5 7.5,11.5 3.5,13.5 4.25,9 1,6 5.5,5.5"/></svg>`;
+
+    const iconBtns = `
+      <div class="m-icon-btns" onclick="event.stopPropagation()">
+        <div class="m-icon-btn builds-btn ${hasBlds?'has-items':''}"
+          title="Builds — click to filter all cards"
+          onclick="toggleViewFilter('builds')"
+          onmouseenter="showMemberPopover('builds','${m.id}',this)"
+          onmouseleave="scheduleMemberPopoverHide()">${svgHammer}</div>
+        <div class="m-icon-btn blockers-btn ${hasBlck?'has-items':''}"
+          title="Blockers — click to filter all cards"
+          onclick="toggleViewFilter('blockers')"
+          onmouseenter="showMemberPopover('blockers','${m.id}',this)"
+          onmouseleave="scheduleMemberPopoverHide()">${svgWarning}</div>
+        <div class="m-icon-btn wishlist-btn ${hasWish?'has-items':''}"
+          title="Wishlist — click to filter all cards"
+          onclick="toggleViewFilter('wishlist')"
+          onmouseenter="showMemberPopover('wishlist','${m.id}',this)"
+          onmouseleave="scheduleMemberPopoverHide()">${svgStar}</div>
+      </div>`;
+
+    // Quote (always visible if exists)
+    const quoteHTML = m.quote && m.quote!=='—' ? `
+      <blockquote class="m-quote">
+        <q>${escapeStr(m.quote)}</q>
+        ${m.quoteContext?`<cite>${escapeStr(m.quoteContext)}</cite>`:''}
+      </blockquote>` : '';
+
+    // Inline sections for view filter mode
+    const buildsInline = `
+      <div class="m-inline-section" data-view="builds">
+        <div class="m-inline-lbl">🔨 Current Builds</div>
+        ${hasBlds
+          ? `<ul class="build-list">${m.currentBuilds.map(b => {
+              const key = b.toLowerCase().replace(/\s+/g,' ').trim();
+              const shared = _sharedBuilds[key];
+              const others = shared ? shared.filter(n => n !== m.name) : [];
+              const badge = others.length > 0
+                ? `<span class="shared-badge" title="Also: ${others.join(', ')}">+${others.length}</span>`
+                : '';
+              return `<li>${linkify(b)}${badge}</li>`;
+            }).join('')}</ul>`
+          : `<p style="font-size:.8125rem;color:var(--muted);font-style:italic">Nothing listed yet</p>`}
+      </div>`;
+
+    const blockersInline = `
+      <div class="m-inline-section" data-view="blockers">
+        <div class="m-inline-lbl">⚠ Active Blockers</div>
+        ${hasBlck
+          ? `<ul class="build-list">${m.blockers.map(b => {
+              const key = b.toLowerCase().replace(/\s+/g,' ').trim();
+              const shared = _sharedBlockers[key];
+              const others = shared ? shared.filter(n => n !== m.name) : [];
+              const badge = others.length > 0
+                ? `<span class="shared-badge" title="Also affects: ${others.join(', ')}">+${others.length}</span>`
+                : '';
+              return `<li>${escapeStr(b)}${badge}</li>`;
+            }).join('')}</ul>`
+          : `<p class="pop-empty">No active blockers</p>`}
+      </div>`;
+
+    const wishInline = `
+      <div class="m-inline-section" data-view="wishlist">
+        <div class="m-inline-lbl">✨ Wishlist / Feature Requests</div>
+        ${hasWish
+          ? `<ul class="build-list">${m.featureRequests.map(f => {
+              const key = f.toLowerCase().replace(/\s+/g,' ').trim();
+              const shared = _sharedWishlist[key];
+              const others = shared ? shared.filter(n => n !== m.name) : [];
+              const badge = others.length > 0
+                ? `<span class="shared-badge" title="Also: ${others.join(', ')}">+${others.length}</span>`
+                : '';
+              return `<li>${escapeStr(f)}${badge}</li>`;
+            }).join('')}</ul>`
+          : `<p style="font-size:.8125rem;color:var(--muted);font-style:italic">No requests listed</p>`}
+      </div>`;
+
+    const score = memberHealthScore(m);
+    const hc    = healthColor(score);
+
+    // Build health tooltip data
+    const tierW  = ({advanced:4,growing:3,starting:2,risk:1})[m.tier]??2;
+    const engW   = ({champion:4,collaborative:3,quiet:2,silent:1})[m.engagementStyle]??2;
+    const setupW = ({complete:4,'in-progress':2,blocked:1,unknown:1})[m.setupStatus]??1;
+    const saW    = ({'in-platform':4,mixed:3,around:2,unknown:1})[m.saAlignment]??2;
+    const supW   = ({none:4,low:3,medium:2,high:1,unknown:2})[m.supportDemand]??2;
+    const blkW   = (m.blockers||[]).length===0?4:(m.blockers||[]).length===1?3:2;
+    const lastAct = m.lastActive?(Date.now()-new Date(m.lastActive))/86400000:30;
+    const actW   = lastAct<3?4:lastAct<7?3:lastAct<14?2:1;
+    const htData = JSON.stringify([
+      {l:'Tier / Progress',  w:tierW,  wt:'25%'},
+      {l:'Engagement Style', w:engW,   wt:'22%'},
+      {l:'Setup Status',     w:setupW, wt:'18%'},
+      {l:'SA Alignment',     w:saW,    wt:'15%'},
+      {l:'Support Demand',   w:supW,   wt:'10%'},
+      {l:'No Blockers',      w:blkW,   wt:'5%'},
+      {l:'Recent Activity',  w:actW,   wt:'5%'}
+    ]).replace(/"/g,'&quot;');
+
+    const skillsRow = (m.skills||[]).length ? `
+      <div class="m-skills">
+        ${(m.skills||[]).map(s => `<span class="m-skill-tag" onclick="setSkillFilter('${escapeStr(s)}')">${escapeStr(s)}</span>`).join('')}
+      </div>` : '';
+
+    return `
+      <div class="m-card" data-id="${m.id}" data-tier="${m.tier}" data-sa="${m.saAlignment}" data-support="${m.supportDemand}" data-skills="${escapeStr((m.skills||[]).join(','))}">
+        <div class="m-card-top">
+          <div style="display:flex;gap:12px;align-items:flex-start;min-width:0;flex:1;">
+            <div class="m-avatar" style="background:${avatarBg};color:${avatarClr};border-color:${avatarClr};">${avatarInner}</div>
+            <div style="min-width:0;flex:1;">
+              <div class="m-name">${escapeStr(m.name)}</div>
+              <div class="m-agency">${escapeStr(m.agency)}</div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;">
+            <span class="m-health" style="background:${hc.bg};color:${hc.fg};cursor:pointer;"
+              data-health-score="${score}" data-health-bar="${hc.bar}" data-health-items="${htData}"
+              onmouseenter="showHealthTip(this,event)" onmouseleave="hideHealthTip()">
+              <span class="health-bar" style="width:48px;height:6px;border-radius:3px;background:var(--border);overflow:hidden;display:inline-block;vertical-align:middle;margin-right:3px;">
+                <span class="health-fill" style="width:${score}%;background:${hc.bar};height:100%;display:block;border-radius:3px;"></span>
+              </span>
+              <span style="font-size:.6875rem;font-weight:800;">${score}</span>
+            </span>
+            ${iconBtns}
+          </div>
+        </div>
+
+        <div class="m-setup-row">
+          <span class="setup-dot" style="${setupDotCls(m.setupStatus)}"></span>
+          <span>${setupLbl(m.setupStatus)}</span>
+        </div>
+
+        <div class="badge-row">
+          ${bdg2(tierBdg,    m.tier)}
+          ${bdg2(saBdg,      m.saAlignment)}
+          ${bdg2(supportBdg, m.supportDemand)}
+          ${bdg2(engBdg,     m.engagementStyle)}
+        </div>
+
+        ${skillsRow}
+
+        <div class="personality">${personalityBullets(m.personality)}</div>
+
+        ${quoteHTML}
+        ${buildsInline}
+        ${blockersInline}
+        ${wishInline}
+      </div>
+    `;
+  }).join('');
+
+  // Keep popover alive when hovering it
+  const pop = document.getElementById('m-popover');
+  if(pop) {
+    pop.addEventListener('mouseenter', ()=>clearTimeout(_popHideTimer));
+    pop.addEventListener('mouseleave', scheduleMemberPopoverHide);
+  }
+
+  document.getElementById('memberChip').textContent =
+    `${AMM_DATA.members.length} of ${AMM_DATA.members.length} members`;
+}
+
+// ─── Render Platform Gaps ────────────────────────────────────────────────────
+// ─── Gaps Sort State ──────────────────────────────────────────────────────────
+let gapsSortKey = 'priority';
+let gapsSortDir = 'asc';
+
+const GAP_SORT_FN = {
+  priority: g => prioOrder[g.priority] ?? 9,
+  product:  g => (g.product || '').toLowerCase(),
+  category: g => g.category.toLowerCase(),
+  status:   g => g.status,
+};
+
+function sortGaps(key) {
+  if(gapsSortKey === key) {
+    gapsSortDir = gapsSortDir === 'asc' ? 'desc' : 'asc';
+  } else {
+    gapsSortKey = key;
+    gapsSortDir = 'asc';
+  }
+  renderGaps();
+}
+
+function renderGaps() {
+  const fn = GAP_SORT_FN[gapsSortKey] || GAP_SORT_FN.priority;
+  const sorted = [...AMM_DATA.platformGaps].sort((a,b) => {
+    const av = fn(a), bv = fn(b);
+    const cmp = av < bv ? -1 : av > bv ? 1 : 0;
+    return gapsSortDir === 'asc' ? cmp : -cmp;
+  });
+
+  document.getElementById('gapsBody').innerHTML = sorted.map(g=>{
+    const pm = prioMeta[g.priority] || prioMeta.medium;
+    const [sCls, sLabel] = statusText[g.status] || ['st-open','Open'];
+    return `
+      <tr data-id="${g.id}" class="gap-row" onclick="GapNotes.open('${g.id}')">
+        <td><span class="${pm.cls}">${pm.label}</span></td>
+        <td>
+          <div class="gap-title">
+            ${GapNotes.getTitleOverride(g.id) || g.title}
+            ${GapNotes.getNoteCount(g.id) > 0 ? `<span class="gap-note-count">${GapNotes.getNoteCount(g.id)} &#x1F4AC;</span>` : ''}
+          </div>
+          <div class="gap-desc">${g.description}</div>
+          ${g.notes?`<div class="gap-note">${g.notes}</div>`:''}
+        </td>
+        <td class="col-who">
+          <div class="gap-members-wrap">
+            <span class="gap-who">${g.membersAffected.join(', ')}</span>
+            ${g.membersAffected.length > 1 ? `<span class="gap-member-count">${g.membersAffected.length} affected</span>` : ''}
+          </div>
+        </td>
+        <td class="col-prod">${g.product ? `<span class="gap-prod">${g.product}</span>` : '—'}</td>
+        <td class="col-cat"><span class="gap-who">${g.category}</span></td>
+        <td><span class="${sCls}">${sLabel}</span></td>
+      </tr>
+    `;
+  }).join('');
+
+  // Update sort icons on headers
+  document.querySelectorAll('#gapsHead th[data-sort]').forEach(th => {
+    const icon = th.querySelector('.sort-icon');
+    if(!icon) return;
+    const isActive = th.dataset.sort === gapsSortKey;
+    th.classList.toggle('sort-active', isActive);
+    icon.textContent = isActive ? (gapsSortDir === 'asc' ? '↑' : '↓') : '⇅';
+  });
+
+  const open = AMM_DATA.platformGaps.filter(g=>g.status!=='resolved').length;
+  document.getElementById('gapsChip').textContent = `${open} open · 1 resolved`;
+}
+
+// ─── Render Agenda ────────────────────────────────────────────────────────────
+function renderAgenda() {
+  document.getElementById('agendaGrid').innerHTML = AMM_DATA.agenda.map(a=>{
+    const as = agStatusMeta[a.status] || { label:a.status, cls:'' };
+    const itemsHTML = a.keyItems.length ? `
+      <ul class="ag-items">
+        ${a.keyItems.map(item=>`<li>${checkSVG} <span>${item}</span></li>`).join('')}
+      </ul>
+    ` : '<p style="font-size:.8125rem;color:var(--muted)">No active items</p>';
+
+    return `
+      <div class="ag-card" data-id="${a.id||a.pillar.toLowerCase().replace(/\s+/g,'-')}">
+        <div class="ag-num">Priority ${a.priority}</div>
+        <div class="ag-pillar">${a.pillar}</div>
+        <h3 class="ag-title">${a.title}</h3>
+        <p class="ag-desc">${a.description}</p>
+        <div class="ag-meta">
+          <span class="ag-owner">${a.owner}</span>
+          <span class="${as.cls}">${as.label}</span>
+        </div>
+        ${itemsHTML}
+      </div>
+    `;
+  }).join('');
+}
+
+// ─── Init ──────────────────────────────────────────────────────────────────
+function init() {
+  // Create global popover element
+  if(!document.getElementById('m-popover')) {
+    const p = document.createElement('div');
+    p.id = 'm-popover';
+    document.body.appendChild(p);
+  }
+
+  renderHeader();
+  renderKPIs();
+  renderFilterBar();
+  _sharedBlockers = buildSharedBlockersIndex();
+  _sharedBuilds   = buildSharedIndex('currentBuilds');
+  _sharedWishlist = buildSharedIndex('featureRequests');
+  renderMembers();
+  applyFilter();
+  renderGaps();
+  renderAgenda();
+  ActionsManager.init();
+  CommentsSystem.init();
+  if(typeof GapNotes !== 'undefined') GapNotes.init();
+  if(typeof ProgramTimeline !== 'undefined') ProgramTimeline.init();
+  renderRadarCharts();
+}
+
+// ─── Theme Toggle ─────────────────────────────────────────────────────────────
+function toggleTheme() {
+  const html = document.documentElement;
+  const isDark = html.dataset.theme === 'dark';
+  html.dataset.theme = isDark ? 'light' : 'dark';
+  localStorage.setItem('amm-theme', html.dataset.theme);
+  // Swap icon: sun (light) ↔ moon (dark)
+  const icon = document.getElementById('themeIcon');
+  if(icon) {
+    icon.innerHTML = isDark
+      ? `<circle cx="7.5" cy="7.5" r="3"/><line x1="7.5" y1="1" x2="7.5" y2="2.5"/><line x1="7.5" y1="12.5" x2="7.5" y2="14"/><line x1="1" y1="7.5" x2="2.5" y2="7.5"/><line x1="12.5" y1="7.5" x2="14" y2="7.5"/><line x1="2.9" y1="2.9" x2="3.95" y2="3.95"/><line x1="11.05" y1="11.05" x2="12.1" y2="12.1"/><line x1="12.1" y1="2.9" x2="11.05" y2="3.95"/><line x1="3.95" y1="11.05" x2="2.9" y2="12.1"/>`
+      : `<path d="M13 9.5A5.5 5.5 0 1 1 5.5 2a4 4 0 0 0 7.5 7.5z"/>`;
+  }
+  // Re-render radar charts with new theme colors
+  reRenderRadarCharts();
+}
+
+// Apply saved theme on load
+(function(){
+  const saved = localStorage.getItem('amm-theme');
+  if(saved === 'dark') {
+    document.documentElement.dataset.theme = 'dark';
+    const icon = document.getElementById('themeIcon');
+    if(icon) icon.innerHTML = `<path d="M13 9.5A5.5 5.5 0 1 1 5.5 2a4 4 0 0 0 7.5 7.5z"/>`;
+  }
+})();
+
+// ─── Health Tooltip ───────────────────────────────────────────────────────────
+let _htEl = null;
+let _htTimer = null;
+
+function showHealthTip(el, event) {
+  clearTimeout(_htTimer);
+  if(!_htEl) _htEl = document.getElementById('health-tip');
+  const score = parseInt(el.dataset.healthScore);
+  const bar   = el.dataset.healthBar;
+  const items = JSON.parse(el.dataset.healthItems.replace(/&quot;/g,'"'));
+  const label = score>=80?'Healthy':score>=60?'Growing':score>=40?'Needs Attention':'At Risk';
+
+  _htEl.innerHTML = `
+    <div class="ht-title">Health Score Breakdown</div>
+    <div class="ht-score-big" style="color:${bar}">${score} <span style="font-size:.875rem;font-weight:600;color:var(--muted)">${label}</span></div>
+    <div class="ht-bar-wrap">
+      ${items.map(d=>`
+        <div class="ht-row">
+          <span class="ht-label">${d.l}</span>
+          <div class="ht-track"><div class="ht-fill" style="width:${(d.w/4)*100}%;background:${bar};"></div></div>
+          <span class="ht-pct">${d.wt}</span>
+        </div>`).join('')}
+    </div>`;
+
+  const x = event.clientX + 16;
+  const y = event.clientY - 8;
+  const w = 280;
+  _htEl.style.left = (x + w > window.innerWidth ? x - w - 28 : x) + 'px';
+  _htEl.style.top  = y + 'px';
+  _htEl.classList.add('vis');
+}
+
+function hideHealthTip() {
+  _htTimer = setTimeout(()=>{ if(_htEl) _htEl.classList.remove('vis'); }, 100);
+}
+
+// ─── Radar Charts ─────────────────────────────────────────────────────────────
+// Single-color with increasing saturation toward the latest date:
+// oldest = very faint, middle = medium, latest = full opacity
+const RADAR_COLOR = '37,99,235'; // blue base for all sessions
+
+function getChartColors() {
+  const dark = document.documentElement.dataset.theme === 'dark';
+  return {
+    gridColor:  dark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.06)',
+    tickColor:  dark ? '#94A3B8' : '#64748B',
+    labelColor: dark ? '#CBD5E1' : '#334155',
+  };
+}
+
+function radarDataset(label, data, alpha) {
+  return {
+    label,
+    data,
+    borderColor:        `rgba(${RADAR_COLOR},${alpha})`,
+    backgroundColor:    `rgba(${RADAR_COLOR},${(alpha * 0.12).toFixed(2)})`,
+    borderWidth:        alpha >= 1 ? 2.5 : 1.5,
+    pointBackgroundColor: `rgba(${RADAR_COLOR},${alpha})`,
+    pointRadius:        alpha >= 1 ? 4 : 3,
+  };
+}
+
+function defaultRadarOpts(c) {
+  return {
+    animation: false,
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: document.documentElement.dataset.theme==='dark'?'#0F172A':'#FFFFFF',
+        borderColor: c.gridColor,
+        borderWidth: 1,
+        titleColor: c.labelColor,
+        bodyColor: c.tickColor,
+        padding: 10,
+        callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.raw}/10` }
+      }
+    },
+    scales: {
+      r: {
+        min: 0, max: 10,
+        ticks: { stepSize: 2, display: true, color: c.tickColor, font: { size: 9, weight:'600' }, backdropColor:'transparent' },
+        grid:        { color: c.gridColor },
+        angleLines:  { color: c.gridColor },
+        pointLabels: { color: c.labelColor, font: { size: 10, weight: '600' } }
+      }
+    }
+  };
+}
+
+const RADAR_LEGEND_SESSIONS = [
+  { alpha: 0.25, label: 'Mar 18 — Setup' },
+  { alpha: 0.6,  label: 'Mar 26 — Group 1' },
+  { alpha: 1.0,  label: 'Apr 9 — Restructuring' },
+];
+
+// ── Radar Session Toggle State ────────────────────────────────────────────────
+window._radarSessions = window._radarSessions || {
+  topics: [true, true, true],
+  morale: [true, true, true],
+};
+
+function renderSessionToggles(chartKey, containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const state = window._radarSessions[chartKey];
+  const alphas = [0.25, 0.6, 1.0];
+  container.innerHTML = RADAR_LEGEND_SESSIONS.map((s, i) => `
+    <button class="radar-session-btn ${state[i] ? 'active' : ''}"
+      style="--alpha:${alphas[i]}"
+      onclick="toggleRadarSession('${chartKey}',${i})"
+    >${s.label.split(' — ')[0]}</button>`).join('');
+}
+
+function toggleRadarSession(chartKey, idx) {
+  window._radarSessions[chartKey][idx] = !window._radarSessions[chartKey][idx];
+  reRenderRadarCharts();
+}
+
+// ── Radar Label Quote Tooltip Plugin ─────────────────────────────────────────
+const radarLabelQuotePlugin = {
+  id: 'labelQuotes',
+  afterEvent(chart, args) {
+    if (args.event.type !== 'mousemove') return;
+    const scale = chart.scales.r;
+    if (!scale) return;
+    const mx = args.event.x, my = args.event.y;
+    const labels = chart.data.labels || [];
+    let hovered = null;
+    labels.forEach((lbl, i) => {
+      try {
+        const pos = scale.getPointLabelPosition(i);
+        if (!pos) return;
+        const dist = Math.hypot(pos.x - mx, pos.y - my);
+        if (dist < 36) hovered = lbl;
+      } catch(e) {}
+    });
+    const tip = document.getElementById('radar-label-tip');
+    if (!tip) return;
+    const quotes = (typeof AMM_DATA !== 'undefined') ? AMM_DATA.radarLabelQuotes : null;
+    if (hovered && quotes && quotes[hovered]) {
+      tip.textContent = quotes[hovered];
+      tip.style.display = 'block';
+      tip.style.left = (args.event.native.clientX + 14) + 'px';
+      tip.style.top  = (args.event.native.clientY - 8)  + 'px';
+    } else {
+      tip.style.display = 'none';
+    }
+  }
+};
+if (typeof Chart !== 'undefined') Chart.register(radarLabelQuotePlugin);
+
+function renderRadarCharts() {
+  if(typeof Chart === 'undefined') return;
+  if(!window._radarCharts) window._radarCharts = [];
+
+  const c = getChartColors();
+
+  // ── Chart 1: Discussion Priority Shifts ──────────────────────────────────
+  const topicsCtx = document.getElementById('radarTopics');
+  if(topicsCtx && !topicsCtx._chartInstance) {
+    const allTopicsDatasets = [
+      radarDataset('Mar 18 — Setup',        [2, 9, 5, 10, 3, 2, 5, 2],  0.25),
+      radarDataset('Mar 26 — Group 1',       [6, 6, 8,  3, 8, 4, 6, 8],  0.60),
+      radarDataset('Apr 9 — Restructuring',  [8, 7, 9,  2, 9, 3, 5, 10], 1.00),
+    ];
+    const ch = new Chart(topicsCtx, {
+      type: 'radar',
+      data: {
+        labels: ['Web Studio', 'MCP & Docs', 'AI Automation', 'Onboarding', 'Feature Requests', 'Content/SEO', 'Platform Adoption', 'Collaboration'],
+        datasets: allTopicsDatasets.filter((_, i) => window._radarSessions.topics[i])
+      },
+      options: defaultRadarOpts(c)
+    });
+    topicsCtx._chartInstance = ch;
+    window._radarCharts.push(ch);
+
+    const leg = document.getElementById('radarTopicsLegend');
+    if(leg) leg.innerHTML = RADAR_LEGEND_SESSIONS.map(s=>
+      `<div class="radar-legend-item"><div class="radar-legend-dot" style="background:rgba(${RADAR_COLOR},${s.alpha})"></div>${s.label}</div>`
+    ).join('');
+    renderSessionToggles('topics', 'radarTopicsToggles');
+  }
+
+  // ── Chart 2: Group Morale & Energy ────────────────────────────────────────
+  const moraleCtx = document.getElementById('radarMorale');
+  if(moraleCtx && !moraleCtx._chartInstance) {
+    const allMoraleDatasets = [
+      radarDataset('Mar 18 — Setup',        [6, 5, 7, 5, 4, 5, 7], 0.25),
+      radarDataset('Mar 26 — Group 1',       [8, 7, 6, 6, 7, 8, 7], 0.60),
+      radarDataset('Apr 9 — Restructuring',  [9, 8, 6, 9, 9, 9, 7], 1.00),
+    ];
+    const ch2 = new Chart(moraleCtx, {
+      type: 'radar',
+      data: {
+        labels: ['Enthusiasm', 'Progress Velocity', 'Platform Confidence', 'Clarity / Direction', 'Group Cohesion', 'Building Output', 'SA Relationship'],
+        datasets: allMoraleDatasets.filter((_, i) => window._radarSessions.morale[i])
+      },
+      options: defaultRadarOpts(c)
+    });
+    moraleCtx._chartInstance = ch2;
+    window._radarCharts.push(ch2);
+
+    const leg2 = document.getElementById('radarMoraleLegend');
+    if(leg2) leg2.innerHTML = RADAR_LEGEND_SESSIONS.map(s=>
+      `<div class="radar-legend-item"><div class="radar-legend-dot" style="background:rgba(${RADAR_COLOR},${s.alpha})"></div>${s.label}</div>`
+    ).join('');
+    renderSessionToggles('morale', 'radarMoraleToggles');
+  }
+}
+
+// Re-render on theme toggle or session toggle (destroy + recreate)
+function reRenderRadarCharts() {
+  if(window._radarCharts) {
+    window._radarCharts.forEach(c => { c.destroy(); });
+    window._radarCharts = [];
+  }
+  // Reset instance flags
+  ['radarTopics','radarMorale'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) delete el._chartInstance;
+  });
+  renderRadarCharts();
+}
+
+init();
+
+// Radar safety net: re-render after full page load if not yet drawn
+window.addEventListener('load', () => {
+  if(window._radarCharts && window._radarCharts.length > 0) return;
+  renderRadarCharts();
+});
+</script>
+
+<div id="radar-label-tip" style="
+  display:none; position:fixed; z-index:150;
+  max-width:280px; padding:10px 14px;
+  background:var(--bg-card); border:1px solid var(--border);
+  border-radius:var(--radius); font-size:.75rem; color:var(--text-2);
+  line-height:1.5; box-shadow:0 4px 16px rgba(0,0,0,.12);
+  pointer-events:none;
+"></div>
+</body>
+</html>

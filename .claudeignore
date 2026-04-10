@@ -1,0 +1,44 @@
+# Claude Code — files/folders to exclude from context loading
+# Keep Claude blind to generated, large-static, and scratchpad content to save tokens.
+
+# Generated runtime output
+logs/
+*.log
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+
+# Scratchpads and throwaway notes
+_scratch/
+
+# Large static asset library (3800+ HTML files — galaxy UI components)
+Skills/galaxy/
+
+# Design inspiration images — binary assets, not useful as context
+Resources/design-inspo/
+
+# Test fixtures and coverage output
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node / build artifacts
+node_modules/
+dist/
+build/
+.cache/
+
+# Obsidian workspace state (changes every session, not semantic content)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+.trash/
+.stfolder/
+
+# Environment and secrets
+.env
+*.env.*
+
+# Feedback training data
+feedback.jsonl

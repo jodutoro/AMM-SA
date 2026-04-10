@@ -1,0 +1,1972 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e6]:
+          - link [ref=e7] [cursor=pointer]:
+            - /url: https://fathom.video/?ampDeviceId=2ae8f98d-5efb-46cd-9832-46f60dee0d3f&ampSessionId=1775761902562&ampTimestamp=1775763828882
+            - img [ref=e9]
+          - link "https://fathom.video/?ampDeviceId=2ae8f98d-5efb-46cd-9832-46f60dee0d3f&ampSessionId=1775761902562&ampTimestamp=1775763828882" [ref=e89] [cursor=pointer]:
+            - /url: https://fathom.video/?ampDeviceId=2ae8f98d-5efb-46cd-9832-46f60dee0d3f&ampSessionId=1775761902562&ampTimestamp=1775763828882
+            - complementary [ref=e23]:
+              - img [ref=e24]
+              - generic [ref=e27]: Get your own free AI Notetaker 🔥
+        - link "Sign In" [ref=e28] [cursor=pointer]:
+          - /url: /users/sign_in?share_token=p1sTWbE4Lckgce2SFEGGzsx44ffawmwD
+    - generic [ref=e32]:
+      - generic [ref=e33]:
+        - list [ref=e36]:
+          - generic [ref=e91] [cursor=pointer]:
+            - generic [ref=e92]:
+              - generic:
+                - img
+            - generic [ref=e93]: 83 mins
+          - generic [ref=e42]:
+            - generic [ref=e43] [cursor=pointer]:
+              - generic:
+                - img
+            - button "0:00" [ref=e44] [cursor=pointer]:
+              - generic [ref=e45]: 0:00
+            - button [ref=e49] [cursor=pointer]
+            - button "1" [ref=e51] [cursor=pointer]:
+              - generic: "1"
+              - generic:
+                - generic:
+                  - img
+        - generic [ref=e96]:
+          - button "Summary" [ref=e97] [cursor=pointer]:
+            - generic [ref=e98]: Summary
+          - button "Transcript" [ref=e99] [cursor=pointer]
+          - button "Ask Fathom" [ref=e100] [cursor=pointer]
+          - button "Copy Transcript" [ref=e102] [cursor=pointer]:
+            - generic [ref=e103]:
+              - generic [ref=e104]: Copy Transcript
+              - generic [ref=e105]:
+                - generic:
+                  - img
+        - generic [ref=e53]:
+          - button "Resume Auto-Scroll" [ref=e55] [cursor=pointer]:
+            - generic [ref=e56]:
+              - generic:
+                - img
+            - generic [ref=e57]: Resume Auto-Scroll
+          - generic [ref=e61]:
+            - generic [ref=e62]:
+              - generic:
+                - img
+            - textbox "Search Transcript" [ref=e63]
+          - generic:
+            - generic [ref=e70]:
+              - figure [ref=e107]:
+                - generic [ref=e108]:
+                  - generic [ref=e109]: Matt Bailey
+                  - blockquote [ref=e110]:
+                    - paragraph [ref=e111] [cursor=pointer]: Hello, everybody. I just did a Google Meet, and it messed up all my microphones. So, and my speakers. Someone say something, so I know my speakers are working.
+              - figure [ref=e112]:
+                - generic [ref=e113]:
+                  - generic [ref=e114]: Justin Day
+                  - blockquote [ref=e115]:
+                    - paragraph [ref=e116] [cursor=pointer]: Matt, you are the sexiest guy in this group.
+              - figure [ref=e117]:
+                - generic [ref=e118]:
+                  - generic [ref=e119]: Matt Bailey
+                  - blockquote [ref=e120]:
+                    - paragraph [ref=e121] [cursor=pointer]: And they're not working yet.
+              - figure [ref=e122]:
+                - generic [ref=e123]:
+                  - generic [ref=e124]: Justin Day
+                  - blockquote [ref=e125]:
+                    - paragraph [ref=e126] [cursor=pointer]: I was just going to say it. I resign.
+              - figure [ref=e127]:
+                - generic [ref=e128]:
+                  - generic [ref=e129]: Matt Bailey
+                  - blockquote [ref=e130]:
+                    - paragraph [ref=e131] [cursor=pointer]: There we go.
+              - figure [ref=e132]:
+                - generic [ref=e133]:
+                  - generic [ref=e134]: Justin Day
+                  - blockquote [ref=e135]:
+                    - paragraph [ref=e136] [cursor=pointer]: Nice.
+              - figure [ref=e137]:
+                - generic [ref=e138]:
+                  - generic [ref=e139]: Matt Bailey
+                  - blockquote [ref=e140]:
+                    - paragraph [ref=e141] [cursor=pointer]: The other thing about switching between all of these meeting softwares, it just... Let's just change all the settings from one to the next.
+                - blockquote [ref=e143]:
+                  - paragraph [ref=e144] [cursor=pointer]: Everyone's getting in here. Good, good. How's everyone doing today?
+              - figure [ref=e145]:
+                - generic [ref=e146]:
+                  - generic [ref=e147]: Justin Day
+                  - blockquote [ref=e148]:
+                    - paragraph [ref=e149] [cursor=pointer]: I'll tell you in about two hours.
+              - figure [ref=e150]:
+                - generic [ref=e151]:
+                  - generic [ref=e152]: Jonathan Duque
+                  - blockquote [ref=e153]:
+                    - paragraph [ref=e154] [cursor=pointer]: What hole are you in right now?
+              - figure [ref=e155]:
+                - generic [ref=e156]:
+                  - generic [ref=e157]: Bryan Fikes
+                  - blockquote [ref=e158]:
+                    - paragraph [ref=e159] [cursor=pointer]: I haven't teed off yet. I've moved myself to the 1040 group so I can concentrate on this whole thing.
+                - blockquote [ref=e161]:
+                  - paragraph [ref=e162] [cursor=pointer]: So I got a concession finally from the group.
+              - figure [ref=e163]:
+                - generic [ref=e164]:
+                  - generic [ref=e165]: Matt Bailey
+                  - blockquote [ref=e166]:
+                    - paragraph [ref=e167] [cursor=pointer]: Ah, wow, Brian. Appreciate that. Appreciate that. Awesome.
+              - figure [ref=e168]:
+                - generic [ref=e169]:
+                  - generic [ref=e170]: Michael Vassar
+                  - blockquote [ref=e171]:
+                    - paragraph [ref=e172] [cursor=pointer]: I haven't been on.
+              - figure [ref=e173]:
+                - generic [ref=e174]:
+                  - generic [ref=e175]: Matt Bailey
+                  - blockquote [ref=e176]:
+                    - paragraph [ref=e177] [cursor=pointer]: All right, Mike, is Alex going to join us today?
+              - figure [ref=e178]:
+                - generic [ref=e179]:
+                  - generic [ref=e180]: Michael Vassar
+                  - blockquote [ref=e181]:
+                    - paragraph [ref=e182] [cursor=pointer]: You know, we can go ahead and start. I certainly hope so, but let's not hold anybody up.
+              - figure [ref=e183]:
+                - generic [ref=e184]:
+                  - generic [ref=e185]: Matt Bailey
+                  - blockquote [ref=e186]:
+                    - paragraph [ref=e187] [cursor=pointer]: All right. All right. Well, let's start out. First thing, I want to know, what have you been working on?
+                - blockquote [ref=e189]:
+                  - paragraph [ref=e190] [cursor=pointer]: What are some wins that you have experienced with the platform? I know we're still doing some, you know, working out some more of the details of setups and structures, but if you've been working in Claude and MCP and have been creating anything, first of all, yeah, let's take a look at what you've done, and then we'll look at, you know, what are some of the obstacles you're fighting with?
+              - figure [ref=e191]:
+                - generic [ref=e192]:
+                  - generic [ref=e193]: Bryan Fikes
+                  - blockquote [ref=e194]:
+                    - paragraph [ref=e195] [cursor=pointer]: Let's see. I'll go. Go ahead.
+              - figure [ref=e196]:
+                - generic [ref=e197]:
+                  - generic [ref=e198]: Michael Vassar
+                  - blockquote [ref=e199]:
+                    - paragraph [ref=e200] [cursor=pointer]: Go ahead, man.
+              - figure [ref=e201]:
+                - generic [ref=e202]:
+                  - generic [ref=e203]: Bryan Fikes
+                  - blockquote [ref=e204]:
+                    - paragraph [ref=e205] [cursor=pointer]: Just a brief one. I have had some issues integrating with Website Studio, but my implementer, Farhan, and I know JD are working hard, so I'll be interested to see how fast.
+                - blockquote [ref=e207]:
+                  - paragraph [ref=e208] [cursor=pointer]: I can go once that's done, because I've, this thing is just incredible, guys, and I think, I think we're all kind of realizing, if you've already been doing this stuff, obviously you're ahead of us, and, but man, this is, this is amazing.
+                - blockquote [ref=e210]:
+                  - paragraph [ref=e211] [cursor=pointer]: When we're all creators and agency people and entrepreneurial and business-minded, God, we can do so much with this .
+              - figure [ref=e212]:
+                - generic [ref=e213]:
+                  - generic [ref=e214]: Matt Bailey
+                  - blockquote [ref=e215]:
+                    - paragraph [ref=e216] [cursor=pointer]: All right, yeah, we know Brian's, Brian's out.
+              - figure [ref=e217]:
+                - generic [ref=e218]:
+                  - generic [ref=e219]: Michael Vassar
+                  - blockquote [ref=e220]:
+                    - paragraph [ref=e221] [cursor=pointer]: Brian, what do you mean by you're an implementer?
+              - figure [ref=e222]:
+                - generic [ref=e223]:
+                  - generic [ref=e224]: Bryan Fikes
+                  - blockquote [ref=e225]:
+                    - paragraph [ref=e226] [cursor=pointer]: When I signed up for the pro, and I did the annual, one of the things that I asked for, and they gave, is that we got 10 hours when you bought the annual pro, and so a part of that 10 hours is we got a specific implementer to work with.
+                - blockquote [ref=e228]:
+                  - paragraph [ref=e229] [cursor=pointer]: So from February on, I've had that individual, and then obviously with JD and this group with the AMM, you know, you combine those resources, and it's, it's allowed me to probably move a little faster than some.
+              - figure [ref=e230]:
+                - generic [ref=e231]:
+                  - generic [ref=e232]: Michael Vassar
+                  - blockquote [ref=e233]:
+                    - paragraph [ref=e234] [cursor=pointer]: Gotcha. Cool.
+              - figure [ref=e235]:
+                - generic [ref=e236]:
+                  - generic [ref=e237]: Matt Bailey
+                  - blockquote [ref=e238]:
+                    - paragraph [ref=e239] [cursor=pointer]: Anyone else? Since we've had some setups, I know we've kind of worked with some people to get file structures in place.
+                - blockquote [ref=e241]:
+                  - paragraph [ref=e242] [cursor=pointer]: What have you been able to run so far? What are you trying to run?
+              - figure [ref=e243]:
+                - generic [ref=e244]:
+                  - generic [ref=e245]: Michael Vassar
+                  - blockquote [ref=e246]:
+                    - paragraph [ref=e247] [cursor=pointer]: I have not tried to build a website, but yesterday I taxed Atlas Brain a little too hard. So I actually built an HTML report that I used for a client and did it.
+                - blockquote [ref=e249]:
+                  - paragraph [ref=e250] [cursor=pointer]: It was fast and it looked good. And it was their kickoff report and they were really happy. So that's the only thing I've done, but, you know, it was exciting.
+                - blockquote [ref=e252]:
+                  - paragraph [ref=e253] [cursor=pointer]: And I look forward to doing everything that way soon enough.
+              - figure [ref=e254]:
+                - generic [ref=e255]:
+                  - generic [ref=e256]: Matt Bailey
+                  - blockquote [ref=e257]:
+                    - paragraph [ref=e258] [cursor=pointer]: Absolutely. Yeah. It's, it's, it's, I was trying to explain, actually, was trying to explain. My wife this morning, it's like you've got CloudCode, then you've got the Search Atlas MCP, and then you have these skills, these designs, and all these like layers of things on top of it that, yeah, you're not getting when you're in the main interface.
+                - blockquote [ref=e260]:
+                  - paragraph [ref=e261] [cursor=pointer]: So working through command line, it's like you've got all these extra resources on it. And it's just at this point, yeah, you're just limited by what can I do with it.
+                - blockquote [ref=e263]:
+                  - paragraph [ref=e264] [cursor=pointer]: So, yeah, Michael, I started out the same thing with a report, and just seeing how I can use that, modify it, and then just now, yeah, then just start thinking how else does this work into everything else.
+              - figure [ref=e265]:
+                - generic [ref=e266]:
+                  - generic [ref=e267]: Michael Vassar
+                  - blockquote [ref=e268]:
+                    - paragraph [ref=e269] [cursor=pointer]: I think I've got a little pro bono project I'm going to pick up, and I think that might actually be the first site that I build with Cloud, since I've got basically no pressure there.
+              - figure [ref=e270]:
+                - generic [ref=e271]:
+                  - generic [ref=e272]: Matt Bailey
+                  - blockquote [ref=e273]:
+                    - paragraph [ref=e274] [cursor=pointer]: That's the way to do it, yeah. A friend of mine, he's had a business for 20 years, but no website, so I'm doing the same thing.
+              - figure [ref=e275]:
+                - generic [ref=e276]:
+                  - generic [ref=e277]: Michael Vassar
+                  - blockquote [ref=e278]:
+                    - paragraph [ref=e279] [cursor=pointer]: Right, yeah.
+              - figure [ref=e280]:
+                - generic [ref=e281]:
+                  - generic [ref=e282]: Matt Bailey
+                  - blockquote [ref=e283]:
+                    - paragraph [ref=e284] [cursor=pointer]: No pressure. Anyone else? What do you got going on?
+              - figure [ref=e285]:
+                - generic [ref=e286]:
+                  - generic [ref=e287]: Justin Day
+                  - blockquote [ref=e288]:
+                    - paragraph [ref=e289] [cursor=pointer]: Yeah, I just spent most of my time, a lot of my time, just building out my command center, like tying in my bank, my credit cards, my operations from ClickUp, my Slack, my Gmail to create an executive assistant.
+                - blockquote [ref=e291]:
+                  - paragraph [ref=e292] [cursor=pointer]: And like, I've tied in everything into my command center so that when I build for my clients as well as myself internally, it comes from a source of truth that has everything in mind.
+                - blockquote [ref=e294]:
+                  - paragraph [ref=e295] [cursor=pointer]: I even uploaded, I created like three separate modules for Alex Hermosi's, you know, the $100 million leads, $100 million offers, $100 million money models, created different modules based off of those books.
+                - blockquote [ref=e297]:
+                  - paragraph [ref=e298] [cursor=pointer]: I uploaded a PDF, had it create modules to grade where I'm at with my offers, leads, and everything in between in real time so that it could help coach me to scale the business even better in blind spots that I'm not thinking about.
+                - blockquote [ref=e300]:
+                  - paragraph [ref=e301] [cursor=pointer]: So I believe I'm next to finish on that, and I know that we've got our... Call on Monday with Monic, and I believe the task is to get, obviously, the satellite and the website and all that other stuff done, which now I can do, that I have all the correct information.
+                - blockquote [ref=e303]:
+                  - paragraph [ref=e304] [cursor=pointer]: But I've just been obsessed with creating that command center. I just keep finding more and more stuff to put in.
+                - blockquote [ref=e306]:
+                  - paragraph [ref=e307] [cursor=pointer]: But now that I've got, like, all of my revenue and overhead and everything, I've literally got an agentic brain for my company now that does a lot.
+                - blockquote [ref=e309]:
+                  - paragraph [ref=e310] [cursor=pointer]: So it's pretty crazy.
+              - figure [ref=e311]:
+                - generic [ref=e312]:
+                  - generic [ref=e313]: Matt Bailey
+                  - blockquote [ref=e314]:
+                    - paragraph [ref=e315] [cursor=pointer]: That is amazing. How have you integrated some of these things? I mean, just, you know, what are you looking at from the command center, and how do you see that rolling into a lot of your client work?
+              - figure [ref=e316]:
+                - generic [ref=e317]:
+                  - generic [ref=e318]: Justin Day
+                  - blockquote [ref=e319]:
+                    - paragraph [ref=e320] [cursor=pointer]: Well, so being able to take the best practices of what others have out there, you know, like Alex Ramosi, it just puts it in writing, right, and then leveraging that data to match it up to what current clients are doing.
+                - blockquote [ref=e322]:
+                  - paragraph [ref=e323] [cursor=pointer]: So what I have, I set up this, my system so that anytime I add a new project. It goes through an onboarding process to then create all the project files and then grades them based off of where they're at in their business on that onboarding call.
+                - blockquote [ref=e325]:
+                  - paragraph [ref=e326] [cursor=pointer]: I take the onboarding call transcript, putting in there, it then fills out all that corresponding information so that I can see the visibility gaps and what makes sense for the client based off of where they're actually at.
+                - blockquote [ref=e328]:
+                  - paragraph [ref=e329] [cursor=pointer]: So it's like doing all the research based off of our methodology just in real time.
+              - figure [ref=e330]:
+                - generic [ref=e331]:
+                  - generic [ref=e332]: Matt Bailey
+                  - blockquote [ref=e333]:
+                    - paragraph [ref=e334] [cursor=pointer]: Amazing. Amazing. Fantastic. Is all that automated? Are you stringing all those processes together yet or is it still just sort of a...
+              - figure [ref=e335]:
+                - generic [ref=e336]:
+                  - generic [ref=e337]: Justin Day
+                  - blockquote [ref=e338]:
+                    - paragraph [ref=e339] [cursor=pointer]: 100% automated end to end with the hooks and everything like that.
+              - figure [ref=e340]:
+                - generic [ref=e341]:
+                  - generic [ref=e342]: Matt Bailey
+                  - blockquote [ref=e343]:
+                    - paragraph [ref=e344] [cursor=pointer]: Yeah. Fantastic. Justin, that's amazing. Fantastic. Who else? I've been plugging away at an app. Yeah, Clayton.
+              - figure [ref=e345]:
+                - generic [ref=e346]:
+                  - generic [ref=e347]: Clayton Joyner
+                  - blockquote [ref=e348]:
+                    - paragraph [ref=e349] [cursor=pointer]: So... you. you. It, it, I don't know how to do anything simple. I should have gone for an MVP, and I think, uh, MVP for me means, like, maximum.
+              - figure [ref=e350]:
+                - generic [ref=e351]:
+                  - generic [ref=e352]: Michael Vassar
+                  - blockquote [ref=e353]:
+                    - paragraph [ref=e354] [cursor=pointer]: Kiss your microphone!
+              - figure [ref=e355]:
+                - generic [ref=e356]:
+                  - generic [ref=e357]: Clayton Joyner
+                  - blockquote [ref=e358]:
+                    - paragraph [ref=e359] [cursor=pointer]: What's that? It's, we can't, I can't really hear you.
+              - figure [ref=e360]:
+                - generic [ref=e361]:
+                  - generic [ref=e362]: Matt Bailey
+                  - blockquote [ref=e363]:
+                    - paragraph [ref=e364] [cursor=pointer]: Can y'all hear him?
+              - figure [ref=e365]:
+                - generic [ref=e366]:
+                  - generic [ref=e367]: Jonathan Duque
+                  - blockquote [ref=e368]:
+                    - paragraph [ref=e369] [cursor=pointer]: All right, quit.
+              - figure [ref=e370]:
+                - generic [ref=e371]:
+                  - generic [ref=e372]: Clayton Joyner
+                  - blockquote [ref=e373]:
+                    - paragraph [ref=e374] [cursor=pointer]: Never mind.
+              - figure [ref=e375]:
+                - generic [ref=e376]:
+                  - generic [ref=e377]: Matt Bailey
+                  - blockquote [ref=e378]:
+                    - paragraph [ref=e379] [cursor=pointer]: We gotta hear you clean. We gotta, we gotta come back to that.
+              - figure [ref=e380]:
+                - generic [ref=e381]:
+                  - generic [ref=e382]: Jonathan Duque
+                  - blockquote [ref=e383]:
+                    - paragraph [ref=e384] [cursor=pointer]: I we're gonna end. I know that Noah is one of our recent, uh, additions to the group, so maybe, would you like to share?
+                - blockquote [ref=e386]:
+                  - paragraph [ref=e387] [cursor=pointer]: I, I mean, I met yesterday, cave, I believe, and so we, we were discussing kind of a, so. Stuff that you guys have come up with, but I wonder if you have any particular needs right now, and what do you want to get accomplished?
+              - figure [ref=e388]:
+                - generic [ref=e389]:
+                  - generic [ref=e390]: Justin Hual
+                  - blockquote [ref=e391]:
+                    - paragraph [ref=e392] [cursor=pointer]: Yeah, I can touch on that. Yeah, we're still working. We have, we're trying to like create an MCP layer at our agency, because we have 127 employees, two brands, and around 500 customers, and so we're trying to do it all.
+                - blockquote [ref=e394]:
+                  - paragraph [ref=e395] [cursor=pointer]: But like, we work in healthcare, so we have to kind of be careful with HIPAA, and where and how we source data, and then how people actually get.
+                - blockquote [ref=e397]:
+                  - paragraph [ref=e398] [cursor=pointer]: So we've had to build a whole authorization layer to make sure all that stays secure. So that's what we've currently been working on outside of just like some, we have like an RST team with a cloud plugin that we use for repetitive work and things like that.
+                - blockquote [ref=e400]:
+                  - paragraph [ref=e401] [cursor=pointer]: Um, and so we're, we're kind of like in the early stages of trying to figure. Figure out how to deploy AI across the whole agency, outside of just a few key people that actually use it.
+                - blockquote [ref=e403]:
+                  - paragraph [ref=e404] [cursor=pointer]: There's just a handful of us that do, like Noah does, I do, my co-founder Luke does, but there's a lot of people that don't.
+                - blockquote [ref=e406]:
+                  - paragraph [ref=e407] [cursor=pointer]: So we're trying to start leveraging that and then just have stuff, like I sled up, like Anthropic launched their managed agents infrastructure yesterday.
+                - blockquote [ref=e409]:
+                  - paragraph [ref=e410] [cursor=pointer]: And so took some of our skills last night and deployed it there just to see how that would work, what interfaces it would work with and stuff like that.
+                - blockquote [ref=e412]:
+                  - paragraph [ref=e413] [cursor=pointer]: So that's been kind of cool because it was like super easy to actually do versus in the past it hasn't.
+                - blockquote [ref=e415]:
+                  - paragraph [ref=e416] [cursor=pointer]: so, yeah, but right now we're still trying to get a wrangle around all of our data. And then how can a common person interact with the data in a digestible way is kind of where we're currently at.
+                - blockquote [ref=e418]:
+                  - paragraph [ref=e419] [cursor=pointer]: But we're testing a lot of stuff. We're launching a product to build AI websites, for instance, at an event May 1st.
+                - blockquote [ref=e421]:
+                  - paragraph [ref=e422] [cursor=pointer]: And so we're trying to polish all that and make sure it's good. And then, and things like that, so, but yeah, we're, we're excited to dig into some of this stuff and then kind of create something similar for our team members on like, how do they get onto, um, co-work or cloud code and use it where it's not scary, you know, because they're all non-technical people.
+              - figure [ref=e423]:
+                - generic [ref=e424]:
+                  - generic [ref=e425]: Matt Bailey
+                  - blockquote [ref=e426]:
+                    - paragraph [ref=e427] [cursor=pointer]: I think the key to the right, where it's not scary, I get that.
+              - figure [ref=e428]:
+                - generic [ref=e429]:
+                  - generic [ref=e430]: Justin Hual
+                  - blockquote [ref=e431]:
+                    - paragraph [ref=e432] [cursor=pointer]: Yeah, because it can be daunting, for sure.
+              - figure [ref=e433]:
+                - generic [ref=e434]:
+                  - generic [ref=e435]: Jonathan Duque
+                  - blockquote [ref=e436]:
+                    - paragraph [ref=e437] [cursor=pointer]: And, and to, to piggyback on what you're saying, maybe, um, me rephrase that. I know that Justin has built a dashboard kind of, uh, so, and that's probably what you're referring to earlier as your command center, right?
+                - blockquote [ref=e439]:
+                  - paragraph [ref=e440] [cursor=pointer]: Where you can, like, manage the files and so on and so forth. So, I was wondering if that includes as well, like, an interface that you can share with your team.
+                - blockquote [ref=e442]:
+                  - paragraph [ref=e443] [cursor=pointer]: Yeah. and like, like a front-end type of interface.
+              - figure [ref=e444]:
+                - generic [ref=e445]:
+                  - generic [ref=e446]: Justin Day
+                  - blockquote [ref=e447]:
+                    - paragraph [ref=e448] [cursor=pointer]: Yeah, absolutely. So I connected it to Supabase and be able to, like, add users in real time. And I haven't pushed it online yet for that.
+                - blockquote [ref=e450]:
+                  - paragraph [ref=e451] [cursor=pointer]: It's local. But, yeah, the whole purpose of that is to give that user interface and experience, right, is to share all this information in one place versus, like, living in the warp channel.
+                - blockquote [ref=e453]:
+                  - paragraph [ref=e454] [cursor=pointer]: I think that can be scary for people. But, yeah, it's pretty easy to just add people and make that, like, create your own command center and create user permissions, right, so that they can see what they need to see.
+              - figure [ref=e455]:
+                - generic [ref=e456]:
+                  - generic [ref=e457]: Jonathan Duque
+                  - blockquote [ref=e458]:
+                    - paragraph [ref=e459] [cursor=pointer]: That's awesome. Yeah, I'll leave it to you, Matt. But it's bringing me a lot of ideas on how we can support that or help you.
+                - blockquote [ref=e461]:
+                  - paragraph [ref=e462] [cursor=pointer]: Guarantee that you have everything that Search Atlas has to add to your workflow because it seems, I mean, the long run, what you guys are doing is bigger than just, right?
+                - blockquote [ref=e464]:
+                  - paragraph [ref=e465] [cursor=pointer]: What we have to offer on the Search Atlas. But it's also a crucial key to at least SEO piece.
+                - blockquote [ref=e467]:
+                  - paragraph [ref=e468] [cursor=pointer]: So making sure that you guys have the proper bridges to our MCPA connections, it's our main priority right now.
+                - blockquote [ref=e470]:
+                  - paragraph [ref=e471] [cursor=pointer]: But very interested in seeing that too.
+              - figure [ref=e472]:
+                - generic [ref=e473]:
+                  - generic [ref=e474]: Justin Hual
+                  - blockquote [ref=e475]:
+                    - paragraph [ref=e476] [cursor=pointer]: Yeah, for sure. Are y'all gonna, like, because we, we had to put an authentication layer in between even the Search Atlas MCP, because we have two brands, and so the users have to be on one brand or the other, which is two separate Search Atlas accounts.
+                - generic [ref=e477]:
+                  - generic [ref=e479]: ACTION ITEM
+                  - generic [ref=e480]: Coordinate w/ Maddy to update MCP GitHub docs w/ schemas/missing tools
+                  - generic [ref=e482]:
+                    - generic:
+                      - img
+                - blockquote [ref=e484]:
+                  - paragraph [ref=e485] [cursor=pointer]: But going through the MCP docs, they're not up to date. If we do anything, do y'all want us to submit, like, a pull request to update those as we go through them?
+              - figure [ref=e486]:
+                - generic [ref=e487]:
+                  - generic [ref=e488]: Jonathan Duque
+                  - blockquote [ref=e489]:
+                    - paragraph [ref=e490] [cursor=pointer]: So my two cents here are the MCP connections directly taking place through your API. Key, right? So my guess is that you've already added both of them, or did you're only adding one, and you would want it to switch automatically based on who's using it, or like how are you- Yeah, we've got that handled.
+              - figure [ref=e491]:
+                - generic [ref=e492]:
+                  - generic [ref=e493]: Justin Hual
+                  - blockquote [ref=e494]:
+                    - paragraph [ref=e495] [cursor=pointer]: I was just asking the on GitHub, that MCP GitHub repository, the documentation doesn't fully cover all the tools available when we went through it and tested each one, and then there weren't schemas built out for each.
+                - blockquote [ref=e497]:
+                  - paragraph [ref=e498] [cursor=pointer]: to what to expect, so the LLMs kept getting confused, and so we built some of that stuff out on our side already.
+                - blockquote [ref=e500]:
+                  - paragraph [ref=e501] [cursor=pointer]: Can, do y'all, if we do things like that, do you want us to submit like a pull request in a repository, so that can be updated, or?
+              - figure [ref=e502]:
+                - generic [ref=e503]:
+                  - generic [ref=e504]: Jonathan Duque
+                  - blockquote [ref=e505]:
+                    - paragraph [ref=e506] [cursor=pointer]: I can definitely chip in with Maddy, because it's the one like actually built into the repo, but that makes perfect sense, because essentially you're the ones who are reusing it, right?
+                - blockquote [ref=e508]:
+                  - paragraph [ref=e509] [cursor=pointer]: So that, you know, that aligns what we want you to be able to accomplish with that. technology. I just want to make sure that he's, you know, that is on his plan.
+                - blockquote [ref=e511]:
+                  - paragraph [ref=e512] [cursor=pointer]: Because, and yeah, no, I'm going to save that for later, because I guess Matt's going to talk about the, like, command initiative, or kind of, that is, like, whatever projects that we have to make it an even higher level of integration with Search Atlas.
+                - blockquote [ref=e514]:
+                  - paragraph [ref=e515] [cursor=pointer]: So yeah, just, just spoiling the, the surprise, yeah, Matt's going to come to that limit. But yeah, yeah, I, I got, I got you, and I copied that.
+              - figure [ref=e516]:
+                - generic [ref=e517]:
+                  - generic [ref=e518]: Justin Hual
+                  - blockquote [ref=e519]:
+                    - paragraph [ref=e520] [cursor=pointer]: Cool.
+              - figure [ref=e521]:
+                - generic [ref=e522]:
+                  - generic [ref=e523]: Matt Bailey
+                  - blockquote [ref=e524]:
+                    - paragraph [ref=e525] [cursor=pointer]: Actually, I'll share that now, since you brought that up. Monday is the call with Monik. Have you guys got email on that?
+              - figure [ref=e526]:
+                - generic [ref=e527]:
+                  - generic [ref=e528]: Bryan Fikes
+                  - blockquote [ref=e529]:
+                    - paragraph [ref=e530] [cursor=pointer]: Yeah, it automatically went to my schedule, but I didn't see the email. So yeah, thanks, thanks, Matt.
+              - figure [ref=e531]:
+                - generic [ref=e532]:
+                  - generic [ref=e533]: Matt Bailey
+                  - blockquote [ref=e534]:
+                    - paragraph [ref=e535] [cursor=pointer]: Okay. All right. Let me pull up some of that stuff here.
+              - figure [ref=e536]:
+                - generic [ref=e537]:
+                  - generic [ref=e538]: Bryan Fikes
+                  - blockquote [ref=e539]:
+                    - paragraph [ref=e540] [cursor=pointer]: Hey, while you're pulling that up, I did just send a quick note. I think one of the values to this group and all of us is
+                - blockquote [ref=e542]:
+                  - paragraph [ref=e543] [cursor=pointer]: It's kind of an update, you know, like, and I'm sorry, man, I was, I didn't get to see the screen of the new gentleman that's here, but, you know, like, Anthropic with that update, I think if us knowing how we're implementing, how we're using it, anything to watch out for, I think that's the huge value add to this is kind of that, that, that brevity report of like, okay, guys, , this is what happened.
+              - figure [ref=e544]:
+                - generic [ref=e545]:
+                  - generic [ref=e546]: Matt Bailey
+                  - blockquote [ref=e547]:
+                    - paragraph [ref=e548] [cursor=pointer]: Here's how we're going to, here's how we're going to use it.
+              - figure [ref=e549]:
+                - generic [ref=e550]:
+                  - generic [ref=e551]: Jonathan Duque
+                  - blockquote [ref=e552]:
+                    - paragraph [ref=e553] [cursor=pointer]: Yeah, and, and, and just so you guys are aware, part of what we are building internally is also the, how to the architecture and how to support you guys through this process, so we can be the ones actually sharing, as you said, like, what's new and how that has been implemented for us, and how we can help you guys, not only from a search analyst perspective, but overall agency, right, that's the, the ultimate goal.
+                - blockquote [ref=e555]:
+                  - paragraph [ref=e556] [cursor=pointer]: So yeah, I'll hit you up whenever Mythos gets fully released, right? I don't know if you checked that. It's crazy what's happening.
+              - figure [ref=e557]:
+                - generic [ref=e558]:
+                  - generic [ref=e559]: Matt Bailey
+                  - blockquote [ref=e560]:
+                    - paragraph [ref=e561] [cursor=pointer]: Let me bring this up here. So what's going to be covered Monday are applying four of the, getting four of the tool sets involved.
+                - generic [ref=e562]:
+                  - generic [ref=e564]: SCREEN SHARING
+                  - generic [ref=e565]: Matt started screen sharing
+                  - generic [ref=e567]:
+                    - generic:
+                      - img
+                - blockquote [ref=e569]:
+                  - paragraph [ref=e570] [cursor=pointer]: And so this is what they built using four of the different agents for this audit. And this is for Roto-Rooter, which is one of the LinkGraph's clients.
+                - blockquote [ref=e572]:
+                  - paragraph [ref=e573] [cursor=pointer]: And so all of this was basically run just in the background through this process. So we've got the SEO and visibility audit.
+                - blockquote [ref=e575]:
+                  - paragraph [ref=e576] [cursor=pointer]: It creates a multi-page audit here where you've got your upfront strategy. Everything runs into then a revenue opportunity map.
+                - blockquote [ref=e578]:
+                  - paragraph [ref=e579] [cursor=pointer]: So you've got some initial ROI upfront and then building into the action plan. So everything that was found in technical audit, content audit, paid search audit, all those things are going to be included into here, into one main document that you can share with a client.
+                - blockquote [ref=e581]:
+                  - paragraph [ref=e582] [cursor=pointer]: It identifies the quick wins, as you can see here, going after specific keywords, the cost per click, where they're at right now, in position five with that, difficulty rating to get that, difficulty So all of that's being done, all in the background, and then just puts out the document like this.
+                - blockquote [ref=e584]:
+                  - paragraph [ref=e585] [cursor=pointer]: Yeah, deals with the content. What to do from there, very simple instructions about here's what's going to happen, then going into deep SEO posts for the blog, identifying what's being cannibalized, what's working, what's not working, getting into a lot of different things here, and then proposing a production pipeline, phased out what can be automated, what will need some human intervention, all of that built out.
+                - blockquote [ref=e587]:
+                  - paragraph [ref=e588] [cursor=pointer]: So even some additional mini sites for that, and also the AI visibility and visibility metrics. So there are four playbooks involved in that, and so Monday, it's basically starting to run each of these playbooks.
+                - blockquote [ref=e590]:
+                  - paragraph [ref=e591] [cursor=pointer]: Run in the back while Monarch kind of explains what's going on, then run the next one in the back and set up that workflow within your workspace.
+                - blockquote [ref=e593]:
+                  - paragraph [ref=e594] [cursor=pointer]: But that's what we'll be doing on Monday and taking care of that. I think we'll follow along with that.
+                - blockquote [ref=e596]:
+                  - paragraph [ref=e597] [cursor=pointer]: We've got the agenda here. I'm waiting on final approval on the agenda, and we can get that out to you here sometime soon.
+                - blockquote [ref=e599]:
+                  - paragraph [ref=e600] [cursor=pointer]: But this will be the audit mission. What we're going to be doing is that comprehensive visibility audit. And as you can see, we'll be running different agents all the way through the process.
+                - blockquote [ref=e602]:
+                  - paragraph [ref=e603] [cursor=pointer]: So what do we need to do to get you ready for that?
+              - figure [ref=e604]:
+                - generic [ref=e605]:
+                  - generic [ref=e606]: Justin Day
+                  - blockquote [ref=e607]:
+                    - paragraph [ref=e608] [cursor=pointer]: I guess that is the question. One question I had, I think these sessions are super helpful and valuable. Is it possible going forward to have like a weekly challenge or homework assignment so we're all working towards something?
+                - blockquote [ref=e610]:
+                  - paragraph [ref=e611] [cursor=pointer]: This QA is helpful for an open forum for like 10, 15 minutes, but for an hour, right? think having more of like something that's attached to the overall monthly milestone so that we're all in lockstep together.
+                - blockquote [ref=e613]:
+                  - paragraph [ref=e614] [cursor=pointer]: And I don't know. I just work better when I have like an actual do this this week or at least a challenge or something, right?
+                - blockquote [ref=e616]:
+                  - paragraph [ref=e617] [cursor=pointer]: So like that.
+              - figure [ref=e618]:
+                - generic [ref=e619]:
+                  - generic [ref=e620]: Michael Vassar
+                  - blockquote [ref=e621]:
+                    - paragraph [ref=e622] [cursor=pointer]: Yeah, that's a great idea.
+              - figure [ref=e623]:
+                - generic [ref=e624]:
+                  - generic [ref=e625]: Matt Bailey
+                  - blockquote [ref=e626]:
+                    - paragraph [ref=e627] [cursor=pointer]: Absolutely. Yeah, that is in the works. Believe it. We are having meetings as well in the background. We want to keep up with you guys as well and make this worthwhile.
+                - blockquote [ref=e629]:
+                  - paragraph [ref=e630] [cursor=pointer]: So. So, yeah, that is a subject of our – we're probably meeting twice a week on this as far as, you know, keeping this going, keeping you guys challenged.
+                - blockquote [ref=e632]:
+                  - paragraph [ref=e633] [cursor=pointer]: So, yes, that is absolutely coming on. We'll be working with that. I'm hopefully bringing in Armand a little bit more as well to be working through some of these challenges with you.
+              - figure [ref=e634]:
+                - generic [ref=e635]:
+                  - generic [ref=e636]: Justin Day
+                  - blockquote [ref=e637]:
+                    - paragraph [ref=e638] [cursor=pointer]: Awesome.
+              - figure [ref=e639]:
+                - generic [ref=e640]:
+                  - generic [ref=e641]: Matt Bailey
+                  - blockquote [ref=e642]:
+                    - paragraph [ref=e643] [cursor=pointer]: So, yeah, thanks, Justin. If you guys have feedback like that, let us know.
+              - figure [ref=e644]:
+                - generic [ref=e645]:
+                  - generic [ref=e646]: Justin Day
+                  - blockquote [ref=e647]:
+                    - paragraph [ref=e648] [cursor=pointer]: Yeah.
+              - figure [ref=e649]:
+                - generic [ref=e650]:
+                  - generic [ref=e651]: Matt Bailey
+                  - blockquote [ref=e652]:
+                    - paragraph [ref=e653] [cursor=pointer]: Because that can definitely help us make this better for you, a better experience all around. Jay, Claude can build the challenge.
+                - blockquote [ref=e655]:
+                  - paragraph [ref=e656] [cursor=pointer]: Yeah, absolutely.
+              - figure [ref=e657]:
+                - generic [ref=e658]:
+                  - generic [ref=e659]: Justin Day
+                  - blockquote [ref=e660]:
+                    - paragraph [ref=e661] [cursor=pointer]: That's true.
+              - figure [ref=e662]:
+                - generic [ref=e663]:
+                  - generic [ref=e664]: Matt Bailey
+                  - blockquote [ref=e665]:
+                    - paragraph [ref=e666] [cursor=pointer]: All right. We'll ask you.
+              - figure [ref=e667]:
+                - generic [ref=e668]:
+                  - generic [ref=e669]: Jay Cornelius
+                  - blockquote [ref=e670]:
+                    - paragraph [ref=e671] [cursor=pointer]: You like that one, right?
+              - figure [ref=e672]:
+                - generic [ref=e673]:
+                  - generic [ref=e674]: Justin Day
+                  - blockquote [ref=e675]:
+                    - paragraph [ref=e676] [cursor=pointer]: Yeah.
+              - figure [ref=e677]:
+                - generic [ref=e678]:
+                  - generic [ref=e679]: Matt Bailey
+                  - blockquote [ref=e680]:
+                    - paragraph [ref=e681] [cursor=pointer]: Yeah, I think – well, and that was one of the ones I think the one – So the one goal we wanted you to get to this point, you know, was building like a third-party website.
+                - blockquote [ref=e683]:
+                  - paragraph [ref=e684] [cursor=pointer]: I think some of you have done that already, started building out sort of that, you know, kind of a trophy content website, but, and then at least getting into one or two workflows and setting them up.
+                - blockquote [ref=e686]:
+                  - paragraph [ref=e687] [cursor=pointer]: Sounds like, Justin, you've built the command center to start building that out and having some fun with that. So, because I think getting that, that site there established, I know we're, we're also working through a couple things on, on the website studio, and, and Brian is pushing the, the limits on that.
+                - blockquote [ref=e689]:
+                  - paragraph [ref=e690] [cursor=pointer]: So we appreciate him for that. You should have seen what I built for my wife. I gave her a retirement gig.
+                - blockquote [ref=e692]:
+                  - paragraph [ref=e693] [cursor=pointer]: It's called mftfinder.com.
+              - figure [ref=e694]:
+                - generic [ref=e695]:
+                  - generic [ref=e696]: Bryan Fikes
+                  - blockquote [ref=e697]:
+                    - paragraph [ref=e698] [cursor=pointer]: It's a marriage family therapist directory. I pulled from the database that she had access to and built out a entire ecosystem nationwide for you to find the best therapist in your area.
+              - figure [ref=e699]:
+                - generic [ref=e700]:
+                  - generic [ref=e701]: Matt Bailey
+                  - blockquote [ref=e702]:
+                    - paragraph [ref=e703] [cursor=pointer]: Yes. Yeah.
+              - figure [ref=e704]:
+                - generic [ref=e705]:
+                  - generic [ref=e706]: Justin Day
+                  - blockquote [ref=e707]:
+                    - paragraph [ref=e708] [cursor=pointer]: This guy's going to come out with, like, 600 platforms tomorrow.
+              - figure [ref=e709]:
+                - generic [ref=e710]:
+                  - generic [ref=e711]: Matt Bailey
+                  - blockquote [ref=e712]:
+                    - paragraph [ref=e713] [cursor=pointer]: Well, that's the scale of the whole thing. You know, I'm like, you're going to put out 50 of those, one for each state?
+                - blockquote [ref=e715]:
+                  - paragraph [ref=e716] [cursor=pointer]: I mean, that, that.
+              - figure [ref=e717]:
+                - generic [ref=e718]:
+                  - generic [ref=e719]: Bryan Fikes
+                  - blockquote [ref=e720]:
+                    - paragraph [ref=e721] [cursor=pointer]: No, it's already live, MFTFinder.com. It's already live. Yeah, guys, listen, man, I'm in a space where it's a little different, man.
+                - blockquote [ref=e723]:
+                  - paragraph [ref=e724] [cursor=pointer]: I understand. You guys are, like, in the weeds, dude. And trust me, I've been there. I just, I mean, I'm in creator mode right now.
+                - blockquote [ref=e726]:
+                  - paragraph [ref=e727] [cursor=pointer]: And, yeah, I'm trying to build out an actual agency and do all that. Justin's been great in terms of listening to the command center and stuff like that.
+                - blockquote [ref=e729]:
+                  - paragraph [ref=e730] [cursor=pointer]: I went crazy with that, obviously, as well. I have my own command center built. It's not 100% there. But, you know, like Clayton was saying, I think all of our dreams is to have that freaking AI machine that just kicks out killer stuff for our clients, and then we just go kick .
+              - figure [ref=e731]:
+                - generic [ref=e732]:
+                  - generic [ref=e733]: Matt Bailey
+                  - blockquote [ref=e734]:
+                    - paragraph [ref=e735] [cursor=pointer]: Absolutely. Yeah, that's, that's one of the things, you know, J.D. I've both been, just so you know, JD is moving into full-time on Mastermind.
+                - blockquote [ref=e737]:
+                  - paragraph [ref=e738] [cursor=pointer]: So he will be available to coach, help.
+              - figure [ref=e739]:
+                - generic [ref=e740]:
+                  - generic [ref=e741]: Bryan Fikes
+                  - blockquote [ref=e742]:
+                    - paragraph [ref=e743] [cursor=pointer]: We know we need a few more assets on that, so JD is Way to bury the lead, Matt. You got to start with that and say, I don't think these guys realize how freaking valuable JD is, man.
+                - blockquote [ref=e745]:
+                  - paragraph [ref=e746] [cursor=pointer]: Why do you think we all, dude, plug into him, dude.
+              - figure [ref=e747]:
+                - generic [ref=e748]:
+                  - generic [ref=e749]: Matt Bailey
+                  - blockquote [ref=e750]:
+                    - paragraph [ref=e751] [cursor=pointer]: Please, he's awesome. Absolutely, absolutely. Yeah, and that's the thing. If you guys have anything with the setup that you are running into, I mean, I had to grab JD last week just because I got wrapped up and, you know, like Justin was saying, that fear, I'm going to screw something up.
+                - blockquote [ref=e753]:
+                  - paragraph [ref=e754] [cursor=pointer]: I don't know what I'm doing. You know, I put my API key in the chat. What do I do?
+                - blockquote [ref=e756]:
+                  - paragraph [ref=e757] [cursor=pointer]: You know, what am I supposed to do with that? So don't be afraid to call JD, you know, tap him.
+                - generic [ref=e758]:
+                  - generic [ref=e760]: ACTION ITEM
+                  - generic [ref=e761]: Post setup checklist in Circle; request completion/issues from members
+                  - generic [ref=e763]:
+                    - generic:
+                      - img
+                - blockquote [ref=e765]:
+                  - paragraph [ref=e766] [cursor=pointer]: That's what he's here for. And so, yeah, we're getting a lot more structure in on this as well. Yeah, go ahead, JD.
+              - figure [ref=e767]:
+                - generic [ref=e768]:
+                  - generic [ref=e769]: Jonathan Duque
+                  - blockquote [ref=e770]:
+                    - paragraph [ref=e771] [cursor=pointer]: No, I think I the kind of comments, and I wanted to piggyback on what Laney was saying earlier. Do you guys would like if we cover like a very basic checklist of what we, where we should be at, and maybe so we can figure where are you lacking, and then we can meet?
+                - blockquote [ref=e773]:
+                  - paragraph [ref=e774] [cursor=pointer]: I, I mean, I'm all in, so if we even have some time today, if you need to meet with me, and then just make sure that everything's airtight.
+                - blockquote [ref=e776]:
+                  - paragraph [ref=e777] [cursor=pointer]: What's, is that the right term, airtight?
+              - figure [ref=e778]:
+                - generic [ref=e779]:
+                  - generic [ref=e780]: Justin Day
+                  - blockquote [ref=e781]:
+                    - paragraph [ref=e782] [cursor=pointer]: Yeah.
+              - figure [ref=e783]:
+                - generic [ref=e784]:
+                  - generic [ref=e785]: Jonathan Duque
+                  - blockquote [ref=e786]:
+                    - paragraph [ref=e787] [cursor=pointer]: You get it. So, yeah, definitely. Does, does that sound like a good thing for you guys? Would you like it?
+                - blockquote [ref=e789]:
+                  - paragraph [ref=e790] [cursor=pointer]: Awesome. So, what do you say, what do you think, man?
+              - figure [ref=e791]:
+                - generic [ref=e792]:
+                  - generic [ref=e793]: Justin Day
+                  - blockquote [ref=e794]:
+                    - paragraph [ref=e795] [cursor=pointer]: Maybe we can cover that?
+              - figure [ref=e796]:
+                - generic [ref=e797]:
+                  - generic [ref=e798]: Jonathan Duque
+                  - blockquote [ref=e799]:
+                    - paragraph [ref=e800] [cursor=pointer]: We can create a checklist. I do know that we wanted to have an initial site that we're going to be using as a satellite.
+                - blockquote [ref=e802]:
+                  - paragraph [ref=e803] [cursor=pointer]: So maybe that can be the first point. I'm not sure you get it. better, where a different approach met.
+              - figure [ref=e804]:
+                - generic [ref=e805]:
+                  - generic [ref=e806]: Matt Bailey
+                  - blockquote [ref=e807]:
+                    - paragraph [ref=e808] [cursor=pointer]: Yeah, that's, yeah, let's do it.
+              - figure [ref=e809]:
+                - generic [ref=e810]:
+                  - generic [ref=e811]: Jonathan Duque
+                  - blockquote [ref=e812]:
+                    - paragraph [ref=e813] [cursor=pointer]: So, the first thing that we, everyone should be at right now is the setup should be, like, clean. Like, has everyone had the time to check on the guide that I shared?
+                - blockquote [ref=e815]:
+                  - paragraph [ref=e816] [cursor=pointer]: Did you go over your file structure, connected your MCPs, and your, like, tech stack, anything missing on that end?
+                - blockquote [ref=e818]:
+                  - paragraph [ref=e819] [cursor=pointer]: And I'm going to just take notes and put that on a parking lot and then reach out to you directly to fix it, so we don't take everybody's time.
+                - blockquote [ref=e821]:
+                  - paragraph [ref=e822] [cursor=pointer]: But I want to make sure that everyone's gone through that array.
+              - figure [ref=e823]:
+                - generic [ref=e824]:
+                  - generic [ref=e826]: ACTION ITEM
+                  - generic [ref=e827]: "Schedule 1:1 w/ Michael re: file structure/MCP setup"
+                  - generic [ref=e829]:
+                    - generic:
+                      - img
+                - blockquote [ref=e831]:
+                  - paragraph [ref=e832] [cursor=pointer]: I have not. I saw it, but I have not completed the checklist.
+              - figure [ref=e833]:
+                - generic [ref=e834]:
+                  - generic [ref=e835]: Jonathan Duque
+                  - blockquote [ref=e836]:
+                    - paragraph [ref=e837] [cursor=pointer]: Okay, good. Do you happen to have some time today?
+              - figure [ref=e838]:
+                - generic [ref=e839]:
+                  - generic [ref=e840]: Michael Vassar
+                  - blockquote [ref=e841]:
+                    - paragraph [ref=e842] [cursor=pointer]: Um, I, I. I have got, I have got a lot of time tomorrow, but not today, I'm sorry.
+              - figure [ref=e843]:
+                - generic [ref=e844]:
+                  - generic [ref=e845]: Jonathan Duque
+                  - blockquote [ref=e846]:
+                    - paragraph [ref=e847] [cursor=pointer]: That's good.
+              - figure [ref=e848]:
+                - generic [ref=e849]:
+                  - generic [ref=e850]: Michael Vassar
+                  - blockquote [ref=e851]:
+                    - paragraph [ref=e852] [cursor=pointer]: So, if you give me windows from tomorrow, even over the weekend, I mean, I would do it, so.
+              - figure [ref=e853]:
+                - generic [ref=e854]:
+                  - generic [ref=e855]: Jonathan Duque
+                  - blockquote [ref=e856]:
+                    - paragraph [ref=e857] [cursor=pointer]: I would, just kidding, but yeah, I can definitely share my agenda, and then we can meet and check that out.
+              - figure [ref=e858]:
+                - generic [ref=e859]:
+                  - generic [ref=e860]: Michael Vassar
+                  - blockquote [ref=e861]:
+                    - paragraph [ref=e862] [cursor=pointer]: Thank you.
+              - figure [ref=e863]:
+                - generic [ref=e864]:
+                  - generic [ref=e865]: Jonathan Duque
+                  - blockquote [ref=e866]:
+                    - paragraph [ref=e867] [cursor=pointer]: Who else is on the file structure, MCP connections, tech stack? Yep, go ahead, Clayton. Sorry, Clayton, did you, I saw you raise your hand, so it was just like, letting me know, or do you want to?
+              - figure [ref=e868]:
+                - generic [ref=e869]:
+                  - generic [ref=e870]: Clayton Joyner
+                  - blockquote [ref=e871]:
+                    - paragraph [ref=e872] [cursor=pointer]: Yeah, sorry, I'm trying not to talk. Yes.
+              - figure [ref=e873]:
+                - generic [ref=e874]:
+                  - generic [ref=e875]: Matt Bailey
+                  - blockquote [ref=e876]:
+                    - paragraph [ref=e877] [cursor=pointer]: Oh, no, you sound great, Clayton. Yeah.
+              - figure [ref=e878]:
+                - generic [ref=e879]:
+                  - generic [ref=e880]: Jonathan Duque
+                  - blockquote [ref=e881]:
+                    - paragraph [ref=e882] [cursor=pointer]: Yeah, yeah.
+              - figure [ref=e883]:
+                - generic [ref=e884]:
+                  - generic [ref=e885]: Clayton Joyner
+                  - blockquote [ref=e886]:
+                    - paragraph [ref=e887] [cursor=pointer]: I don't know.
+              - figure [ref=e888]:
+                - generic [ref=e889]:
+                  - generic [ref=e890]: Jonathan Duque
+                  - blockquote [ref=e891]:
+                    - paragraph [ref=e892] [cursor=pointer]: Fixed it.
+              - figure [ref=e893]:
+                - generic [ref=e894]:
+                  - generic [ref=e895]: Michael Vassar
+                  - blockquote [ref=e896]:
+                    - paragraph [ref=e897] [cursor=pointer]: You definitely fixed it.
+              - figure [ref=e898]:
+                - generic [ref=e899]:
+                  - generic [ref=e900]: Clayton Joyner
+                  - blockquote [ref=e901]:
+                    - paragraph [ref=e902] [cursor=pointer]: I'm like, I get irritated with this mic, man. I hate fighting this thing.
+              - figure [ref=e903]:
+                - generic [ref=e904]:
+                  - generic [ref=e905]: Matt Bailey
+                  - blockquote [ref=e906]:
+                    - paragraph [ref=e907] [cursor=pointer]: So you guys can hear me? Like, when I move it around, you can still hear me? Yeah, perfect.
+              - figure [ref=e908]:
+                - generic [ref=e909]:
+                  - generic [ref=e910]: Clayton Joyner
+                  - blockquote [ref=e911]:
+                    - paragraph [ref=e912] [cursor=pointer]: It must have been some setting I found. I just started flicking all the buttons I could and the microphone, it irritates me with Zoom.
+                - blockquote [ref=e914]:
+                  - paragraph [ref=e915] [cursor=pointer]: But anyways, yes. So I was just saying, yes, you know, I thought you were asking, you know, who still needs help with or stuck on those different areas.
+              - figure [ref=e916]:
+                - generic [ref=e917]:
+                  - generic [ref=e918]: Jonathan Duque
+                  - blockquote [ref=e919]:
+                    - paragraph [ref=e920] [cursor=pointer]: Awesome. Great. So I'm going to share on Circle my, like, calendar link. I'm going to clean some availability. So you have it today, tomorrow, and even during the week if necessary.
+                - blockquote [ref=e922]:
+                  - paragraph [ref=e923] [cursor=pointer]: So we can go over that. The initial ask, and I'm wondering that the tech setup, not necessarily was like a roadblock for that.
+                - blockquote [ref=e925]:
+                  - paragraph [ref=e926] [cursor=pointer]: But do you guys have like the satellite website? Or have you built it maybe with WebStudio? on what you want to use then to fuel the rest of the projects.
+                - blockquote [ref=e928]:
+                  - paragraph [ref=e929] [cursor=pointer]: Does that make sense? Like the initial web that Manik mentioned, is that covered? Do you need any help with that?
+                - blockquote [ref=e931]:
+                  - paragraph [ref=e932] [cursor=pointer]: Does anybody has that? I know that Ryan has a bunch, so I'm not going to even ask you, but for the rest, do you guys have to read that in mind?
+                - blockquote [ref=e934]:
+                  - paragraph [ref=e935] [cursor=pointer]: Were it built?
+              - figure [ref=e936]:
+                - generic [ref=e937]:
+                  - generic [ref=e938]: Jonathan Giner
+                  - blockquote [ref=e939]:
+                    - paragraph [ref=e940] [cursor=pointer]: Any challenges? So, for me personally, and I don't know if this gives a little bit of insight, JD, but, so I've done a couple sites already.
+                - blockquote [ref=e942]:
+                  - paragraph [ref=e943] [cursor=pointer]: I think I've mentioned on some other calls. I guess the only thing, the only question I have, and this just might be time or whatever, but in terms of this particular quote-unquote step, is just making sure that, yeah, once again, I guess that process of building a site is quote-unquote optimized.
+                - blockquote [ref=e945]:
+                  - paragraph [ref=e946] [cursor=pointer]: And once again, I know this is a kind of a work in progress, and I know, you know, last, on the last call, we talked a little bit about, you know, the AI rules.
+                - blockquote [ref=e948]:
+                  - paragraph [ref=e949] [cursor=pointer]: And I know you shared that document. Personally, haven't been able to kind of go through it. I've got a little bit of a crazy week, but it's obviously definitely on my list.
+                - blockquote [ref=e951]:
+                  - paragraph [ref=e952] [cursor=pointer]: But yeah, the optimizing, I guess, of that process, and I know this is not like a one-time, but I think that maybe it's like an ongoing basis.
+                - blockquote [ref=e954]:
+                  - paragraph [ref=e955] [cursor=pointer]: But yeah, the optimizing of that process, I think, is kind of where I'm, I don't want to say I'm stuck, but I guess what I have a question about, you know, where I'm still a little bit kind of unclear.
+                - blockquote [ref=e957]:
+                  - paragraph [ref=e958] [cursor=pointer]: And the reason I say that is because I have noticed sometimes with the different projects, a little bit of inconsistencies.
+                - blockquote [ref=e960]:
+                  - paragraph [ref=e961] [cursor=pointer]: It was one particular project that I had a little bit of a hard time with, and I'm not sure why, because honestly, the other projects were great.
+                - blockquote [ref=e963]:
+                  - paragraph [ref=e964] [cursor=pointer]: So I've done five sites now. And yeah, four of the five were fantastic. But I don't know, on this last one, actually, it's not live yet.
+                - blockquote [ref=e966]:
+                  - paragraph [ref=e967] [cursor=pointer]: On this last one, I don't know, for whatever reason, it's like, I just wasn't getting the design the way it is that I wanted it.
+              - figure [ref=e968]:
+                - generic [ref=e969]:
+                  - generic [ref=e970]: Justin Day
+                  - blockquote [ref=e971]:
+                    - paragraph [ref=e972] [cursor=pointer]: That's the biggest issue I've seen, too, to echo that. The design part is, like, it looks fine, typically, when I just do it in Claude, and I can give it that direction, but when we go into MCP, it's, like, not consistent.
+              - figure [ref=e973]:
+                - generic [ref=e974]:
+                  - generic [ref=e975]: Jonathan Duque
+                  - blockquote [ref=e976]:
+                    - paragraph [ref=e977] [cursor=pointer]: And to your point, yes, that is something that I've already flagged, and Matt has already flagged in the team.
+                - blockquote [ref=e979]:
+                  - paragraph [ref=e980] [cursor=pointer]: What we're working on is to allow you guys to maybe send us the HTML or the zip of the web that you built, and then we can inject that to the backend, because the UI is where things start breaking up, right?
+              - figure [ref=e981]:
+                - generic [ref=e982]:
+                  - generic [ref=e983]: Bryan Fikes
+                  - blockquote [ref=e984]:
+                    - paragraph [ref=e985] [cursor=pointer]: Yes, yes, yes, yes, yes, yes, yes.
+              - figure [ref=e986]:
+                - generic [ref=e987]:
+                  - generic [ref=e988]: Justin Day
+                  - blockquote [ref=e989]:
+                    - paragraph [ref=e990] [cursor=pointer]: Yeah, that would be, I mean, just looking at it from a developer standpoint, the next easiest, best step that I would see is the ability to inject rendered HTML, right, and that we have done locally that makes, that we like to design of, upload that through the MCP to give that a guide.
+                - blockquote [ref=e992]:
+                  - paragraph [ref=e993] [cursor=pointer]: And even being able to potentially upload Markdown if needed, just because I've built out a brain that knows the design and feel that I like, and then being able to localize that on the MCP so that there's consistent design that it's always referring back to, that would be awesome.
+              - figure [ref=e994]:
+                - generic [ref=e995]:
+                  - generic [ref=e996]: Clayton Joyner
+                  - blockquote [ref=e997]:
+                    - paragraph [ref=e998] [cursor=pointer]: And I don't know if it helps or not, but I did take the client-first web development class structure and converted it into a skill, so .md file.
+                - blockquote [ref=e1000]:
+                  - paragraph [ref=e1001] [cursor=pointer]: So I've downloaded the entire process for that, and now it can develop and spit out the code in the same format as client-first, if that matters to anybody.
+              - figure [ref=e1002]:
+                - generic [ref=e1003]:
+                  - generic [ref=e1004]: Jonathan Duque
+                  - blockquote [ref=e1005]:
+                    - paragraph [ref=e1006] [cursor=pointer]: Oh, that sounds super cool. I definitely want to check that out because, yeah, me, I'm struggling a lot in that particular piece of, like, design.
+              - figure [ref=e1007]:
+                - generic [ref=e1008]:
+                  - generic [ref=e1009]: Clayton Joyner
+                  - blockquote [ref=e1010]:
+                    - paragraph [ref=e1011] [cursor=pointer]: And if you want, JD, too, just throwing it out there, I have productionized, if that's a word, the web development process.
+                - blockquote [ref=e1013]:
+                  - paragraph [ref=e1014] [cursor=pointer]: I've gotten it down to a language where we go from scope of macro design decisions down to, you know, page type or level design decisions into sections to elements and global to local structure.
+                - blockquote [ref=e1016]:
+                  - paragraph [ref=e1017] [cursor=pointer]: So I've got a whole visual breakdown on how we implement web systems for that. And I think that that's the part that I've hesitated on building the websites on because that part is so important.
+                - blockquote [ref=e1019]:
+                  - paragraph [ref=e1020] [cursor=pointer]: Getting the scaffolding right for SEO is critical, but then, you know, the thing that makes the client happy, ironically, isn't the SEO.
+                - blockquote [ref=e1022]:
+                  - paragraph [ref=e1023] [cursor=pointer]: mean, down the road it is, right? But in the short term, it's all about the look and feel, right?
+                - blockquote [ref=e1025]:
+                  - paragraph [ref=e1026] [cursor=pointer]: And if we can't nail that, we screw the whole thing up, right? And that's the part that, you I was looking at 20, was it 21.dev or something like that?
+                - blockquote [ref=e1028]:
+                  - paragraph [ref=e1029] [cursor=pointer]: And then there's another AI component plug-in piece as well that's got a whole modular plug-in system that can get access to.
+                - blockquote [ref=e1031]:
+                  - paragraph [ref=e1032] [cursor=pointer]: And just to kind of put it in perspective, like back in the day, right, when we had the big agency, I had nailed it.
+                - blockquote [ref=e1034]:
+                  - paragraph [ref=e1035] [cursor=pointer]: We down design aesthetics in the industry, because we're super niche, into three basic categories, or four. One was traditional medical, which is your green, you know, your teals and whites and, you know, the copacetic stuff.
+                - blockquote [ref=e1037]:
+                  - paragraph [ref=e1038] [cursor=pointer]: Then we found that there was a luxury style, or I call it red carpet. Then we had high fashion, and then we had a young youthful.
+                - blockquote [ref=e1040]:
+                  - paragraph [ref=e1041] [cursor=pointer]: And we basically were able to categorize in four different categories the main design elements and create that styling around that.
+                - blockquote [ref=e1043]:
+                  - paragraph [ref=e1044] [cursor=pointer]: And then we could just scroll through headers that were already pre-built in that style, know, hero sections pre-built in the style.
+                - blockquote [ref=e1046]:
+                  - paragraph [ref=e1047] [cursor=pointer]: And then if we had the idea now is, like, can we get the SEO, like, what's the perfect build, right, from an SEO structural perspective?
+                - blockquote [ref=e1049]:
+                  - paragraph [ref=e1050] [cursor=pointer]: And then how do we put a styling layer above that so that we can then display that same content and the styles that are predetermined?
+                - blockquote [ref=e1052]:
+                  - paragraph [ref=e1053] [cursor=pointer]: And so for those of us that are in niche, you know, industries, this becomes really powerful, because, you know, obviously you get the, whatever, the exponential variation of how many different components you can mix in.
+                - blockquote [ref=e1055]:
+                  - paragraph [ref=e1056] [cursor=pointer]: match together. That is really cool. And then you start, you know, you can get really advanced with all the automation, animations, and all that kind of stuff, too, and 3D renderings.
+                - blockquote [ref=e1058]:
+                  - paragraph [ref=e1059] [cursor=pointer]: But, you know, at the end of the day, the UX and UI piece, I think, is the one stumbling block for me that if we can nail that part of it, then game over.
+              - figure [ref=e1060]:
+                - generic [ref=e1061]:
+                  - generic [ref=e1062]: Matt Bailey
+                  - blockquote [ref=e1063]:
+                    - paragraph [ref=e1064] [cursor=pointer]: Yes. Love that. I mean, that's a key component there. Like you said, each industry has kind of its own aesthetic that needs to be addressed.
+                - blockquote [ref=e1066]:
+                  - paragraph [ref=e1067] [cursor=pointer]: Yeah, I kind of see that. It's almost like a, you know, a skill for a different kind of industry.
+                - blockquote [ref=e1069]:
+                  - paragraph [ref=e1070] [cursor=pointer]: Love that. That is definitely something to, something to work for.
+              - figure [ref=e1071]:
+                - generic [ref=e1072]:
+                  - generic [ref=e1073]: Clayton Joyner
+                  - blockquote [ref=e1074]:
+                    - paragraph [ref=e1075] [cursor=pointer]: I think we can... I said, I've got infinite lucid charts to break all of these design decisions down in a visual format.
+              - figure [ref=e1076]:
+                - generic [ref=e1077]:
+                  - generic [ref=e1078]: Jonathan Duque
+                  - blockquote [ref=e1079]:
+                    - paragraph [ref=e1080] [cursor=pointer]: So if you guys want to have a sidebar, you know, I can just show you what I've put together if you...
+                - blockquote [ref=e1082]:
+                  - paragraph [ref=e1083] [cursor=pointer]: Absolutely, yeah.
+              - figure [ref=e1084]:
+                - generic [ref=e1085]:
+                  - generic [ref=e1086]: Matt Bailey
+                  - blockquote [ref=e1087]:
+                    - paragraph [ref=e1088] [cursor=pointer]: I'll love to see that.
+              - figure [ref=e1089]:
+                - generic [ref=e1090]:
+                  - generic [ref=e1091]: Jonathan Duque
+                  - blockquote [ref=e1092]:
+                    - paragraph [ref=e1093] [cursor=pointer]: And actually, I was going to mention that that is one of the, my headaches, this, like, this thing is weird.
+                - blockquote [ref=e1095]:
+                  - paragraph [ref=e1096] [cursor=pointer]: next weeks. I'll see And the only, like, visible, short-term solution that I found was this Playground plugin. I'm not sure if you guys have used it in the past.
+                - blockquote [ref=e1098]:
+                  - paragraph [ref=e1099] [cursor=pointer]: This is actually coming from the Fathom, and that might be also a good addition there, because this Playground plugin allows you to, as you mentioned, like, switch between, like, different pre-render, pre-generated, like, team styles and designs.
+                - blockquote [ref=e1101]:
+                  - paragraph [ref=e1102] [cursor=pointer]: And you can even, like, modify fonts and sizes and so on and so forth. I'm to drop it in the chat for a little bit.
+              - figure [ref=e1103]:
+                - generic [ref=e1104]:
+                  - generic [ref=e1105]: Clayton Joyner
+                  - blockquote [ref=e1106]:
+                    - paragraph [ref=e1107] [cursor=pointer]: Because the challenge is with this is, it's chicken or the egg, right? What comes first? Design or copy?
+              - figure [ref=e1108]:
+                - generic [ref=e1109]:
+                  - generic [ref=e1110]: Justin Day
+                  - blockquote [ref=e1111]:
+                    - paragraph [ref=e1112] [cursor=pointer]: Yeah. Both. Right, yes.
+              - figure [ref=e1113]:
+                - generic [ref=e1114]:
+                  - generic [ref=e1115]: Clayton Joyner
+                  - blockquote [ref=e1116]:
+                    - paragraph [ref=e1117] [cursor=pointer]: Because, I mean, you go and you put this beautiful wireframe together with styling decisions, and you get a styling guide, and you get all that stuff, and you're like, man, let's rock.
+              - figure [ref=e1118]:
+                - generic [ref=e1119]:
+                  - generic [ref=e1120]: Jonathan Duque
+                  - blockquote [ref=e1121]:
+                    - paragraph [ref=e1122] [cursor=pointer]: And then you get all the copy, and it doesn't fit.
+              - figure [ref=e1123]:
+                - generic [ref=e1124]:
+                  - generic [ref=e1125]: Clayton Joyner
+                  - blockquote [ref=e1126]:
+                    - paragraph [ref=e1127] [cursor=pointer]: And then you put the copy in, and you're like, okay, how do I, now I have to rethink how I style against the copy, right?
+                - blockquote [ref=e1129]:
+                  - paragraph [ref=e1130] [cursor=pointer]: And so, that's the philosophical. Philosophical choice that has to be, you know, made.
+              - figure [ref=e1131]:
+                - generic [ref=e1132]:
+                  - generic [ref=e1133]: Jonathan Giner
+                  - blockquote [ref=e1134]:
+                    - paragraph [ref=e1135] [cursor=pointer]: Matt, Matt, something, another suggestion I'd like to make, yeah, once again, just a suggestion, I'm part of another mastermind, and we meet quarterly, like, in person as well, and one of the things that we do that I think, and by the way, you might have this already in mind, but one of the things that we do when we meet, somebody we meet for, like, we normally meet for three days.
+                - blockquote [ref=e1137]:
+                  - paragraph [ref=e1138] [cursor=pointer]: So, and it's, yeah, so nobody we meet for three days, and the first two days, the group is kind of, basically what happens is that everybody presents for about anywhere between, typically about 45 minutes, maybe 50 minutes, and obviously there's, everybody has the same exact presentation.
+                - blockquote [ref=e1140]:
+                  - paragraph [ref=e1141] [cursor=pointer]: Like, in other words, like, the content of the presentation is the same, so for example, like, one of the things, like, it's a part of every single one, it's like, you know, what's your biggest give, you know, this quarter, you know, and it's like, one skill, one.
+                - blockquote [ref=e1143]:
+                  - paragraph [ref=e1144] [cursor=pointer]: strategy or whatnot that you implemented that, you know, was quote-unquote game-changing for you. So that's like one of the things, right?
+                - blockquote [ref=e1146]:
+                  - paragraph [ref=e1147] [cursor=pointer]: But my point is that I think that there's a lot of talent, you know, quote-unquote in the room, at least in this virtual room, and every one of us kind of has our own superpower, so to speak, and I think being able to somehow get in a room and being able to combine those superpowers, like seeing, you know, you know, what, you know, what Justin is doing with this, or Brian is doing with that, or whatever the case might be, like, I think a lot of us are going to learn a lot from that.
+                - blockquote [ref=e1149]:
+                  - paragraph [ref=e1150] [cursor=pointer]: So getting a chance to present and getting more insight into what some of us are doing with some of the skills or whatnot that we're learning, I think would be really beneficial to the group.
+              - figure [ref=e1151]:
+                - generic [ref=e1152]:
+                  - generic [ref=e1153]: Matt Bailey
+                  - blockquote [ref=e1154]:
+                    - paragraph [ref=e1155] [cursor=pointer]: I hear you, Jonathan. Absolutely. I like that. I think, yeah, I think our weeklies after this, especially after this second session, with Monarch, it's going to expand a little bit more, and so, yeah, our weeklies.
+                - blockquote [ref=e1157]:
+                  - paragraph [ref=e1158] [cursor=pointer]: Definitely the plan for that is going to be a bit more intense, but yeah, having time for you guys to show off what you're doing, and that's one thing.
+                - blockquote [ref=e1160]:
+                  - paragraph [ref=e1161] [cursor=pointer]: Let me ask you this, now that, you know, we're this far in, you've had one main session, you've been now working in there, I think the goals that you were asked for at the beginning of the session may have been clouded that you hadn't gotten dirty yet.
+                - blockquote [ref=e1163]:
+                  - paragraph [ref=e1164] [cursor=pointer]: Now that you've got your hands in there, now that you're working in it, what are your goals? You can even pop them in the chat, just, you know, and I'll be able to take a look at them here.
+                - blockquote [ref=e1166]:
+                  - paragraph [ref=e1167] [cursor=pointer]: But I would love to know, now that you've kind of gotten dirty, gotten in there, maybe your goals have changed, and I want to take your goals back to the team to make sure we're aligned on what we're delivering to you.
+                - blockquote [ref=e1169]:
+                  - paragraph [ref=e1170] [cursor=pointer]: So if that, if we can do that, that would be amazing. As far as... That the next, yes, there are, right now, they're talking about, let me see, in May, either San Francisco or Vegas for the in-person meetup.
+                - blockquote [ref=e1172]:
+                  - paragraph [ref=e1173] [cursor=pointer]: I have not seen, it's a debate right now, internally.
+              - figure [ref=e1174]:
+                - generic [ref=e1175]:
+                  - generic [ref=e1176]: Bryan Fikes
+                  - blockquote [ref=e1177]:
+                    - paragraph [ref=e1178] [cursor=pointer]: Hey, I'm just going to put this out there. You guys have been San Francisco. I will roll the red carpet.
+                - blockquote [ref=e1180]:
+                  - paragraph [ref=e1181] [cursor=pointer]: I will get Kendall Jackson. I'll get all my buddies in the wine industry, you freaking winos.
+              - figure [ref=e1182]:
+                - generic [ref=e1183]:
+                  - generic [ref=e1184]: Clayton Joyner
+                  - blockquote [ref=e1185]:
+                    - paragraph [ref=e1186] [cursor=pointer]: All right.
+              - figure [ref=e1187]:
+                - generic [ref=e1188]:
+                  - generic [ref=e1189]: Bryan Fikes
+                  - blockquote [ref=e1190]:
+                    - paragraph [ref=e1191] [cursor=pointer]: Let's go San Fran, dude.
+              - figure [ref=e1192]:
+                - generic [ref=e1193]:
+                  - generic [ref=e1194]: Matt Bailey
+                  - blockquote [ref=e1195]:
+                    - paragraph [ref=e1196] [cursor=pointer]: That's my vote.
+              - figure [ref=e1197]:
+                - generic [ref=e1198]:
+                  - generic [ref=e1199]: Bryan Fikes
+                  - blockquote [ref=e1200]:
+                    - paragraph [ref=e1201] [cursor=pointer]: Vegas is cool, Fran.
+              - figure [ref=e1202]:
+                - generic [ref=e1203]:
+                  - generic [ref=e1204]: Clayton Joyner
+                  - blockquote [ref=e1205]:
+                    - paragraph [ref=e1206] [cursor=pointer]: Vegas is gross.
+              - figure [ref=e1207]:
+                - generic [ref=e1208]:
+                  - generic [ref=e1209]: Matt Bailey
+                  - blockquote [ref=e1210]:
+                    - paragraph [ref=e1211] [cursor=pointer]: I don't know. I'll put my vote in now. I'll put that in. It's always good to have someone on the ground.
+              - figure [ref=e1212]:
+                - generic [ref=e1213]:
+                  - generic [ref=e1214]: Clayton Joyner
+                  - blockquote [ref=e1215]:
+                    - paragraph [ref=e1216] [cursor=pointer]: That's it. That's it. As long as you guys are there, I'm cool, man.
+              - figure [ref=e1217]:
+                - generic [ref=e1218]:
+                  - generic [ref=e1219]: Matt Bailey
+                  - blockquote [ref=e1220]:
+                    - paragraph [ref=e1221] [cursor=pointer]: I don't care. I'll go anywhere. That'd be awesome. That'd be awesome. Jonathan, yeah, thanks for that. I appreciate it.
+                - blockquote [ref=e1223]:
+                  - paragraph [ref=e1224] [cursor=pointer]: And yes, that's... That is the plan as we as we get into this as masterminded doing more because, yeah, I mean, I'm impressed with you guys just on the call, just hearing what you're what you're thinking, how you're going about it.
+                - blockquote [ref=e1226]:
+                  - paragraph [ref=e1227] [cursor=pointer]: Absolutely. That's going to be the heart of this moving forward.
+              - figure [ref=e1228]:
+                - generic [ref=e1229]:
+                  - generic [ref=e1230]: Jonathan Duque
+                  - blockquote [ref=e1231]:
+                    - paragraph [ref=e1232] [cursor=pointer]: Were you about to share, Clayton, was my impression, or would you rather have a different space for that?
+              - figure [ref=e1233]:
+                - generic [ref=e1234]:
+                  - generic [ref=e1235]: Clayton Joyner
+                  - blockquote [ref=e1236]:
+                    - paragraph [ref=e1237] [cursor=pointer]: Now I can't hear your mic.
+              - figure [ref=e1238]:
+                - generic [ref=e1239]:
+                  - generic [ref=e1240]: Justin Day
+                  - blockquote [ref=e1241]:
+                    - paragraph [ref=e1242] [cursor=pointer]: What was it you said?
+              - figure [ref=e1243]:
+                - generic [ref=e1244]:
+                  - generic [ref=e1245]: Jonathan Duque
+                  - blockquote [ref=e1246]:
+                    - paragraph [ref=e1247] [cursor=pointer]: Oh, sorry. I was saying that, can you hear me okay now?
+              - figure [ref=e1248]:
+                - generic [ref=e1249]:
+                  - generic [ref=e1250]: Clayton Joyner
+                  - blockquote [ref=e1251]:
+                    - paragraph [ref=e1252] [cursor=pointer]: Yeah, yeah.
+              - figure [ref=e1253]:
+                - generic [ref=e1254]:
+                  - generic [ref=e1255]: Jonathan Duque
+                  - blockquote [ref=e1256]:
+                    - paragraph [ref=e1257] [cursor=pointer]: Should be better now. So you mentioned that you were to share a little bit of what you got going when it comes to the design pieces?
+              - figure [ref=e1258]:
+                - generic [ref=e1259]:
+                  - generic [ref=e1260]: Clayton Joyner
+                  - blockquote [ref=e1261]:
+                    - paragraph [ref=e1262] [cursor=pointer]: Yes.
+              - figure [ref=e1263]:
+                - generic [ref=e1264]:
+                  - generic [ref=e1265]: Jonathan Duque
+                  - blockquote [ref=e1266]:
+                    - paragraph [ref=e1267] [cursor=pointer]: Or you did it. Okay.
+              - figure [ref=e1268]:
+                - generic [ref=e1269]:
+                  - generic [ref=e1270]: Clayton Joyner
+                  - blockquote [ref=e1271]:
+                    - paragraph [ref=e1272] [cursor=pointer]: Oh, you want me to, I mean, I can, you want me to show you now or later?
+              - figure [ref=e1273]:
+                - generic [ref=e1274]:
+                  - generic [ref=e1275]: Jonathan Duque
+                  - blockquote [ref=e1276]:
+                    - paragraph [ref=e1277] [cursor=pointer]: However you want to do it. I just want to make sure that we cover what we like.
+              - figure [ref=e1278]:
+                - generic [ref=e1279]:
+                  - generic [ref=e1280]: Justin Day
+                  - blockquote [ref=e1281]:
+                    - paragraph [ref=e1282] [cursor=pointer]: I mean, it sounds like if you've got all that visually mapped out, man, just throw that in the cloth and say, go build it.
+              - figure [ref=e1283]:
+                - generic [ref=e1284]:
+                  - generic [ref=e1285]: Clayton Joyner
+                  - blockquote [ref=e1286]:
+                    - paragraph [ref=e1287] [cursor=pointer]: It's in Lucidchart right now. So I'm having to figure out how to, because it's so big, how do I scope it in?
+              - figure [ref=e1288]:
+                - generic [ref=e1289]:
+                  - generic [ref=e1290]: Justin Day
+                  - blockquote [ref=e1291]:
+                    - paragraph [ref=e1292] [cursor=pointer]: I don't know if I can do it.
+              - figure [ref=e1293]:
+                - generic [ref=e1294]:
+                  - generic [ref=e1295]: Clayton Joyner
+                  - blockquote [ref=e1296]:
+                    - paragraph [ref=e1297] [cursor=pointer]: Chunks, yeah.
+              - figure [ref=e1298]:
+                - generic [ref=e1299]:
+                  - generic [ref=e1300]: Justin Day
+                  - blockquote [ref=e1301]:
+                    - paragraph [ref=e1302] [cursor=pointer]: Yeah, let me pull it up real quick.
+              - figure [ref=e1303]:
+                - generic [ref=e1304]:
+                  - generic [ref=e1305]: Clayton Joyner
+                  - blockquote [ref=e1306]:
+                    - paragraph [ref=e1307] [cursor=pointer]: I'll show you. And again, this is a little bit older, so forgive me. It's not probably as up-to-date as I'd like it to be, but this is what I had built before.
+                - blockquote [ref=e1309]:
+                  - paragraph [ref=e1310] [cursor=pointer]: I'm a giant map nerd when it comes to these things.
+              - figure [ref=e1311]:
+                - generic [ref=e1312]:
+                  - generic [ref=e1313]: Justin Day
+                  - blockquote [ref=e1314]:
+                    - paragraph [ref=e1315] [cursor=pointer]: Maps are good.
+              - figure [ref=e1316]:
+                - generic [ref=e1317]:
+                  - generic [ref=e1319]: SCREEN SHARING
+                  - generic [ref=e1320]: Clayton started screen sharing
+                  - generic [ref=e1322]:
+                    - generic:
+                      - img
+                - blockquote [ref=e1324]:
+                  - paragraph [ref=e1325] [cursor=pointer]: Good. Oh, man. And while I'm on this screen, actually, let me see if I can share my screen. So this is my client journey.
+                - blockquote [ref=e1327]:
+                  - paragraph [ref=e1328] [cursor=pointer]: This is my goal, is to get this fully built. Nice. And this is, I think this is, yes. So I've kind of, this is my visualization of.
+                - blockquote [ref=e1330]:
+                  - paragraph [ref=e1331] [cursor=pointer]: Kind of how we've broken things apart. So the way that I, when it comes to the design side, we organize pages in the category, right?
+                - blockquote [ref=e1333]:
+                  - paragraph [ref=e1334] [cursor=pointer]: So the main categories that we have are going to be your core pages. Those are all the unique service level pages, right?
+                - blockquote [ref=e1336]:
+                  - paragraph [ref=e1337] [cursor=pointer]: So the about us, homepage, contact, any, you know, one-off designed page. Then we have our, some people call them inner pages or service pages, you know, however you choose to describe that, right?
+                - blockquote [ref=e1339]:
+                  - paragraph [ref=e1340] [cursor=pointer]: And then you have, you know, parent-child relationships within those, and then you have compliance pages. And those are three, you know, and then collections, right?
+                - blockquote [ref=e1342]:
+                  - paragraph [ref=e1343] [cursor=pointer]: Or CMS pages. And so when we got into the design structure, you know, I did a lot of analysis.
+                - blockquote [ref=e1345]:
+                  - paragraph [ref=e1346] [cursor=pointer]: Again, this was back when I had the big marketing agency for the aesthetics, medical. And I said, what are all the sections that could go onto the homepage, right, that were relevant?
+                - blockquote [ref=e1348]:
+                  - paragraph [ref=e1349] [cursor=pointer]: And then how many sections are we going to put on the homepage, right? So then they get to choose from that.
+                - blockquote [ref=e1351]:
+                  - paragraph [ref=e1352] [cursor=pointer]: And then we put rule sets around, you know, on the home, you know, well, these are the core pages list here, actually.
+                - blockquote [ref=e1354]:
+                  - paragraph [ref=e1355] [cursor=pointer]: I'm sorry. It's not the same. So we choose our page structure, then our treatment page structure, then we've got our CMS page structure, and this is going to help kind of create the scaffolding around what the site should be built out of, right?
+                - blockquote [ref=e1357]:
+                  - paragraph [ref=e1358] [cursor=pointer]: So if we took Search Atlas and we ran it through the MCP and we said, okay, what is the perfect website for this industry, right?
+                - blockquote [ref=e1360]:
+                  - paragraph [ref=e1361] [cursor=pointer]: And what pages do they have? What ranks well? What's doing well? And obviously that can adjust over time. But if we said, if we could work in only one industry and build the perfect website every time, what would need to be included to outperform everybody in their market, especially with a regional footprint, right?
+                - blockquote [ref=e1363]:
+                  - paragraph [ref=e1364] [cursor=pointer]: That's the approach that, in my mind, I'm trying to work towards. And then from here, we started to move the hierarchy of design, right, which we got into global selections.
+                - blockquote [ref=e1366]:
+                  - paragraph [ref=e1367] [cursor=pointer]: And this is the decisions that have to be made here, right? So what's our styling decisions around the CTA?
+                - blockquote [ref=e1369]:
+                  - paragraph [ref=e1370] [cursor=pointer]: What is the CTA? What's styling decisions around each of these elements, right? What's included in the header? What's included in the navigation, what's included in the footer, right?
+                - blockquote [ref=e1372]:
+                  - paragraph [ref=e1373] [cursor=pointer]: Then we have global widgets that we need to make sure that land all throughout the website, right? So those things have to, those are components, I guess, depending on what platform or design style you're working with.
+                - blockquote [ref=e1375]:
+                  - paragraph [ref=e1376] [cursor=pointer]: And then that needs to be pre-designed. So, like, before you even get into building a web page, right, we have to develop the theme.
+                - blockquote [ref=e1378]:
+                  - paragraph [ref=e1379] [cursor=pointer]: And the theme is going to define your, you know, obviously your colors and fonts, but also your global widgets as well and CTAs and other elements that are going to be posted all throughout.
+                - blockquote [ref=e1381]:
+                  - paragraph [ref=e1382] [cursor=pointer]: And then these are the categories that I had come up with. Oh, it was medical, professional, playful, luxury, and high fashion, you know, whereas, like, high fashion is going to be, like, black and white, lifestyle photos, like, where you think New York City, you know, think Abercrombie and Fitch, right, something like that.
+                - blockquote [ref=e1384]:
+                  - paragraph [ref=e1385] [cursor=pointer]: You get luxury, that's more red carpet, that's going to be, you know, bold reds and colors and expensive wine country stuff, right?
+                - blockquote [ref=e1387]:
+                  - paragraph [ref=e1388] [cursor=pointer]: Playful is going to be more colorful, it's going to be bouncy, happy, you know, all that kind of stuff.
+                - blockquote [ref=e1390]:
+                  - paragraph [ref=e1391] [cursor=pointer]: These guys are staring out in the space looking miserable. These guys right here look like they are better than you.
+                - blockquote [ref=e1393]:
+                  - paragraph [ref=e1394] [cursor=pointer]: These guys look like they're just having the time of their life, right? These guys look like they should be in a lab coat.
+                - blockquote [ref=e1396]:
+                  - paragraph [ref=e1397] [cursor=pointer]: So we're able to kind of develop a theme concept around all of those. Then we develop, you know, all of our font families, primary schemas and logos, and we have to get all the local variations.
+                - blockquote [ref=e1399]:
+                  - paragraph [ref=e1400] [cursor=pointer]: That's another thing the MCPs that I've noticed don't do well with is local placement and knowing how to do, you know, dark background versus light background, you know, vertical versus horizontal and keeping those decisions into play.
+                - blockquote [ref=e1402]:
+                  - paragraph [ref=e1403] [cursor=pointer]: And then I'm trying to look at, so in this case right here, this is our approval process. So if you want to put human in the loop, we've got all of our core milestones for, you know, human decision points that need to be considered for all of those.
+                - blockquote [ref=e1405]:
+                  - paragraph [ref=e1406] [cursor=pointer]: And I even put together, I'm trying to think of where these pages are, page approvals, page designs, copying this for different industries.
+                - blockquote [ref=e1408]:
+                  - paragraph [ref=e1409] [cursor=pointer]: I think I duplicated that. Okay. We also have... have... Sorry, this is my cone of uncertainty here. These are all the process.
+                - blockquote [ref=e1411]:
+                  - paragraph [ref=e1412] [cursor=pointer]: Okay, yeah, so this is my, basically, this is the flow, how we're putting the sites. Anyways, I can go into more detail about a lot of this stuff, but this is kind of where we are now, you know, with the wait list, planning.
+                - blockquote [ref=e1414]:
+                  - paragraph [ref=e1415] [cursor=pointer]: Anyways, I can show you all of this. I need to be probably a little bit more prepared to present it professionally to you guys.
+                - blockquote [ref=e1417]:
+                  - paragraph [ref=e1418] [cursor=pointer]: And there's more to this I'm not seeing for some reason. Oh, yeah, so these would be my equivalent to what agents need to be developed to coordinate the project.
+                - blockquote [ref=e1420]:
+                  - paragraph [ref=e1421] [cursor=pointer]: And, yeah, so anyways, there's, sorry, I'm not doing a great job here. I haven't looked at these charts in a little bit, but there, in my brain, I have a lot of, and I've got other charts.
+                - blockquote [ref=e1423]:
+                  - paragraph [ref=e1424] [cursor=pointer]: I just don't want to have to make you guys watch me hunt for them. But the idea here is understanding, you know, the design decision process.
+                - blockquote [ref=e1426]:
+                  - paragraph [ref=e1427] [cursor=pointer]: And, oh, you know what, I did have, let me see if I have it on this chart at all.
+                - blockquote [ref=e1429]:
+                  - paragraph [ref=e1430] [cursor=pointer]: I did have a review session that I would go through where I broke down all the major design decisions of the theme, and then I would basically be able to present, and that could be replicated with Claude in a design file with notes, and we were able to basically slide through different navigations and header.
+                - blockquote [ref=e1432]:
+                  - paragraph [ref=e1433] [cursor=pointer]: It took my revisions down from, gosh, we reduced revisions by, I think, 93%, and that correlated, obviously, to production time speed-ups as well by being able to do this, because what happened was, what I found, anyways, 90% of the feedback from the client happens in the theme design phase.
+                - blockquote [ref=e1435]:
+                  - paragraph [ref=e1436] [cursor=pointer]: So, if we can get their colors right, their fonts right, knock out their landing page and crush that, if we can get their CTAs correct, and we get their main, you know, styling represented on the homepage, which is, you know, your header, your footer, your forms, your CTA buttons, all of those are going to carry over to the rest of what you're doing.
+                - blockquote [ref=e1438]:
+                  - paragraph [ref=e1439] [cursor=pointer]: If I can nail this. That, then we have minimal revisions in the rest of the process. And the way that I broke down my client journey is we would come in and go from onboarding to doing copy.
+                - blockquote [ref=e1441]:
+                  - paragraph [ref=e1442] [cursor=pointer]: We just found that doing copy first makes the most sense, right, to make sure we're on the same path.
+                - blockquote [ref=e1444]:
+                  - paragraph [ref=e1445] [cursor=pointer]: I picture it in my mind visually as, like, literally if I had a stack of paper, right, and the theme or the home page is the cover of the book, right, but we've to get through the cover first, make sure that it's going to send the tone and direction for the rest of the design.
+                - blockquote [ref=e1447]:
+                  - paragraph [ref=e1448] [cursor=pointer]: And then we would, one page at a time as we'd go through, right, and then we would get, you know, design, approve, go to development, design, approve, development.
+                - blockquote [ref=e1450]:
+                  - paragraph [ref=e1451] [cursor=pointer]: And as long as the content was written in advance, it could go to design, design could then get it done, and it goes to approval, and then it gets to develop.
+                - blockquote [ref=e1453]:
+                  - paragraph [ref=e1454] [cursor=pointer]: And then we broke it all the way down to our theme stage, and this is a little bit more helpful probably too.
+                - blockquote [ref=e1456]:
+                  - paragraph [ref=e1457] [cursor=pointer]: What's involved in that? This is design interview, confirm decisions, and this is kind of our interview. This could be done through a forum.
+                - blockquote [ref=e1459]:
+                  - paragraph [ref=e1460] [cursor=pointer]: This could be done through a chat widget. It right to get all the information that we need. I've actually got a .md file that's a comprehensive branding strategy where I uploaded, like, a ton of very expensive courses that I've collected along the way and developed an architecture around branding.
+                - blockquote [ref=e1462]:
+                  - paragraph [ref=e1463] [cursor=pointer]: It took me two days to complete just the branding questionnaire with it, and it spit out a really beautiful brand strategy document for us.
+                - blockquote [ref=e1465]:
+                  - paragraph [ref=e1466] [cursor=pointer]: That can then be fed and then created a style guide in HTML from Claude, which I've been able to do.
+                - blockquote [ref=e1468]:
+                  - paragraph [ref=e1469] [cursor=pointer]: And then if I can get that approved, then we get into global design decisions, and we get through the homepage, and these are basically approvals that we have to collect.
+                - blockquote [ref=e1471]:
+                  - paragraph [ref=e1472] [cursor=pointer]: And then from here, wireframe and layout and all that stuff. So, yeah, so then we just kind of move through.
+                - blockquote [ref=e1474]:
+                  - paragraph [ref=e1475] [cursor=pointer]: So it starts out with theme, then it moves into designing any of the collection pages because those can be replicated at scale, right, once we get a service page layout and get those approved.
+                - blockquote [ref=e1477]:
+                  - paragraph [ref=e1478] [cursor=pointer]: And then we have a content package, right, where we look at any of, okay, sorry, this is the CMS, any collections, blogs, anything that gets mass produced, that's this phase.
+                - blockquote [ref=e1480]:
+                  - paragraph [ref=e1481] [cursor=pointer]: And then we... Go finally into the core pages, the one-by-one design that needs to go in and get built out.
+                - blockquote [ref=e1483]:
+                  - paragraph [ref=e1484] [cursor=pointer]: But what is beautiful about it is it allows it to work in parallel. So I can be doing the planning session, and as I get the planning session done, then I can be getting copy created.
+                - blockquote [ref=e1486]:
+                  - paragraph [ref=e1487] [cursor=pointer]: Once the copy is created, which, by the way, I don't know if I've ever shared this with you guys or not.
+                - blockquote [ref=e1489]:
+                  - paragraph [ref=e1490] [cursor=pointer]: Let me see if I've got a quick one that I can pull up.
+              - figure [ref=e1491]:
+                - generic [ref=e1492]:
+                  - generic [ref=e1493]: Matt Bailey
+                  - blockquote [ref=e1494]:
+                    - paragraph [ref=e1495] [cursor=pointer]: I love this. I love this, Clayton. is amazing. I did have to laugh when you said, like, you know, content is created, you know, first.
+                - blockquote [ref=e1497]:
+                  - paragraph [ref=e1498] [cursor=pointer]: I did have to laugh because that was, I mean, if there's one thing that never happens, is content created first.
+                - blockquote [ref=e1500]:
+                  - paragraph [ref=e1501] [cursor=pointer]: That's always, it's always the holdup. I mean, I was in a web design company in, like, 2004, and it's like, the designs, the site was built, and we'd wait for months for content.
+                - blockquote [ref=e1503]:
+                  - paragraph [ref=e1504] [cursor=pointer]: Yeah. No one ever addressed that. Like, oh, we're supposed to do the content?
+              - figure [ref=e1505]:
+                - generic [ref=e1506]:
+                  - generic [ref=e1507]: Clayton Joyner
+                  - blockquote [ref=e1508]:
+                    - paragraph [ref=e1509] [cursor=pointer]: Well, what's beautiful about it, if you think systematically around the way we approach it, If we were able to do this well, especially if you get into, you know, niche-specific website design, you could basically have the entire, the content created, the web pages done, placeholders for images, and then you would have an isolated list, okay, we need these many images of this type, this many images of this type, here's how many videos that we need, and then we have all the asset collection that we need on the creative side, all in one place, that can then be brought in, and then that gives me, you know, I used to have a web project coordinator.
+                - blockquote [ref=e1511]:
+                  - paragraph [ref=e1512] [cursor=pointer]: That was their job, is to make sure that all of that got facilitated, handed to developers, and got implemented.
+                - blockquote [ref=e1514]:
+                  - paragraph [ref=e1515] [cursor=pointer]: But I was able to get Claude to produce this for me as well. So, if you'll notice, we've got multiple tabs down here, that's for nodes.
+                - blockquote [ref=e1517]:
+                  - paragraph [ref=e1518] [cursor=pointer]: So, I created our design structure, now, this is our workflow on how we go through and manage what's being done.
+                - blockquote [ref=e1520]:
+                  - paragraph [ref=e1521] [cursor=pointer]: I'd like to be able to do this in ClickUp a little bit better, we're prototyping, obviously, on spreadsheets to make it faster, but literally, it does a fool.
+                - blockquote [ref=e1523]:
+                  - paragraph [ref=e1524] [cursor=pointer]: We'll break down an analysis by category of all the pages that have to be created from a SEO structural perspective.
+                - blockquote [ref=e1526]:
+                  - paragraph [ref=e1527] [cursor=pointer]: The next step after that is taking this and then using this as leverage to then build out all the copy for every page, right?
+                - blockquote [ref=e1529]:
+                  - paragraph [ref=e1530] [cursor=pointer]: Once we have the copy for every one of these pages, then we apply the design layer to all of this, right?
+                - blockquote [ref=e1532]:
+                  - paragraph [ref=e1533] [cursor=pointer]: And then it should be able to take the design decisions that we're already decided on, take every piece of the copy in linear order, then take all the best practices that we have per page that we've already instructed it on, on developing the copy for each page, and then taking that and applying the design rules to the copy that was created for every page.
+                - blockquote [ref=e1535]:
+                  - paragraph [ref=e1536] [cursor=pointer]: And then we should have a QA and audit process, you know, compliance pages. We even have it going out and doing an audit on GBP.
+                - blockquote [ref=e1538]:
+                  - paragraph [ref=e1539] [cursor=pointer]: We bring in the original sitemap, so we have a redirect plan that gets developed from that. And then there's even a workflow that gets spit out that helps kind of guide what the project looks like over time for the client.
+                - blockquote [ref=e1541]:
+                  - paragraph [ref=e1542] [cursor=pointer]: And then we have it do all. All the research for all the Google Business Profile data so that we can start working on NAP at the same time because we parallel process our onboarding.
+                - blockquote [ref=e1544]:
+                  - paragraph [ref=e1545] [cursor=pointer]: I don't know if that's helpful to you guys or not, but this is what I'm working towards trying to get finished.
+                - blockquote [ref=e1547]:
+                  - paragraph [ref=e1548] [cursor=pointer]: And then as a bonus here, this is the quoting software that I'm working on right now. I've developed a three-tier access system for developing calculators for home service industry.
+                - blockquote [ref=e1550]:
+                  - paragraph [ref=e1551] [cursor=pointer]: So basically we've got a platform admin, which is us, the owners of the software. We have a reseller option.
+                - blockquote [ref=e1553]:
+                  - paragraph [ref=e1554] [cursor=pointer]: So if I go, this is platform, it's a little slow. But we've got resellers, and then we've got the user tabs.
+                - blockquote [ref=e1556]:
+                  - paragraph [ref=e1557] [cursor=pointer]: I've got basically for every state, we've got the material pricing index for all the materials for each of the things we're trying to do.
+                - blockquote [ref=e1559]:
+                  - paragraph [ref=e1560] [cursor=pointer]: We've got labor index for all 50 states, permitting cost estimates for all 50 states. And then what we're doing.
+                - blockquote [ref=e1562]:
+                  - paragraph [ref=e1563] [cursor=pointer]: As we're going in, ultimately, this is a reseller account here, and then we can go into a sample brand or company, and what it does is it puts out these lead magnet calculators for the client, with the idea being that they can get an estimate without having to talk to a salesperson.
+                - blockquote [ref=e1565]:
+                  - paragraph [ref=e1566] [cursor=pointer]: And then, so, for example, like if I do this, it's going to start hiding the estimate range. I can put in this, all of this modifies the price, I can choose what level of upgrade that I want, I can put in my zip code, it'll look it up, it'll tell me exactly where I'm at, you know, this is include disposal, and I can do this for every, I'm going to basically do this for every home service option that's available.
+                - blockquote [ref=e1568]:
+                  - paragraph [ref=e1569] [cursor=pointer]: It continue, we've put in our information, see my full calculation, I'm going to add more to this in the background, and it's going to be able to spit this out.
+                - blockquote [ref=e1571]:
+                  - paragraph [ref=e1572] [cursor=pointer]: And what we're going to do here is, I'm going to add an additional element where we can put what their monthly payment is, with 0% financing, assuming the client has availability on that.
+                - blockquote [ref=e1574]:
+                  - paragraph [ref=e1575] [cursor=pointer]: We're going to offer a $1,000 off or a $1,000 credit for them if they want to book an appointment to get an in-person estimate.
+                - blockquote [ref=e1577]:
+                  - paragraph [ref=e1578] [cursor=pointer]: And then we're going to put something in the middle here that's going to be able to sell the credential, credentialize the client and be able to put together, you know, like a video or some kind of creative gallery or a video or something of their work.
+                - blockquote [ref=e1580]:
+                  - paragraph [ref=e1581] [cursor=pointer]: And then you should be able to, in theory, as a user, you should be able to make as many calculators as you want and use them wherever you want.
+                - blockquote [ref=e1583]:
+                  - paragraph [ref=e1584] [cursor=pointer]: I'm going to put in a QR code generator automatically built into each calculator, and it's got an embed function, which is really cool.
+                - blockquote [ref=e1586]:
+                  - paragraph [ref=e1587] [cursor=pointer]: So if go to the calculator, set up here, and hit manage, I have the embed code. I've got public URLs.
+                - blockquote [ref=e1589]:
+                  - paragraph [ref=e1590] [cursor=pointer]: It's also really cool because if you go into settings, you can build all the colors and brands and logos off of that that you want.
+                - blockquote [ref=e1592]:
+                  - paragraph [ref=e1593] [cursor=pointer]: For the theme settings, we can set your financing options that you have available to your business inside here. We can set your pricing modifiers so they can adjust their own pricing themselves.
+                - blockquote [ref=e1595]:
+                  - paragraph [ref=e1596] [cursor=pointer]: We can set the form settings as well. We can probably iterate on that as well. And then I'm going to have it so that it natively integrates with GoHighLevel and HubSpot.
+                - blockquote [ref=e1598]:
+                  - paragraph [ref=e1599] [cursor=pointer]: So we'll import all the data automatically into there. Notifications. And then I'm about to put on an onboarding wizard.
+                - blockquote [ref=e1601]:
+                  - paragraph [ref=e1602] [cursor=pointer]: So it's going to make it so that when a new brand signs up, they'll automatically get their magic link, be able to self-enroll, set up their subscriptions, build out their profile, and then they'll have kind of a wizard that shows them around on how to use the software with the goal of trying to get them to build their first calculator as soon as they log in.
+                - blockquote [ref=e1604]:
+                  - paragraph [ref=e1605] [cursor=pointer]: So that's one of the things I'm working on.
+              - figure [ref=e1606]:
+                - generic [ref=e1607]:
+                  - generic [ref=e1608]: Matt Bailey
+                  - blockquote [ref=e1609]:
+                    - paragraph [ref=e1610] [cursor=pointer]: I'm going to book my childhood here. Clayton, that is wicked smart. That is, I love the calculator. That is, and, you know, selling it, beautiful.
+              - figure [ref=e1611]:
+                - generic [ref=e1612]:
+                  - generic [ref=e1613]: Clayton Joyner
+                  - blockquote [ref=e1614]:
+                    - paragraph [ref=e1615] [cursor=pointer]: I was like, if I could get them to pay me nine bucks a month to have a calculator that gives them, you know, qualified leads to book, you know, and then, oh, and it allows.
+                - blockquote [ref=e1617]:
+                  - paragraph [ref=e1618] [cursor=pointer]: For locations, so if they're multi-location, they can have as many, and we can, so we get attribution at the location level for how they're using the calculator, then where.
+              - figure [ref=e1619]:
+                - generic [ref=e1620]:
+                  - generic [ref=e1621]: Matt Bailey
+                  - blockquote [ref=e1622]:
+                    - paragraph [ref=e1623] [cursor=pointer]: Crazy. Crazy. That is amazing. Clayton, you have systematized the whole process. I mean, that is, that is amazing. I love the calculator.
+                - blockquote [ref=e1625]:
+                  - paragraph [ref=e1626] [cursor=pointer]: Fantastic.
+              - figure [ref=e1627]:
+                - generic [ref=e1628]:
+                  - generic [ref=e1629]: Michael Vassar
+                  - blockquote [ref=e1630]:
+                    - paragraph [ref=e1631] [cursor=pointer]: long have you been working on this, man?
+              - figure [ref=e1632]:
+                - generic [ref=e1633]:
+                  - generic [ref=e1634]: Clayton Joyner
+                  - blockquote [ref=e1635]:
+                    - paragraph [ref=e1636] [cursor=pointer]: The calculator?
+              - figure [ref=e1637]:
+                - generic [ref=e1638]:
+                  - generic [ref=e1639]: Michael Vassar
+                  - blockquote [ref=e1640]:
+                    - paragraph [ref=e1641] [cursor=pointer]: Yeah.
+              - figure [ref=e1642]:
+                - generic [ref=e1643]:
+                  - generic [ref=e1644]: Clayton Joyner
+                  - blockquote [ref=e1645]:
+                    - paragraph [ref=e1646] [cursor=pointer]: About a week.
+              - figure [ref=e1647]:
+                - generic [ref=e1648]:
+                  - generic [ref=e1649]: Michael Vassar
+                  - blockquote [ref=e1650]:
+                    - paragraph [ref=e1651] [cursor=pointer]: Right, yeah.
+              - figure [ref=e1652]:
+                - generic [ref=e1653]:
+                  - generic [ref=e1654]: Matt Bailey
+                  - blockquote [ref=e1655]:
+                    - paragraph [ref=e1656] [cursor=pointer]: I knew it was going to blow my mind.
+              - figure [ref=e1657]:
+                - generic [ref=e1658]:
+                  - generic [ref=e1659]: Clayton Joyner
+                  - blockquote [ref=e1660]:
+                    - paragraph [ref=e1661] [cursor=pointer]: Well, you know, what's funny is I've got a computer science background, a computer formations degree, but I never actually really used it, right?
+                - blockquote [ref=e1663]:
+                  - paragraph [ref=e1664] [cursor=pointer]: But I think like it because of data structures and the way that they used to do it. I studied UX, I've been in marketing, copywriting, all the things.
+                - blockquote [ref=e1666]:
+                  - paragraph [ref=e1667] [cursor=pointer]: So what's fun for me is I get to do the best part of this job, which is what's the idea, and then I get to play test the software, and every time I find something I want to be different, I can just tell Claude to change it, and it does it.
+                - blockquote [ref=e1669]:
+                  - paragraph [ref=e1670] [cursor=pointer]: It's amazing. Amazing. And so I've got a lot of, I also, at the same time, I'm building a second app for the nerds in the room.
+                - blockquote [ref=e1672]:
+                  - paragraph [ref=e1673] [cursor=pointer]: I played like a lot of games. So one of the tabletop games we played is a Star Wars role-playing game.
+                - blockquote [ref=e1675]:
+                  - paragraph [ref=e1676] [cursor=pointer]: So I took a 366-page rule book for the, it's like Dungeons & Dragons, if you've ever heard of that, right?
+              - figure [ref=e1677]:
+                - generic [ref=e1678]:
+                  - generic [ref=e1679]: Matt Bailey
+                  - blockquote [ref=e1680]:
+                    - paragraph [ref=e1681] [cursor=pointer]: Some, I don't care if you judge me, judge me.
+              - figure [ref=e1682]:
+                - generic [ref=e1683]:
+                  - generic [ref=e1684]: Clayton Joyner
+                  - blockquote [ref=e1685]:
+                    - paragraph [ref=e1686] [cursor=pointer]: And I basically was able to take all the rules within the game and codify them so that they were built into an app so that now any of the players can just log in.
+                - blockquote [ref=e1688]:
+                  - paragraph [ref=e1689] [cursor=pointer]: They can create the character going through a wizard and then keep up with their character sheets as they go.
+                - blockquote [ref=e1691]:
+                  - paragraph [ref=e1692] [cursor=pointer]: And it auto-calculates all their scores, all their modifiers, all their everything. And the idea behind that is me ask you this.
+              - figure [ref=e1693]:
+                - generic [ref=e1694]:
+                  - generic [ref=e1695]: Matt Bailey
+                  - blockquote [ref=e1696]:
+                    - paragraph [ref=e1697] [cursor=pointer]: How does that compete with D&D Online?
+              - figure [ref=e1698]:
+                - generic [ref=e1699]:
+                  - generic [ref=e1700]: Clayton Joyner
+                  - blockquote [ref=e1701]:
+                    - paragraph [ref=e1702] [cursor=pointer]: How is the... Well, we don't have the licensing rights to all the material, but I will say the when I'm done, I've tested this outside of an app, but the idea is to...
+                - blockquote [ref=e1704]:
+                  - paragraph [ref=e1705] [cursor=pointer]: Build a dungeon master, an AI dungeon master that will write the campaigns, allow the players to interact with it, tell the stories, and be able to keep track of all the, I've already kind of mapped out, you you need an NPC manager, you need to have, you know, a plotline manager, you know, all the, anyways.
+                - blockquote [ref=e1707]:
+                  - paragraph [ref=e1708] [cursor=pointer]: So the idea is that it can become a social app for gamers, because we're going to translate to other platforms, other gaming systems, and so that way they can then find groups, you know, I want to have a looking for group function, have a DM, function, and be able to set up campaigns quickly, because the biggest pain in the butt is, like, buying all the books, and then learning all the rules, and finding all the people to play with.
+                - blockquote [ref=e1710]:
+                  - paragraph [ref=e1711] [cursor=pointer]: Anyways, that's another thing that we're working through, but none of which is related to actually my job, which makes me money, so, you know, we'll see how it plays out in end.
+              - figure [ref=e1712]:
+                - generic [ref=e1713]:
+                  - generic [ref=e1714]: Jonathan Duque
+                  - blockquote [ref=e1715]:
+                    - paragraph [ref=e1716] [cursor=pointer]: That's crazy, and if don't mind me asking, what have you encountered or decided to use for, like, issue tracking and so on?
+                - blockquote [ref=e1718]:
+                  - paragraph [ref=e1719] [cursor=pointer]: Because I... I... The reason I'm asking this is on Search Atlas, we're going to be using lane error, for our internal blocks and things and whatnot.
+              - figure [ref=e1720]:
+                - generic [ref=e1721]:
+                  - generic [ref=e1722]: Clayton Joyner
+                  - blockquote [ref=e1723]:
+                    - paragraph [ref=e1724] [cursor=pointer]: You're getting, I'm sorry, you're a little bit quiet again. Sorry, that's, it was me earlier.
+              - figure [ref=e1725]:
+                - generic [ref=e1726]:
+                  - generic [ref=e1727]: Jonathan Duque
+                  - blockquote [ref=e1728]:
+                    - paragraph [ref=e1729] [cursor=pointer]: Yeah, it's Mike. But I think is that, for the issue tracking, have you connected already that to, I'm guessing, Sanctuary, Grafana, like, low-key, or, like, where do you keep that tracked?
+                - blockquote [ref=e1731]:
+                  - paragraph [ref=e1732] [cursor=pointer]: Do you want the location of where the user is, or? No, so for any other projects, because the reason I'm asking is currently we're using our own, like, database and our own, like, automatic system to solve some of the issues so we can move faster, and that includes this mastermind.
+                - blockquote [ref=e1734]:
+                  - paragraph [ref=e1735] [cursor=pointer]: And then we have that connected to linear, but I'm not sure if you've explored a different option there and how we can implement that for you on the mastermind.
+              - figure [ref=e1736]:
+                - generic [ref=e1737]:
+                  - generic [ref=e1738]: Clayton Joyner
+                  - blockquote [ref=e1739]:
+                    - paragraph [ref=e1740] [cursor=pointer]: You know, I don't know. This is like when I order my food in Spanish at the Mexican restaurant, and then they start to talk back to me like they think I know Spanish.
+                - blockquote [ref=e1742]:
+                  - paragraph [ref=e1743] [cursor=pointer]: So I just told you a bunch of cool things I did that Claude did for me, and you started speaking computer to me.
+                - blockquote [ref=e1745]:
+                  - paragraph [ref=e1746] [cursor=pointer]: And I think it's a little bit over my head, to be honest. So give me the context of what you're saying.
+              - figure [ref=e1747]:
+                - generic [ref=e1748]:
+                  - generic [ref=e1749]: Jonathan Duque
+                  - blockquote [ref=e1750]:
+                    - paragraph [ref=e1751] [cursor=pointer]: No, so yeah. So essentially, did it well live already? Like, are you testing that already with existing clients or maybe just internal teammates?
+              - figure [ref=e1752]:
+                - generic [ref=e1753]:
+                  - generic [ref=e1754]: Clayton Joyner
+                  - blockquote [ref=e1755]:
+                    - paragraph [ref=e1756] [cursor=pointer]: Oh, no. Yeah, we're just, we're still in, I'm still in development phase. So we haven't even done user testing just yet.
+                - blockquote [ref=e1758]:
+                  - paragraph [ref=e1759] [cursor=pointer]: Yeah, yeah, yeah. Yeah. So I did hook it up through Vercel. So I've got, you know, GitHub, Vercel. And I did all this through the native Claude code interface.
+                - blockquote [ref=e1761]:
+                  - paragraph [ref=e1762] [cursor=pointer]: I even went away from warp because I just found that it was easier to be able to drag images into the Claude code interface where you can't do that in warp.
+                - blockquote [ref=e1764]:
+                  - paragraph [ref=e1765] [cursor=pointer]: And so that helps me sometimes with describing or showing something on the screen that I need done. But yeah, I was able to.
+                - blockquote [ref=e1767]:
+                  - paragraph [ref=e1768] [cursor=pointer]: We've got OAuth in there, we've got all the relational database tables set up through Superbase, we've got Purcell connected, we've got, we're doing push-pulls, you know, on each iteration as it goes through and updates a feature or something that I've mentioned to the, to the chat.
+              - figure [ref=e1769]:
+                - generic [ref=e1770]:
+                  - generic [ref=e1771]: Jonathan Duque
+                  - blockquote [ref=e1772]:
+                    - paragraph [ref=e1773] [cursor=pointer]: Gotcha. But, yeah. Yeah, no, I appreciate that, because, yeah, this is, it's great what he just showed, I mean, in the, in architectural, like, layer of things, it's just, like, beautiful, and I am interested on how that translates into, like, the live usage of it and everything, and the tracking, so you can keep on improving and addressing whatever gaps are, like, or whatever's lacking from a design standpoint.
+              - figure [ref=e1774]:
+                - generic [ref=e1775]:
+                  - generic [ref=e1776]: Clayton Joyner
+                  - blockquote [ref=e1777]:
+                    - paragraph [ref=e1778] [cursor=pointer]: So, yeah, no, I, I look forward to seeing that, but, it, it brings me a lot of ideas that we can, yeah, man, well, the, the, the flow or the structure I look at is, I have to understand the skeleton first, right, it's like framing a house, right, so I want to look at the floor plan.
+                - blockquote [ref=e1780]:
+                  - paragraph [ref=e1781] [cursor=pointer]: Yeah. And what I did in this particular case was like, here's what I'm trying to do, right? Here are the users that have to be involved, and now let's, and I would go back and forth with it and say, okay, what's the proper structure, right?
+                - blockquote [ref=e1783]:
+                  - paragraph [ref=e1784] [cursor=pointer]: To be able to make sure that we don't have conflict, you know, we can see what needs to be seen, and it's a lot of micromanagement.
+                - blockquote [ref=e1786]:
+                  - paragraph [ref=e1787] [cursor=pointer]: I'll do a push, and I'll go and test it, and I'm like, oh, I can see all my super admins are now available at the, you know, the company level, which is two levels deeper than you should be able to see, and they shouldn't be able to remove, or kick out a super admin, you know, or, you know, and I would just kind of iterate through it that way.
+                - blockquote [ref=e1789]:
+                  - paragraph [ref=e1790] [cursor=pointer]: But I do it in small chunks. That's the biggest thing that I've found to be helpful. I don't load up a ton of feature requests all at one time.
+                - blockquote [ref=e1792]:
+                  - paragraph [ref=e1793] [cursor=pointer]: I do it, test it, move on, do it, test it, move on. And then if, because if I put too much in at the same time, it starts to get confused, or I might lose track of what I need to even test for to make sure it was working correctly.
+                - blockquote [ref=e1795]:
+                  - paragraph [ref=e1796] [cursor=pointer]: So I do micro improvements, and I might do 50, 60 a day. you. Feature, bug, replace, fix, test, push, check, okay, good, move on, and I just keep it really small and incremental iteration.
+              - figure [ref=e1797]:
+                - generic [ref=e1798]:
+                  - generic [ref=e1799]: Matt Bailey
+                  - blockquote [ref=e1800]:
+                    - paragraph [ref=e1801] [cursor=pointer]: Cool.
+              - figure [ref=e1802]:
+                - generic [ref=e1803]:
+                  - generic [ref=e1804]: Jonathan Duque
+                  - blockquote [ref=e1805]:
+                    - paragraph [ref=e1806] [cursor=pointer]: Gotcha, that's awesome.
+              - figure [ref=e1807]:
+                - generic [ref=e1808]:
+                  - generic [ref=e1809]: Matt Bailey
+                  - blockquote [ref=e1810]:
+                    - paragraph [ref=e1811] [cursor=pointer]: Yeah, that's awesome. I mean, I love how you just broke it down into, like, those all individual pieces, and that's, I think that's one of the reasons why MCPs, at this point, is not going to be anything close to that.
+                - blockquote [ref=e1813]:
+                  - paragraph [ref=e1814] [cursor=pointer]: You know, it's running on an algorithm. Now, I think what you've presented is, like, a whole other layer of what could be done, working towards that, that, I think, is powerful.
+                - blockquote [ref=e1816]:
+                  - paragraph [ref=e1817] [cursor=pointer]: But, yeah, probably, you know, probably the way you're running, and with this, you know, hopefully we can get that, you know, close that gap of your vision on that.
+              - figure [ref=e1818]:
+                - generic [ref=e1819]:
+                  - generic [ref=e1820]: Clayton Joyner
+                  - blockquote [ref=e1821]:
+                    - paragraph [ref=e1822] [cursor=pointer]: You know, it's funny, I started a session with Claude, and I'm trying to see if I can find it.
+                - blockquote [ref=e1824]:
+                  - paragraph [ref=e1825] [cursor=pointer]: find I'm But basically, I mapped out the multi-agent structure that I think would need to be true. In fact, I probably have it right here.
+                - blockquote [ref=e1827]:
+                  - paragraph [ref=e1828] [cursor=pointer]: can pull up. And this might be, J.D., this might be something that you would find very interesting, I think.
+                - blockquote [ref=e1830]:
+                  - paragraph [ref=e1831] [cursor=pointer]: Find it here.
+              - figure [ref=e1832]:
+                - generic [ref=e1833]:
+                  - generic [ref=e1834]: Jonathan Duque
+                  - blockquote [ref=e1835]:
+                    - paragraph [ref=e1836] [cursor=pointer]: And this brings me to, maybe I'm going to post it in a circle, but one of the things that I guess would be a good exercise to do is what the expected goal is, and then give you guys some documentations on how RMPT is reacting to those requests that you're pulling up to the back end so we can learn what the gap is, and then develop those bridges that Matt's talking about.
+                - blockquote [ref=e1838]:
+                  - paragraph [ref=e1839] [cursor=pointer]: So there's a reduced distance and faster response times as well, not only for Web Studio, but for the rest of the tools that you're going to use from Search Apple.
+              - figure [ref=e1840]:
+                - generic [ref=e1841]:
+                  - generic [ref=e1842]: Clayton Joyner
+                  - blockquote [ref=e1843]:
+                    - paragraph [ref=e1844] [cursor=pointer]: yeah. Yeah, that makes a lot of sense. And there's a really cool document. And I'm like, freaking out. Did I lose it?
+                - generic [ref=e1845]:
+                  - generic [ref=e1847]: ACTION ITEM
+                  - generic [ref=e1848]: Share multi-agent design framework on next call
+                  - generic [ref=e1850]:
+                    - generic:
+                      - img
+                - blockquote [ref=e1852]:
+                  - paragraph [ref=e1853] [cursor=pointer]: No. I went in, rain, man. I woke up at like 4.30 in the morning and went nuts, developing a multi-agentic system and all the players that would have to be involved to make it work.
+                - blockquote [ref=e1855]:
+                  - paragraph [ref=e1856] [cursor=pointer]: And I'd really like to share that with you guys, but I may have to pull it up for the next one.
+              - figure [ref=e1857]:
+                - generic [ref=e1858]:
+                  - generic [ref=e1859]: Jonathan Duque
+                  - blockquote [ref=e1860]:
+                    - paragraph [ref=e1861] [cursor=pointer]: Yeah, no, and we're going be in touch. I just dropped in the chat on my calendar for you guys to pick time whenever you need.
+                - blockquote [ref=e1863]:
+                  - paragraph [ref=e1864] [cursor=pointer]: Like, I might be able to help. If not, I'll reach out to whoever needs to jump in and help.
+                - blockquote [ref=e1866]:
+                  - paragraph [ref=e1867] [cursor=pointer]: And I look forward to hearing from you. This is, I guess, beneficial for everyone in every way. So, yeah, I look forward to meeting you and learning what you get.
+              - figure [ref=e1868]:
+                - generic [ref=e1869]:
+                  - generic [ref=e1870]: Clayton Joyner
+                  - blockquote [ref=e1871]:
+                    - paragraph [ref=e1872] [cursor=pointer]: Very same. Very same. Well, I'll find it, and I can share it with us on a future call, but it's really in depth.
+                - blockquote [ref=e1874]:
+                  - paragraph [ref=e1875] [cursor=pointer]: It's crazy. I've basically broke out all the, the way I'm thinking of it right now, right? Like the way I'm envisioning it is, if I could build a team, who would be on that team?
+                - blockquote [ref=e1877]:
+                  - paragraph [ref=e1878] [cursor=pointer]: And if that team could be the best in the world at what they did, right, what would they have to know?
+                - blockquote [ref=e1880]:
+                  - paragraph [ref=e1881] [cursor=pointer]: And then how would that team interact with each other, right? And so, and then what order would they interact in?
+                - blockquote [ref=e1883]:
+                  - paragraph [ref=e1884] [cursor=pointer]: So that's the way I'm thinking about it now. It's like, okay, because I said SEO, well, let's, but then I started looking at, okay, well, there's technical SEO, there's Google Business Profile, there's a programmatic, you know, local SEO expert, right?
+                - blockquote [ref=e1886]:
+                  - paragraph [ref=e1887] [cursor=pointer]: It becomes vectorized, you know, from a data perspective, it's too big for one. Agent to maintain, right? So then how do I fracture SEO into all the primary roles?
+                - blockquote [ref=e1889]:
+                  - paragraph [ref=e1890] [cursor=pointer]: I could build a dream team for SEO, would that be, right? Same thing is true for advertising. I've got the whole playbook in my head around that as well, right?
+                - blockquote [ref=e1892]:
+                  - paragraph [ref=e1893] [cursor=pointer]: So you fork into which platform, and then I know, you know, what research I need to be doing. I've got an offer creation structure that I've put together that pulls off of Hormozy, pulls off of Breakthrough Advertising, pulls off of Todd Brown, you know, all the main advertisers, right?
+                - blockquote [ref=e1895]:
+                  - paragraph [ref=e1896] [cursor=pointer]: I've then taken a lot of their books, and then I've codified those as well into framework. And then I had those frameworks looked at together as a whole, body of work, and saying, how do we optimize the order in which those things go together, right?
+                - blockquote [ref=e1898]:
+                  - paragraph [ref=e1899] [cursor=pointer]: So then if I go from branding, from branding, then I go into the, you know, the big idea, direct response process, then we get into the big off, you know, the offer structure, you know, and then the offer structure, paired with the branding and direct response guides, then allow...
+                - blockquote [ref=e1901]:
+                  - paragraph [ref=e1902] [cursor=pointer]: Allows me to then develop the advertising copy, right? The advertising copy then allows me to then give direction for creative.
+                - blockquote [ref=e1904]:
+                  - paragraph [ref=e1905] [cursor=pointer]: The creative, as opposed to advertising copy, allows me to drop in funnel creation, right? And develop what needs to be in the funnel creation.
+                - blockquote [ref=e1907]:
+                  - paragraph [ref=e1908] [cursor=pointer]: The trick is, though, in the research phase is how to pull in the top performing assets that we already know were, finding out how to codify those into a framework that then allows us to then replicate the, you know, what was it?
+                - blockquote [ref=e1910]:
+                  - paragraph [ref=e1911] [cursor=pointer]: What was the causation of why that worked, right? And then the deep listening and social media can then play a part into identifying that and being the scout to look for future opportunities.
+                - blockquote [ref=e1913]:
+                  - paragraph [ref=e1914] [cursor=pointer]: And then we pull that into one chained system that will ask a bunch of questions on the front end, do its own research, build its own copy, and then spit out all the advertisement that you want.
+                - blockquote [ref=e1916]:
+                  - paragraph [ref=e1917] [cursor=pointer]: You have unlimited split tests.
+              - figure [ref=e1918]:
+                - generic [ref=e1919]:
+                  - generic [ref=e1920]: Jonathan Duque
+                  - blockquote [ref=e1921]:
+                    - paragraph [ref=e1922] [cursor=pointer]: The way I address some of that, and it's kind of like, it might look perfect, but, you know, it's for the sake of science.
+                - blockquote [ref=e1924]:
+                  - paragraph [ref=e1925] [cursor=pointer]: What I've done is I've instructed conversations that I've got internally. through ClickUp, Slack, Teams, whatever communication channels they've had, because those are like keywords and marks on success stories from processes that I've run with the team internally or that I tested.
+                - blockquote [ref=e1927]:
+                  - paragraph [ref=e1928] [cursor=pointer]: And the MTC allows you to do that and extract that data and then transform that into personality type of files, not like you're copying somebody's personality, but like process personality that you can then replicate and adapt to agents.
+                - blockquote [ref=e1930]:
+                  - paragraph [ref=e1931] [cursor=pointer]: That is something that I also want to check on how to apply to this mastermind, because what you're saying is something that I've seen other people explore as well.
+                - blockquote [ref=e1933]:
+                  - paragraph [ref=e1934] [cursor=pointer]: it's like they run agentically everything through agents, but the agents are not reporting per se to you through the interface, but they have their own like records and like memory files that you can keep on monitoring to figure.
+                - blockquote [ref=e1936]:
+                  - paragraph [ref=e1937] [cursor=pointer]: What they're doing and how they're like now relearning from whatever you feed them for whatever. okay.
+              - figure [ref=e1938]:
+                - generic [ref=e1939]:
+                  - generic [ref=e1940]: Clayton Joyner
+                  - blockquote [ref=e1941]:
+                    - paragraph [ref=e1942] [cursor=pointer]: So you're completing the flywheel, right? I did X. The goal was Y. Here's Z is the outcome, right? Now let me hypothesize all the other refractive options that I might have to improve that Z, right?
+                - blockquote [ref=e1944]:
+                  - paragraph [ref=e1945] [cursor=pointer]: And then let's build our test and then keep going through that flywheel. And especially if you can start spinning up multiple at a time, now you've got a built-in CRO, right?
+                - blockquote [ref=e1947]:
+                  - paragraph [ref=e1948] [cursor=pointer]: And then they can test at a speed that's faster than what we can do.
+              - figure [ref=e1949]:
+                - generic [ref=e1950]:
+                  - generic [ref=e1951]: Jonathan Duque
+                  - blockquote [ref=e1952]:
+                    - paragraph [ref=e1953] [cursor=pointer]: That's exactly it. And that really is also the token users because the responses, the outputs, those take five times what you input.
+                - blockquote [ref=e1955]:
+                  - paragraph [ref=e1956] [cursor=pointer]: Like to give you an answer, clots using five times what you are like dropping in it. So by transforming that into parallel agents that are working locally in the back end.
+                - blockquote [ref=e1958]:
+                  - paragraph [ref=e1959] [cursor=pointer]: That is registered directly to the memory files, and you just go through that instead of talking, because the machine is going to translate what it's doing, right, and talk to you back.
+                - blockquote [ref=e1961]:
+                  - paragraph [ref=e1962] [cursor=pointer]: So, yeah, very, very.
+              - figure [ref=e1963]:
+                - generic [ref=e1964]:
+                  - generic [ref=e1965]: Clayton Joyner
+                  - blockquote [ref=e1966]:
+                    - paragraph [ref=e1967] [cursor=pointer]: Yeah, and then you've got your guardrails, right? Somebody's got to be like an editor, right, to make sure that, you know, like, for example, the programmatic writer that I'm developing right now, it goes into the actual region, does deep listening, understands dialect, and starts to, you know, what's the nomenclature for that area?
+                - blockquote [ref=e1969]:
+                  - paragraph [ref=e1970] [cursor=pointer]: What's the right way to phrase this, right, based on the part of the country that we're in, right? And then you have your compliance guards, right?
+                - blockquote [ref=e1972]:
+                  - paragraph [ref=e1973] [cursor=pointer]: So, hey, here's an ad copy. Let's run it through compliance to make sure that it doesn't meet the Facebook or Google compliance requirements.
+                - blockquote [ref=e1975]:
+                  - paragraph [ref=e1976] [cursor=pointer]: If not, it gets rejected, goes back to the copywriter. The copywriter then has to take that into consideration.
+              - figure [ref=e1977]:
+                - generic [ref=e1978]:
+                  - generic [ref=e1979]: Jonathan Duque
+                  - blockquote [ref=e1980]:
+                    - paragraph [ref=e1981] [cursor=pointer]: Like confidence levels all across, yeah. Confidence levels layering every process. Yeah, that's absolutely brilliant. Yeah, no, there's a There's of, like, the other thing in Spanish, it's like, yeah, I don't know how to say that, but there's a lot to say about this, and I don't want to go into a bunch of rabbit holes, but here's what I'm going to do.
+                - blockquote [ref=e1983]:
+                  - paragraph [ref=e1984] [cursor=pointer]: I'm going to set the checklist, and I'm going to send it to Circle so you can check and confirm where you're at and maybe where you're struggling, like everyone, and then we guarantee that we're ready for, the mastermind in Monday, and yeah, that's my piece.
+              - figure [ref=e1985]:
+                - generic [ref=e1986]:
+                  - generic [ref=e1987]: Clayton Joyner
+                  - blockquote [ref=e1988]:
+                    - paragraph [ref=e1989] [cursor=pointer]: Sounds good. I appreciate all you guys. I'm sorry for taking so much time talking.
+              - figure [ref=e1990]:
+                - generic [ref=e1991]:
+                  - generic [ref=e1992]: Matt Bailey
+                  - blockquote [ref=e1993]:
+                    - paragraph [ref=e1994] [cursor=pointer]: No, that was impressive. That was absolutely impressive.
+              - figure [ref=e1995]:
+                - generic [ref=e1996]:
+                  - generic [ref=e1997]: Michael Vassar
+                  - blockquote [ref=e1998]:
+                    - paragraph [ref=e1999] [cursor=pointer]: I know.
+              - figure [ref=e2000]:
+                - generic [ref=e2001]:
+                  - generic [ref=e2002]: Matt Bailey
+                  - blockquote [ref=e2003]:
+                    - paragraph [ref=e2004] [cursor=pointer]: That's what Jonathan just asked for, is let's see what other people are working on. So, no, that was absolutely impressive, and I know JD and I are probably going to go back and share some of that, you know.
+                - blockquote [ref=e2006]:
+                  - paragraph [ref=e2007] [cursor=pointer]: With Monica and Armand, like, you got to take a look at this. You got to see what Clayton's doing, because, you know, I'm sure they'll want to, we'll probably get together with you further down the line on this as well.
+              - figure [ref=e2008]:
+                - generic [ref=e2009]:
+                  - generic [ref=e2010]: Clayton Joyner
+                  - blockquote [ref=e2011]:
+                    - paragraph [ref=e2012] [cursor=pointer]: I'm excited, man. My major step, my ultimate goal is to take all the things I showed you, and I want to develop an agency management system.
+                - blockquote [ref=e2014]:
+                  - paragraph [ref=e2015] [cursor=pointer]: There's not a software, weirdly enough, that I know that exists, that excels at client onboarding, ongoing campaign management, and all the other pieces that have to go into, you know, like, They promised that.
+              - figure [ref=e2016]:
+                - generic [ref=e2017]:
+                  - generic [ref=e2018]: Matt Bailey
+                  - blockquote [ref=e2019]:
+                    - paragraph [ref=e2020] [cursor=pointer]: Come on, everyone promises that, Clayton.
+              - figure [ref=e2021]:
+                - generic [ref=e2022]:
+                  - generic [ref=e2023]: Clayton Joyner
+                  - blockquote [ref=e2024]:
+                    - paragraph [ref=e2025] [cursor=pointer]: I'm you, man, like, by the time, and it needs to be two layers, right? There needs to be a production layer, right?
+                - blockquote [ref=e2027]:
+                  - paragraph [ref=e2028] [cursor=pointer]: So all my production people interface with the backend, they got access to the client, their details, their access, their company brief, all their, you know, images, videos, whatever, that they need to do their jobs.
+                - blockquote [ref=e2030]:
+                  - paragraph [ref=e2031] [cursor=pointer]: And then there's, you'd be a client portal facing side, where they are able to look at the number of tickets that are outstanding, the work that was done, measure reporting and analytics.
+                - blockquote [ref=e2033]:
+                  - paragraph [ref=e2034] [cursor=pointer]: with you. Thank All the things, right? And then pull those two things together so that then there's a communication layer in between the two so that I don't have my account managers being asked questions that are above their pay grade and then my, you know, media buyers aren't having to wait hours, you know, weeks and, you know, for a client to respond to something that's outstanding because of a client management, you know, timing issue.
+              - figure [ref=e2035]:
+                - generic [ref=e2036]:
+                  - generic [ref=e2037]: Matt Bailey
+                  - blockquote [ref=e2038]:
+                    - paragraph [ref=e2039] [cursor=pointer]: Right. Right. Absolutely. Nice.
+              - figure [ref=e2040]:
+                - generic [ref=e2041]:
+                  - generic [ref=e2042]: Clayton Joyner
+                  - blockquote [ref=e2043]:
+                    - paragraph [ref=e2044] [cursor=pointer]: Build the parts and then we'll assemble Voltron.
+              - figure [ref=e2045]:
+                - generic [ref=e2046]:
+                  - generic [ref=e2047]: Matt Bailey
+                  - blockquote [ref=e2048]:
+                    - paragraph [ref=e2049] [cursor=pointer]: Very cool.
+              - figure [ref=e2050]:
+                - generic [ref=e2051]:
+                  - generic [ref=e2052]: Jonathan Duque
+                  - blockquote [ref=e2053]:
+                    - paragraph [ref=e2054] [cursor=pointer]: Yeah. And as a matter of fact, I know Manix gets something to share on Monday related to that specific topic and it's the Gentic level that will, like, allow you to just get the, not thousands of views, but the 10,000 views and processes all connected at a hookup to a different interface event.
+                - blockquote [ref=e2056]:
+                  - paragraph [ref=e2057] [cursor=pointer]: So, yeah, I look forward for him to sharing that because it's going to close a lot of the questions that you may have related to it.
+                - blockquote [ref=e2059]:
+                  - paragraph [ref=e2060] [cursor=pointer]: And I'm speaking to So yeah, I look forward to Awesome.
+              - figure [ref=e2061]:
+                - generic [ref=e2062]:
+                  - generic [ref=e2063]: Matt Bailey
+                  - blockquote [ref=e2064]:
+                    - paragraph [ref=e2065] [cursor=pointer]: All right. We'll see you guys on Monday. And yeah, I think, I think Monarch's going to roll out a couple of new things as well.
+                - blockquote [ref=e2067]:
+                  - paragraph [ref=e2068] [cursor=pointer]: We just got a quick preview on it. Was it Monday? think they showed us kind of where it's going.
+                - blockquote [ref=e2070]:
+                  - paragraph [ref=e2071] [cursor=pointer]: Yeah, with an actual interface. So we'll see how that might make things a little bit easier. I'm much more of an interface person than a command line person.
+                - blockquote [ref=e2073]:
+                  - paragraph [ref=e2074] [cursor=pointer]: So I'm kind of looking forward to see where that goes. But yeah, we'll look forward to seeing you. And yeah, thanks a lot for sharing that with Clayton.
+                - blockquote [ref=e2076]:
+                  - paragraph [ref=e2077] [cursor=pointer]: And thanks a lot, guys, for hanging on and watching.
+              - figure [ref=e2078]:
+                - generic [ref=e2079]:
+                  - generic [ref=e2080]: Jonathan Duque
+                  - blockquote [ref=e2081]:
+                    - paragraph [ref=e2082] [cursor=pointer]: Appreciate your time, everyone.
+              - figure [ref=e2083]:
+                - generic [ref=e2084]:
+                  - generic [ref=e2085]: Michael Vassar
+                  - blockquote [ref=e2086]:
+                    - paragraph [ref=e2087] [cursor=pointer]: See you around, guys.
+              - figure [ref=e2088]:
+                - generic [ref=e2089]:
+                  - generic [ref=e2090]: Jonathan Duque
+                  - blockquote [ref=e2091]:
+                    - paragraph [ref=e2092] [cursor=pointer]: I look forward to seeing you next week.
+              - figure [ref=e2093]:
+                - generic [ref=e2094]:
+                  - generic [ref=e2095]: Michael Vassar
+                  - blockquote [ref=e2096]:
+                    - paragraph [ref=e2097] [cursor=pointer]: Matt, may I steal like two minutes of your time if you've got any of this there?
+              - figure [ref=e2098]:
+                - generic [ref=e2099]:
+                  - generic [ref=e2100]: Jonathan Duque
+                  - blockquote [ref=e2101]:
+                    - paragraph [ref=e2102] [cursor=pointer]: Yeah, absolutely.
+              - figure [ref=e2103]:
+                - generic [ref=e2104]:
+                  - generic [ref=e2105]: Matt Bailey
+                  - blockquote [ref=e2106]:
+                    - paragraph [ref=e2107] [cursor=pointer]: All right. We'll see you. Thanks.
+              - figure [ref=e2108]:
+                - generic [ref=e2109]:
+                  - generic [ref=e2110]: Michael Vassar
+                  - blockquote [ref=e2111]:
+                    - paragraph [ref=e2112] [cursor=pointer]: Later, y'all. Hey, this is probably... It's going to be an issue soon, but at the moment, I'm juggling it by having multiple Search Atlas accounts, but I just haven't been able to add new auto sites to my account for over a week, so I don't know if that's normal or not, to be honest with you.
+                - blockquote [ref=e2114]:
+                  - paragraph [ref=e2115] [cursor=pointer]: It doesn't feel normal, but I just thought I'd ask you because I'm kind of just in a real long holding pattern with support.
+                - blockquote [ref=e2117]:
+                  - paragraph [ref=e2118] [cursor=pointer]: Maybe it won't be an issue if I can continue adding new accounts to the one I opened yesterday and then we merge them later, but if that's not going to be easy, then I'm stuck, you know?
+              - figure [ref=e2119]:
+                - generic [ref=e2120]:
+                  - generic [ref=e2121]: Jonathan Duque
+                  - blockquote [ref=e2122]:
+                    - paragraph [ref=e2123] [cursor=pointer]: No, totally feel you. No, let me do some, do you use Slack for internal or how do you keep it?
+              - figure [ref=e2124]:
+                - generic [ref=e2125]:
+                  - generic [ref=e2126]: Michael Vassar
+                  - blockquote [ref=e2127]:
+                    - paragraph [ref=e2128] [cursor=pointer]: What do you mean Slack? I just, what do you mean?
+              - figure [ref=e2129]:
+                - generic [ref=e2130]:
+                  - generic [ref=e2131]: Jonathan Duque
+                  - blockquote [ref=e2132]:
+                    - paragraph [ref=e2133] [cursor=pointer]: No, the reason I'm asking is we can do this, I want you to go. Regular, like, because it's longer than we, like, need to be for, like, your particular.
+              - figure [ref=e2134]:
+                - generic [ref=e2135]:
+                  - generic [ref=e2137]: ACTION ITEM
+                  - generic [ref=e2138]: "Email Matt support ticket #s re: auto-site limit; then JD resolve limit"
+                  - generic [ref=e2140]:
+                    - generic:
+                      - img
+                - blockquote [ref=e2142]:
+                  - paragraph [ref=e2143] [cursor=pointer]: Jonathan, you're breaking up a lot. cutting out. Hey, Michael, do you have a ticket number on that?
+              - figure [ref=e2144]:
+                - generic [ref=e2145]:
+                  - generic [ref=e2146]: Michael Vassar
+                  - blockquote [ref=e2147]:
+                    - paragraph [ref=e2148] [cursor=pointer]: Let me see. Let's see, right here. Let me go to my email. Probably, I've opened more than one, but I'll give you what I got.
+              - figure [ref=e2149]:
+                - generic [ref=e2150]:
+                  - generic [ref=e2151]: Matt Bailey
+                  - blockquote [ref=e2152]:
+                    - paragraph [ref=e2153] [cursor=pointer]: Yeah, send those over to me.
+              - figure [ref=e2154]:
+                - generic [ref=e2155]:
+                  - generic [ref=e2156]: Michael Vassar
+                  - blockquote [ref=e2157]:
+                    - paragraph [ref=e2158] [cursor=pointer]: Okay, yeah, I'll find them in my email here in a second and send them over to you.
+              - figure [ref=e2159]:
+                - generic [ref=e2160]:
+                  - generic [ref=e2161]: Matt Bailey
+                  - blockquote [ref=e2162]:
+                    - paragraph [ref=e2163] [cursor=pointer]: Yeah, yeah, push them from my side here, and we'll, yeah. I appreciate it.
+              - figure [ref=e2164]:
+                - generic [ref=e2165]:
+                  - generic [ref=e2166]: Michael Vassar
+                  - blockquote [ref=e2167]:
+                    - paragraph [ref=e2168] [cursor=pointer]: I bet it's not that hard of a fix, but who knows.
+              - figure [ref=e2169]:
+                - generic [ref=e2170]:
+                  - generic [ref=e2171]: Matt Bailey
+                  - blockquote [ref=e2172]:
+                    - paragraph [ref=e2173] [cursor=pointer]: Yeah, I'm not seeing an enterprise-level ticket right now on something like that, so. I don't have an enterprise account.
+                - blockquote [ref=e2175]:
+                  - paragraph [ref=e2176] [cursor=pointer]: Does that? No, I'm looking at something that affects everybody, rather than...
+              - figure [ref=e2177]:
+                - generic [ref=e2178]:
+                  - generic [ref=e2179]: Jonathan Duque
+                  - blockquote [ref=e2180]:
+                    - paragraph [ref=e2181] [cursor=pointer]: Yeah, more like a high-level type of ticket, but I can fix that for you right away. So I'll take a look at whatever's been submitted from your account to support.
+              - figure [ref=e2182]:
+                - generic [ref=e2183]:
+                  - generic [ref=e2184]: Michael Vassar
+                  - blockquote [ref=e2185]:
+                    - paragraph [ref=e2186] [cursor=pointer]: I have a need for a lot of sites. I don't have a need for a lot of users at the moment, so let's just web.
+              - figure [ref=e2187]:
+                - generic [ref=e2188]:
+                  - generic [ref=e2189]: Jonathan Duque
+                  - blockquote [ref=e2190]:
+                    - paragraph [ref=e2191] [cursor=pointer]: Let me ask you, is the account, the main account that you use, gbp.digitalcoastmarketing.com?
+              - figure [ref=e2192]:
+                - generic [ref=e2193]:
+                  - generic [ref=e2194]: Michael Vassar
+                  - blockquote [ref=e2195]:
+                    - paragraph [ref=e2196] [cursor=pointer]: That's the one, yeah. I've got, I can't get beyond six sites. I've been stuck there for about a week.
+              - figure [ref=e2197]:
+                - generic [ref=e2198]:
+                  - generic [ref=e2199]: Jonathan Duque
+                  - blockquote [ref=e2200]:
+                    - paragraph [ref=e2201] [cursor=pointer]: No worries. I'll handle it. I'll figure what you've already submitted to support, but moving forward, just reach out to me or Matt directly, and we're going to take care of that.
+                - blockquote [ref=e2203]:
+                  - paragraph [ref=e2204] [cursor=pointer]: So you don't need to go through the support funnel anymore.
+              - figure [ref=e2205]:
+                - generic [ref=e2206]:
+                  - generic [ref=e2207]: Michael Vassar
+                  - blockquote [ref=e2208]:
+                    - paragraph [ref=e2209] [cursor=pointer]: I appreciate that. Thanks a lot, y'all.
+              - figure [ref=e2210]:
+                - generic [ref=e2211]:
+                  - generic [ref=e2212]: Jonathan Duque
+                  - blockquote [ref=e2213]:
+                    - paragraph [ref=e2214] [cursor=pointer]: You got it. Thank you for your time.
+              - figure [ref=e2215]:
+                - generic [ref=e2216]:
+                  - generic [ref=e2217]: Michael Vassar
+                  - blockquote [ref=e2218]:
+                    - paragraph [ref=e2219] [cursor=pointer]: All right. I'll look for something to schedule a time with you. JD, tomorrow, if you have any, to get that file organization put together.
+              - figure [ref=e2220]:
+                - generic [ref=e2221]:
+                  - generic [ref=e2222]: Jonathan Duque
+                  - blockquote [ref=e2223]:
+                    - paragraph [ref=e2224] [cursor=pointer]: Absolutely, yeah.
+              - figure [ref=e2225]:
+                - generic [ref=e2226]:
+                  - generic [ref=e2227]: Michael Vassar
+                  - blockquote [ref=e2228]:
+                    - paragraph [ref=e2229] [cursor=pointer]: You can count on that. All right. All right. Thanks a lot, y'all.
+              - figure [ref=e2230]:
+                - generic [ref=e2231]:
+                  - generic [ref=e2232]: Matt Bailey
+                  - blockquote [ref=e2233]:
+                    - paragraph [ref=e2234] [cursor=pointer]: All right.-bye.
+              - figure [ref=e2235]:
+                - generic [ref=e2236]:
+                  - generic [ref=e2237]: Michael Vassar
+                  - blockquote [ref=e2238]:
+                    - paragraph [ref=e2239] [cursor=pointer]: Bye Bye Bye Bye
+            - button [ref=e2241] [cursor=pointer]
+      - generic [ref=e79]:
+        - generic [ref=e81]:
+          - generic [ref=e82]: Agentic Marketing Mastermind Weekly Sessions
+          - generic [ref=e84]: Apr 9, 2026
+        - button "Share" [ref=e2245] [cursor=pointer]:
+          - generic [ref=e2246]: Share
+          - generic [ref=e2247]:
+            - generic:
+              - img
+        - generic [ref=e2248]:
+          - heading "Action items" [level=4] [ref=e2250]
+          - list [ref=e2251]:
+            - generic [ref=e2252]:
+              - button "Copy for …" [ref=e2253] [cursor=pointer]:
+                - generic: Copy for
+                - generic [ref=e2255]: …
+              - button "Copy Follow-up Email" [ref=e2256] [cursor=pointer]:
+                - generic [ref=e2257]: Copy Follow-up Email
+                - generic [ref=e2258]:
+                  - generic:
+                    - img
+            - list [ref=e2259]:
+              - listitem [ref=e2260]:
+                - generic [ref=e2262] [cursor=pointer]:
+                  - complementary [ref=e2263]:
+                    - checkbox [disabled] [ref=e2266]
+                  - generic [ref=e2269]:
+                    - text: Coordinate w/ Maddy to update MCP GitHub docs w/ schemas/missing tools ✨ @ 14:26
+                    - generic [ref=e2271]:
+                      - generic [ref=e2272]:
+                        - generic:
+                          - img
+                      - text: Jonathan Duque
+              - listitem [ref=e2273]:
+                - generic [ref=e2275] [cursor=pointer]:
+                  - complementary [ref=e2276]:
+                    - checkbox [disabled] [ref=e2279]
+                  - generic [ref=e2282]:
+                    - text: Post setup checklist in Circle; request completion/issues from members ✨ @ 26:55
+                    - generic [ref=e2284]:
+                      - generic [ref=e2285]:
+                        - generic:
+                          - img
+                      - text: Jonathan Duque
+              - listitem [ref=e2286]:
+                - generic [ref=e2288] [cursor=pointer]:
+                  - complementary [ref=e2289]:
+                    - checkbox [disabled] [ref=e2292]
+                  - generic [ref=e2295]:
+                    - text: "Schedule 1:1 w/ Michael re: file structure/MCP setup ✨ @ 28:44"
+                    - generic [ref=e2297]:
+                      - generic [ref=e2298]:
+                        - generic:
+                          - img
+                      - text: Jonathan Duque
+              - listitem [ref=e2299]:
+                - generic [ref=e2301] [cursor=pointer]:
+                  - complementary [ref=e2302]:
+                    - checkbox [disabled] [ref=e2305]
+                  - generic [ref=e2308]:
+                    - text: Share multi-agent design framework on next call ✨ @ 1:09:06
+                    - generic [ref=e2310]:
+                      - generic [ref=e2311]:
+                        - generic:
+                          - img
+                      - text: Clayton Joyner
+              - listitem [ref=e2312]:
+                - generic [ref=e2314] [cursor=pointer]:
+                  - complementary [ref=e2315]:
+                    - checkbox [disabled] [ref=e2318]
+                  - generic [ref=e2321]:
+                    - text: "Email Matt support ticket #s re: auto-site limit; then JD resolve limit ✨ @ 1:21:05"
+                    - generic [ref=e2323]:
+                      - generic [ref=e2324]:
+                        - generic:
+                          - img
+                      - text: Michael Vassar
+        - generic [ref=e2325]:
+          - heading "Screen Sharing" [level=4] [ref=e2327]
+          - list [ref=e2328]:
+            - listitem [ref=e2329]:
+              - generic [ref=e2331] [cursor=pointer]:
+                - complementary [ref=e2332]:
+                  - generic [ref=e2333]:
+                    - generic:
+                      - img
+                - generic [ref=e2335]: Matt started screen sharing @ 18:21
+            - listitem [ref=e2336]:
+              - generic [ref=e2338] [cursor=pointer]:
+                - complementary [ref=e2339]:
+                  - generic [ref=e2340]:
+                    - generic:
+                      - img
+                - generic [ref=e2342]: Clayton started screen sharing @ 44:37
+  - complementary

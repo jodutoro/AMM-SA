@@ -1,0 +1,40 @@
+# Memory Index
+
+> Single source of truth. Lives in `_brain/memory/` (Obsidian) and is symlinked from Claude's memory system.
+> Add new memories here — they are immediately available to both Claude and Obsidian.
+
+## Feedback — Working Rules
+- [search-atlas-api.md](search-atlas-api.md) — Always use https://mcp.searchatlas.com/api/v1/mcp as root URL for Search Atlas requests
+- [gitlab-to-linear.md](gitlab-to-linear.md) — Team migrated from GitLab to Linear; always use Linear for issue tracking, never GitLab
+
+## Project Context
+- [morning-brief-setup.md](morning-brief-setup.md) — Morning brief DM script: cron setup, sources, JD user ID (U06J10MNAVB), week parity logic
+- [eod-report-setup.md](eod-report-setup.md) — EOD Tier 2 auto-poster: local cron only (remote trigger disabled), Calendar+Linear, 'by JD' description filter, deduplication fixes
+- [intercom-classification-audit.md](intercom-classification-audit.md) — Script + workflow for auditing/correcting Intercom SA - Type of Issue classifications; located at intercom-t2-triage/audit_classifications.py
+- [intercom-t2-triage-pipeline.md](intercom-t2-triage-pipeline.md) — Live T2 triage pipeline: run instructions, API gotchas (tracker ticket linking, ClickUp OAuth), ClickUp channel routing map
+- [dev-tools-setup.md](dev-tools-setup.md) — GSD + Superpowers (user-scoped plugins), Stitch MCP + 21st.dev Magic (project-scoped via .mcp.json); setup status and commands
+- [fastapi-ai-backend-patterns-2025.md](fastapi-ai-backend-patterns-2025.md) — Best practices: Claude SDK integration, structured outputs, retry patterns, prompt caching, observability, agent frameworks (2025/2026)
+
+## Design
+- [design-spec.md](design-spec.md) — Personal design aesthetic: editorial typographic maximalism, named aesthetic modes, color palettes, motion rules, 14 reference sites
+- [visual-creation-spec.md](visual-creation-spec.md) — AI image & video system: 7-layer prompt structure, tool stack (Higgsfield/Kling/ElevenLabs/CapCut), aesthetic-to-prompt translation table, web integration rules
+- [video-generation-research.md](video-generation-research.md) — 2026 video gen research: model comparison, 8-layer prompt system, full camera vocabulary, lighting temps, character consistency fixes, failure modes, full production workflow
+
+## Skills
+- [skill-emil-design-eng.md](skill-emil-design-eng.md) — Emil Kowalski's design engineering skill: UI polish, animation, component craft; invoke for any frontend/UI work
+
+## Reference — Tools & Standards
+- [mcp-servers-reference.md](mcp-servers-reference.md) — All installed/recommended MCP servers: install commands, auth, status, known install quirks
+- [claude-code-best-practices.md](claude-code-best-practices.md) — CLAUDE.md limits, hook patterns, subagent patterns, context thresholds, memory layers, power tips (2026)
+- [ai-engineering-2025.md](ai-engineering-2025.md) — Context engineering framework, eval tools (DeepEval/Langfuse), cost optimization, CS automation tools, top communities
+
+## User Context
+- [user_work_schedule.md](user_work_schedule.md) — Jonathan's rotating shift schedule (morning 5AM-3PM / noon 10AM-7PM, alternating weeks, Bogota timezone)
+
+## Active Work
+- [repo-audit-execution-state.md](repo-audit-execution-state.md) — All 3 plans complete (23/23 tasks); remote trigger disabled, local cron is authoritative
+
+## Brain Navigation
+- Workflows: [../workflows/](../workflows/) — 7 runnable workflow playbooks
+- Project maps: [../maps/](../maps/) — MOC files for each project
+- Brain index: [../00-BRAIN-INDEX.md](../00-BRAIN-INDEX.md)

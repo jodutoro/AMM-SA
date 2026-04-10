@@ -1,0 +1,9 @@
+# Private / internal working files
+screenshots/mcp-*
+screenshots/zoom-*
+screenshots/f*.json
+transcripts/*-strategy-*
+transcripts/mcp-checkin-*
+mcp-visual-intelligence*.md
+*.env
+.DS_Store
