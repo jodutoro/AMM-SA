@@ -7,3 +7,6 @@ transcripts/mcp-checkin-*
 mcp-visual-intelligence*.md
 *.env
 .DS_Store
+__pycache__/
+*.pyc
+scripts/ingest_manifest.json
