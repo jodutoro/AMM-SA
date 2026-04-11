@@ -39,13 +39,14 @@ let AMM_DATA = null;
 async function loadDashboardData() {
   try {
     const res = await fetch('data.json?v=' + Date.now());
+    if (!res.ok) throw new Error(`[AMM] data.json HTTP ${res.status}`);
     AMM_DATA = await res.json();
     if (typeof init === 'function') init();
   } catch (e) {
     console.error('[AMM] Failed to load data.json', e);
   }
 }
-loadDashboardData();
+document.addEventListener('DOMContentLoaded', loadDashboardData);
 
 </script>
   <script>
@@ -528,7 +529,7 @@ loadDashboardData();
       thead.innerHTML = `<th>Assignee</th><th>Action</th><th>Due</th><th>Status</th><th class="col-act-src">Source</th>`;
     }
 
-    const items = (typeof AMM_DATA !== 'undefined' && AMM_DATA.actionItems) ? AMM_DATA.actionItems : [];
+    const items = (AMM_DATA && AMM_DATA.actionItems) ? AMM_DATA.actionItems : [];
     const open     = items.filter(i => i.status === 'open').length;
     const resolved = items.filter(i => i.status === 'resolved').length;
     const chip = document.getElementById('actionsChip');
@@ -1919,7 +1920,7 @@ loadDashboardData();
   // ── Public API ─────────────────────────────────────────────────────────────
   const ProgramTimeline = {
     init() {
-      if (typeof AMM_DATA === 'undefined') return;
+      if (!AMM_DATA) return;
       injectCSS();
       render();
     },
@@ -2192,7 +2193,7 @@ const GapNotes = (() => {
   function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
   function renderPanel(gapId) {
-    const raw    = (typeof AMM_DATA !== 'undefined') ? AMM_DATA.platformGaps.find(g => g.id === gapId) : null;
+    const raw    = (AMM_DATA) ? AMM_DATA.platformGaps.find(g => g.id === gapId) : null;
     if(!raw) return;
     const stored  = getGap(gapId);
     const title   = stored.titleOverride ?? raw.title;
@@ -4623,7 +4624,7 @@ const radarLabelQuotePlugin = {
     });
     const tip = document.getElementById('radar-label-tip');
     if (!tip) return;
-    const quotes = (typeof AMM_DATA !== 'undefined') ? AMM_DATA.radarLabelQuotes : null;
+    const quotes = (AMM_DATA) ? AMM_DATA.radarLabelQuotes : null;
     if (hovered && quotes && quotes[hovered]) {
       tip.textContent = quotes[hovered];
       tip.style.display = 'block';
