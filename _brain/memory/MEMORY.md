@@ -74,6 +74,9 @@ originSessionId: 2d16becd-4777-4769-9ccb-40d46776efe2
 - [[user_work_schedule]] — Jonathan's rotating shift schedule (morning 5AM-3PM / noon 10AM-7PM, alternating weeks, Bogota timezone)
 - [[jd-user-profile]] — Full profile: strengths, working style, communication rules — read this to calibrate every response
 
+## AMM Dashboard
+- [[amm-dashboard-gotchas]] — AMM_DATA is inline in demo.html (not data.js); ROI formula; DevBot DB numbers (Apr 10); comments panel + view-active 2-col layout
+
 ## Active Work
 - [[repo-audit-execution-state]] — All 3 plans complete (23/23 tasks); remote trigger disabled, local cron is authoritative ✅
 - [[t2-automation-vision]] — Option C architecture planned; blocked on Quantum Puppy API status (web-only vs API)

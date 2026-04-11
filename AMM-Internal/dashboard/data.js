@@ -398,6 +398,9 @@ const AMM_DATA = {
   // priority: critical | high | medium | low
   // status:   open | in-progress | resolved
   // category: platform | feature-request | documentation | integration | onboarding | support
+  // effort.complexity: low | medium | high
+  // effort.team: LPS | AI Agent | Platform | Both | Atlas Brain | Brand Vault
+  // gain.type: retention | acquisition | upsell | mixed | positioning
 
   platformGaps: [
     {
@@ -409,7 +412,9 @@ const AMM_DATA = {
       membersAffected: ["Bryan Fikes", "Clayton Joyner", "Group-wide"],
       status:          "open",
       category:        "platform",
-      notes:           ""
+      notes:           "",
+      effort:          { devDays: "60", sprints: "4", team: "LPS", complexity: "high" },
+      gain:            { type: "retention", arr: "$150–250K", note: "Fixing inconsistency is a direct churn blocker for agency-tier customers who need brand-predictable output. Estimated 5% churn reduction in WS-heavy segment." }
     },
     {
       id:              "web-studio-instability",
@@ -420,7 +425,9 @@ const AMM_DATA = {
       membersAffected: ["Jonathan Giner", "Justin Day", "Bryan Fikes"],
       status:          "open",
       category:        "platform",
-      notes:           "Jonathan Giner abandoned Web Studio entirely and shipped 4 client sites outside SA"
+      notes:           "Jonathan Giner abandoned Web Studio entirely and shipped 4 client sites outside SA",
+      effort:          { devDays: "80", sprints: "4", team: "LPS", complexity: "high" },
+      gain:            { type: "retention", arr: "$120–200K", note: "Instability is causing full platform defection (Jonathan Giner, Bryan migrated to Netlify). Saving ~5% of at-risk base from defection at ~$155 ARPC." }
     },
     {
       id:              "mcp-docs-incomplete",
@@ -431,7 +438,9 @@ const AMM_DATA = {
       membersAffected: ["Justin Hual (HIP Creative)"],
       status:          "in-progress",
       category:        "documentation",
-      notes:           "JD coordinating with Maddy to accept PRs from HIP Creative's team"
+      notes:           "JD coordinating with Maddy to accept PRs from HIP Creative's team",
+      effort:          { devDays: "15", sprints: "1", team: "AI Agent", complexity: "low" },
+      gain:            { type: "acquisition", arr: "$30–80K", note: "Community PRs + improved docs accelerate MCP adoption. Low effort with outsized developer-trust returns. HIP Creative team already writing schemas." }
     },
     {
       id:              "html-injection",
@@ -442,7 +451,9 @@ const AMM_DATA = {
       membersAffected: ["Justin Day", "Bryan Fikes"],
       status:          "open",
       category:        "feature-request",
-      notes:           "Endorsed live on April 9 call — structured product request ready for engineering"
+      notes:           "Endorsed live on April 9 call — structured product request ready for engineering",
+      effort:          { devDays: "45", sprints: "3", team: "LPS", complexity: "medium" },
+      gain:            { type: "mixed", arr: "$80–180K", note: "Keeps power users (Bryan, Justin) publishing through SA instead of Netlify. Opens agency-tier upsell path: 15+ new Agency plan customers projected." }
     },
     {
       id:              "ai-brain-in-platform",
@@ -453,7 +464,9 @@ const AMM_DATA = {
       membersAffected: ["Multiple members", "JD"],
       status:          "in-progress",
       category:        "feature-request",
-      notes:           "Linear CG-1223: Obsidian-style knowledge base in Brand Vault"
+      notes:           "Linear CG-1223: Obsidian-style knowledge base in Brand Vault",
+      effort:          { devDays: "80", sprints: "5", team: "Brand Vault", complexity: "high" },
+      gain:            { type: "retention", arr: "$100–250K", note: "Memory/knowledge lock-in is the highest-stickiness feature in AI tools. Once active, switching cost approaches zero. Direct competitor differentiator vs. ChatGPT." }
     },
     {
       id:              "windows-wsl",
@@ -464,7 +477,9 @@ const AMM_DATA = {
       membersAffected: ["Michael Vassar", "Justin Day", "Clayton Joyner"],
       status:          "open",
       category:        "onboarding",
-      notes:           "All 3 Windows users hit this in setup sessions"
+      notes:           "All 3 Windows users hit this in setup sessions",
+      effort:          { devDays: "15", sprints: "1", team: "Platform", complexity: "low" },
+      gain:            { type: "acquisition", arr: "$20–60K", note: "~40% of the market is Windows. Scripted installer removes full-session support burden and improves trial-to-paid conversion for dev users." }
     },
     {
       id:              "design-content-unified",
@@ -475,7 +490,9 @@ const AMM_DATA = {
       membersAffected: ["Michael Vassar + team"],
       status:          "open",
       category:        "feature-request",
-      notes:           ""
+      notes:           "",
+      effort:          { devDays: "64", sprints: "4", team: "Both", complexity: "high" },
+      gain:            { type: "mixed", arr: "$150–350K", note: "This is the core agency value proposition. Unified output converts full-service agencies at higher tiers ($399+). Biggest single new-revenue unlock in the gap list." }
     },
     {
       id:              "cross-project-orchestration",
@@ -486,7 +503,9 @@ const AMM_DATA = {
       membersAffected: ["Clayton Joyner"],
       status:          "open",
       category:        "platform",
-      notes:           "Clayton: 'I've got all these custom Claude projects I've put a ton of energy into — and I end up still having to manually move through each of them'"
+      notes:           "Clayton: 'I've got all these custom Claude projects I've put a ton of energy into — and I end up still having to manually move through each of them'",
+      effort:          { devDays: "60", sprints: "5", team: "AI Agent", complexity: "high" },
+      gain:            { type: "retention", arr: "$60–120K", note: "Niche but high-LTV: agency-tier power users building multi-agent pipelines are exactly SA's stickiest segment. Partial dependency on Anthropic API changes." }
     },
     {
       id:              "wordpress-publishing",
@@ -497,7 +516,9 @@ const AMM_DATA = {
       membersAffected: ["Michael Vassar", "Alex (web designer)"],
       status:          "open",
       category:        "integration",
-      notes:           ""
+      notes:           "",
+      effort:          { devDays: "40", sprints: "3", team: "LPS", complexity: "medium" },
+      gain:            { type: "acquisition", arr: "$80–200K", note: "WordPress powers 43% of the web. WP agencies are a large untapped SA segment. Plugin + export path confirmed feasible by Nico/Lucas (MCP check-in Apr 9)." }
     },
     {
       id:              "ghl-mcp",
@@ -508,7 +529,9 @@ const AMM_DATA = {
       membersAffected: ["Jay Cornelius", "Justin Day"],
       status:          "open",
       category:        "integration",
-      notes:           "First raised March 18 setup session"
+      notes:           "First raised March 18 setup session",
+      effort:          { devDays: "25", sprints: "2", team: "AI Agent", complexity: "medium" },
+      gain:            { type: "acquisition", arr: "$50–120K", note: "GHL has 60K+ agencies. SA + GHL MCP opens adjacent pipeline and partnership play. Jay's entire vision is blocked without this — direct retention risk." }
     },
     {
       id:              "chatgpt-migration",
@@ -519,7 +542,9 @@ const AMM_DATA = {
       membersAffected: ["Bryan Fikes", "Justin Day"],
       status:          "open",
       category:        "platform",
-      notes:           "Bryan: 3+ years of client memory trained into ChatGPT ('Bodhi')"
+      notes:           "Bryan: 3+ years of client memory trained into ChatGPT ('Bodhi')",
+      effort:          { devDays: "45", sprints: "3", team: "Platform", complexity: "medium" },
+      gain:            { type: "acquisition", arr: "$50–120K", note: "Removes the #1 hidden switching cost. Most AI marketers have ChatGPT history they can't move. Improves trial conversion and reduces 90-day early churn." }
     },
     {
       id:              "webflow-export",
@@ -530,7 +555,9 @@ const AMM_DATA = {
       membersAffected: ["Clayton Joyner"],
       status:          "open",
       category:        "integration",
-      notes:           ""
+      notes:           "",
+      effort:          { devDays: "25", sprints: "2", team: "AI Agent", complexity: "medium" },
+      gain:            { type: "acquisition", arr: "$50–150K", note: "Arman confirmed live partner use case (Apr 9). Webflow publishes HTML directly — variable mapping is the only blocker. Design-forward agencies are higher-ARPU segment." }
     },
     {
       id:              "skill-repository",
@@ -541,7 +568,9 @@ const AMM_DATA = {
       membersAffected: ["Clayton Joyner", "Justin Day", "Group-wide"],
       status:          "open",
       category:        "platform",
-      notes:           ""
+      notes:           "",
+      effort:          { devDays: "40", sprints: "3", team: "Platform", complexity: "medium" },
+      gain:            { type: "retention", arr: "$50–120K", note: "Network effect flywheel: shared skills increase platform value for all users. Community stickiness reduces long-term churn and drives organic acquisition." }
     },
     {
       id:              "email-to-site",
@@ -552,7 +581,9 @@ const AMM_DATA = {
       membersAffected: ["Kav / Coach Cav", "Justin Day"],
       status:          "open",
       category:        "feature-request",
-      notes:           "Kav is operating ~500 live sites — this is a volume play"
+      notes:           "Kav is operating ~500 live sites — this is a volume play",
+      effort:          { devDays: "55", sprints: "4", team: "Both", complexity: "medium" },
+      gain:            { type: "acquisition", arr: "$60–150K", note: "Kav's 500-site operation is a single-customer enterprise deal. Email-triggered automation is a scale-operator differentiator that no SEO platform currently offers." }
     },
     {
       id:              "seo-playbooks",
@@ -563,7 +594,9 @@ const AMM_DATA = {
       membersAffected: ["Clayton Joyner"],
       status:          "open",
       category:        "documentation",
-      notes:           ""
+      notes:           "",
+      effort:          { devDays: "30", sprints: "2", team: "Atlas Brain", complexity: "medium" },
+      gain:            { type: "mixed", arr: "$80–200K", note: "SA's core moat is SEO intelligence. Making it agentic is the clearest defensive differentiator vs. generic AI tools. High positioning value beyond direct revenue." }
     },
     {
       id:              "auto-site-limit",
@@ -574,7 +607,9 @@ const AMM_DATA = {
       membersAffected: ["Michael Vassar"],
       status:          "resolved",
       category:        "support",
-      notes:           "Resolved April 9 post-call via Matt + JD direct channel. Michael directed to bypass support funnel."
+      notes:           "Resolved April 9 post-call via Matt + JD direct channel. Michael directed to bypass support funnel.",
+      effort:          { devDays: "5", sprints: "1", team: "Platform", complexity: "low" },
+      gain:            { type: "retention", arr: "$10–20K", note: "Resolved. Clear escalation path prevents high-potential customers from churning during onboarding due to fixable limits." }
     }
   ],
 
