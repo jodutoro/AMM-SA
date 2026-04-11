@@ -998,6 +998,117 @@
       to   { opacity: 1; transform: translateX(0); }
     }
   </style>
+  <!-- ─── Password Gate ───────────────────────────────────────────────────── -->
+  <style>
+    body { visibility: hidden; }
+
+    #amm-gate {
+      position: fixed; inset: 0; z-index: 9999;
+      background: #0F172A;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    }
+    #amm-gate .gate-card {
+      background: #1E293B; border: 1px solid #334155; border-radius: 12px;
+      padding: 40px 48px; width: 100%; max-width: 380px; text-align: center;
+    }
+    #amm-gate .gate-logo {
+      font-size: 13px; font-weight: 700; letter-spacing: .12em;
+      color: #64748B; text-transform: uppercase; margin-bottom: 24px;
+    }
+    #amm-gate h2 {
+      font-size: 1.25rem; font-weight: 700; color: #F1F5F9; margin-bottom: 8px;
+    }
+    #amm-gate p {
+      font-size: 13px; color: #64748B; margin-bottom: 28px;
+    }
+    #amm-gate input {
+      width: 100%; padding: 11px 14px; border-radius: 8px;
+      border: 1px solid #334155; background: #0F172A; color: #F1F5F9;
+      font-size: 15px; font-family: inherit; outline: none;
+      margin-bottom: 12px; transition: border-color .15s;
+    }
+    #amm-gate input:focus { border-color: #2563EB; }
+    #amm-gate input.error { border-color: #DC2626; animation: gate-shake .3s; }
+    @keyframes gate-shake {
+      0%,100% { transform: translateX(0); }
+      25%      { transform: translateX(-6px); }
+      75%      { transform: translateX(6px); }
+    }
+    #amm-gate button {
+      width: 100%; padding: 11px; border-radius: 8px; border: none;
+      background: #2563EB; color: #fff; font-size: 14px; font-weight: 600;
+      font-family: inherit; cursor: pointer; transition: background .15s;
+    }
+    #amm-gate button:hover { background: #1D4ED8; }
+    #amm-gate .gate-err {
+      font-size: 12px; color: #DC2626; margin-top: 10px; min-height: 16px;
+    }
+  </style>
+  <script>
+    // ─── AMM Password Gate ────────────────────────────────────────────────────
+    // To change the password:
+    //   1. Run in terminal: python3 -c "import hashlib; print(hashlib.sha256('YOURPASSWORD'.encode()).hexdigest())"
+    //   2. Replace GATE_HASH below with the output
+    // Default password: AMM2026
+    const GATE_HASH = 'f55b90932d531430e7219a25a9ae2138a24b2e1360812badba0544b2d2e93be9';
+    const GATE_KEY  = 'amm_auth_v1';
+
+    async function sha256(str) {
+      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+    }
+
+    function unlockDashboard() {
+      document.getElementById('amm-gate').remove();
+      document.body.style.visibility = 'visible';
+    }
+
+    (function() {
+      if (sessionStorage.getItem(GATE_KEY) === GATE_HASH) {
+        // Already authenticated this session — show immediately
+        document.addEventListener('DOMContentLoaded', () => document.body.style.visibility = 'visible');
+        return;
+      }
+      // Inject lock screen
+      document.addEventListener('DOMContentLoaded', function() {
+        const gate = document.createElement('div');
+        gate.id = 'amm-gate';
+        gate.innerHTML = `
+          <div class="gate-card">
+            <div class="gate-logo">Agentic Marketing Mastermind</div>
+            <h2>Internal Dashboard</h2>
+            <p>Enter the team password to continue</p>
+            <input type="password" id="gate-input" placeholder="Password" autocomplete="current-password" />
+            <button id="gate-btn">Unlock</button>
+            <div class="gate-err" id="gate-err"></div>
+          </div>`;
+        document.body.prepend(gate);
+        document.body.style.visibility = 'visible';
+
+        async function attempt() {
+          const val = document.getElementById('gate-input').value;
+          const hash = await sha256(val);
+          if (hash === GATE_HASH) {
+            sessionStorage.setItem(GATE_KEY, GATE_HASH);
+            unlockDashboard();
+          } else {
+            const inp = document.getElementById('gate-input');
+            inp.classList.add('error');
+            document.getElementById('gate-err').textContent = 'Incorrect password';
+            inp.value = '';
+            setTimeout(() => inp.classList.remove('error'), 400);
+          }
+        }
+
+        document.getElementById('gate-btn').addEventListener('click', attempt);
+        document.getElementById('gate-input').addEventListener('keydown', e => {
+          if (e.key === 'Enter') attempt();
+        });
+        document.getElementById('gate-input').focus();
+      });
+    })();
+  </script>
 </head>
 <body>
 
