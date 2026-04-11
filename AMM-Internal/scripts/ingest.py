@@ -46,6 +46,8 @@ def save_manifest(processed: list[str]) -> None:
 
 
 def load_data_json() -> dict:
+    if not DATA_JSON_PATH.exists():
+        return {"members": [], "platformGaps": [], "actionItems": []}
     with open(DATA_JSON_PATH) as f:
         return json.load(f)
 
@@ -204,19 +206,16 @@ def merge_extracted(data: dict, extracted: dict, source_filename: str) -> int:
         changes += 1
 
     # --- new_action_items ---
-    existing_items_lower = [
+    existing_items_lower = {
         ai["text"].lower() for ai in data.get("actionItems", [])
-    ]
+    }
     for item in extracted.get("new_action_items", []):
         text = item.get("text", "").strip()
         if not text:
             continue
-        # Substring match (case-insensitive)
+        # Exact match (case-insensitive)
         text_lower = text.lower()
-        already_exists = any(
-            text_lower in existing.lower() or existing.lower() in text_lower
-            for existing in existing_items_lower
-        )
+        already_exists = text_lower in existing_items_lower
         if already_exists:
             continue
 
@@ -226,7 +225,7 @@ def merge_extracted(data: dict, extracted: dict, source_filename: str) -> int:
             "source": source_filename,
         }
         data.setdefault("actionItems", []).append(new_item)
-        existing_items_lower.append(text_lower)
+        existing_items_lower.add(text_lower)
         changes += 1
 
     return changes
@@ -275,7 +274,8 @@ def main():
         extracted = call_claude(client, prompt)
 
         if extracted is None:
-            print(f"  [warn] {rel} ... skipped (bad JSON from Claude)")
+            print(f"  [warn] {rel} ... skipped (Claude returned bad JSON) — will not retry")
+            newly_processed.append(str(file_path.resolve()))
             continue
 
         num_raw = count_updates(extracted)
@@ -302,16 +302,15 @@ def main():
             newly_processed.append(str(file_path.resolve()))
 
     if args.dry_run:
-        print("(dry-run) No files written.")
+        print("[dry-run] No files written.")
     else:
         if newly_processed or total_changes > 0:
             save_data_json(data)
-            # Update manifest: union of old + new
             updated_manifest = list(processed_set | set(newly_processed))
             save_manifest(updated_manifest)
-            print(f"Done. data.json updated.")
+            print(f"✅ Done. data.json updated ({total_changes} change(s)).")
         else:
-            print("Done. No changes to write.")
+            print("Done. No changes.")
 
 
 if __name__ == "__main__":
