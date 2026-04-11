@@ -20,6 +20,7 @@ originSessionId: 2d16becd-4777-4769-9ccb-40d46776efe2
 - **Context:** `/compact` at 65%, `/clear` at 85%
 
 ## Feedback — Working Rules
+- [[feedback-commit-push-deploy]] — Every commit must immediately push. Netlify deploys from GitHub remote only — commit without push = nothing deployed
 - [[feedback-eod-slack-attribution]] — EOD report must use eod_report.py, never Slack MCP. Posts to ClickUp (CLICKUP_TOKEN). Token rotated 2026-04-10 — if 401, regenerate at ClickUp → Settings → Apps
 - [[feedback-eod-manual-date]] — Manual EOD sends use --date YYYY-MM-DD; triage tickets may fall on previous calendar day in Bogota time
 - [[feedback-launchagent-paths]] — LaunchAgent plists must use full path incl. "Work stuff/"; PATH needs ~/.local/bin for claude CLI; logs → ~/Library/Logs/

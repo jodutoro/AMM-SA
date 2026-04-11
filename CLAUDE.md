@@ -30,6 +30,7 @@ You are expected to know and follow the rules defined in the following files. Re
 * **Workflow:** GSD Commands (`/gsd:plan-phase`, etc.) are active.
 * **Context Bar:** `/compact` at 70%, `/clear` at 85%.
 * **Tracker:** We use Linear. (Never reference GitLab).
+* **Deploy rule:** Every `git commit` in this workspace must be immediately followed by `git push origin main`. Netlify auto-deploys on push — commit without push = nothing deployed.
 
 ---
 
