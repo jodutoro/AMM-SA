@@ -5194,6 +5194,158 @@ window.addEventListener('load', () => {
     .health-fill { transition: none !important; }
     #comments-panel { transition: transform 0ms !important; }
   }
+
+  /* ═══════════════════════════════════════════════════════════
+     MOBILE RESPONSIVE SYSTEM
+     Breakpoints: 768px (tablet), 640px (large phone), 480px (phone)
+     Emil rule: hover states gated behind (hover:hover)+(pointer:fine)
+     ═══════════════════════════════════════════════════════════ */
+
+  /* ── 768px: tablet portrait ───────────────────────────────── */
+  @media (max-width: 768px) {
+    /* Container */
+    .container { padding: 0 16px; }
+
+    /* Section spacing */
+    section { padding: 40px 0; }
+
+    /* ── Nav: two-row layout ── */
+    .nav-inner {
+      flex-wrap: wrap;
+      height: auto;
+      padding: 0 16px;
+      gap: 0;
+    }
+    .nav-brand  { padding: 14px 0; }
+    .nav-sep    { display: none; }
+    .nav-meta   { padding: 10px 0; gap: 6px; }
+    #navDate    { display: none; }          /* hide date — too tight */
+
+    /* Nav links: horizontal scroll row (overrides display:none) */
+    .nav-links {
+      display: flex !important;
+      order: 3;
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      gap: 4px;
+      padding: 6px 0 10px;
+      border-top: 1px solid var(--border);
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links li { flex-shrink: 0; }
+    .nav-links a  {
+      padding: 6px 14px;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      min-height: 36px;
+      display: flex; align-items: center;
+    }
+
+    /* Hero */
+    .hero           { padding-top: 32px; }
+    .hero-top       { margin-bottom: 24px; }
+    .hero-pill      { display: none; }
+    .hero-eyebrow   { font-size: 0.625rem; }
+
+    /* KPI */
+    .kpi-card { padding: 16px; }
+
+    /* Filter bar: single scrollable row (overrides flex-wrap:wrap) */
+    .filter-bar {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 4px;
+    }
+    .filter-bar::-webkit-scrollbar { display: none; }
+    .filter-btn, .view-btn { flex-shrink: 0; }
+
+    /* Touch targets */
+    .filter-btn, .view-btn { min-height: 40px; padding: 0 14px; }
+    .theme-btn { width: 36px; height: 36px; }
+
+    /* Member cards */
+    .m-card { padding: 16px; }
+
+    /* Detail grids inside member expanded view */
+    .am-2col { grid-template-columns: 1fr !important; }
+
+    /* Fixed side panels → full-width on tablet */
+    #comments-panel     { width: 100vw; }
+    #gn-overlay .gn-panel { max-width: 100vw; width: 100vw; }
+    #amm-sync-log-panel { width: 100vw; }
+
+    /* Sync modal */
+    .sync-modal-box { padding: 22px 20px; }
+
+    /* Table cells: tighten padding */
+    .gaps-tbl th,
+    .gaps-tbl td    { padding: 12px 12px; }
+    .actions-tbl th,
+    .actions-tbl td { padding: 10px 12px; }
+
+    /* Insights / voice-prints */
+    .insights-grid  { grid-template-columns: 1fr; }
+    .vp-grid        { grid-template-columns: 1fr; }
+  }
+
+  /* ── 640px: large phone ───────────────────────────────────── */
+  @media (max-width: 640px) {
+    .hero-title  { font-size: 1.5rem; line-height: 1.2; }
+    .hero-sub    { font-size: 0.875rem; }
+
+    .section-hdr h2 { font-size: 1.125rem; }
+
+    /* KPI: 2-col still fits fine at 640px */
+    .kpi-strip { grid-template-columns: repeat(2, 1fr); }
+    .kpi-value { font-size: 1.5rem; }
+  }
+
+  /* ── 480px: phone ─────────────────────────────────────────── */
+  @media (max-width: 480px) {
+    .container { padding: 0 12px; }
+
+    /* Keep 2-col KPIs — 1-col is too sparse on phones (override base rule) */
+    .kpi-strip { grid-template-columns: repeat(2, 1fr) !important; }
+    .kpi-value { font-size: 1.25rem; }
+    .kpi-label { font-size: 0.625rem; }
+    .kpi-sub   { font-size: 0.6875rem; }
+    .kpi-card  { padding: 14px 12px; }
+
+    .hero-title  { font-size: 1.25rem; }
+    .nav-brand   { font-size: 0.75rem; letter-spacing: 0.08em; }
+
+    /* Table cells: smallest padding */
+    .gaps-tbl th,
+    .gaps-tbl td    { padding: 10px 10px; font-size: 0.8125rem; }
+    .actions-tbl th,
+    .actions-tbl td { padding: 8px 10px; }
+
+    /* Hide ROI column on very small — too tight */
+    .gaps-tbl th:last-child,
+    .gaps-tbl td:last-child { display: none; }
+
+    /* Agenda cards: remove bottom padding */
+    .ag-card { padding: 18px 16px; }
+
+    /* Gap notes panel: full screen + no border-radius */
+    #gn-overlay .gn-panel {
+      border-radius: 0;
+      min-height: 70vh;
+    }
+
+    /* Comments panel header padding */
+    .cp-header { padding: 14px 16px; }
+    .cp-list   { padding: 14px 16px; }
+  }
+
+  /* ── Hover states: only on real pointer devices ─────────────── */
+  @media (hover: hover) and (pointer: fine) {
+    /* (already handled above — this block ensures nothing breaks on touch) */
+  }
 </style>
 </body>
 </html>
