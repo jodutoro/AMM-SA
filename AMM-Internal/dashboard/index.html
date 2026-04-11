@@ -1400,12 +1400,18 @@ document.addEventListener('DOMContentLoaded', loadDashboardData);
   let _comments = [];
 
   function load() {
-    try { _comments = JSON.parse(localStorage.getItem(LS_KEY)) || []; }
-    catch (e) { _comments = []; }
+    try {
+      if (window.AMM_DATA && Array.isArray(window.AMM_DATA._sideComments)) {
+        _comments = window.AMM_DATA._sideComments;
+      } else {
+        _comments = JSON.parse(localStorage.getItem(LS_KEY)) || [];
+      }
+    } catch (e) { _comments = []; }
   }
 
   function save() {
     localStorage.setItem(LS_KEY, JSON.stringify(_comments));
+    if (window.AMM_DATA) window.AMM_DATA._sideComments = _comments;
   }
 
   // ── Panel state ─────────────────────────────────────────────────────────────
@@ -1767,6 +1773,8 @@ document.addEventListener('DOMContentLoaded', loadDashboardData);
       renderPanel();
       updateTriggers();
       updateNavBadge();
+      if (typeof AMMSync !== 'undefined')
+        AMMSync.recordEdit(`Comment on "${entry.itemTitle}"`, 'comment.add', null, entry.body.slice(0, 80));
     },
 
     submitReply(commentId) {
@@ -1780,6 +1788,8 @@ document.addEventListener('DOMContentLoaded', loadDashboardData);
       c.replies.push({ body, ts: new Date().toISOString() });
       save();
       renderPanel();
+      if (typeof AMMSync !== 'undefined')
+        AMMSync.recordEdit(`Reply on comment`, 'comment.reply', null, body.slice(0, 80));
     },
 
     toggleResolve(commentId) {
@@ -1790,6 +1800,8 @@ document.addEventListener('DOMContentLoaded', loadDashboardData);
       renderPanel();
       updateTriggers();
       updateNavBadge();
+      if (typeof AMMSync !== 'undefined')
+        AMMSync.recordEdit(`Comment ${c.resolved ? 'resolved' : 'reopened'}`, 'comment.resolve', !c.resolved, c.resolved);
     },
 
     remove(commentId) {
@@ -1798,6 +1810,8 @@ document.addEventListener('DOMContentLoaded', loadDashboardData);
       renderPanel();
       updateTriggers();
       updateNavBadge();
+      if (typeof AMMSync !== 'undefined')
+        AMMSync.recordEdit('Comment deleted', 'comment.remove', null, null);
     },
 
     getCount() {
@@ -2303,9 +2317,18 @@ const GapNotes = (() => {
   let _store = {};
 
   function load() {
-    try { _store = JSON.parse(localStorage.getItem(LS_KEY) || '{}'); } catch { _store = {}; }
+    try {
+      if (window.AMM_DATA && window.AMM_DATA._gapNotes && typeof window.AMM_DATA._gapNotes === 'object') {
+        _store = window.AMM_DATA._gapNotes;
+      } else {
+        _store = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
+      }
+    } catch { _store = {}; }
   }
-  function persist() { localStorage.setItem(LS_KEY, JSON.stringify(_store)); }
+  function persist() {
+    localStorage.setItem(LS_KEY, JSON.stringify(_store));
+    if (window.AMM_DATA) window.AMM_DATA._gapNotes = _store;
+  }
   function getGap(id) {
     if(!_store[id]) _store[id] = { titleOverride: null, notesOverride: null, comments: [] };
     return _store[id];
@@ -2474,12 +2497,22 @@ const GapNotes = (() => {
     },
     _save(gapId) {
       const stored = getGap(gapId);
+      const oldTitle = stored.titleOverride;
+      const oldNotes = stored.notesOverride;
       stored.titleOverride = document.getElementById('gnTitleEdit')?.value.trim() || null;
       stored.notesOverride = document.getElementById('gnNotesEdit')?.value.trim() || null;
       persist();
       const btn = document.querySelector('.gn-save-btn');
       if(btn) { btn.textContent = 'Saved \u2713'; setTimeout(() => btn.textContent = 'Save changes', 1500); }
       if(typeof renderGaps === 'function') renderGaps();
+      if (typeof AMMSync !== 'undefined') {
+        if (stored.titleOverride !== oldTitle)
+          AMMSync.recordEdit(`Gap title: ${gapId}`, 'gap.title', oldTitle, stored.titleOverride);
+        if (stored.notesOverride !== oldNotes)
+          AMMSync.recordEdit(`Gap notes: ${gapId}`, 'gap.notes', oldNotes, stored.notesOverride);
+        if (stored.titleOverride === oldTitle && stored.notesOverride === oldNotes)
+          AMMSync.recordEdit(`Gap saved: ${gapId}`, 'gap.save', null, null);
+      }
     },
     _addComment(gapId) {
       const text = document.getElementById('gnCommentText')?.value.trim();
@@ -2488,12 +2521,16 @@ const GapNotes = (() => {
       getGap(gapId).comments.push({ text, cat, ts: Date.now(), solved: false, replies: [] });
       persist();
       renderPanel(gapId);
+      if (typeof AMMSync !== 'undefined')
+        AMMSync.recordEdit(`Gap note added: ${gapId}`, 'gap.comment', null, text.slice(0, 80));
     },
     _toggleSolved(gapId, ci) {
       const c = getGap(gapId).comments[ci];
       if(c) c.solved = !c.solved;
       persist();
       renderPanel(gapId);
+      if (typeof AMMSync !== 'undefined')
+        AMMSync.recordEdit(`Gap comment ${c?.solved ? 'resolved' : 'reopened'}: ${gapId}`, 'gap.comment.solved', !c?.solved, c?.solved);
     },
     _showReply(gapId, ci, btn) {
       const wrap = btn.closest('.gn-comment');
@@ -2511,6 +2548,8 @@ const GapNotes = (() => {
         c.replies.push({ text: txt, ts: Date.now() });
         persist();
         renderPanel(gapId);
+        if (typeof AMMSync !== 'undefined')
+          AMMSync.recordEdit(`Gap reply: ${gapId}`, 'gap.reply', null, txt.slice(0, 80));
       };
       wrap.appendChild(row);
       row.querySelector('textarea').focus();
@@ -3635,6 +3674,7 @@ const GapNotes = (() => {
   <!-- Inline data fallback: used when dashboard is opened via file:// (no HTTP server needed) -->
   <!-- Auto-generated by ingest.py and scripts — do not edit manually -->
   <script src="data.js"></script>
+  <script src="sync.js"></script>
   <script src="tooltips.js"></script>
 
   <!-- ─── Password Gate ───────────────────────────────────────────────────── -->
@@ -4700,6 +4740,7 @@ function init() {
   if(typeof GapNotes !== 'undefined') GapNotes.init();
   if(typeof ProgramTimeline !== 'undefined') ProgramTimeline.init();
   if(typeof AMMTooltip !== 'undefined') AMMTooltip.init();
+  if(typeof AMMSync !== 'undefined') AMMSync.init();
   renderRadarCharts();
 }
 
