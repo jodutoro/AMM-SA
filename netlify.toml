@@ -1,0 +1,3 @@
+[build]
+  base    = "AMM-Internal"
+  publish = "dashboard"
