@@ -36,9 +36,9 @@ jobs:
         run: |
           git config user.name "amm-bot"
           git config user.email "amm-bot@users.noreply.github.com"
-          if ! git diff --quiet dashboard/data.json; then
-            git add dashboard/data.json
-            git commit -m "chore(auto): ingest transcript updates → data.json [skip ci]"
+          if ! git diff --quiet dashboard/data.json dashboard/data.js; then
+            git add dashboard/data.json dashboard/data.js
+            git commit -m "chore(auto): ingest transcript updates → data.json + data.js [skip ci]"
             git push
           else
             echo "No changes to data.json — skipping commit"
