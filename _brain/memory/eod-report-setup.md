@@ -73,6 +73,16 @@ Three caught failure modes: no receipt (script crashed), receipt with no ID (sil
 5. Circle MMA community support
 6. AMM progress review and standardization
 
+## ClickUp Token Rotation (2026-04-10)
+Old token `pk_81342217_TVCOIXT20OD1PR5ZUJ64S3XWDXABIMPI` expired (401). New token set as `CLICKUP_TOKEN` in `.env`. If auth fails again, regenerate at ClickUp → Settings → Apps and update `.env` (hook blocks Claude from writing `.env` directly — user must run a Python one-liner or sed).
+
+## BASE_TASKS Updated (2026-04-10)
+After Matt announced JD going full-time on Mastermind (April 9), BASE_TASKS updated to:
+- Circle MMA community support and Q&A
+- AMM member 1:1 coaching sessions
+- AMM onboarding, setup support, and member follow-up
+- AMM session prep, member intelligence, and platform gap documentation
+
 ## Root Bug Fixed (2026-04-08)
 `ROOT = Path(__file__).resolve().parent.parent.parent` resolved to `Work stuff/` (3 parents), not `Agentic/` (4 parents). `load_dotenv` silently did nothing on missing file → `SLACK_TOKEN` / `CLICKUP_TOKEN` KeyError.
 **Fix:** `parent.parent.parent.parent` — now loads `Agentic/.env` correctly.
