@@ -1457,6 +1457,13 @@ document.addEventListener('DOMContentLoaded', loadDashboardData);
       const count = _comments.filter(c => c.itemId === id && !c.resolved).length;
       btn.innerHTML = commentSVG(count > 0);
       btn.classList.toggle('has-comments', count > 0);
+
+      // Stamp dot on the owning card / row so it's always visible
+      const card = btn.closest('.m-card, .ag-card, tr[data-id]');
+      if (card) {
+        if (count > 0) card.setAttribute('data-has-comments', count);
+        else           card.removeAttribute('data-has-comments');
+      }
     });
   }
 
@@ -2328,6 +2335,20 @@ const GapNotes = (() => {
   function persist() {
     localStorage.setItem(LS_KEY, JSON.stringify(_store));
     if (window.AMM_DATA) window.AMM_DATA._gapNotes = _store;
+    updateGapDots();
+  }
+
+  function updateGapDots() {
+    document.querySelectorAll('tr.gap-row[data-id]').forEach(row => {
+      const id = row.getAttribute('data-id');
+      const data = _store[id];
+      const hasNotes = data && (
+        data.titleOverride || data.notesOverride ||
+        (data.comments && data.comments.length > 0)
+      );
+      if (hasNotes) row.setAttribute('data-has-comments', '1');
+      else          row.removeAttribute('data-has-comments');
+    });
   }
   function getGap(id) {
     if(!_store[id]) _store[id] = { titleOverride: null, notesOverride: null, comments: [] };
@@ -2555,7 +2576,8 @@ const GapNotes = (() => {
       row.querySelector('textarea').focus();
     },
     getNoteCount(gapId) { return (_store[gapId]?.comments || []).length; },
-    getTitleOverride(gapId) { return _store[gapId]?.titleOverride || null; }
+    getTitleOverride(gapId) { return _store[gapId]?.titleOverride || null; },
+    _refreshDots() { updateGapDots(); }
   };
 })();
 
@@ -4636,7 +4658,7 @@ function renderGaps() {
         <td>
           <div class="gap-title">
             ${GapNotes.getTitleOverride(g.id) || g.title}
-            ${GapNotes.getNoteCount(g.id) > 0 ? `<span class="gap-note-count">${GapNotes.getNoteCount(g.id)} &#x1F4AC;</span>` : ''}
+            ${GapNotes.getNoteCount(g.id) > 0 ? `<span class="gap-note-count">${GapNotes.getNoteCount(g.id)} note${GapNotes.getNoteCount(g.id) > 1 ? 's' : ''}</span>` : ''}
           </div>
           <div class="gap-desc">${g.description}</div>
           ${g.notes?`<div class="gap-note">${g.notes}</div>`:''}
@@ -4666,6 +4688,9 @@ function renderGaps() {
 
   const open = AMM_DATA.platformGaps.filter(g=>g.status!=='resolved').length;
   document.getElementById('gapsChip').textContent = `${open} open · 1 resolved`;
+
+  // Re-stamp comment dots after table rebuild
+  if (typeof GapNotes !== 'undefined') GapNotes._refreshDots();
 }
 
 // ─── ROI Helpers (used by gap table + modal) ──────────────────────────────────
@@ -4737,7 +4762,7 @@ function init() {
   renderAgenda();
   ActionsManager.init();
   CommentsSystem.init();
-  if(typeof GapNotes !== 'undefined') GapNotes.init();
+  if(typeof GapNotes !== 'undefined') { GapNotes.init(); GapNotes._refreshDots(); }
   if(typeof ProgramTimeline !== 'undefined') ProgramTimeline.init();
   if(typeof AMMTooltip !== 'undefined') AMMTooltip.init();
   if(typeof AMMSync !== 'undefined') AMMSync.init();
@@ -5094,6 +5119,73 @@ window.addEventListener('load', () => {
     background: #1e1b4b;
     border-color: rgba(124,58,237,.5);
     color: #c4b5fd;
+  }
+
+  /* ── Comment dot indicators ────────────────────────────────────────────── */
+
+  /* Make card/row containers position:relative so the dot can anchor */
+  .m-card  { position: relative; }
+  .ag-card { position: relative; }
+
+  /* The dot itself — shared base */
+  .m-card[data-has-comments]::after,
+  .ag-card[data-has-comments]::after {
+    content: '';
+    position: absolute;
+    top: 10px; right: 10px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--purple);
+    box-shadow: 0 0 0 2px var(--bg-card);
+    pointer-events: none;
+    animation: dotPop 320ms cubic-bezier(0.23,1,0.32,1) both;
+  }
+
+  /* Gap table row — dot before the title text */
+  .gap-title { position: relative; padding-left: 0; }
+  tr.gap-row[data-has-comments] .gap-title::before {
+    content: '';
+    display: inline-block;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--purple);
+    margin-right: 7px;
+    vertical-align: middle;
+    flex-shrink: 0;
+    animation: dotPop 320ms cubic-bezier(0.23,1,0.32,1) both;
+  }
+
+  /* Replace old emoji count with a clean count badge */
+  .gap-note-count {
+    display: inline-flex; align-items: center; gap: 3px;
+    font-size: .625rem; font-weight: 700;
+    color: var(--purple);
+    background: rgba(168,85,247,.1);
+    border: 1px solid rgba(168,85,247,.2);
+    border-radius: 20px;
+    padding: 1px 6px;
+    margin-left: 6px;
+    vertical-align: middle;
+    letter-spacing: .01em;
+  }
+
+  /* Pop-in animation for newly placed dot */
+  @keyframes dotPop {
+    from { transform: scale(0); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+  }
+
+  /* Subtle purple left-border glow on hovered card with comments */
+  .m-card[data-has-comments]:hover {
+    border-color: rgba(168,85,247,.4);
+    box-shadow: 0 4px 16px rgba(0,0,0,.08), inset 3px 0 0 var(--purple);
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .m-card[data-has-comments]::after,
+    .ag-card[data-has-comments]::after,
+    tr.gap-row[data-has-comments] .gap-title::before { animation: none; }
   }
 
   /* Reduced motion — disable stagger + card animation */
