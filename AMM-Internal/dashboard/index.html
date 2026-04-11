@@ -1530,11 +1530,21 @@ document.addEventListener('DOMContentLoaded', loadDashboardData);
   function showSelectionTooltip(rect) {
     const tip = document.getElementById('cm-sel-tooltip');
     if (!tip) return;
+    // Measure while hidden (position:fixed uses viewport coords — no scrollY/X)
+    tip.style.visibility = 'hidden';
+    tip.style.display = 'inline-flex';
+    const tw = tip.offsetWidth  || 120;
+    const th = tip.offsetHeight || 32;
+    tip.style.display = '';
+    tip.style.visibility = '';
+
     const MARGIN = 8;
-    let top  = rect.top  + window.scrollY - tip.offsetHeight - MARGIN - 4;
-    let left = rect.left + window.scrollX + rect.width / 2 - tip.offsetWidth / 2;
-    left = Math.max(MARGIN, Math.min(left, window.innerWidth - 160 - MARGIN));
-    if (top < window.scrollY + MARGIN) top = rect.bottom + window.scrollY + MARGIN;
+    let top  = rect.top  - th - MARGIN - 4;   // above selection (viewport coords)
+    let left = rect.left + rect.width / 2 - tw / 2;
+
+    left = Math.max(MARGIN, Math.min(left, window.innerWidth - tw - MARGIN));
+    if (top < MARGIN) top = rect.bottom + MARGIN;  // flip below if no room above
+
     tip.style.top  = top  + 'px';
     tip.style.left = left + 'px';
     tip.classList.add('visible');
