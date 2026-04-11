@@ -42,7 +42,7 @@ async function loadDashboardData() {
     if (typeof AMM_DATA !== 'undefined' && AMM_DATA) {
       if (typeof init === 'function') init();
     } else {
-      console.error('[AMM] data.js not loaded — ensure data.js is present alongside demo.html');
+      console.error('[AMM] data.js not loaded — ensure data.js is present alongside index.html');
     }
     return;
   }
@@ -1356,9 +1356,37 @@ document.addEventListener('DOMContentLoaded', loadDashboardData);
     }
     .cp-submit:hover { opacity:.85; }
 
+    /* ── Selection tooltip ── */
+    #cm-sel-tooltip {
+      position:fixed; z-index:9000;
+      display:none; align-items:center; gap:5px;
+      background:#1a1a2e; border:1px solid rgba(168,85,247,.45);
+      border-radius:8px; padding:5px 11px;
+      box-shadow:0 4px 20px rgba(0,0,0,.55);
+      cursor:pointer; user-select:none;
+      font-size:.75rem; font-weight:700; letter-spacing:.04em;
+      color:#c4b5fd; white-space:nowrap;
+      transition:opacity 120ms, transform 120ms;
+    }
+    #cm-sel-tooltip.visible { display:inline-flex; }
+    #cm-sel-tooltip:hover { background:#23234a; color:#ddd6fe; }
+
+    /* ── Quote block inside comment card ── */
+    .cm-quote {
+      border-left:2px solid rgba(168,85,247,.5);
+      background:rgba(168,85,247,.06);
+      border-radius:0 6px 6px 0;
+      padding:6px 10px; margin-bottom:8px;
+      font-size:.75rem; color:var(--muted);
+      font-style:italic; line-height:1.55;
+      overflow:hidden; display:-webkit-box;
+      -webkit-line-clamp:3; -webkit-box-orient:vertical;
+    }
+
     /* ── Reduce motion ── */
     @media (prefers-reduced-motion: reduce) {
-      #comments-panel { transition:none; }
+      #comments-panel  { transition:none; }
+      #cm-sel-tooltip  { transition:none; }
     }
   `;
 
@@ -1386,6 +1414,10 @@ document.addEventListener('DOMContentLoaded', loadDashboardData);
   let _panelOpen       = false;
 
   // ── Helpers ─────────────────────────────────────────────────────────────────
+  function escHtml(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
   function fmtTs(iso) {
     const d = new Date(iso);
     return d.toLocaleDateString('en-US', { month:'short', day:'numeric' }) +
@@ -1469,6 +1501,74 @@ document.addEventListener('DOMContentLoaded', loadDashboardData);
     updateTriggers();
   }
 
+  // ── Selection-to-comment tooltip ────────────────────────────────────────────
+  let _pendingQuote = null;
+
+  function injectSelectionTooltip() {
+    if (document.getElementById('cm-sel-tooltip')) return;
+    const tip = document.createElement('div');
+    tip.id = 'cm-sel-tooltip';
+    tip.innerHTML = `<svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2H2a1 1 0 00-1 1v7a1 1 0 001 1h3l2 2 2-2h3a1 1 0 001-1V3a1 1 0 00-1-1z"/></svg> Comment`;
+    tip.addEventListener('mousedown', e => e.preventDefault());
+    tip.addEventListener('click', () => {
+      const sel = window.getSelection();
+      const text = sel ? sel.toString().trim() : '';
+      if (text) {
+        _pendingQuote = text;
+        hideSelectionTooltip();
+        sel.removeAllRanges();
+        CommentsSystem.openPanel(_filterItemId || 'general', _filterItemTitle || 'General');
+        requestAnimationFrame(() => {
+          const ta = document.getElementById('cp-new-body');
+          if (ta) ta.focus();
+        });
+      }
+    });
+    document.body.appendChild(tip);
+  }
+
+  function showSelectionTooltip(rect) {
+    const tip = document.getElementById('cm-sel-tooltip');
+    if (!tip) return;
+    const MARGIN = 8;
+    let top  = rect.top  + window.scrollY - tip.offsetHeight - MARGIN - 4;
+    let left = rect.left + window.scrollX + rect.width / 2 - tip.offsetWidth / 2;
+    left = Math.max(MARGIN, Math.min(left, window.innerWidth - 160 - MARGIN));
+    if (top < window.scrollY + MARGIN) top = rect.bottom + window.scrollY + MARGIN;
+    tip.style.top  = top  + 'px';
+    tip.style.left = left + 'px';
+    tip.classList.add('visible');
+  }
+
+  function hideSelectionTooltip() {
+    const tip = document.getElementById('cm-sel-tooltip');
+    if (tip) tip.classList.remove('visible');
+  }
+
+  function initSelectionListener() {
+    document.addEventListener('mouseup', () => {
+      setTimeout(() => {
+        const sel = window.getSelection();
+        const text = sel ? sel.toString().trim() : '';
+        if (text.length < 2) { hideSelectionTooltip(); return; }
+        if (sel.anchorNode && document.getElementById('comments-panel')?.contains(sel.anchorNode)) {
+          hideSelectionTooltip(); return;
+        }
+        try {
+          const range = sel.getRangeAt(0);
+          const rect  = range.getBoundingClientRect();
+          if (rect.width === 0 && rect.height === 0) { hideSelectionTooltip(); return; }
+          injectSelectionTooltip();
+          showSelectionTooltip(rect);
+        } catch (_) { hideSelectionTooltip(); }
+      }, 10);
+    });
+    document.addEventListener('selectionchange', () => {
+      const sel = window.getSelection();
+      if (!sel || sel.toString().trim().length < 2) hideSelectionTooltip();
+    });
+  }
+
   // ── Panel render ────────────────────────────────────────────────────────────
   function renderPanel() {
     const panel = document.getElementById('comments-panel');
@@ -1500,6 +1600,7 @@ document.addEventListener('DOMContentLoaded', loadDashboardData);
                 ${itemLabelShow ? `<span class="cm-item-label">${c.itemTitle || c.itemId}</span>` : ''}
                 <span class="cm-ts">${fmtTs(c.ts)}</span>
               </div>
+              ${c.quote ? `<div class="cm-quote">${escHtml(c.quote)}</div>` : ''}
               <div class="cm-body">${c.body}</div>
               ${repliesHTML ? `<div class="cm-replies">${repliesHTML}</div>` : ''}
               <div class="cm-reply-input-wrap">
@@ -1530,7 +1631,8 @@ document.addEventListener('DOMContentLoaded', loadDashboardData);
       <div class="cp-list">${listHTML}</div>
       <div class="cp-form">
         <div class="cp-form-label">Add Comment${_filterItemTitle ? ' on ' + _filterItemTitle : ''}</div>
-        <textarea id="cp-new-body" placeholder="Annotate this item..."></textarea>
+        ${_pendingQuote ? `<div class="cm-quote" style="margin-bottom:10px;">${escHtml(_pendingQuote.length > 160 ? _pendingQuote.slice(0,160) + '…' : _pendingQuote)}</div>` : ''}
+        <textarea id="cp-new-body" placeholder="${_pendingQuote ? 'Comment on selected text…' : 'Annotate this item...'}"></textarea>
         <div class="cp-form-row">
           <button class="cp-submit" onclick="CommentsSystem.submitFromPanel()">Add Comment</button>
         </div>
@@ -1578,6 +1680,7 @@ document.addEventListener('DOMContentLoaded', loadDashboardData);
 
       injectAllTriggers();
       updateNavBadge();
+      initSelectionListener();
 
       // Re-inject triggers when ActionsManager re-renders the table
       // (MutationObserver on actionsBody)
@@ -1621,6 +1724,7 @@ document.addEventListener('DOMContentLoaded', loadDashboardData);
 
     closePanel() {
       _panelOpen = false;
+      _pendingQuote = null;
       const panel = document.getElementById('comments-panel');
       if (panel) panel.classList.remove('open');
     },
@@ -1637,7 +1741,7 @@ document.addEventListener('DOMContentLoaded', loadDashboardData);
       const body = ta.value.trim();
       if (!body) return;
 
-      _comments.push({
+      const entry = {
         id:        shortId(),
         itemId:    _filterItemId    || 'general',
         itemTitle: _filterItemTitle || 'General',
@@ -1645,7 +1749,9 @@ document.addEventListener('DOMContentLoaded', loadDashboardData);
         ts:        new Date().toISOString(),
         resolved:  false,
         replies:   []
-      });
+      };
+      if (_pendingQuote) { entry.quote = _pendingQuote; _pendingQuote = null; }
+      _comments.push(entry);
       save();
       ta.value = '';
       renderPanel();
@@ -3519,6 +3625,7 @@ const GapNotes = (() => {
   <!-- Inline data fallback: used when dashboard is opened via file:// (no HTTP server needed) -->
   <!-- Auto-generated by ingest.py and scripts — do not edit manually -->
   <script src="data.js"></script>
+  <script src="tooltips.js"></script>
 
   <!-- ─── Password Gate ───────────────────────────────────────────────────── -->
   <style>
@@ -4582,6 +4689,7 @@ function init() {
   CommentsSystem.init();
   if(typeof GapNotes !== 'undefined') GapNotes.init();
   if(typeof ProgramTimeline !== 'undefined') ProgramTimeline.init();
+  if(typeof AMMTooltip !== 'undefined') AMMTooltip.init();
   renderRadarCharts();
 }
 
@@ -4855,6 +4963,94 @@ window.addEventListener('load', () => {
   line-height:1.5; box-shadow:0 4px 16px rgba(0,0,0,.12);
   pointer-events:none;
 "></div>
-<div style="position:fixed;bottom:16px;right:16px;z-index:9999;background:#1a1a2e;color:#7c3aed;font-size:.625rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;border:1px solid rgba(124,58,237,.4);border-radius:6px;font-family:monospace;pointer-events:none;opacity:.85;">DEMO</div>
+
+<!-- ─── Design Elevation Layer ───────────────────────────────────────────── -->
+<style>
+  /* Custom easing vars */
+  :root {
+    --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-inout:  cubic-bezier(0.77, 0, 0.175, 1);
+    --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  /* Comments panel — glass depth */
+  #comments-panel {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  /* Sidebar panel slide — upgrade to drawer easing */
+  #comments-panel {
+    transition: transform 280ms var(--ease-drawer) !important;
+  }
+
+  /* Health score bar animated fill on render */
+  .health-fill {
+    transition: width 500ms var(--ease-out);
+  }
+
+  /* KPI count-up values — smooth font rendering */
+  .kpi-value {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -.01em;
+  }
+
+  /* Stagger member cards on initial grid render */
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .m-card {
+    animation: cardIn 280ms var(--ease-out) both;
+  }
+  .m-card:nth-child(1)  { animation-delay:  0ms; }
+  .m-card:nth-child(2)  { animation-delay: 35ms; }
+  .m-card:nth-child(3)  { animation-delay: 70ms; }
+  .m-card:nth-child(4)  { animation-delay:105ms; }
+  .m-card:nth-child(5)  { animation-delay:140ms; }
+  .m-card:nth-child(6)  { animation-delay:175ms; }
+  .m-card:nth-child(7)  { animation-delay:210ms; }
+  .m-card:nth-child(8)  { animation-delay:245ms; }
+  .m-card:nth-child(n+9){ animation-delay:280ms; }
+
+  /* Active filter button ring */
+  .filter-btn.active, .view-btn.active {
+    box-shadow: 0 0 0 2px var(--purple);
+    transition: box-shadow 150ms var(--ease-out);
+  }
+
+  /* Gap row click affordance */
+  .gap-row { cursor: pointer; }
+  @media (hover: hover) and (pointer: fine) {
+    .gap-row:hover td { background: var(--bg-card2); }
+  }
+
+  /* Improved nav link active indicator */
+  .nav-links a.active {
+    background: var(--bg-card2);
+    color: var(--text);
+    box-shadow: inset 0 0 0 1px var(--border-mid);
+  }
+
+  /* Comments panel CP header glass */
+  .cp-header {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* Selection comment tooltip — light mode */
+  [data-theme="light"] #cm-sel-tooltip {
+    background: #1e1b4b;
+    border-color: rgba(124,58,237,.5);
+    color: #c4b5fd;
+  }
+
+  /* Reduced motion — disable stagger + card animation */
+  @media (prefers-reduced-motion: reduce) {
+    .m-card { animation: none !important; }
+    .health-fill { transition: none !important; }
+    #comments-panel { transition: transform 0ms !important; }
+  }
+</style>
 </body>
 </html>

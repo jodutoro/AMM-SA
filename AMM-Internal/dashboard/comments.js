@@ -167,9 +167,40 @@
     }
     .cp-submit:hover { opacity:.85; }
 
+    /* ── Selection tooltip ── */
+    #cm-sel-tooltip {
+      position:fixed; z-index:9000;
+      display:none; align-items:center; gap:5px;
+      background:#1a1a2e; border:1px solid rgba(168,85,247,.45);
+      border-radius:8px; padding:5px 11px;
+      box-shadow:0 4px 20px rgba(0,0,0,.55);
+      cursor:pointer; user-select:none;
+      font-size:.75rem; font-weight:700; letter-spacing:.04em;
+      color:#c4b5fd; white-space:nowrap;
+      transition:opacity 120ms, transform 120ms;
+      transform:translateY(0);
+    }
+    #cm-sel-tooltip.visible { display:inline-flex; }
+    #cm-sel-tooltip:hover { background:#23234a; color:#ddd6fe; }
+    #cm-sel-tooltip svg { flex-shrink:0; }
+
+    /* ── Quote block inside comment card ── */
+    .cm-quote {
+      border-left:2px solid rgba(168,85,247,.5);
+      background:rgba(168,85,247,.06);
+      border-radius:0 6px 6px 0;
+      padding:6px 10px;
+      margin-bottom:8px;
+      font-size:.75rem; color:var(--muted);
+      font-style:italic; line-height:1.55;
+      overflow:hidden; display:-webkit-box;
+      -webkit-line-clamp:3; -webkit-box-orient:vertical;
+    }
+
     /* ── Reduce motion ── */
     @media (prefers-reduced-motion: reduce) {
       #comments-panel { transition:none; }
+      #cm-sel-tooltip  { transition:none; }
     }
   `;
 
@@ -197,6 +228,10 @@
   let _panelOpen       = false;
 
   // ── Helpers ─────────────────────────────────────────────────────────────────
+  function escHtml(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
   function fmtTs(iso) {
     const d = new Date(iso);
     return d.toLocaleDateString('en-US', { month:'short', day:'numeric' }) +
@@ -280,6 +315,89 @@
     updateTriggers();
   }
 
+  // ── Selection-to-comment tooltip ────────────────────────────────────────────
+  let _pendingQuote = null;
+
+  function injectSelectionTooltip() {
+    if (document.getElementById('cm-sel-tooltip')) return;
+    const tip = document.createElement('div');
+    tip.id = 'cm-sel-tooltip';
+    tip.innerHTML = `
+      <svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2H2a1 1 0 00-1 1v7a1 1 0 001 1h3l2 2 2-2h3a1 1 0 001-1V3a1 1 0 00-1-1z"/>
+      </svg>
+      Comment
+    `;
+    tip.addEventListener('mousedown', (e) => {
+      e.preventDefault(); // keep selection alive
+    });
+    tip.addEventListener('click', () => {
+      const sel = window.getSelection();
+      const text = sel ? sel.toString().trim() : '';
+      if (text) {
+        _pendingQuote = text;
+        hideSelectionTooltip();
+        sel.removeAllRanges();
+        CommentsSystem.openPanel(
+          _filterItemId    || 'general',
+          _filterItemTitle || 'General'
+        );
+        // focus textarea after panel opens
+        requestAnimationFrame(() => {
+          const ta = document.getElementById('cp-new-body');
+          if (ta) ta.focus();
+        });
+      }
+    });
+    document.body.appendChild(tip);
+  }
+
+  function showSelectionTooltip(rect) {
+    const tip = document.getElementById('cm-sel-tooltip');
+    if (!tip) return;
+    const MARGIN = 8;
+    let top  = rect.top  + window.scrollY - tip.offsetHeight - MARGIN - 4;
+    let left = rect.left + window.scrollX + (rect.width / 2) - (tip.offsetWidth / 2);
+    // keep within viewport
+    left = Math.max(MARGIN, Math.min(left, window.innerWidth - 160 - MARGIN));
+    if (top < window.scrollY + MARGIN) top = rect.bottom + window.scrollY + MARGIN;
+    tip.style.top  = top  + 'px';
+    tip.style.left = left + 'px';
+    tip.classList.add('visible');
+  }
+
+  function hideSelectionTooltip() {
+    const tip = document.getElementById('cm-sel-tooltip');
+    if (tip) tip.classList.remove('visible');
+  }
+
+  function initSelectionListener() {
+    document.addEventListener('mouseup', () => {
+      // short delay so selection is finalised
+      setTimeout(() => {
+        const sel = window.getSelection();
+        const text = sel ? sel.toString().trim() : '';
+        if (text.length < 2) { hideSelectionTooltip(); return; }
+        // don't show inside the comments panel itself
+        if (sel.anchorNode && document.getElementById('comments-panel')?.contains(sel.anchorNode)) {
+          hideSelectionTooltip(); return;
+        }
+        try {
+          const range = sel.getRangeAt(0);
+          const rect  = range.getBoundingClientRect();
+          if (rect.width === 0 && rect.height === 0) { hideSelectionTooltip(); return; }
+          injectSelectionTooltip(); // idempotent
+          showSelectionTooltip(rect);
+        } catch (_) { hideSelectionTooltip(); }
+      }, 10);
+    });
+
+    document.addEventListener('selectionchange', () => {
+      const sel = window.getSelection();
+      if (!sel || sel.toString().trim().length < 2) hideSelectionTooltip();
+    });
+  }
+
   // ── Panel render ────────────────────────────────────────────────────────────
   function renderPanel() {
     const panel = document.getElementById('comments-panel');
@@ -311,6 +429,7 @@
                 ${itemLabelShow ? `<span class="cm-item-label">${c.itemTitle || c.itemId}</span>` : ''}
                 <span class="cm-ts">${fmtTs(c.ts)}</span>
               </div>
+              ${c.quote ? `<div class="cm-quote">${escHtml(c.quote)}</div>` : ''}
               <div class="cm-body">${c.body}</div>
               ${repliesHTML ? `<div class="cm-replies">${repliesHTML}</div>` : ''}
               <div class="cm-reply-input-wrap">
@@ -341,7 +460,8 @@
       <div class="cp-list">${listHTML}</div>
       <div class="cp-form">
         <div class="cp-form-label">Add Comment${_filterItemTitle ? ' on ' + _filterItemTitle : ''}</div>
-        <textarea id="cp-new-body" placeholder="Annotate this item..."></textarea>
+        ${_pendingQuote ? `<div class="cm-quote" style="margin-bottom:10px;">${escHtml(_pendingQuote.length > 160 ? _pendingQuote.slice(0, 160) + '…' : _pendingQuote)}</div>` : ''}
+        <textarea id="cp-new-body" placeholder="${_pendingQuote ? 'Comment on selected text…' : 'Annotate this item...'}"></textarea>
         <div class="cp-form-row">
           <button class="cp-submit" onclick="CommentsSystem.submitFromPanel()">Add Comment</button>
         </div>
@@ -389,6 +509,7 @@
 
       injectAllTriggers();
       updateNavBadge();
+      initSelectionListener();
 
       // Re-inject triggers when ActionsManager re-renders the table
       // (MutationObserver on actionsBody)
@@ -432,6 +553,7 @@
 
     closePanel() {
       _panelOpen = false;
+      _pendingQuote = null;
       const panel = document.getElementById('comments-panel');
       if (panel) panel.classList.remove('open');
     },
@@ -448,7 +570,7 @@
       const body = ta.value.trim();
       if (!body) return;
 
-      _comments.push({
+      const entry = {
         id:        shortId(),
         itemId:    _filterItemId    || 'general',
         itemTitle: _filterItemTitle || 'General',
@@ -456,7 +578,9 @@
         ts:        new Date().toISOString(),
         resolved:  false,
         replies:   []
-      });
+      };
+      if (_pendingQuote) { entry.quote = _pendingQuote; _pendingQuote = null; }
+      _comments.push(entry);
       save();
       ta.value = '';
       renderPanel();
