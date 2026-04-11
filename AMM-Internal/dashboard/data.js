@@ -20,7 +20,11 @@ const AMM_DATA = {
     membersMixed:           4,
     membersAroundPlatform:  3,
     platformGapsOpen:      15,
-    openActionItems:       10
+    openActionItems:       13,
+    currentRevenue:        "$200,000",
+    principleOnlyMembers:  5,
+    principleWithTeams:    4,
+    advancedPrincipleOnly: 4
   },
 
   // ─── Program Stages ───────────────────────────────────────────────────────
@@ -382,7 +386,7 @@ const AMM_DATA = {
       currentBuilds:   [],
       featureRequests: [],
       platformFriction: [],
-      personality:     "Not yet responsive in group sessions. Was absent during March status check (vacation). No engagement pattern established. Setup status unknown. Requires direct outreach to assess baseline, goals, and whether the program format is working for them.",
+      personality:     "Confirmed communication gap — named in Matt's April 10 internal executive summary as the one member with notably poor attendance and communication. Was absent during March status check (vacation). No engagement pattern established in any recorded session. Setup status unknown. Direct outreach required before Monday April 14 to assess baseline and whether the program format is working.",
       quote:           "—",
       quoteContext:    "",
       skills:          [],
@@ -583,17 +587,21 @@ const AMM_DATA = {
       pillar:      "Mastermind",
       priority:    1,
       title:       "Curriculum Restructure",
-      description: "Shift from feature-oriented (Atlas Brain this week) to goal-oriented (what agentic outcome are we driving, then show tools that achieve it). Weekly homework + milestones. Biweekly 1:1 check-ins with each member.",
+      description: "Converting to hybrid mastermind-course structure (confirmed April 10 by Matt's exec summary). Quarterly milestones with weekly homework + challenges. Member 'superpowers' cross-pollination. SA team rotating show-and-tell. Implementation hours formally communicated. Tag-in structure (Matt → JD → Justin → Implementation) established.",
       owner:       "JD + Matt + Arman",
       status:      "in-planning",
       targetQ:     "Q2 2026",
       keyItems: [
-        "Goal-oriented session design: outcome first, platform second",
-        "Weekly homework tied to monthly milestones (confirmed April 9)",
-        "Biweekly 1:1 check-ins — JD sole owner, runs these",
-        "Member readiness map (JD — due end of week)",
+        "Hybrid mastermind-course: quarterly milestones + weekly homework + challenges",
+        "Weekly call format: temp check ('what's holding you back?') → goal reports → member showcase → homework",
+        "Member 'superpowers' sharing — cross-pollination model",
+        "Arman/Lucas/PMs/Juan Jara/Camila/Justin rotating show-and-tell guests",
+        "Implementation hours: clearer communication of benefits + how to use them",
+        "Tag-in structure: Matt → JD → Justin → Implementation",
+        "Pre-onboard prep + educational materials for non-programmers (JD + Matt)",
+        "Arman's Corner: weekly 1-hr internal training (bridges Arman → Matt → JD knowledge gap)",
         "JD added to weekly engineering sync",
-        "Arman's Corner: weekly 1-hr expert session (scheduling April 10)"
+        "Monday April 14: Visibility Audit + Playbooks with Manick (120 min) — Roto-Rooter example, homework: audit + notes by Thursday"
       ]
     },
     {
@@ -668,7 +676,7 @@ const AMM_DATA = {
       owner:   "Matt Bailey",
       action:  "Draft Monday reset messaging for members — public framing of JD full-time role and new check-in structure",
       dueDate: "Apr 10",
-      status:  "open",
+      status:  "resolved",
       source:  "Restructuring Session"
     },
     {
@@ -766,6 +774,38 @@ const AMM_DATA = {
       dueDate: "Apr 9",
       status:  "resolved",
       source:  "Weekly Session"
+    },
+    {
+      id:      "ai14",
+      owner:   "JD + Matt + Arman",
+      action:  "Define quarterly milestones — foundation for hybrid mastermind-course structure (launch Monday April 14)",
+      dueDate: "Apr 14",
+      status:  "open",
+      source:  "Apr 10 Exec Summary"
+    },
+    {
+      id:      "ai15",
+      owner:   "JD + Matt",
+      action:  "Restructure weekly call format — implement: temp check → goal reports → member showcase → homework assignment cadence",
+      dueDate: "Apr 14",
+      status:  "open",
+      source:  "Apr 10 Exec Summary"
+    },
+    {
+      id:      "ai16",
+      owner:   "JD + Matt",
+      action:  "Build pre-onboard prep + educational materials for non-programmers — cover Claude Code basics, file structure, Rules.md/memory.md, skills/plugins",
+      dueDate: "TBD",
+      status:  "open",
+      source:  "Apr 10 Exec Summary"
+    },
+    {
+      id:      "ai17",
+      owner:   "Matt + Justin",
+      action:  "Decide Monday April 14 format — deck vs. last-time format (confirm before Monday)",
+      dueDate: "Apr 13",
+      status:  "open",
+      source:  "Apr 10 Exec Summary"
     }
   ]
 

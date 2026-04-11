@@ -6,7 +6,7 @@ type: project
 
 # Agentic Marketing Mastermind — Member Intelligence
 
-> Factual record of AMM sessions, member progress, platform gaps, and JD's contributions. Last updated 2026-04-09 (Fathom transcripts added).
+> Factual record of AMM sessions, member progress, platform gaps, and JD's contributions. Last updated 2026-04-10 (Matt's exec summary integrated).
 
 ---
 
@@ -191,6 +191,37 @@ Participants: Matt Bailey, Justin Day, Bryan Fikes, Michael Vassar, Clayton Joyn
 - Read April 2 weekly session transcript
 - Diego/Juan/Jonathan Kilton/Matt internal alignment meeting (March 26) read
 - Drive folder assets catalogued
+
+### April 10, 2026 — Matt's Internal Executive Summary (shared with JK, Justin, Armond, Matt, JD)
+
+**Program Snapshot:**
+- 9 businesses · 5 Principle-Only (4 of 5 most advanced) · 4 Principle+Team (furthest behind)
+- Current revenue: **$200,000**
+- Andy Zelt confirmed as the one member with poor communication and attendance
+
+**What went well:** Members feel a competitive edge and want more. Attendance strong (except Andy). Bryan building multiple sites, helping group visualize. Justin Day built command center VA. Members contributing feedback to setup SOPs.
+
+**What went poorly:** Lack of internal alignment and communication. Matt's honest self-assessment: *"I am new to Claude Code and not able to keep up."* Tech setups incomplete — WARP + MCP alone not enough for non-programmers (needed: Claude Code how-to, file structure, Rules.md/memory.md, skills/plugins). Members want more structure, direction, challenges, milestones. Original milestone (website + workflow) not fully achieved. One unnamed member expecting more interaction/structure, sharing frustration with other members. Members running processes outside SA; MCP/Studio cited as main obstacle.
+
+**Program restructuring approved:**
+- **Hybrid mastermind-course**: quarterly milestones + weekly homework + challenges
+- Arman's Corner (weekly 1hr internal check-in/training), Arman joins milestone definition with JD + Matt
+- Restructured call format: temp check ("what's holding you back?") → goal reports → member showcase → homework
+- Rotating SA team show-and-tell: Arman, Lucas, PMs, Juan Jara, Camila, Justin
+- Implementation hours communicated more clearly; tag-in structure: Matt → JD → Justin → Implementation
+- Pre-onboard prep + educational materials for non-programmers (JD + Matt building)
+- **Workshops deprioritized** — Mastermind is #1, #2, #3 priority for next few days
+
+**Monday April 14 Agenda:**
+1. Intro (5 min)
+2. Temp Check: "What's holding you back from growing?" (5 min)
+3. Program Updates — hybrid structure announcement (5 min)
+4. Show & Tell + Discussion (30 min) — website builds + workflow (previous month topic)
+5. Manick — Visibility Audit + Playbooks (120 min): Roto-Rooter audit example, .md playbooks, Audit Mission run
+6. Homework: send audit + notes by Thursday, sync with JD for tutor time
+7. Close (15 min): takeaway + Q excitement + first action before next check-in
+
+**cc:** Manick, Jonathan, Justin, Arman, JD, Juan, Lucas
 
 ---
 

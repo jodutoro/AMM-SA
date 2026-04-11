@@ -6,7 +6,9 @@ type: project
 
 # Agentic Marketing Mastermind — Member Intelligence
 
-> Factual record of AMM sessions, member progress, platform gaps, and JD's contributions. Last updated 2026-04-09.
+> Factual record of AMM sessions, member progress, platform gaps, and JD's contributions. Last updated 2026-04-10.
+
+**April 10 Program Status:** 9 businesses · $200K revenue · Program converting to hybrid mastermind-course (quarterly milestones + weekly homework). Andy Zelt confirmed as communication gap. Monday April 14 = program reset with Manick Visibility Audit (120 min). Workshops deprioritized. Arman's Corner + pre-onboard materials in progress.
 
 ---
 
