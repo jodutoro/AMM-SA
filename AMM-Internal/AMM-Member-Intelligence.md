@@ -380,3 +380,51 @@ Folder: `Set-up recordings-transcripts` (ID: `1ew-i0IaQGXbk8IskYXw376a00Vl7xkXj`
 | `fathom-meeting-2-weekly-apr9.md` | Weekly group session (most recent) | Apr 9, 2026 | Noah joins; Clayton's ad pipeline; MCP docs issue |
 
 Screenshots: `AMM-Internal/screenshots/` (5 viewport captures, one per session)
+
+### April 13, 2026 — Monthly Call with Manick Bhan [191 min]
+Participants: Manick Bhan, Justin Rondeau, Matt Bailey, Arman Advani, JD, Juan Nicolas Villamil (Nico), Justin Day, Jonathan Giner, Bryan Fikes, Clayton Joyner, Justin Kavanaugh, Kane Sivesind, Michael Vassar.
+
+**Format shift:** Matt announced added structure going forward — quarterly homework, program managers on weekly calls, more JD office hours, recurring office hours with Justin Rondeau (copy/funnels/ads) and Arman (strategy/positioning/sales).
+
+**ACTION ITEMS for JD:**
+- Notify group when Atlas Brain v2 ships
+- Add Research Oracle setup file, ROI Calculator, Google Ads Audit playbook, Enterprise SEO Audit repo to KB
+- Post HTML upload/ingestion status update for Website Studio (Nico is working on it — expected by Apr 14)
+- Set up recurring office hours with formalized links and pre-submitted topics
+
+**Research Oracle — Manick's system, shared as deliverable:**
+Manick shared the exact HTML file that implements the vault intelligence loop (Obsidian + Claude session hook + Gemini CLI research agent). This is the same system JD and this workspace have now implemented. Requires: Obsidian, Gemini CLI, Anthropic API key. Uses a separate Obsidian vault from client vaults. Gemini Deep Research (not Claude) for live data queries. Cron runs daily at 9 PM.
+
+**Member progress highlights:**
+- Justin Day: autonomous business command center (bank + GHL + Gmail + Calendar + self-learning session logs)
+- Jonathan Giner: 5 sites built via Claude Code + Netlify, 1 live (plastic surgeon Miami), Grok for AI images
+- Justin Kavanaugh: Website Studio for infinite local service pages, Site Lens for sales pitches, LinkGraph PDF → lead magnet via AI
+- Bryan Fikes: FamilyTherapistFinder.com satellite directory, Vendasta API integration, command center expansion
+- Clayton Joyner: Installing formal onboarding/client management, active in Forge repo
+
+**Platform announcements (internal roadmap):**
+- Atlas Command: non-technical agent steering UI — missions, approvals, team view, mobile app. Research Oracle baked in.
+- Atlas CLI: free, unlimited, ~30 days out. Atlas One model. No token costs.
+- Atlas Brain v2: this week. 2x faster. GSC + socials MCP connections.
+- Universal Credits: one pool across platform. Per-user quota logging. Agent rules credit caps.
+- Atlas One LLM: marketing-specialized, trained on 1.8B platform data. Causal uplift engine. Free to AMM members.
+- Content Genius v2: half cost, 2x speed, better semantics, fully agentic.
+- CloudStacks expanding: 14 → 35+ publishing sites. CloudStack interlinking = better index retention.
+- New citation builder: unlimited free citations from 200+ sites.
+- New ad channels coming: Meta Ads, LinkedIn, Uber Ads, ChatGPT Ads.
+
+**PBN resurrection case study (internal — do not share publicly):**
+202 dormant sites revived in 10 days. Process: prune bad content → content plan → topic generation → AI article generation → content grade check → publish to WordPress → GSC bulk verification → Indexer. Results: 97% index rate, 87% GSC-verified, 1000% impression growth, 215% click growth. Key: depth-1/2 pages from homepage must be high quality — Google uses these to establish site quality score.
+
+**Website workflow consensus:**
+SA MCP playbook (plan) → Website Studio (HTML) → Claude Code refine → CMS MCP (Webflow/WP). HTML upload/ingestion feature for Website Studio in development (Nico). WordPress preferred CMS in group.
+
+**Agency strategy consensus:**
+- Land & Expand: month 1 is always the least they pay. SA enterprise data: every cohort expanded, none churned.
+- Pricing: bolt-on marketing dept model at $3K–$5K/mo controlling core 4 (search, ads, website, CRM). 65% margin achievable. Low-ticket ($297) creates service liability.
+- Positioning: "strategy by humans, execution by AI, QA by experts" — lean into AI usage, don't hide it.
+
+**Google Ads Audit playbook results (Nico):**
+29 accounts, 925 campaigns, same ad spend → 70% conversion increase. Mechanism: reallocate budget from underperforming to high-intent keywords, fix accounts with no conversion value tracking.
+
+**JD's direct role in session:** Called out by Matt Bailey for office hours. Confirmed HTML upload feature status with Nico on the call. Mentioned iMessage → Obsidian vault technique as an alternative to Whisperflow.

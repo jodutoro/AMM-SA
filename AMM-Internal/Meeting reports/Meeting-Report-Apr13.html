@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agentic Marketing Mastermind — April 13 Monthly Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0f14;
+    --surface: #13161e;
+    --surface2: #1a1e28;
+    --border: #252a38;
+    --accent: #f0c040;
+    --accent2: #4af0a0;
+    --accent3: #f05060;
+    --accent4: #6090f0;
+    --text: #e8eaf0;
+    --text-muted: #7a8099;
+    --text-dim: #4a5068;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(240,192,64,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(240,192,64,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 60px 24px 100px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header {
+    margin-bottom: 56px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 40px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .header-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(42px, 8vw, 80px);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+
+  .header h1 span { color: var(--accent); }
+
+  .header-desc {
+    font-size: 15px;
+    color: var(--text-muted);
+    max-width: 560px;
+  }
+
+  .participants {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 24px;
+  }
+
+  .pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: 3px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+
+  .section {
+    margin-bottom: 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface);
+    overflow: hidden;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .section:nth-child(1) { animation-delay: 0.05s; }
+  .section:nth-child(2) { animation-delay: 0.1s; }
+  .section:nth-child(3) { animation-delay: 0.15s; }
+  .section:nth-child(4) { animation-delay: 0.2s; }
+  .section:nth-child(5) { animation-delay: 0.25s; }
+  .section:nth-child(6) { animation-delay: 0.3s; }
+  .section:nth-child(7) { animation-delay: 0.35s; }
+
+  .section-trigger {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s;
+  }
+
+  .section-trigger:hover { background: var(--surface2); }
+
+  .section-icon {
+    font-size: 20px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+
+  .section-title-group { flex: 1; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.04em;
+    color: var(--text);
+  }
+
+  .section-count {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-right: 4px;
+  }
+
+  .chevron {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+    color: var(--text-dim);
+  }
+
+  .section.open .chevron { transform: rotate(180deg); }
+
+  .section-body {
+    display: none;
+    padding: 0 24px 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .section.open .section-body {
+    display: block;
+    animation: dropIn 0.25s ease;
+  }
+
+  .summary-text {
+    font-size: 13px;
+    color: var(--text-muted);
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  .cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 16px 18px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+  }
+
+  .card-who {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .card-body {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  .stat-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .stat {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 12px 16px;
+    text-align: center;
+    flex: 1;
+    min-width: 100px;
+  }
+
+  .stat-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+  }
+
+  .theme-yellow .section-icon { background: rgba(240,192,64,0.12); }
+  .theme-yellow .section-label { color: var(--accent); }
+  .theme-yellow .card::before { background: var(--accent); }
+  .theme-yellow .card-who { color: var(--accent); }
+
+  .theme-green .section-icon { background: rgba(74,240,160,0.1); }
+  .theme-green .section-label { color: var(--accent2); }
+  .theme-green .card::before { background: var(--accent2); }
+  .theme-green .card-who { color: var(--accent2); }
+
+  .theme-red .section-icon { background: rgba(240,80,96,0.1); }
+  .theme-red .section-label { color: var(--accent3); }
+  .theme-red .card::before { background: var(--accent3); }
+  .theme-red .card-who { color: var(--accent3); }
+
+  .theme-blue .section-icon { background: rgba(96,144,240,0.1); }
+  .theme-blue .section-label { color: var(--accent4); }
+  .theme-blue .card::before { background: var(--accent4); }
+  .theme-blue .card-who { color: var(--accent4); }
+
+  .theme-purple .section-icon { background: rgba(180,120,240,0.1); }
+  .theme-purple .section-label { color: #b478f0; }
+  .theme-purple .card::before { background: #b478f0; }
+  .theme-purple .card-who { color: #b478f0; }
+
+  .theme-orange .section-icon { background: rgba(240,140,60,0.1); }
+  .theme-orange .section-label { color: #f08c3c; }
+  .theme-orange .card::before { background: #f08c3c; }
+  .theme-orange .card-who { color: #f08c3c; }
+
+  .theme-cyan .section-icon { background: rgba(60,200,240,0.1); }
+  .theme-cyan .section-label { color: #3cc8f0; }
+  .theme-cyan .card::before { background: #3cc8f0; }
+  .theme-cyan .card-who { color: #3cc8f0; }
+
+  .action-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .action-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .action-owner {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    flex-shrink: 0;
+    padding-top: 2px;
+    min-width: 60px;
+  }
+
+  .checkbox {
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .footer {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes dropIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    .container { padding: 36px 16px 60px; }
+    .section-trigger { padding: 16px; }
+    .section-body { padding: 0 16px 20px; }
+    .stat-val { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="header-meta">Monthly Report · April 13, 2026 · 191 min · Manick Bhan</div>
+    <h1>Agentic Marketing<br><span>Mastermind</span></h1>
+    <p class="header-desc">Monthly deep-dive with Manick Bhan covering member wins, new agentic tools, platform roadmap, agency strategy, and the Research Oracle launch.</p>
+    <div class="participants">
+      <span class="pill">Manick Bhan · Search Atlas</span>
+      <span class="pill">Justin Rondeau · Search Atlas</span>
+      <span class="pill">Matt Bailey · Search Atlas</span>
+      <span class="pill">Arman Advani · Search Atlas</span>
+      <span class="pill">Jonathan Duque · Search Atlas</span>
+      <span class="pill">Juan Nicolas Villamil · Search Atlas</span>
+      <span class="pill">Justin Day</span>
+      <span class="pill">Jonathan Giner · Marsense</span>
+      <span class="pill">Bryan Fikes</span>
+      <span class="pill">Clayton Joyner · modrn.io</span>
+      <span class="pill">Justin Kavanaugh · sitesatscale.com</span>
+      <span class="pill">Kane Sivesind · coachcatalyst.com</span>
+      <span class="pill">Michael Vassar · digitalcoastmarketing.com</span>
+    </div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="section theme-yellow open">
+    <button class="section-trigger" onclick="toggle(this)">
+      <div class="section-icon">📋</div>
+      <div class="section-title-group">
+        <div class="section-label">Overview</div>
+        <div class="section-title">Session Summary</div>
+      </div>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="section-body">
+      <p class="summary-text">Most packed session to date — 191 minutes covering member progress, 4 new tool drops (Research Oracle, Google Ads Audit, SEO ROI Calculator, Enterprise SEO Audit), a major platform roadmap reveal (Atlas Command, Atlas CLI, Atlas Brain v2, Atlas One LLM), and a group-wide strategy alignment on agency pricing and the "land and expand" model.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="stat-val">191</div><div class="stat-label">Minutes</div></div>
+        <div class="stat"><div class="stat-val">4</div><div class="stat-label">Tools Delivered</div></div>
+        <div class="stat"><div class="stat-val">5+</div><div class="stat-label">Member Wins</div></div>
+        <div class="stat"><div class="stat-val">4</div><div class="stat-label">Platform Launches</div></div>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-who">Context</div>
+          <div class="card-title">The group has hit an inflection point</div>
+          <div class="card-body">Second monthly call since the program launched. Members are no longer just setting up — they're shipping client work. Justin Day connected his entire business to an autonomous AI command center. Jonathan Giner has 5 sites built (1 live, 3 pending client input). Justin Kavanaugh is using Website Studio to create infinite local service pages and is using site visualization to close deals. The conversation has shifted from "how do I get started" to "how do I price, scale, and systematize."</div>
+        </div>
+        <div class="card">
+          <div class="card-who">Key Theme</div>
+          <div class="card-title">Agentic-first is the competitive moat</div>
+          <div class="card-body">Manick's clearest strategic message: agencies that openly use AI and prove they use it the right way will win. The analogy — a Tesla that needs a human to tell it where to go, but doesn't require the human to drive — framed the group's positioning. Strategy led by humans, execution by AI, QA by experts. Land with one service that delivers clear ROI, then expand into the full stack.</div>
+        </div>
+        <div class="card">
+          <div class="card-who">Key Theme</div>
+          <div class="card-title">The Research Oracle is now member-ready</div>
+          <div class="card-body">Manick shared his personal "Research Oracle" system — the same vault intelligence loop using Obsidian, Claude Code session hooks, and Gemini for live research — as a member deliverable. He gave the group the exact HTML setup file and said: "Give this to your Claude Code and say implement this on my computer, and that's it." This system is now set up and active for this workspace.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEMBER WINS -->
+  <div class="section theme-green">
+    <button class="section-trigger" onclick="toggle(this)">
+      <div class="section-icon">🏆</div>
+      <div class="section-title-group">
+        <div class="section-label">Wins</div>
+        <div class="section-title">Member Progress</div>
+      </div>
+      <span class="section-count">5 wins</span>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="section-body">
+      <p class="summary-text">Members who presented live builds and workflow innovations this session.</p>
+      <div class="cards">
+        <div class="card">
+          <div class="card-who">Justin Day</div>
+          <div class="card-title">Full business command center — autonomous, self-learning</div>
+          <div class="card-body">Built an AI command center connecting every facet of his business: bank account (Plaid), GoHighLevel, Gmail, Google Calendar, and more. The system is autonomous and self-learning — it logs every session, records every 10 edits or 3 minutes as a backup, and learns from its own mistakes. Justin described it as "I can speak to my business and have the command center remember itself." Hasn't yet built a satellite site — the command center was his "paintbrush before painting."</div>
+        </div>
+        <div class="card">
+          <div class="card-who">Jonathan Giner · Marsense</div>
+          <div class="card-title">5 sites built via Claude Code — 1 live, 3 pending client input</div>
+          <div class="card-body">Screen-shared 3 sites live: an F1 event production company (major upgrade from a single-page site), a high-end video production company, and a plastic surgeon in Miami (AI-generated images via Grok). Builds entirely via Claude Code → HTML → Netlify. Uses Grok for AI image generation ("Grok will kind of let you do pretty much whatever you want"). Key challenge: getting consistent look/feel — planning on optimization as a next step. Uses existing site sitemaps when clients have them.</div>
+        </div>
+        <div class="card">
+          <div class="card-who">Justin Kavanaugh · sitesatscale.com</div>
+          <div class="card-title">Infinite local service pages + Site Lens sales pitch</div>
+          <div class="card-body">Used Website Studio to create infinite local service pages for local businesses — effectively "owning markets." Used Site Lens to visualize competitor sitemaps vs. client sitemaps (the spider web view) as a visual sales pitch: "You have 5 pages and this is what your competitor has — this is why we need a long-term SEO play." Also used AI to synthesize the 100-page LinkGraph PDF into a concise lead magnet.</div>
+        </div>
+        <div class="card">
+          <div class="card-who">Bryan Fikes</div>
+          <div class="card-title">Satellite directory site + Vendasta integration + command center</div>
+          <div class="card-body">Building FamilyTherapistFinder.com — a therapist directory targeting MFTs nationwide. Strategy: wrong/incomplete data prompts therapists to claim and correct their listing, generating links from .edu nursing schools and travel nurse agencies. Also integrated Vendasta's API into his command center. Active on the Forge repo and in Circle.</div>
+        </div>
+        <div class="card">
+          <div class="card-who">Arman Advani · Search Atlas</div>
+          <div class="card-title">Full CMS workflow: Website Studio → Webflow MCP, live demo</div>
+          <div class="card-body">Live-demoed the new website workflow: (1) Run playbook in Search Atlas MCP to define site architecture, style, services, location, colors — get an approved plan first. (2) Generate HTML in Website Studio. (3) Refine with Claude Code using the "Claude Awesome Design Skills" Git repo. (4) Rebuild HTML files in Webflow MCP to create an editable client CMS. Result: SEO-first structure from SA, editable backend from Webflow, agentic execution throughout — without learning Webflow manually.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEW TOOLS -->
+  <div class="section theme-blue">
+    <button class="section-trigger" onclick="toggle(this)">
+      <div class="section-icon">🛠️</div>
+      <div class="section-title-group">
+        <div class="section-label">Delivered This Session</div>
+        <div class="section-title">New Tools & Playbooks</div>
+      </div>
+      <span class="section-count">4 tools</span>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="section-body">
+      <p class="summary-text">Resources shared live during this session — all being added to the knowledge base.</p>
+      <div class="cards">
+        <div class="card">
+          <div class="card-who">Manick Bhan · Research Oracle</div>
+          <div class="card-title">Research Oracle — passive blind spot detection (HTML setup file)</div>
+          <div class="card-body">Manick's personal intelligence system. An insight agent reads personal data (voice notes, Claude Code session logs, team chats) from an Obsidian Vault, identifies blind spots using analytical lenses, then a research agent picks the top 3 topics and queries Gemini Deep Research for live data — all passively, on a scheduled cron. A Claude Code SessionEnd hook continuously feeds session context into the vault. Setup: drop the provided HTML file into Claude Code and say "implement this." Requires Obsidian + Gemini CLI. Real example: the Oracle recommended standardizing the email layer across SA's 80 microservices — a solution the team hadn't considered. Added to KB.</div>
+        </div>
+        <div class="card">
+          <div class="card-who">Justin Rondeau · Google Ads Audit</div>
+          <div class="card-title">Google Ads Audit and Strategy playbook — 70% conversion lift, same budget</div>
+          <div class="card-body">A playbook that analyzes historical ad performance across accounts and recommends budget reallocation from underperforming keywords to high-intent keywords. Tested across 29 accounts, 925 campaigns: 70% increase in total conversions with essentially no change in total ad spend. Mechanism is simple — stop spending on keywords that don't convert, double down on the ones that do. Playbook flagged in the system. Homework: run it on one client account and report results at the next session.</div>
+        </div>
+        <div class="card">
+          <div class="card-who">Arman Advani · SEO ROI Calculator</div>
+          <div class="card-title">Interactive SEO ROI Calculator — sales asset for closing clients</div>
+          <div class="card-body">An HTML file built with Claude using a janky spreadsheet as the input. Allows entering: monthly marketing budget, customer lifetime value, monthly search volume for target keywords, estimated visitor-to-lead rate, and lead-to-customer rate. Outputs projected ROI and shows how each lever (conversion rate, lead quality, ad spend) impacts the bottom line. Second half frames the agency as a business consultant — not just an SEO vendor. Action: upload the file to Claude, add your logo/branding, use as a sales asset. File distributed to the group.</div>
+        </div>
+        <div class="card">
+          <div class="card-who">Manick Bhan · Enterprise SEO Audit</div>
+          <div class="card-title">Enterprise SEO Audit — 6-phase, GSC + GA4 + crawl data (Roto-Rooter model)</div>
+          <div class="card-body">An automated 6-phase audit that pulls from Google Search Console, GA4, and website crawl data to produce a comprehensive SEO action plan. Runs on a 30-day cadence — implement fixes, rerun, track completion. Internal use only (not a client-facing report). Built to replace the work of 3 semantic SEO professionals and compresses a 2-week manual audit to ~60 minutes of automated processing. Repo access being shared with the group. Homework: run it on your top client and report results.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLATFORM ROADMAP -->
+  <div class="section theme-purple">
+    <button class="section-trigger" onclick="toggle(this)">
+      <div class="section-icon">🚀</div>
+      <div class="section-title-group">
+        <div class="section-label">Coming Soon</div>
+        <div class="section-title">Platform Roadmap</div>
+      </div>
+      <span class="section-count">5 launches</span>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="section-body">
+      <p class="summary-text">Upcoming Search Atlas platform updates announced by Manick this session.</p>
+      <div class="cards">
+        <div class="card">
+          <div class="card-who">Atlas Command · Coming Soon</div>
+          <div class="card-title">Atlas Command — AI mission control UI for non-technical users</div>
+          <div class="card-body">A visual "marketing IDE" for steering agents without touching the command line. Create projects, receive AI-generated missions, track status, preview work, approve changes, and view completed tasks — all in a dashboard. Team-shareable: anyone on the account can see active missions, contributing without duplicating work. Integrates the Brand Vault visually. Mobile app (Command Mobile) included. The Research Oracle will be baked in natively. Designed specifically to give non-technical team members an agentic interface.</div>
+        </div>
+        <div class="card">
+          <div class="card-who">Atlas CLI · ~30 days</div>
+          <div class="card-title">Atlas CLI — free, unlimited command-line tool (Claude alternative for marketing execution)</div>
+          <div class="card-body">A Claude Code equivalent that runs the Atlas One model — free and unlimited for the foreseeable future (at least 6 months). Designed to replace Claude for all marketing execution tasks, dramatically cutting token costs. If you're hitting Claude credit limits running large campaigns, Atlas CLI will handle that load for free. Available to this group when it ships — JD will notify.</div>
+        </div>
+        <div class="card">
+          <div class="card-who">Atlas Brain v2 · This week</div>
+          <div class="card-title">Atlas Brain v2 — 2x faster, new MCP connections (GSC, socials)</div>
+          <div class="card-body">New version of Atlas Brain launching end of this week. Approximately twice as fast as current. New native MCP connections include Google Search Console (direct, no workarounds) and social platforms (enabling automated social campaigns). JD to notify the group when v2 ships.</div>
+        </div>
+        <div class="card">
+          <div class="card-who">Universal Credits · Upcoming</div>
+          <div class="card-title">Universal Credits — one credit pool across the entire platform</div>
+          <div class="card-body">Platform-wide shift from per-product quotas (Content Genius quota, local quota, etc.) to a single unified credit bank. Use your credits however you want each month — more web projects one month, more local the next. All quota usage is being timestamped and logged by user/IP/action, so you'll have a full credit history per client for COGS modeling. Coming with the ability to set per-client credit caps via agent rules.</div>
+        </div>
+        <div class="card">
+          <div class="card-who">Atlas One LLM · In Development</div>
+          <div class="card-title">Atlas One — marketing-specialized LLM trained on 1.8B in platform data</div>
+          <div class="card-body">Search Atlas is building its own LLM trained exclusively on marketing action-to-outcome data: 1.8B in paid media spend, 375M auto-fixes deployed to websites, 300K press releases, 200K+ guest post backlinks, 70M+ GBP deployments. Goal: a self-learning model that adapts to algorithm changes automatically and surfaces causal uplift — strategies statistically proven to move the needle. Members get free access. Hired a VP of Agentic from Oracle (Stanford/Berkeley) to lead the build.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AGENCY STRATEGY -->
+  <div class="section theme-cyan">
+    <button class="section-trigger" onclick="toggle(this)">
+      <div class="section-icon">📈</div>
+      <div class="section-title-group">
+        <div class="section-label">Strategy</div>
+        <div class="section-title">Agency Model & Positioning</div>
+      </div>
+      <span class="section-count">4 frameworks</span>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="section-body">
+      <p class="summary-text">Strategic frameworks and consensus views that emerged from the group discussion.</p>
+      <div class="cards">
+        <div class="card">
+          <div class="card-who">Land & Expand</div>
+          <div class="card-title">Month one is always the least they'll ever pay you</div>
+          <div class="card-body">Manick's enterprise model: land with the service the client came for, prove ROI using agentic tools, then expand into the full stack — PPC, content, technical SEO, CRO, social. LinkGraph data: every cohort has expanded spend over time, none have churned. The expansion rate over the last 6 months is the highest in company history. Key: show them a unified analytics dashboard so they see the ROI clearly — that's what builds the conviction to keep spending.</div>
+        </div>
+        <div class="card">
+          <div class="card-who">Positioning · Arman Advani</div>
+          <div class="card-title">"Strategy by humans, execution by AI, QA by experts"</div>
+          <div class="card-body">The consensus positioning framework for agencies in 2026: don't hide AI usage, lean into it. The Tesla analogy — AI doesn't go anywhere until a human tells it where to go, and a human is always ready to take the wheel. Your competitive advantage is not that you use AI, it's that you use it the right way. Clients who don't hear this narrative will find agencies that tell it better. Budget stretches further, timelines compress, more gets done with less.</div>
+        </div>
+        <div class="card">
+          <div class="card-who">Pricing · Group Discussion</div>
+          <div class="card-title">Bolt-on marketing department: $3K–$5K/mo controls all 4 channels</div>
+          <div class="card-body">The emerging model: position as a bolt-on marketing department controlling the "core four" — search, advertising, website, CRM/automation. Clayton Joyner: "The more hooks you have in someone, the higher your retention is. The more valuable you are, the more pain there is to change." Current average: $3K–$5K/client. At 150 vertically-specialized clients: 2 account managers + everything else runs in Search Atlas. 65% gross margin achievable when controlling all 4 elements. Low-ticket ($297/mo) debated but consensus is it creates too much service liability at thin margins.</div>
+        </div>
+        <div class="card">
+          <div class="card-who">Website Workflow · Arman + Group</div>
+          <div class="card-title">SA MCP → Website Studio → Claude Code → CMS MCP (the 4-step workflow)</div>
+          <div class="card-body">The standardized website delivery workflow: (1) Run the "High-Converting Website Studio" playbook in SA MCP — refine the full plan (architecture, style, services, locations, keywords) before building anything. (2) Generate SEO-optimized HTML in Website Studio. (3) Refine in Claude Code using design skill repos. (4) Import HTML into Webflow/WordPress MCP to create a client-editable CMS. Benefit: agency keeps agentic execution, client gets familiar CMS interface. HTML upload/ingestion feature for Website Studio is in development to simplify step 4.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEY INSIGHTS -->
+  <div class="section theme-orange">
+    <button class="section-trigger" onclick="toggle(this)">
+      <div class="section-icon">💡</div>
+      <div class="section-title-group">
+        <div class="section-label">Notable</div>
+        <div class="section-title">Key Insights & Quotes</div>
+      </div>
+      <span class="section-count">5 insights</span>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="section-body">
+      <p class="summary-text">Specific insights, techniques, and direct quotes worth carrying forward.</p>
+      <div class="cards">
+        <div class="card">
+          <div class="card-who">Manick Bhan on Content Quality</div>
+          <div class="card-title">Homepage depth 1–2 pages determine your entire quality score</div>
+          <div class="card-body">The secret to reviving dormant sites and ranking new domains: make the pages that are directly linked from the homepage exceptional. Google evaluates the site based on the homepage and everything one node in — that's how it calculates quality. If those pages are outstanding and you add a few backlinks, rankings follow fast. "It doesn't even matter what the history is. If you prune out the garbage content and rebuild, these sites can come back to life."</div>
+        </div>
+        <div class="card">
+          <div class="card-who">Manick Bhan on Research Oracle</div>
+          <div class="card-title">Passive vs. active intelligence — the industry is moving to passive</div>
+          <div class="card-body">"Right now we still live with a question — you ask the question and the agent gives you the answer. Where we're going is passive. I've already asked a bunch of questions today. I don't need to ask another question. You just analyze the questions I've already asked and come up with new information that's relevant that I didn't think about." Use a separate Obsidian vault from your client vault — you want the Oracle focused on you, not over-indexed on client content. Use Gemini CLI (not Claude) for the deep research — Google search is necessary for live data.</div>
+        </div>
+        <div class="card">
+          <div class="card-who">Clayton Joyner on Credits & COGS</div>
+          <div class="card-title">Build a credit estimator to productize your service packages</div>
+          <div class="card-body">Clayton's insight: to scale with any vertical, you need to know the credit cost of each playbook so you can model COGS. His ask: a "Domino's pizza tracker" for website builds — every stage visible to the client and internally. Upcoming SA feature: full quota history with timestamps and per-user logs. You can set credit caps per client in agent rules. Clayton and Bryan are both working toward structured playbooks that turn into repeatable packages with known cost profiles.</div>
+        </div>
+        <div class="card">
+          <div class="card-who">Manick Bhan on Site Networks</div>
+          <div class="card-title">Satellite sites — your own network of digital experiments</div>
+          <div class="card-body">Build your own network of satellite sites. Run experiments on them. Use them to reinforce ranking on your primary sites. Use them for affiliate plays. Use them for paid media landing pages. Use them for comparison content Google won't allow on your brand site. CloudStacks are adding 20+ new sites (currently 14, going to 35+). Every indexed CloudStack link is additive — especially when they interlink. Manick's team is running CloudStacks to every landing page, blog post, and service page for all enterprise clients.</div>
+        </div>
+        <div class="card">
+          <div class="card-who">Arman Advani on Content Strategy</div>
+          <div class="card-title">Start with SA keyword + entity data before building — not after</div>
+          <div class="card-body">Most agencies do it backwards — build the site, then try to optimize the content. The right order: run the SA keyword research + competitor analysis + local market data first. Figure out which keywords have realistic ranking shots before writing a single word. The Domain Knowledge Network (DKN) tool in Auto recommends the full sitemap structure with keyword targets per page. Feed this into Content Genius which automatically scrapes SERP competitors, analyzes entity usage, and writes with those patterns embedded — no external SEO research step needed.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTION ITEMS -->
+  <div class="section theme-red">
+    <button class="section-trigger" onclick="toggle(this)">
+      <div class="section-icon">✅</div>
+      <div class="section-title-group">
+        <div class="section-label">Next Steps</div>
+        <div class="section-title">Action Items</div>
+      </div>
+      <span class="section-count">10 items</span>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="section-body">
+      <p class="summary-text">All commitments made this session, with owners. All members have shared homework.</p>
+      <div class="action-list">
+        <div class="action-item">
+          <div class="checkbox"></div>
+          <div class="action-owner">All Members</div>
+          <div>Fill out the Keyword Ranking Boost sheet — deadline Wednesday Apr 15 (link in Circle)</div>
+        </div>
+        <div class="action-item">
+          <div class="checkbox"></div>
+          <div class="action-owner">All Members</div>
+          <div>Set up the Research Oracle using the provided HTML file (drop it into Claude Code)</div>
+        </div>
+        <div class="action-item">
+          <div class="checkbox"></div>
+          <div class="action-owner">All Members</div>
+          <div>Run the Google Ads Audit and Strategy playbook on at least one client account — report results next session</div>
+        </div>
+        <div class="action-item">
+          <div class="checkbox"></div>
+          <div class="action-owner">All Members</div>
+          <div>Use the SEO ROI Calculator as a sales asset — upload HTML file to Claude, add your branding</div>
+        </div>
+        <div class="action-item">
+          <div class="checkbox"></div>
+          <div class="action-owner">All Members</div>
+          <div>Build more satellite sites — "create an army of digital satellite brands" — let them grow before using for link equity</div>
+        </div>
+        <div class="action-item">
+          <div class="checkbox"></div>
+          <div class="action-owner">All Members</div>
+          <div>Run the Enterprise SEO Audit on your top client — share findings at next session (repo access shared)</div>
+        </div>
+        <div class="action-item">
+          <div class="checkbox"></div>
+          <div class="action-owner">All Members</div>
+          <div>Submit bottleneck feedback: where is your biggest agency growth constraint right now? (leads, sales, fulfillment, retention, hiring?)</div>
+        </div>
+        <div class="action-item">
+          <div class="checkbox"></div>
+          <div class="action-owner">Arman</div>
+          <div>Create a custom playbook for a full website build workflow: strategy → wireframes → briefs → keyword research → copy → build</div>
+        </div>
+        <div class="action-item">
+          <div class="checkbox"></div>
+          <div class="action-owner">JD</div>
+          <div>Notify the group when Atlas Brain v2 ships (expected end of this week)</div>
+        </div>
+        <div class="action-item">
+          <div class="checkbox"></div>
+          <div class="action-owner">JD</div>
+          <div>Add all shared resources to the knowledge base: Research Oracle setup file, SEO ROI Calculator, Google Ads Audit playbook, Enterprise SEO Audit repo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>Agentic Marketing Mastermind · Monthly Call with Manick Bhan · April 13, 2026</span>
+    <span>Generated from session transcript · 191 min</span>
+  </div>
+
+</div>
+
+<script>
+  function toggle(btn) {
+    const section = btn.closest('.section');
+    section.classList.toggle('open');
+  }
+</script>
+</body>
+</html>

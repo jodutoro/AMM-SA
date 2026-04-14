@@ -75,6 +75,9 @@ originSessionId: 2d16becd-4777-4769-9ccb-40d46776efe2
 - [[user_work_schedule]] — Jonathan's rotating shift schedule (morning 5AM-3PM / noon 10AM-7PM, alternating weeks, Bogota timezone)
 - [[jd-user-profile]] — Full profile: strengths, working style, communication rules — read this to calibrate every response
 
+## JD Command Center
+- [[jd-command-center]] — Live work dashboard at localhost:8765; ClickUp/Linear/Calendar/Slack; LaunchAgent auto-starts; Claude refreshes cloud data via /api/cloud-update
+
 ## AMM Dashboard
 - [[amm-dashboard-gotchas]] — AMM_DATA is inline in demo.html (not data.js); ROI formula; DevBot DB numbers (Apr 10); comments panel + view-active 2-col layout
 
