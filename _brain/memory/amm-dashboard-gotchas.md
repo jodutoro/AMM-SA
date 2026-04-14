@@ -1,14 +1,14 @@
 ---
 name: AMM Dashboard Gotchas
-description: Technical gotchas for AMM-Internal/dashboard/demo.html — data architecture, ROI formula, DevBot DB numbers
+description: Technical gotchas for AMM-Internal/dashboard/index.html — data architecture, ROI formula, DevBot DB numbers (index.html promoted to index.html)
 type: project
 ---
 
 # AMM Dashboard — Technical Gotchas
 
-**Why:** Encountered a data-edit bug where changes to data.js had no effect. Root cause: `AMM_DATA` is defined **inline inside demo.html** (search for `const AMM_DATA =` in demo.html), not loaded from data.js. All edits to platformGaps, members, KPIs, etc. must go into demo.html directly.
+**Why:** Encountered a data-edit bug where changes to data.js had no effect. Root cause: `AMM_DATA` is defined **inline inside index.html** (search for `const AMM_DATA =` in index.html), not loaded from data.js. All edits to platformGaps, members, KPIs, etc. must go into index.html directly.
 
-**How to apply:** Before editing any dashboard data, always confirm you are editing the inline `AMM_DATA` object in `demo.html`. Changes to `data.js` are a dead end.
+**How to apply:** Before editing any dashboard data, always confirm you are editing the inline `AMM_DATA` object in `index.html`. Changes to `data.js` are a dead end.
 
 ---
 

@@ -46,3 +46,16 @@ Resources/design-inspo/
 
 # Large static asset library — not edited, ignore for git performance
 Skills/galaxy/
+
+# Syncthing — conflict files and directories that roam between machines but aren't this repo's concern
+.sync-conflict*
+Agent
+Agent/
+Local/
+~/
+*.base
+.planning/
+Clients/Bella Caramella/assets/
+Clients/lunanolasco/*.m4a
+Clients/lunanolasco/*.mp4
+Clients/lunanolasco/*.mov
