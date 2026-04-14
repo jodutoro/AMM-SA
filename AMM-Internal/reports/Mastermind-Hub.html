@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mastermind Hub — Agentic Agency Series</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ────────────────────────────────────────────────────── */
+:root{
+  --bg:     #080c14;
+  --bg2:    #0d1526;
+  --bg3:    #111d35;
+  --bdr:    #1e3052;
+  --bdr2:   #2a4068;
+  --text:   #e2e8f0;
+  --text2:  #94a3b8;
+  --text3:  #64748b;
+  --cyan:   #38bdf8;
+  --green:  #34d399;
+  --orange: #fb923c;
+  --purple: #a78bfa;
+  --pink:   #f472b6;
+  --yellow: #fbbf24;
+  --sans:   'Inter',system-ui,sans-serif;
+  --mono:   'JetBrains Mono','Consolas',monospace;
+  --r:      12px;
+  --r-sm:   8px;
+  --max:    1140px;
+  --nav-h:  56px;
+}
+
+/* ── RESET ─────────────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  line-height:1.65;
+  font-size:15px;
+  min-height:100vh;
+}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--bdr2);border-radius:4px}
+
+/* ── FLOATING PILL NAV ─────────────────────────────────────────── */
+.nav{
+  position:fixed;top:16px;left:50%;transform:translateX(-50%);
+  z-index:999;
+  display:flex;align-items:center;gap:2px;
+  background:#0a1628;
+  border:1px solid var(--bdr);
+  border-radius:100px;
+  padding:4px;
+  box-shadow:0 4px 32px rgba(0,0,0,.6),0 0 0 1px rgba(56,189,248,.06);
+  opacity:0;animation:fadeIn .5s ease .3s forwards;
+}
+@keyframes fadeIn{to{opacity:1}}
+.nav-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--cyan);margin:0 6px 0 4px;flex-shrink:0;
+  box-shadow:0 0 8px var(--cyan);
+}
+.np{
+  padding:6px 14px;border-radius:100px;
+  font-size:.68rem;font-weight:600;letter-spacing:.03em;
+  color:rgba(255,255,255,.45);
+  cursor:pointer;transition:all .2s;white-space:nowrap;
+  border:none;background:none;
+}
+.np:hover{color:rgba(255,255,255,.8);background:rgba(255,255,255,.07)}
+.np.active{background:#fff;color:#0f172a;font-weight:700}
+.nav-sep{width:1px;height:18px;background:var(--bdr);margin:0 2px}
+
+/* ── PAGE SYSTEM ───────────────────────────────────────────────── */
+.page{display:none;padding-top:var(--nav-h)}
+.page.active{display:block}
+#page-hub.active{display:block}
+.iframe-page{height:calc(100vh - var(--nav-h));overflow:hidden}
+.infographic-frame{width:100%;height:100%;border:none;display:block}
+
+/* ── ANIMATIONS ────────────────────────────────────────────────── */
+@keyframes slideUp{
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes orbitHalo{
+  from{transform:rotate(0deg) translateX(56px) rotate(0deg)}
+  to{transform:rotate(360deg) translateX(56px) rotate(-360deg)}
+}
+@keyframes pulse{
+  0%,100%{opacity:.5}
+  50%{opacity:1}
+}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s cubic-bezier(.16,1,.3,1)}
+.rv.vis{opacity:1;transform:translateY(0)}
+.rv.d1{transition-delay:.06s}.rv.d2{transition-delay:.12s}.rv.d3{transition-delay:.18s}
+.rv.d4{transition-delay:.24s}.rv.d5{transition-delay:.3s}.rv.d6{transition-delay:.36s}
+.rv.d7{transition-delay:.42s}.rv.d8{transition-delay:.48s}
+
+/* ── LAYOUT ────────────────────────────────────────────────────── */
+.wrap{max-width:var(--max);margin:0 auto;padding:72px 40px}
+.wrap-sm{max-width:var(--max);margin:0 auto;padding:56px 40px}
+.section-divider{max-width:var(--max);margin:0 auto;height:1px;background:linear-gradient(90deg,transparent,var(--bdr),transparent)}
+
+/* ── SECTION HEADER ────────────────────────────────────────────── */
+.sec-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--text3);margin-bottom:12px;
+}
+.sec-eyebrow-dot{
+  width:5px;height:5px;border-radius:50%;
+  background:var(--cyan);flex-shrink:0;
+}
+.sec-title{
+  font-size:clamp(1.65rem,3.5vw,2.5rem);
+  font-weight:800;letter-spacing:-.03em;line-height:1.1;
+  color:var(--text);margin-bottom:12px;
+}
+.sec-title .hl-cyan{color:var(--cyan)}
+.sec-title .hl-green{color:var(--green)}
+.sec-title .hl-orange{color:var(--orange)}
+.sec-title .hl-purple{color:var(--purple)}
+.sec-desc{
+  font-size:.93rem;color:var(--text2);
+  max-width:520px;line-height:1.75;margin-bottom:48px;
+}
+
+/* ── DARK CARD (21st.dev pattern) ──────────────────────────────── */
+.card{
+  background:linear-gradient(160deg,var(--bg2),var(--bg3));
+  border:1px solid var(--bdr);
+  border-radius:var(--r);
+  padding:24px;
+  position:relative;
+  transition:border-color .2s,box-shadow .2s;
+  overflow:hidden;
+}
+.card:hover{
+  border-color:var(--bdr2);
+  box-shadow:0 0 0 1px var(--bdr2),0 8px 32px rgba(0,0,0,.4);
+}
+/* Corner bracket decorators */
+.card::before,.card::after{
+  content:'';
+  position:absolute;
+  width:8px;height:8px;
+  background:var(--bdr2);
+  opacity:0;transition:opacity .2s;
+}
+.card::before{top:-1px;left:-1px;clip-path:polygon(0 0,100% 0,0 100%)}
+.card::after{bottom:-1px;right:-1px;clip-path:polygon(100% 100%,0 100%,100% 0)}
+.card:hover::before,.card:hover::after{opacity:1}
+
+/* Inner glow on hover */
+.card.glow:hover::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(56,189,248,.4),transparent);
+  opacity:1;width:100%;clip-path:none;
+}
+
+/* ── HERO ──────────────────────────────────────────────────────── */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;
+  padding:120px 40px 80px;
+  position:relative;
+  overflow:hidden;
+}
+.hero-bg-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(var(--bdr) 1px,transparent 1px),
+    linear-gradient(90deg,var(--bdr) 1px,transparent 1px);
+  background-size:60px 60px;
+  opacity:.35;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%);
+}
+.hero-glow{
+  position:absolute;
+  width:700px;height:700px;
+  background:radial-gradient(ellipse at center,rgba(56,189,248,.1) 0%,transparent 70%);
+  top:50%;left:50%;transform:translate(-50%,-55%);
+  pointer-events:none;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.25);
+  border-radius:100px;padding:7px 20px;
+  font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  color:#7dd3fc;margin-bottom:32px;position:relative;
+  opacity:0;animation:slideUp .6s ease .4s forwards;
+}
+.hero-badge-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--cyan);
+  animation:pulse 2s ease infinite;
+}
+.hero-h1{
+  font-size:clamp(2.6rem,6vw,4.8rem);
+  font-weight:900;color:#fff;
+  line-height:1.0;letter-spacing:-.04em;
+  margin-bottom:24px;position:relative;
+  opacity:0;animation:slideUp .65s ease .55s forwards;
+}
+.hero-h1 .hl{
+  background:linear-gradient(135deg,var(--cyan),var(--purple));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-sub{
+  font-size:1.05rem;color:rgba(255,255,255,.55);
+  max-width:500px;margin:0 auto 48px;line-height:1.75;position:relative;
+  opacity:0;animation:slideUp .6s ease .7s forwards;
+}
+.hero-stats{
+  display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+  position:relative;
+  opacity:0;animation:slideUp .6s ease .85s forwards;
+}
+.hero-stat{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  border-radius:100px;padding:8px 18px;
+  font-size:.78rem;font-weight:600;color:rgba(255,255,255,.7);
+  transition:all .2s;cursor:default;
+}
+.hero-stat:hover{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.2)}
+.hero-stat-n{
+  font-size:.85rem;font-weight:800;
+  background:linear-gradient(135deg,var(--cyan),var(--green));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+/* ── STACK FLOW ────────────────────────────────────────────────── */
+.stack-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;
+  background:var(--bdr);
+  border:1px solid var(--bdr);
+  border-radius:var(--r);
+  overflow:hidden;
+}
+.stack-node{
+  background:var(--bg2);
+  padding:28px 24px;
+  position:relative;
+  transition:background .2s;
+}
+.stack-node:hover{background:var(--bg3)}
+.stack-node-num{
+  font-family:var(--mono);font-size:.58rem;font-weight:700;
+  letter-spacing:.18em;color:var(--text3);
+  text-transform:uppercase;margin-bottom:16px;
+}
+.stack-node-icon{
+  font-size:1.6rem;margin-bottom:14px;line-height:1;
+  display:block;
+}
+.stack-node-name{
+  font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:8px;
+}
+.stack-node-desc{
+  font-size:.78rem;color:var(--text2);line-height:1.65;margin-bottom:16px;
+}
+.stack-node-tags{display:flex;flex-direction:column;gap:4px}
+.stack-tag{
+  font-family:var(--mono);font-size:.62rem;color:var(--text3);
+  display:flex;align-items:center;gap:6px;
+}
+.stack-tag::before{
+  content:'';width:4px;height:4px;border-radius:50%;
+  background:var(--bdr2);flex-shrink:0;
+}
+.stack-arrow-col{
+  background:var(--bg);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text3);font-size:1.1rem;
+  padding:0 4px;
+}
+
+/* ── COMMAND GRID ──────────────────────────────────────────────── */
+.cmd-cats{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.cmd-cat{}
+.cmd-cat-header{
+  display:flex;align-items:center;gap:10px;
+  padding:12px 0;
+  border-bottom:1px solid var(--bdr);
+  margin-bottom:2px;
+}
+.cmd-cat-dot{
+  width:8px;height:8px;border-radius:2px;flex-shrink:0;
+}
+.cmd-cat-name{
+  font-family:var(--mono);font-size:.65rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;
+}
+.cmd-row{
+  display:grid;grid-template-columns:160px 1fr;
+  align-items:baseline;gap:16px;
+  padding:11px 0;
+  border-bottom:1px solid rgba(30,48,82,.6);
+  transition:background .15s;cursor:default;
+}
+.cmd-row:last-child{border-bottom:none}
+.cmd-row:hover{background:rgba(255,255,255,.02);margin:0 -12px;padding:11px 12px}
+.cmd-name{
+  font-family:var(--mono);font-size:.8rem;font-weight:600;
+  color:var(--text);
+}
+.cmd-desc{font-size:.8rem;color:var(--text2);line-height:1.55}
+.cmd-tag{
+  font-family:var(--mono);font-size:.58rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:2px 8px;border-radius:4px;
+  white-space:nowrap;
+}
+
+/* ── INTENT ROUTING TABLE ──────────────────────────────────────── */
+.routing-blocks{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--bdr);border:1px solid var(--bdr);border-radius:var(--r);overflow:hidden}
+.routing-block{background:var(--bg2);padding:0}
+.routing-block-header{
+  padding:14px 18px;
+  border-bottom:1px solid var(--bdr);
+}
+.routing-block-label{
+  font-family:var(--mono);font-size:.6rem;font-weight:700;
+  letter-spacing:.15em;text-transform:uppercase;
+  margin-bottom:4px;
+}
+.routing-block-hint{font-size:.75rem;color:var(--text3)}
+.routing-row{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  padding:10px 18px;
+  border-bottom:1px solid rgba(30,48,82,.5);
+  gap:12px;
+}
+.routing-row:last-child{border-bottom:none}
+.routing-trigger{font-size:.78rem;color:var(--text2);font-style:italic;flex:1}
+.routing-cmd{
+  font-family:var(--mono);font-size:.72rem;font-weight:600;
+  color:var(--text);white-space:nowrap;
+}
+
+/* ── WORKFLOW MAP ──────────────────────────────────────────────── */
+.wf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.wf-card{
+  background:linear-gradient(160deg,var(--bg2),var(--bg3));
+  border:1px solid var(--bdr);
+  border-radius:var(--r);
+  padding:22px 20px;
+  position:relative;overflow:hidden;
+  transition:border-color .2s,transform .2s;
+}
+.wf-card:hover{border-color:var(--bdr2);transform:translateY(-2px)}
+.wf-card-top-line{
+  position:absolute;top:0;left:0;right:0;height:2px;
+}
+.wf-card-icon{font-size:1.3rem;margin-bottom:12px;display:block}
+.wf-card-name{
+  font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:6px;
+}
+.wf-card-steps{
+  font-family:var(--mono);font-size:.6rem;font-weight:600;
+  letter-spacing:.1em;color:var(--text3);margin-bottom:14px;
+}
+.wf-card-flow{
+  display:flex;flex-direction:column;gap:4px;
+}
+.wf-flow-step{
+  display:flex;align-items:center;gap:6px;
+  font-size:.73rem;color:var(--text2);
+}
+.wf-flow-step::before{
+  content:'';width:4px;height:4px;border-radius:50%;
+  background:var(--bdr2);flex-shrink:0;
+}
+
+/* ── FAQ ────────────────────────────────────────────────────────── */
+.faq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.faq-card{
+  background:linear-gradient(160deg,var(--bg2),var(--bg3));
+  border:1px solid var(--bdr);
+  border-radius:var(--r);
+  padding:22px 22px;
+  transition:border-color .2s;
+}
+.faq-card:hover{border-color:var(--bdr2)}
+.faq-card.warn{border-color:rgba(251,146,60,.25);background:linear-gradient(160deg,rgba(251,146,60,.06),var(--bg2))}
+.faq-q-row{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px}
+.faq-num{
+  font-family:var(--mono);font-size:.6rem;font-weight:700;
+  color:var(--cyan);background:rgba(56,189,248,.12);
+  border:1px solid rgba(56,189,248,.2);
+  padding:3px 7px;border-radius:4px;white-space:nowrap;margin-top:2px;flex-shrink:0;
+}
+.faq-card.warn .faq-num{color:var(--orange);background:rgba(251,146,60,.12);border-color:rgba(251,146,60,.2)}
+.faq-q{font-size:.87rem;font-weight:600;color:var(--text);line-height:1.4}
+.faq-a{font-size:.8rem;color:var(--text2);line-height:1.7}
+.faq-a code{
+  font-family:var(--mono);font-size:.85em;
+  background:rgba(255,255,255,.07);
+  padding:1px 6px;border-radius:4px;color:var(--cyan);
+}
+.faq-card.warn .faq-a code{color:var(--orange)}
+
+/* ── FILE STRUCTURE ────────────────────────────────────────────── */
+.file-layout{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--bdr);border:1px solid var(--bdr);border-radius:var(--r);overflow:hidden}
+.file-panel{background:var(--bg2);padding:24px}
+.file-panel-header{
+  font-family:var(--mono);font-size:.62rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--text3);margin-bottom:16px;
+  padding-bottom:10px;border-bottom:1px solid var(--bdr);
+}
+.ftree{font-family:var(--mono);font-size:.76rem;line-height:2.1}
+.ft-dir{color:var(--cyan)}
+.ft-file{color:var(--text2)}
+.ft-tree{color:var(--bdr2)}
+.ft-ann{color:var(--text3);font-style:italic;margin-left:4px}
+.ft-warn{color:#f87171}
+.token-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--bdr);border:1px solid var(--bdr);margin-top:16px;border-radius:var(--r-sm);overflow:hidden}
+.token-cell{background:var(--bg3);padding:12px 14px}
+.tc-label{font-family:var(--mono);font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:3px}
+.tc-val{font-family:var(--mono);font-size:.82rem;font-weight:700;color:var(--text)}
+.tc-warn{color:var(--orange)}
+.ignore-block{
+  font-family:var(--mono);font-size:.74rem;
+  color:var(--text2);line-height:2;
+  background:var(--bg3);padding:16px;
+  border-radius:var(--r-sm);
+  border:1px solid var(--bdr);
+}
+.claude-rules{font-size:.82rem;color:var(--text2);line-height:1.9}
+.claude-rules strong{color:var(--text)}
+
+/* ── GOLDEN RULES ──────────────────────────────────────────────── */
+.rules-list{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.rule-card{
+  background:linear-gradient(160deg,var(--bg2),var(--bg3));
+  border:1px solid var(--bdr);
+  border-radius:var(--r);
+  padding:22px 22px;
+  display:grid;grid-template-columns:44px 1fr;
+  gap:16px;align-items:start;
+  transition:border-color .2s;
+}
+.rule-card:hover{border-color:var(--bdr2)}
+.rule-n{
+  font-family:var(--mono);font-size:1.6rem;font-weight:800;
+  color:var(--bdr2);line-height:1;padding-top:2px;
+}
+.rule-title{font-size:.87rem;font-weight:700;color:var(--text);margin-bottom:7px}
+.rule-body{font-size:.78rem;color:var(--text2);line-height:1.7}
+.rule-body code{
+  font-family:var(--mono);font-size:.88em;
+  background:rgba(255,255,255,.07);
+  padding:1px 5px;border-radius:3px;color:var(--cyan);
+}
+
+/* ── SEARCH MODAL ──────────────────────────────────────────────── */
+.search-overlay{
+  position:fixed;inset:0;z-index:9999;
+  background:rgba(0,0,0,.75);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  display:flex;align-items:flex-start;justify-content:center;
+  padding-top:13vh;
+  opacity:0;pointer-events:none;
+  transition:opacity .18s ease;
+}
+.search-overlay.open{opacity:1;pointer-events:all}
+.search-box{
+  width:min(580px,92vw);
+  background:#0d1526;
+  border:1px solid var(--bdr2);
+  border-radius:var(--r);
+  box-shadow:0 32px 80px rgba(0,0,0,.8),0 0 0 1px rgba(56,189,248,.08);
+  transform:scale(.96) translateY(-12px);
+  transition:transform .28s cubic-bezier(.34,1.4,.64,1);
+  overflow:hidden;
+}
+.search-overlay.open .search-box{transform:scale(1) translateY(0)}
+.search-input-row{
+  display:flex;align-items:center;gap:14px;
+  padding:0 16px;height:54px;
+  border-bottom:1px solid var(--bdr);
+}
+.search-icon{width:16px;height:16px;stroke:var(--text3);fill:none;stroke-width:1.8;stroke-linecap:round;flex-shrink:0}
+#search-input{
+  flex:1;background:none;border:none;outline:none;
+  font-family:var(--sans);font-size:.92rem;
+  color:var(--text);
+}
+#search-input::placeholder{color:var(--text3)}
+.search-esc{
+  font-family:var(--mono);font-size:.6rem;font-weight:600;
+  padding:3px 8px;border:1px solid var(--bdr2);
+  border-radius:4px;color:var(--text3);cursor:pointer;
+}
+.search-results{max-height:400px;overflow-y:auto}
+.sr-empty{
+  padding:40px 20px;text-align:center;
+  font-size:.83rem;color:var(--text3);
+  font-family:var(--mono);letter-spacing:.04em;
+}
+.sr-group-label{
+  padding:10px 16px 6px;
+  font-family:var(--mono);font-size:.58rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--text3);
+  position:sticky;top:0;background:#0d1526;
+  border-bottom:1px solid var(--bdr);
+}
+.sr-item{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 16px;cursor:pointer;
+  border-bottom:1px solid rgba(30,48,82,.5);
+  transition:background .12s;text-decoration:none;
+}
+.sr-item:last-child{border-bottom:none}
+.sr-item:hover,.sr-item.focused{background:rgba(56,189,248,.07)}
+.sr-ico{
+  width:30px;height:30px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.05);
+  border:1px solid var(--bdr);
+  border-radius:var(--r-sm);
+  font-size:.85em;flex-shrink:0;color:var(--text3);
+}
+.sr-info{flex:1;min-width:0}
+.sr-title{font-size:.85rem;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sr-desc{font-size:.74rem;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
+.sr-arrow{font-size:.7rem;color:var(--text3);margin-left:auto;flex-shrink:0}
+.sr-item:hover .sr-arrow,.sr-item.focused .sr-arrow{color:var(--cyan)}
+.search-footer{
+  padding:9px 16px;border-top:1px solid var(--bdr);
+  font-family:var(--mono);font-size:.58rem;color:var(--text3);
+  display:flex;gap:16px;align-items:center;
+}
+.sf-kbd{padding:2px 6px;border:1px solid var(--bdr2);border-radius:3px;color:var(--text3);margin-right:4px}
+
+/* ── RESPONSIVE ────────────────────────────────────────────────── */
+@media(max-width:900px){
+  .wrap,.wrap-sm{padding:56px 24px}
+  .stack-grid{grid-template-columns:1fr 1fr}
+  .cmd-cats{grid-template-columns:1fr}
+  .routing-blocks{grid-template-columns:1fr}
+  .wf-grid{grid-template-columns:1fr 1fr}
+  .faq-grid{grid-template-columns:1fr}
+  .file-layout{grid-template-columns:1fr}
+  .rules-list{grid-template-columns:1fr}
+  .nav{max-width:calc(100vw - 32px);overflow-x:auto}
+}
+@media(max-width:600px){
+  .hero-h1{font-size:2.4rem}
+  .wf-grid{grid-template-columns:1fr}
+  .hero-stats{gap:8px}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══════════════════════════════════════════════════════ -->
+<nav class="nav">
+  <span class="nav-dot"></span>
+  <button class="np active" data-page="hub">Hub</button>
+  <span class="nav-sep"></span>
+  <button class="np" data-page="1">01 Setup</button>
+  <button class="np" data-page="2">02 Playbook</button>
+  <button class="np" data-page="3">03 Field Guide</button>
+  <button class="np" data-page="4">04 Skills</button>
+  <span class="nav-sep"></span>
+  <button class="np" id="search-open-btn" style="display:flex;align-items:center;gap:6px">
+    <svg style="width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <span style="font-family:var(--mono);font-size:.6rem;opacity:.5;border:1px solid rgba(255,255,255,.15);padding:1px 5px;border-radius:3px">⌘K</span>
+  </button>
+</nav>
+
+<!-- ══ PAGE: HUB ══════════════════════════════════════════════════ -->
+<div id="page-hub" class="page active">
+
+<!-- ─── HERO ──────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-glow"></div>
+
+  <div class="hero-badge">
+    <span class="hero-badge-dot"></span>
+    Agentic Agency Series — Mastermind Hub
+  </div>
+
+  <h1 class="hero-h1">One Window.<br><span class="hl">Every Client.</span><br>Zero Switching.</h1>
+
+  <p class="hero-sub">Your AI-powered agency OS: Claude Code reads your context, SearchAtlas MCP executes 60+ marketing tools, Warp Terminal keeps it in plain English.</p>
+
+  <div class="hero-stats">
+    <div class="hero-stat"><span class="hero-stat-n">14</span> Commands</div>
+    <div class="hero-stat"><span class="hero-stat-n">7</span> Workflows</div>
+    <div class="hero-stat"><span class="hero-stat-n">60+</span> MCP Tools</div>
+    <div class="hero-stat"><span class="hero-stat-n">4</span> Integrations</div>
+    <div class="hero-stat"><span class="hero-stat-n">0</span> Code Required</div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ─── 01 THE STACK ──────────────────────────────────────────── -->
+<section class="wrap">
+  <div class="rv">
+    <div class="sec-eyebrow"><span class="sec-eyebrow-dot"></span>01 — Architecture</div>
+    <h2 class="sec-title">The <span class="hl-cyan">Stack</span></h2>
+    <p class="sec-desc">Three tools, one workflow. Each layer has a distinct role — understand the separation and the whole system makes sense.</p>
+  </div>
+
+  <div class="stack-grid rv d1">
+    <div class="stack-node">
+      <div class="stack-node-num">Layer 01</div>
+      <span class="stack-node-icon">⌨</span>
+      <div class="stack-node-name">Warp Terminal</div>
+      <div class="stack-node-desc">Your AI-native shell. Type in plain English or use /slash commands. No coding required to run complex workflows.</div>
+      <div class="stack-node-tags">
+        <span class="stack-tag">/slash commands</span>
+        <span class="stack-tag">Natural language input</span>
+        <span class="stack-tag">Session memory</span>
+      </div>
+    </div>
+    <div class="stack-arrow-col">→</div>
+    <div class="stack-node">
+      <div class="stack-node-num">Layer 02</div>
+      <span class="stack-node-icon">🧠</span>
+      <div class="stack-node-name">Claude Code</div>
+      <div class="stack-node-desc">The reasoning layer. Reads your agency context from CLAUDE.md, orchestrates multi-step workflows, calls tools.</div>
+      <div class="stack-node-tags">
+        <span class="stack-tag">CLAUDE.md memory</span>
+        <span class="stack-tag">Tool orchestration</span>
+        <span class="stack-tag">Workflow execution</span>
+      </div>
+    </div>
+    <div class="stack-arrow-col">→</div>
+    <div class="stack-node">
+      <div class="stack-node-num">Layer 03</div>
+      <span class="stack-node-icon">⚙</span>
+      <div class="stack-node-name">SearchAtlas MCP</div>
+      <div class="stack-node-desc">60+ specialized tools covering SEO, GBP, PPC, content generation, digital PR, and AI visibility.</div>
+      <div class="stack-node-tags">
+        <span class="stack-tag">OTTO · Brand Vault</span>
+        <span class="stack-tag">GBP · PPC · Content</span>
+        <span class="stack-tag">Digital PR · LLM Vis</span>
+      </div>
+    </div>
+    <div class="stack-arrow-col">→</div>
+    <div class="stack-node">
+      <div class="stack-node-num">Output</div>
+      <span class="stack-node-icon">↗</span>
+      <div class="stack-node-name">Clients + Comms</div>
+      <div class="stack-node-desc">Results delivered wherever your team lives. Slack, Discord, email, Circle — all pre-wired and ready.</div>
+      <div class="stack-node-tags">
+        <span class="stack-tag">Slack · Discord</span>
+        <span class="stack-tag">Email · Circle</span>
+        <span class="stack-tag">Reports on demand</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ─── 02 COMMANDS ───────────────────────────────────────────── -->
+<section class="wrap">
+  <div class="rv">
+    <div class="sec-eyebrow"><span class="sec-eyebrow-dot" style="background:var(--green)"></span>02 — Command Reference</div>
+    <h2 class="sec-title">14 <span class="hl-green">Slash Commands</span></h2>
+    <p class="sec-desc">Type them in Warp or any Claude Code session. Each triggers a complete workflow or returns structured client data.</p>
+  </div>
+
+  <div class="cmd-cats">
+    <!-- DISCOVERY -->
+    <div class="cmd-cat rv d1">
+      <div class="cmd-cat-header">
+        <span class="cmd-cat-dot" style="background:var(--cyan)"></span>
+        <span class="cmd-cat-name" style="color:var(--cyan)">Discovery</span>
+      </div>
+      <div class="cmd-row">
+        <span class="cmd-name">/my-account</span>
+        <span class="cmd-desc">List all businesses, OTTO projects, GBP locations, campaigns, and quota. Run this first every session.</span>
+      </div>
+      <div class="cmd-row">
+        <span class="cmd-name">/business-report</span>
+        <span class="cmd-desc">Full deep-dive on a single client — OTTO, brand vault, Site Explorer, GBP, PPC, LLM visibility in one command.</span>
+      </div>
+    </div>
+
+    <!-- SETUP -->
+    <div class="cmd-cat rv d2">
+      <div class="cmd-cat-header">
+        <span class="cmd-cat-dot" style="background:var(--purple)"></span>
+        <span class="cmd-cat-name" style="color:var(--purple)">Setup</span>
+      </div>
+      <div class="cmd-row">
+        <span class="cmd-name">/onboard-client</span>
+        <span class="cmd-desc">Guided wizard — creates OTTO project, sets up brand vault, connects GBP, configures keyword tracking from zero.</span>
+      </div>
+    </div>
+
+    <!-- EXECUTE (left) -->
+    <div class="cmd-cat rv d3">
+      <div class="cmd-cat-header">
+        <span class="cmd-cat-dot" style="background:var(--orange)"></span>
+        <span class="cmd-cat-name" style="color:var(--orange)">Execute — SEO & GBP</span>
+      </div>
+      <div class="cmd-row">
+        <span class="cmd-name">/run-seo</span>
+        <span class="cmd-desc">Audit → fix issues → deploy schemas → index pages → expand topical map → generate articles.</span>
+      </div>
+      <div class="cmd-row">
+        <span class="cmd-name">/run-gbp</span>
+        <span class="cmd-desc">GBP optimization + monthly posts, auto-reply to reviews, Q&A management, insights monitoring.</span>
+      </div>
+      <div class="cmd-row">
+        <span class="cmd-name">/run-visibility</span>
+        <span class="cmd-desc">Monitor brand presence across AI search results — track mentions, sentiment, and citation sources.</span>
+      </div>
+    </div>
+
+    <!-- EXECUTE (right) -->
+    <div class="cmd-cat rv d4">
+      <div class="cmd-cat-header">
+        <span class="cmd-cat-dot" style="background:var(--orange)"></span>
+        <span class="cmd-cat-name" style="color:var(--orange)">Execute — PPC & Content</span>
+      </div>
+      <div class="cmd-row">
+        <span class="cmd-name">/run-ppc</span>
+        <span class="cmd-desc">Build and launch a full Google Ads campaign — business, products, keyword clusters, ads, activate.</span>
+      </div>
+      <div class="cmd-row">
+        <span class="cmd-name">/run-content</span>
+        <span class="cmd-desc">Generate SEO articles from topical maps, grade against target keywords, stage for publication.</span>
+      </div>
+      <div class="cmd-row">
+        <span class="cmd-name">/run-pr</span>
+        <span class="cmd-desc">Press releases + cloud stack + digital PR campaigns for authority building and link acquisition.</span>
+      </div>
+    </div>
+
+    <!-- COMMUNICATE -->
+    <div class="cmd-cat rv d5" style="grid-column:1/-1">
+      <div class="cmd-cat-header">
+        <span class="cmd-cat-dot" style="background:var(--pink)"></span>
+        <span class="cmd-cat-name" style="color:var(--pink)">Communicate</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0">
+        <div class="cmd-row" style="border-right:1px solid rgba(30,48,82,.5);padding-right:16px">
+          <span class="cmd-name">/send-slack</span>
+          <span class="cmd-desc">Post to Slack (multi-channel, named webhooks)</span>
+        </div>
+        <div class="cmd-row" style="border-right:1px solid rgba(30,48,82,.5);padding:11px 16px">
+          <span class="cmd-name">/send-discord</span>
+          <span class="cmd-desc">Share to Discord via webhook</span>
+        </div>
+        <div class="cmd-row" style="border-right:1px solid rgba(30,48,82,.5);padding:11px 16px">
+          <span class="cmd-name">/send-email</span>
+          <span class="cmd-desc">Send reports via Resend API (100/day free)</span>
+        </div>
+        <div class="cmd-row" style="padding-left:16px">
+          <span class="cmd-name">/send-circle</span>
+          <span class="cmd-desc">Post to Circle community space</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ─── 03 INTENT ROUTING ─────────────────────────────────────── -->
+<section class="wrap">
+  <div class="rv">
+    <div class="sec-eyebrow"><span class="sec-eyebrow-dot" style="background:var(--yellow)"></span>03 — Intent Routing</div>
+    <h2 class="sec-title">Match Request <span class="hl-cyan">→ Command</span></h2>
+    <p class="sec-desc">When a user or client asks you something, route to the right command based on how specific the request is.</p>
+  </div>
+
+  <div class="routing-blocks rv d1">
+    <!-- BROAD -->
+    <div class="routing-block">
+      <div class="routing-block-header" style="border-left:3px solid var(--cyan)">
+        <div class="routing-block-label" style="color:var(--cyan)">Broad Requests</div>
+        <div class="routing-block-hint">Vague → give full picture</div>
+      </div>
+      <div class="routing-row">
+        <span class="routing-trigger">"tell me about [client]" / "deep dive" / "full report"</span>
+        <span class="routing-cmd" style="color:var(--cyan)">/business-report</span>
+      </div>
+      <div class="routing-row">
+        <span class="routing-trigger">"show me my account" / "what clients do I have"</span>
+        <span class="routing-cmd" style="color:var(--cyan)">/my-account</span>
+      </div>
+      <div class="routing-row">
+        <span class="routing-trigger">"set up a new client" / "onboard [client]"</span>
+        <span class="routing-cmd" style="color:var(--cyan)">/onboard-client</span>
+      </div>
+    </div>
+    <!-- SPECIFIC -->
+    <div class="routing-block">
+      <div class="routing-block-header" style="border-left:3px solid var(--green)">
+        <div class="routing-block-label" style="color:var(--green)">Specific Lookups</div>
+        <div class="routing-block-hint">Direct → just answer what's asked</div>
+      </div>
+      <div class="routing-row">
+        <span class="routing-trigger">"show me their keywords" / "what do they rank for"</span>
+        <span class="routing-cmd" style="color:var(--green)">organic → keywords</span>
+      </div>
+      <div class="routing-row">
+        <span class="routing-trigger">"check their backlinks"</span>
+        <span class="routing-cmd" style="color:var(--green)">backlinks tools</span>
+      </div>
+      <div class="routing-row">
+        <span class="routing-trigger">"SEO health" / "pillar scores"</span>
+        <span class="routing-cmd" style="color:var(--green)">holistic_audit</span>
+      </div>
+      <div class="routing-row">
+        <span class="routing-trigger">"GBP profile" / "Google Business"</span>
+        <span class="routing-cmd" style="color:var(--green)">gbp_locations_crud</span>
+      </div>
+      <div class="routing-row">
+        <span class="routing-trigger">"content status" / "articles"</span>
+        <span class="routing-cmd" style="color:var(--green)">content_retrieval</span>
+      </div>
+    </div>
+    <!-- ACTION -->
+    <div class="routing-block">
+      <div class="routing-block-header" style="border-left:3px solid var(--orange)">
+        <div class="routing-block-label" style="color:var(--orange)">Action Requests</div>
+        <div class="routing-block-hint">Intent → run the full workflow</div>
+      </div>
+      <div class="routing-row">
+        <span class="routing-trigger">"run SEO" / "do SEO for [client]"</span>
+        <span class="routing-cmd" style="color:var(--orange)">/run-seo</span>
+      </div>
+      <div class="routing-row">
+        <span class="routing-trigger">"optimize their GBP" / "fix Google profile"</span>
+        <span class="routing-cmd" style="color:var(--orange)">/run-gbp</span>
+      </div>
+      <div class="routing-row">
+        <span class="routing-trigger">"launch ads" / "set up PPC"</span>
+        <span class="routing-cmd" style="color:var(--orange)">/run-ppc</span>
+      </div>
+      <div class="routing-row">
+        <span class="routing-trigger">"create content" / "write articles"</span>
+        <span class="routing-cmd" style="color:var(--orange)">/run-content</span>
+      </div>
+      <div class="routing-row">
+        <span class="routing-trigger">"post to Slack / Discord / email"</span>
+        <span class="routing-cmd" style="color:var(--orange)">/send-*</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ─── 04 WORKFLOW MAP ───────────────────────────────────────── -->
+<section class="wrap">
+  <div class="rv">
+    <div class="sec-eyebrow"><span class="sec-eyebrow-dot" style="background:var(--purple)"></span>04 — Workflow Map</div>
+    <h2 class="sec-title">7 <span class="hl-purple">Workflows</span></h2>
+    <p class="sec-desc">Each workflow is a YAML template with ordered steps and dependency declarations. Claude executes them end-to-end.</p>
+  </div>
+
+  <div class="wf-grid">
+    <div class="wf-card rv d1">
+      <div class="wf-card-top-line" style="background:linear-gradient(90deg,var(--cyan),transparent)"></div>
+      <span class="wf-card-icon">🔍</span>
+      <div class="wf-card-name">SEO Onboarding</div>
+      <div class="wf-card-steps">7 STEPS</div>
+      <div class="wf-card-flow">
+        <div class="wf-flow-step">Create OTTO project</div>
+        <div class="wf-flow-step">Run holistic audit</div>
+        <div class="wf-flow-step">Fix critical issues</div>
+        <div class="wf-flow-step">Deploy schema markup</div>
+        <div class="wf-flow-step">Index priority pages</div>
+        <div class="wf-flow-step">Build topical map</div>
+        <div class="wf-flow-step">Generate first articles</div>
+      </div>
+    </div>
+
+    <div class="wf-card rv d2">
+      <div class="wf-card-top-line" style="background:linear-gradient(90deg,#60a5fa,transparent)"></div>
+      <span class="wf-card-icon">📅</span>
+      <div class="wf-card-name">Monthly SEO</div>
+      <div class="wf-card-steps">7 STEPS</div>
+      <div class="wf-card-flow">
+        <div class="wf-flow-step">Pull new OTTO issues</div>
+        <div class="wf-flow-step">Apply AI suggestions</div>
+        <div class="wf-flow-step">Expand topical map</div>
+        <div class="wf-flow-step">Generate new articles</div>
+        <div class="wf-flow-step">Grade content quality</div>
+        <div class="wf-flow-step">Re-index updated pages</div>
+        <div class="wf-flow-step">Report results</div>
+      </div>
+    </div>
+
+    <div class="wf-card rv d3">
+      <div class="wf-card-top-line" style="background:linear-gradient(90deg,var(--green),transparent)"></div>
+      <span class="wf-card-icon">📍</span>
+      <div class="wf-card-name">GBP Optimization</div>
+      <div class="wf-card-steps">6 STEPS</div>
+      <div class="wf-card-flow">
+        <div class="wf-flow-step">Load location profile</div>
+        <div class="wf-flow-step">Run GBP audit</div>
+        <div class="wf-flow-step">Apply recommendations</div>
+        <div class="wf-flow-step">Add photos + services</div>
+        <div class="wf-flow-step">Deploy to Google</div>
+        <div class="wf-flow-step">Verify changes live</div>
+      </div>
+    </div>
+
+    <div class="wf-card rv d4">
+      <div class="wf-card-top-line" style="background:linear-gradient(90deg,#4ade80,transparent)"></div>
+      <span class="wf-card-icon">💬</span>
+      <div class="wf-card-name">GBP Monthly</div>
+      <div class="wf-card-steps">4 STEPS</div>
+      <div class="wf-card-flow">
+        <div class="wf-flow-step">Fetch unanswered reviews</div>
+        <div class="wf-flow-step">Auto-generate replies</div>
+        <div class="wf-flow-step">Create monthly posts</div>
+        <div class="wf-flow-step">Pull insights report</div>
+      </div>
+    </div>
+
+    <div class="wf-card rv d5">
+      <div class="wf-card-top-line" style="background:linear-gradient(90deg,var(--orange),transparent)"></div>
+      <span class="wf-card-icon">📈</span>
+      <div class="wf-card-name">PPC Launch</div>
+      <div class="wf-card-steps">7 STEPS</div>
+      <div class="wf-card-flow">
+        <div class="wf-flow-step">Create Google Ads business</div>
+        <div class="wf-flow-step">Define products</div>
+        <div class="wf-flow-step">Build keyword clusters</div>
+        <div class="wf-flow-step">Generate ad copy</div>
+        <div class="wf-flow-step">Create ad groups</div>
+        <div class="wf-flow-step">Push to Google</div>
+        <div class="wf-flow-step">Activate campaign</div>
+      </div>
+    </div>
+
+    <div class="wf-card rv d6">
+      <div class="wf-card-top-line" style="background:linear-gradient(90deg,var(--pink),transparent)"></div>
+      <span class="wf-card-icon">🔗</span>
+      <div class="wf-card-name">Authority Building</div>
+      <div class="wf-card-steps">4 PARALLEL FLOWS</div>
+      <div class="wf-card-flow">
+        <div class="wf-flow-step">Write press release</div>
+        <div class="wf-flow-step">Distribute via cloud stack</div>
+        <div class="wf-flow-step">Launch digital PR campaign</div>
+        <div class="wf-flow-step">Track coverage + links</div>
+      </div>
+    </div>
+
+    <div class="wf-card rv d7" style="grid-column:3">
+      <div class="wf-card-top-line" style="background:linear-gradient(90deg,var(--yellow),transparent)"></div>
+      <span class="wf-card-icon">🤖</span>
+      <div class="wf-card-name">LLM Visibility</div>
+      <div class="wf-card-steps">4 STEPS</div>
+      <div class="wf-card-flow">
+        <div class="wf-flow-step">Set up visibility project</div>
+        <div class="wf-flow-step">Monitor AI mentions</div>
+        <div class="wf-flow-step">Analyze sentiment</div>
+        <div class="wf-flow-step">Track citation sources</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ─── 05 FAQ ────────────────────────────────────────────────── -->
+<section class="wrap">
+  <div class="rv">
+    <div class="sec-eyebrow"><span class="sec-eyebrow-dot" style="background:var(--orange)"></span>05 — Agency FAQ</div>
+    <h2 class="sec-title">Common <span class="hl-orange">Pain Points</span></h2>
+    <p class="sec-desc">The questions every agency asks in the first week. Answered so you don't have to figure them out the hard way.</p>
+  </div>
+
+  <div class="faq-grid">
+    <div class="faq-card rv d1">
+      <div class="faq-q-row">
+        <span class="faq-num">Q 01</span>
+        <div class="faq-q">Do I need to know how to code?</div>
+      </div>
+      <div class="faq-a">No. Warp + natural language is enough. Type what you want, Claude handles the tool calls. Use /slash commands for repeatable workflows — no scripting required.</div>
+    </div>
+
+    <div class="faq-card warn rv d2">
+      <div class="faq-q-row">
+        <span class="faq-num">Q 02</span>
+        <div class="faq-q">Why is my token budget draining fast?</div>
+      </div>
+      <div class="faq-a">Claude reads files in loops. Add <code>.claudeignore</code> immediately (exclude <code>node_modules/</code>, <code>.git/</code>, logs, binaries). Run <code>/compact</code> at 65–70% context. Use <code>/clear</code> at 85% for a fresh start.</div>
+    </div>
+
+    <div class="faq-card rv d3">
+      <div class="faq-q-row">
+        <span class="faq-num">Q 03</span>
+        <div class="faq-q">A tool call failed — what do I do?</div>
+      </div>
+      <div class="faq-a">Read the error message. Parameter Validation Errors contain the correct schema inside them. Extract the expected parameters, then retry once with the correct call. Don't retry blindly.</div>
+    </div>
+
+    <div class="faq-card rv d4">
+      <div class="faq-q-row">
+        <span class="faq-num">Q 04</span>
+        <div class="faq-q">How do I keep CLAUDE.md effective?</div>
+      </div>
+      <div class="faq-a">Keep it under 150 lines. One fact per line — no long prose. Prune every 2 weeks. Client IDs belong in brand vault, not here. Dead rules waste context every session.</div>
+    </div>
+
+    <div class="faq-card rv d5">
+      <div class="faq-q-row">
+        <span class="faq-num">Q 05</span>
+        <div class="faq-q">How do I share results with clients or my team?</div>
+      </div>
+      <div class="faq-a">Use <code>/send-slack</code>, <code>/send-discord</code>, <code>/send-email</code>, or <code>/send-circle</code>. All four integrations are pre-wired — just set your webhook URLs in <code>.env</code> once during setup.</div>
+    </div>
+
+    <div class="faq-card rv d6">
+      <div class="faq-q-row">
+        <span class="faq-num">Q 06</span>
+        <div class="faq-q">Can I run workflows for multiple clients?</div>
+      </div>
+      <div class="faq-a">Yes. Every <code>/run-*</code> command asks which business to target first. Run <code>/my-account</code> at session start to get your full client list, then run any workflow against the right one.</div>
+    </div>
+
+    <div class="faq-card rv d7">
+      <div class="faq-q-row">
+        <span class="faq-num">Q 07</span>
+        <div class="faq-q">What if Claude makes a decision it shouldn't?</div>
+      </div>
+      <div class="faq-a">It will ask before any destructive or irreversible action — publishing content, launching ads, sending comms. Never skip confirmations. The cost of a bad publish is higher than the cost of one extra "yes."</div>
+    </div>
+
+    <div class="faq-card rv d8">
+      <div class="faq-q-row">
+        <span class="faq-num">Q 08</span>
+        <div class="faq-q">How do I discover what tools are available?</div>
+      </div>
+      <div class="faq-a">Call any SearchAtlas tool with <code>op: "help"</code> and <code>params: {}</code> to get its full operation list. Then call a specific op with empty params to get that operation's schema. Always do this before your first real call.</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ─── 06 FILE HYGIENE ───────────────────────────────────────── -->
+<section class="wrap">
+  <div class="rv">
+    <div class="sec-eyebrow"><span class="sec-eyebrow-dot" style="background:var(--pink)"></span>06 — File Hygiene</div>
+    <h2 class="sec-title">Token Hygiene &amp; <span class="hl-cyan">File Structure</span></h2>
+    <p class="sec-desc">Token waste and secret leaks are the two most common failure modes. Both are preventable with the right file habits.</p>
+  </div>
+
+  <div class="file-layout rv d1">
+    <div class="file-panel">
+      <div class="file-panel-header">Project Structure</div>
+      <div class="ftree">
+        <div><span class="ft-dir">agentic-mastermind/</span></div>
+        <div><span class="ft-tree">├──</span> <span class="ft-file">.claudeignore</span><span class="ft-ann">← blocks token waste</span></div>
+        <div><span class="ft-tree">├──</span> <span class="ft-file">CLAUDE.md</span><span class="ft-ann">← &lt;150 lines, tight</span></div>
+        <div><span class="ft-tree">├──</span> <span class="ft-dir">commands/</span><span class="ft-ann">← 14 slash commands</span></div>
+        <div><span class="ft-tree">├──</span> <span class="ft-dir">workflows/</span><span class="ft-ann">← 7 YAML templates</span></div>
+        <div><span class="ft-tree">├──</span> <span class="ft-dir">integrations/</span><span class="ft-ann">← bash scripts</span></div>
+        <div><span class="ft-tree">└──</span> <span class="ft-warn">.env</span><span class="ft-ann ft-warn">← NEVER in AI context</span></div>
+      </div>
+
+      <div class="token-grid">
+        <div class="token-cell">
+          <div class="tc-label">Session start</div>
+          <div class="tc-val">~2k tokens</div>
+        </div>
+        <div class="token-cell">
+          <div class="tc-label">Per tool call</div>
+          <div class="tc-val">500–2k tokens</div>
+        </div>
+        <div class="token-cell">
+          <div class="tc-label">Run /compact</div>
+          <div class="tc-val tc-warn">at 65–70%</div>
+        </div>
+        <div class="token-cell">
+          <div class="tc-label">Run /clear</div>
+          <div class="tc-val tc-warn">at 85%+</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="file-panel">
+      <div class="file-panel-header">.claudeignore — Required Entries</div>
+      <div class="ignore-block">node_modules/<br>.git/<br>*.log<br>dist/<br>build/<br>.env*<br>*.secret<br>*.lock<br>__pycache__/<br>.DS_Store</div>
+
+      <div style="margin-top:16px">
+        <div class="file-panel-header">CLAUDE.md Rules</div>
+        <div class="claude-rules">
+          Keep under <strong>150 lines</strong> — it loads every session<br>
+          One fact per line — no prose paragraphs<br>
+          Prune every 2 weeks — dead rules waste context<br>
+          Client IDs belong in brand vault, not here<br>
+          Never paste API keys, tokens, or passwords<br>
+          Use section headers to organize (## section)
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ─── 07 GOLDEN RULES ───────────────────────────────────────── -->
+<section class="wrap" style="padding-bottom:100px">
+  <div class="rv">
+    <div class="sec-eyebrow"><span class="sec-eyebrow-dot" style="background:var(--yellow)"></span>07 — Non-Negotiables</div>
+    <h2 class="sec-title">Six <span class="hl-cyan">Golden Rules</span></h2>
+    <p class="sec-desc">Break any of these and you'll waste time debugging entirely avoidable problems. Read them once, remember them always.</p>
+  </div>
+
+  <div class="rules-list">
+    <div class="rule-card rv d1">
+      <div class="rule-n" style="color:var(--cyan);opacity:.5">01</div>
+      <div>
+        <div class="rule-title">Schema Discovery First</div>
+        <div class="rule-body">Before calling ANY tool for the first time, call it with <code>{}</code> to discover the real schema. Documentation may be outdated — the actual API response is authoritative. Do this once, get it right every time after.</div>
+      </div>
+    </div>
+
+    <div class="rule-card rv d2">
+      <div class="rule-n" style="color:var(--green);opacity:.5">02</div>
+      <div>
+        <div class="rule-title">Read Error Messages</div>
+        <div class="rule-body">Parameter Validation Errors contain the correct schema inside them. Don't retry blindly — read the error, extract the correct parameters, retry once. Internal Server Errors are backend issues, not yours.</div>
+      </div>
+    </div>
+
+    <div class="rule-card rv d3">
+      <div class="rule-n" style="color:var(--orange);opacity:.5">03</div>
+      <div>
+        <div class="rule-title">Poll Async Tasks</div>
+        <div class="rule-body">Many operations return a task ID, not results. Poll with <code>get_otto_task_status</code> until <code>status = SUCCESS</code>. Use <code>otto_wait</code> between polls. Never assume an operation completed because it returned.</div>
+      </div>
+    </div>
+
+    <div class="rule-card rv d4">
+      <div class="rule-n" style="color:var(--purple);opacity:.5">04</div>
+      <div>
+        <div class="rule-title">Watch for Tool Name Collisions</div>
+        <div class="rule-body">Short names can resolve to the wrong underlying tool. If a tool behaves unexpectedly, try the full prefixed name — e.g., <code>otto_project_management</code> instead of <code>project_management</code>.</div>
+      </div>
+    </div>
+
+    <div class="rule-card rv d5">
+      <div class="rule-n" style="color:var(--pink);opacity:.5">05</div>
+      <div>
+        <div class="rule-title">Never Hardcode IDs</div>
+        <div class="rule-body">Project IDs, location IDs, business IDs — always discover via API. Run <code>/my-account</code> first. Hardcoded IDs break silently when clients are recreated or transferred.</div>
+      </div>
+    </div>
+
+    <div class="rule-card rv d6">
+      <div class="rule-n" style="color:var(--yellow);opacity:.5">06</div>
+      <div>
+        <div class="rule-title">Never Expose Secrets</div>
+        <div class="rule-body">API keys live in <code>.env</code> only. Never print them. Never include them in Slack, Discord, or email output. Add <code>.env*</code> to both <code>.claudeignore</code> and <code>.gitignore</code> immediately after setup.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /page-hub -->
+
+<!-- ══ INFOGRAPHIC PAGES ══════════════════════════════════════════ -->
+<div id="page-1" class="page iframe-page">
+  <iframe class="infographic-frame" src="./infographic-1-command-center-setup.html" title="01 Command Center Setup" loading="lazy"></iframe>
+</div>
+<div id="page-2" class="page iframe-page">
+  <iframe class="infographic-frame" src="./infographic-2-daily-playbook.html" title="02 Daily Playbook" loading="lazy"></iframe>
+</div>
+<div id="page-3" class="page iframe-page">
+  <iframe class="infographic-frame" src="./infographic-3-field-guide.html" title="03 Field Guide" loading="lazy"></iframe>
+</div>
+<div id="page-4" class="page iframe-page">
+  <iframe class="infographic-frame" src="./infographic-4-skills.html" title="04 Skills · Systems · Scale" loading="lazy"></iframe>
+</div>
+
+<!-- ══ SEARCH MODAL ══════════════════════════════════════════════ -->
+<div class="search-overlay" id="search-overlay">
+  <div class="search-box">
+    <div class="search-input-row">
+      <svg class="search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="search-input" placeholder="Search commands, workflows, guides…" autocomplete="off" spellcheck="false">
+      <span class="search-esc" id="search-close-btn">ESC</span>
+    </div>
+    <div class="search-results" id="search-results">
+      <div class="sr-empty">Start typing to search…</div>
+    </div>
+    <div class="search-footer">
+      <span><span class="sf-kbd">↑↓</span> navigate</span>
+      <span><span class="sf-kbd">↵</span> jump to</span>
+      <span><span class="sf-kbd">ESC</span> close</span>
+      <span style="margin-left:auto">Mastermind Hub</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCRIPTS ═══════════════════════════════════════════════════ -->
+<script>
+// ── SEARCH DATA ──────────────────────────────────────────────────
+var ITEMS=[
+  {t:'command',i:'⌕',n:'/my-account',d:'List all businesses, projects, campaigns, quota',s:'#commands'},
+  {t:'command',i:'◈',n:'/business-report',d:'Full client deep-dive — OTTO, GBP, PPC, LLM visibility',s:'#commands'},
+  {t:'command',i:'◎',n:'/onboard-client',d:'Guided wizard to onboard a new client from zero',s:'#commands'},
+  {t:'command',i:'⌖',n:'/run-seo',d:'SEO onboarding or monthly maintenance — 7 steps',s:'#commands'},
+  {t:'command',i:'◉',n:'/run-gbp',d:'GBP optimization + monthly posts and reviews',s:'#commands'},
+  {t:'command',i:'◆',n:'/run-ppc',d:'Build and launch a Google Ads campaign — 7 steps',s:'#commands'},
+  {t:'command',i:'◻',n:'/run-content',d:'Generate SEO articles from topical maps',s:'#commands'},
+  {t:'command',i:'◌',n:'/run-pr',d:'Press releases + authority building + digital PR',s:'#commands'},
+  {t:'command',i:'△',n:'/run-visibility',d:'AI search visibility audit and monitoring',s:'#commands'},
+  {t:'command',i:'✦',n:'/send-slack',d:'Post results to Slack — multi-channel',s:'#commands'},
+  {t:'command',i:'✦',n:'/send-discord',d:'Share to Discord via webhook',s:'#commands'},
+  {t:'command',i:'✦',n:'/send-email',d:'Send reports via Resend API',s:'#commands'},
+  {t:'command',i:'✦',n:'/send-circle',d:'Post to Circle community space',s:'#commands'},
+  {t:'workflow',i:'🔍',n:'SEO Onboarding',d:'7 steps: create project → audit → articles',s:'#workflows'},
+  {t:'workflow',i:'📅',n:'Monthly SEO',d:'7 steps: pull issues → suggestions → grade content',s:'#workflows'},
+  {t:'workflow',i:'📍',n:'GBP Optimization',d:'6 steps: load → recommendations → deploy',s:'#workflows'},
+  {t:'workflow',i:'💬',n:'GBP Monthly',d:'4 steps: reviews → replies → posts → insights',s:'#workflows'},
+  {t:'workflow',i:'📈',n:'PPC Launch',d:'7 steps: business → products → ads → activate',s:'#workflows'},
+  {t:'workflow',i:'🔗',n:'Authority Building',d:'4 parallel flows: press release + digital PR',s:'#workflows'},
+  {t:'workflow',i:'🤖',n:'LLM Visibility',d:'4 steps: project → monitor → sentiment → citations',s:'#workflows'},
+  {t:'guide',i:'!',n:'Token Budget Draining',d:'FAQ: /compact at 65%, .claudeignore, /clear at 85%',s:'#faq'},
+  {t:'guide',i:'!',n:'.claudeignore Best Practices',d:'node_modules, .git, logs, .env*, *.lock',s:'#files'},
+  {t:'guide',i:'!',n:'CLAUDE.md Rules',d:'Under 150 lines, one fact per line, prune weekly',s:'#files'},
+  {t:'guide',i:'!',n:'Schema Discovery First',d:'Golden Rule 01 — call tools with {} first',s:'#rules'},
+  {t:'guide',i:'!',n:'Read Error Messages',d:'Golden Rule 02 — errors contain correct schema',s:'#rules'},
+  {t:'guide',i:'!',n:'Poll Async Tasks',d:'Golden Rule 03 — many ops return task IDs',s:'#rules'},
+  {t:'guide',i:'!',n:'Tool Name Collisions',d:'Golden Rule 04 — use full prefixed tool names',s:'#rules'},
+  {t:'guide',i:'!',n:'Never Hardcode IDs',d:'Golden Rule 05 — always discover via /my-account',s:'#rules'},
+  {t:'guide',i:'!',n:'Never Expose Secrets',d:'Golden Rule 06 — keys in .env only',s:'#rules'},
+  {t:'concept',i:'⌨',n:'Warp Terminal',d:'Layer 01 — your AI-native shell',s:'#stack'},
+  {t:'concept',i:'🧠',n:'Claude Code',d:'Layer 02 — the reasoning layer',s:'#stack'},
+  {t:'concept',i:'⚙',n:'SearchAtlas MCP',d:'Layer 03 — 60+ marketing tools',s:'#stack'},
+  {t:'concept',i:'→',n:'Intent Routing',d:'Match user requests to the right command',s:'#routing'},
+];
+
+var TYPE_LABELS={command:'Commands',workflow:'Workflows',guide:'Guides',concept:'Concepts'};
+
+// ── PAGE SWITCHER ────────────────────────────────────────────────
+function switchPage(t){
+  document.querySelectorAll('.np').forEach(function(b){b.classList.remove('active')});
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});
+  var btn=document.querySelector('[data-page="'+t+'"]');
+  var pg=document.getElementById('page-'+t);
+  if(btn) btn.classList.add('active');
+  if(pg){pg.classList.add('active');pg.style.display='block'}
+  window.history.replaceState(null,'','#'+t);
+  window.scrollTo(0,0);
+}
+document.querySelectorAll('.np[data-page]').forEach(function(b){
+  b.addEventListener('click',function(){switchPage(b.dataset.page)});
+});
+var initHash=window.location.hash.replace('#','');
+if(initHash&&document.getElementById('page-'+initHash)) switchPage(initHash);
+
+// ── SEARCH ───────────────────────────────────────────────────────
+var overlay=document.getElementById('search-overlay');
+var inp=document.getElementById('search-input');
+var res=document.getElementById('search-results');
+var fi=-1;
+
+function openSearch(){
+  overlay.classList.add('open');
+  inp.value='';
+  renderResults('');
+  setTimeout(function(){inp.focus()},60);
+  fi=-1;
+}
+function closeSearch(){
+  overlay.classList.remove('open');
+  inp.blur();
+}
+
+document.getElementById('search-open-btn').addEventListener('click',openSearch);
+document.getElementById('search-close-btn').addEventListener('click',closeSearch);
+overlay.addEventListener('click',function(e){if(e.target===overlay)closeSearch()});
+
+document.addEventListener('keydown',function(e){
+  if((e.metaKey||e.ctrlKey)&&e.key==='k'){e.preventDefault();openSearch()}
+  if(e.key==='Escape'&&overlay.classList.contains('open')){closeSearch()}
+  if(!overlay.classList.contains('open')) return;
+  var items=res.querySelectorAll('.sr-item');
+  if(e.key==='ArrowDown'){e.preventDefault();fi=Math.min(fi+1,items.length-1);setFocus(items)}
+  else if(e.key==='ArrowUp'){e.preventDefault();fi=Math.max(fi-1,0);setFocus(items)}
+  else if(e.key==='Enter'&&fi>=0&&items[fi]){items[fi].click()}
+});
+
+function setFocus(items){
+  items.forEach(function(el,i){el.classList.toggle('focused',i===fi)});
+  if(items[fi]) items[fi].scrollIntoView({block:'nearest'});
+}
+
+inp.addEventListener('input',function(){
+  fi=-1;
+  renderResults(this.value.trim().toLowerCase());
+});
+
+function renderResults(q){
+  if(!q){
+    res.innerHTML='<div class="sr-empty">Start typing to search commands, workflows, and guides…</div>';
+    return;
+  }
+  var filtered=ITEMS.filter(function(d){
+    return d.n.toLowerCase().includes(q)||d.d.toLowerCase().includes(q)||d.t.includes(q);
+  });
+  if(!filtered.length){
+    res.innerHTML='<div class="sr-empty">No results for "'+q+'"</div>';
+    return;
+  }
+  var groups={};
+  filtered.forEach(function(d){
+    if(!groups[d.t]) groups[d.t]=[];
+    groups[d.t].push(d);
+  });
+  var html='';
+  Object.keys(groups).forEach(function(type){
+    html+='<div class="sr-group-label">'+TYPE_LABELS[type]+'</div>';
+    groups[type].forEach(function(d){
+      html+='<a class="sr-item" href="'+d.s+'" onclick="handleClick(event,\''+d.s+'\')">' +
+            '<span class="sr-ico">'+d.i+'</span>' +
+            '<span class="sr-info"><span class="sr-title">'+d.n+'</span><span class="sr-desc">'+d.d+'</span></span>' +
+            '<span class="sr-arrow">→</span></a>';
+    });
+  });
+  res.innerHTML=html;
+}
+
+function handleClick(e,section){
+  e.preventDefault();
+  closeSearch();
+  if(!document.getElementById('page-hub').classList.contains('active')){
+    switchPage('hub');
+  }
+  setTimeout(function(){
+    var el=document.querySelector(section);
+    if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+  },130);
+}
+
+// ── SCROLL REVEAL ────────────────────────────────────────────────
+var io=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting) e.target.classList.add('vis');
+  });
+},{threshold:.08});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+</script>
+</body>
+</html>

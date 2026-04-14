@@ -1,0 +1,32 @@
+00:00:14	Matt Bailey's ClickUp Notetaker:	Permission to record was denied, which means I'm not able to take notes. Error code: zoom_local_recording_disabled. Learn more here: https://help.clickup.com/hc/en-us/articles/28928137493015-Use-AI-Notetaker-to-take-meeting-notes#h_01JHG8Q3W6E8P3GC0WBCQXKXQ9
+00:00:14	Fidan Alizada's ClickUp Notetaker:	Permission to record was denied, which means I'm not able to take notes. Error code: zoom_local_recording_disabled. Learn more here: https://help.clickup.com/hc/en-us/articles/28928137493015-Use-AI-Notetaker-to-take-meeting-notes#h_01JHG8Q3W6E8P3GC0WBCQXKXQ9
+00:00:15	Jonathan Duque's ClickUp Notetaker:	Permission to record was denied, which means I'm not able to take notes. Error code: zoom_local_recording_disabled. Learn more here: https://help.clickup.com/hc/en-us/articles/28928137493015-Use-AI-Notetaker-to-take-meeting-notes#h_01JHG8Q3W6E8P3GC0WBCQXKXQ9
+00:00:16	Ismar Costa's ClickUp Notetaker:	Permission to record was denied, which means I'm not able to take notes. Error code: zoom_local_recording_disabled. Learn more here: https://help.clickup.com/hc/en-us/articles/28928137493015-Use-AI-Notetaker-to-take-meeting-notes#h_01JHG8Q3W6E8P3GC0WBCQXKXQ9
+00:00:16	Matt Bailey's ClickUp Notetaker:	Hey, I'm Matt Bailey's ClickUp Notetaker from the Search Atlas Group Workspace here to record the call and take notes!
+00:00:16	Jonathan Duque's ClickUp Notetaker:	Hey, I'm Jonathan Duque's ClickUp Notetaker from the Search Atlas Group Workspace here to record the call and take notes!
+00:00:16	Juan Nicolas Villamil's ClickUp Notetaker:	Hey, I'm Juan Nicolas Villamil's ClickUp Notetaker from the Search Atlas Group Workspace here to record the call and take notes!
+00:00:16	Fidan Alizada's ClickUp Notetaker:	Hey, I'm Fidan Alizada's ClickUp Notetaker from the Search Atlas Group Workspace here to record the call and take notes!
+00:00:16	Ismar Costa's ClickUp Notetaker:	Hey, I'm Ismar Costa's ClickUp Notetaker from the Search Atlas Group Workspace here to record the call and take notes!
+00:00:16	Juan Nicolas Villamil's ClickUp Notetaker:	Permission to record was denied, which means I'm not able to take notes. Error code: zoom_local_recording_disabled. Learn more here: https://help.clickup.com/hc/en-us/articles/28928137493015-Use-AI-Notetaker-to-take-meeting-notes#h_01JHG8Q3W6E8P3GC0WBCQXKXQ9
+00:00:39	read.ai meeting notes:	Joel, Matt, and Todd added read.ai meeting notes to the meeting.
+
+Read provides AI generated meeting summaries to make meetings more effective and efficient. View our Privacy Policy at https://www.read.ai/pp
+
+Type "read stop" to disable, or "opt out" to delete meeting data.
+00:00:42	Fireflies.ai Notetaker Clayton:	Clayton invited Fireflies.ai here to record & take notes.  By continuing, you agree to https://fireflies.ai/privacy.
+
+Type:
+'/ff pause' - pause recording
+'/ff leave' - to stop recording
+
+View Realtime notes here: https://app.fireflies.ai/live/01KM3QBB78AYZ6J4XBZ0T1BF3J?ref=live_chat
+00:03:11	Rick Janson | Janson.ai:	Please let Todd Koch in - he's my biz partner
+00:05:26	Matt Bailey:	Rick, I don't see Todd in the waiting room?
+00:06:19	Matt Bailey:	does he have the link?
+00:47:22	Rick Janson | Janson.ai:	I love the idea of open-sourcing and sharing the skills to grow the power of this group.
+00:47:31	Justin Day:	Reacted to "I love the idea of o..." with 🔥
+00:47:48	Jonathan Duque:	Reacted to "I love the idea of o..." with 💯
+00:50:18	Matt Bailey:	I'll set up a specific section on Circle for wish lists and sharing
+00:52:21	Rick Janson | Janson.ai:	Reacted to "I'll set up a specif..." with 🎉
+00:57:06	Rick Janson | Janson.ai:	have to bounce to another call. I appreciate you guys and how collaborative you are.
+01:00:25	Jonathan Duque:	https://calendar.app.google/VkNV4oCzLTmwY3eT9

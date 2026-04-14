@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMM — Monthly Calls with Manick Bhan | Catch-Up Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #08090d;
+    --surface:   #0f1117;
+    --surface2:  #161b24;
+    --surface3:  #1d2330;
+    --border:    #1f2535;
+    --border2:   #2a3245;
+    --gold:      #e8b84b;
+    --gold-dim:  rgba(232,184,75,0.12);
+    --gold-glow: rgba(232,184,75,0.06);
+    --teal:      #3dd9b3;
+    --teal-dim:  rgba(61,217,179,0.10);
+    --red:       #e85050;
+    --red-dim:   rgba(232,80,80,0.10);
+    --blue:      #4a8ff0;
+    --blue-dim:  rgba(74,143,240,0.10);
+    --text:      #dde2f0;
+    --muted:     #6b7590;
+    --dim:       #3d4560;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.72;
+    min-height: 100vh;
+  }
+
+  /* Grid overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(232,184,75,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,184,75,0.025) 1px, transparent 1px);
+    background-size: 52px 52px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Ambient glow */
+  body::after {
+    content: '';
+    position: fixed;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 600px;
+    background: radial-gradient(ellipse, rgba(232,184,75,0.04) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 220px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 40px 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar-logo {
+    padding: 0 24px 32px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 28px;
+  }
+
+  .sidebar-logo .wordmark {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    display: block;
+  }
+
+  .sidebar-logo .tagline {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 4px;
+    display: block;
+  }
+
+  .nav-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dim);
+    padding: 0 24px;
+    margin-bottom: 8px;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 24px;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--muted);
+    text-decoration: none;
+    transition: all 0.18s ease;
+    border-left: 2px solid transparent;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--text);
+    background: var(--gold-glow);
+    border-left-color: var(--gold);
+  }
+
+  .nav-link .dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--dim);
+    flex-shrink: 0;
+    transition: background 0.18s;
+  }
+
+  .nav-link:hover .dot,
+  .nav-link.active .dot { background: var(--gold); }
+
+  .sidebar-footer {
+    margin-top: auto;
+    padding: 20px 24px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .sidebar-footer .other-page {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.18s;
+  }
+
+  .sidebar-footer .other-page:hover { color: var(--teal); }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    margin-left: 220px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .container {
+    max-width: 840px;
+    margin: 0 auto;
+    padding: 64px 40px 120px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    margin-bottom: 72px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+    border: 1px solid;
+  }
+
+  .badge-gold { color: var(--gold); border-color: var(--gold); background: var(--gold-dim); }
+  .badge-teal { color: var(--teal); border-color: var(--teal); background: var(--teal-dim); }
+  .badge-muted { color: var(--muted); border-color: var(--border2); background: var(--surface2); }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 9vw, 92px);
+    line-height: 0.92;
+    letter-spacing: 0.025em;
+    color: var(--text);
+    margin-bottom: 22px;
+  }
+
+  .hero h1 .accent { color: var(--gold); }
+
+  .hero-desc {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 580px;
+    line-height: 1.8;
+  }
+
+  /* ── OVERVIEW GRID ── */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 64px;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px;
+  }
+
+  .stat-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    letter-spacing: 0.04em;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── SECTION ── */
+  .section {
+    margin-bottom: 56px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .icon-gold { background: var(--gold-dim); }
+  .icon-teal { background: var(--teal-dim); }
+  .icon-red  { background: var(--red-dim); }
+  .icon-blue { background: var(--blue-dim); }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 0.06em;
+    color: var(--text);
+  }
+
+  .section-subtitle {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* ── CALL CARD ── */
+  .call-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .call-card:hover { border-color: var(--border2); }
+
+  .call-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 24px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .call-card-header:hover { background: var(--gold-glow); }
+
+  .call-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .call-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .call-meta {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .call-chevron {
+    font-size: 18px;
+    color: var(--dim);
+    transition: transform 0.25s ease;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .call-card.open .call-chevron { transform: rotate(180deg); color: var(--gold); }
+
+  .call-body {
+    display: none;
+    padding: 0 24px 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .call-card.open .call-body { display: block; }
+
+  /* ── HIGHLIGHT GRID ── */
+  .highlight-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 20px 0;
+  }
+
+  .highlight-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 14px 16px;
+  }
+
+  .highlight-item .h-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 5px;
+  }
+
+  .highlight-item .h-value {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  /* ── TOOL CHIPS ── */
+  .tool-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 16px 0;
+  }
+
+  .tool-chip {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    padding: 5px 10px;
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-radius: 2px;
+    color: var(--muted);
+  }
+
+  .tool-chip.new {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: var(--gold-dim);
+  }
+
+  /* ── TAKEAWAYS ── */
+  .takeaway-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 16px 0;
+  }
+
+  .takeaway-list li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .takeaway-list li::before {
+    content: '›';
+    color: var(--gold);
+    font-size: 16px;
+    line-height: 1.4;
+    flex-shrink: 0;
+  }
+
+  /* ── ACTION ITEMS ── */
+  .action-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 16px 0;
+  }
+
+  .action-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim);
+    text-align: left;
+    padding: 0 12px 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .action-table td {
+    padding: 10px 12px 10px 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--muted);
+    vertical-align: top;
+  }
+
+  .action-table td:first-child { color: var(--text); font-weight: 500; }
+
+  .action-table tr:last-child td { border-bottom: none; }
+
+  /* ── ROADMAP ITEMS ── */
+  .roadmap-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .roadmap-row:last-child { border-bottom: none; }
+
+  .roadmap-status {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    border: 1px solid;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .status-shipping { color: var(--teal); border-color: var(--teal); background: var(--teal-dim); }
+  .status-coming   { color: var(--gold); border-color: var(--gold); background: var(--gold-dim); }
+  .status-live     { color: #3dd98c; border-color: #3dd98c; background: rgba(61,217,140,0.10); }
+
+  .roadmap-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 3px;
+  }
+
+  .roadmap-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── QUOTE ── */
+  .quote-block {
+    border-left: 2px solid var(--gold);
+    padding: 12px 20px;
+    margin: 16px 0;
+    background: var(--gold-glow);
+  }
+
+  .quote-block p {
+    font-size: 14px;
+    color: var(--text);
+    font-style: italic;
+    line-height: 1.65;
+  }
+
+  .quote-block .attrib {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    margin-top: 8px;
+    font-style: normal;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 40px 0;
+  }
+
+  /* ── WHO IS MANICK ── */
+  .profile-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 28px;
+    display: flex;
+    gap: 24px;
+    margin-bottom: 56px;
+    animation: fadeUp 0.6s 0.05s ease both;
+  }
+
+  .profile-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 4px;
+    background: var(--gold-dim);
+    border: 1px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .profile-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.05em;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .profile-role {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .profile-bio {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; }
+    .container { padding: 40px 20px 80px; }
+    .highlight-grid { grid-template-columns: 1fr; }
+    .overview-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 540px) {
+    .overview-grid { grid-template-columns: 1fr; }
+    .profile-card { flex-direction: column; }
+  }
+
+  /* ── INLINE CODE ── */
+  code {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 1px 6px;
+    border-radius: 2px;
+    color: var(--gold);
+  }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR NAV -->
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <span class="wordmark">AMM</span>
+    <span class="tagline">Agentic Marketing Mastermind</span>
+  </div>
+  <div class="nav-label">On this page</div>
+  <a href="#who-is-manick" class="nav-link"><span class="dot"></span>Who is Manick</a>
+  <a href="#what-to-expect" class="nav-link"><span class="dot"></span>What to Expect</a>
+  <a href="#april-2026" class="nav-link active"><span class="dot"></span>Apr 13, 2026</a>
+  <a href="#key-tools" class="nav-link"><span class="dot"></span>Key Tools</a>
+  <a href="#platform-roadmap" class="nav-link"><span class="dot"></span>Platform Roadmap</a>
+  <a href="#action-items" class="nav-link"><span class="dot"></span>Action Items</a>
+  <a href="#agency-model" class="nav-link"><span class="dot"></span>Agency Model</a>
+
+  <div class="sidebar-footer">
+    <a href="Catchup-Weekly.html" class="other-page">
+      ↗ Weekly Catch-Up
+    </a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div class="main">
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-meta">
+      <span class="badge badge-gold">Monthly Call</span>
+      <span class="badge badge-muted">New Member Brief</span>
+    </div>
+    <h1>Calls with<br><span class="accent">Manick Bhan</span></h1>
+    <p class="hero-desc">
+      Every month, the AMM connects live with Manick Bhan — CEO of Search Atlas — for an unfiltered deep-dive into platform strategy, new tools, and what's working at scale. This page gets you up to speed fast.
+    </p>
+  </div>
+
+  <!-- STATS -->
+  <div class="overview-grid">
+    <div class="stat-card">
+      <div class="stat-value">191</div>
+      <div class="stat-label">Minutes · Apr 13 call</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">13</div>
+      <div class="stat-label">Members on the call</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">4</div>
+      <div class="stat-label">New tools delivered</div>
+    </div>
+  </div>
+
+  <!-- WHO IS MANICK -->
+  <div id="who-is-manick" class="section">
+    <div class="section-header">
+      <div class="section-icon icon-gold">🧠</div>
+      <div>
+        <div class="section-title">Who is Manick Bhan</div>
+        <div class="section-subtitle">Founder context you need</div>
+      </div>
+    </div>
+
+    <div class="profile-card">
+      <div class="profile-avatar">MB</div>
+      <div>
+        <div class="profile-name">Manick Bhan</div>
+        <div class="profile-role">CEO & Co-Founder — Search Atlas</div>
+        <p class="profile-bio">
+          Manick is the founder of Search Atlas (LinkGraph), the platform that powers the entire AMM tech stack. He built Search Atlas into one of the fastest-growing SEO platforms by training models on real agency data at scale. The monthly AMM call is his direct channel to the mastermind — part product roadmap session, part war room for what's working in agentic marketing right now.<br><br>
+          When Manick speaks, he's not theorizing. He's running 202-site campaigns, testing 29 Google Ads accounts, and shipping new platform features the same week he demos them to AMM. These calls are the closest you'll get to the inside track.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT TO EXPECT -->
+  <div id="what-to-expect" class="section">
+    <div class="section-header">
+      <div class="section-icon icon-teal">📡</div>
+      <div>
+        <div class="section-title">What to Expect Each Month</div>
+        <div class="section-subtitle">The format & why it matters</div>
+      </div>
+    </div>
+
+    <div class="highlight-grid">
+      <div class="highlight-item">
+        <div class="h-label">Format</div>
+        <div class="h-value">Live 3–4 hr session with the full AMM group. Screen shares, live demos, Q&A.</div>
+      </div>
+      <div class="highlight-item">
+        <div class="h-label">Member Wins First</div>
+        <div class="h-value">Session always opens with member showcases — what you built, what worked, revenue moved.</div>
+      </div>
+      <div class="highlight-item">
+        <div class="h-label">Platform Roadmap</div>
+        <div class="h-value">Manick walks upcoming SA features — often things shipping within the same week.</div>
+      </div>
+      <div class="highlight-item">
+        <div class="h-label">Live Playbook Runs</div>
+        <div class="h-value">New tools are demoed live and often set up in member workspaces during the call.</div>
+      </div>
+      <div class="highlight-item">
+        <div class="h-label">Homework Assignments</div>
+        <div class="h-value">Specific action items set for all members before the next monthly call.</div>
+      </div>
+      <div class="highlight-item">
+        <div class="h-label">Your Role</div>
+        <div class="h-value">Show up with your biggest client win or current bottleneck. This is a working session.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- APRIL 13 CALL -->
+  <div id="april-2026" class="section">
+    <div class="section-header">
+      <div class="section-icon icon-gold">⚡</div>
+      <div>
+        <div class="section-title">April 13, 2026 — Full Brief</div>
+        <div class="section-subtitle">Most recent call · 191 min · 13 members</div>
+      </div>
+    </div>
+
+    <!-- Wins -->
+    <div class="call-card open" onclick="toggleCard(this)">
+      <div class="call-card-header">
+        <div>
+          <div class="call-date">Opening Block · Member Wins</div>
+          <div class="call-title">What Members Built This Month</div>
+          <div class="call-meta">5 showcases — the bar for what's possible right now</div>
+        </div>
+        <div class="call-chevron">▼</div>
+      </div>
+      <div class="call-body">
+        <ul class="takeaway-list">
+          <li><strong style="color:var(--text)">Justin Day</strong> — Fully autonomous executive command center. Bank accounts, GHL, Gmail, and Calendar all connected as a single AI brain. Self-learning. Zero manual input once running.</li>
+          <li><strong style="color:var(--text)">Jonathan Giner</strong> — 5 sites built live using Claude Code + Netlify. AI-generated images via Grok. Full design-to-deploy pipeline.</li>
+          <li><strong style="color:var(--text)">Justin Kavanaugh</strong> — Infinite local service pages via Website Studio. Using Site Lens as a sales pitch tool. Turned a LinkGraph PDF into a lead magnet asset.</li>
+          <li><strong style="color:var(--text)">Bryan Fikes</strong> — Launched FamilyTherapistFinder.com — a satellite directory site pulling from a real therapist database. Live and indexed.</li>
+          <li><strong style="color:var(--text)">Arman Advani</strong> — Live demo of full Website Studio → Webflow MCP workflow. Build in SA, import to CMS. End-to-end agentic.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Website Workflow -->
+    <div class="call-card" onclick="toggleCard(this)">
+      <div class="call-card-header">
+        <div>
+          <div class="call-date">Topic 1 · Website Workflow</div>
+          <div class="call-title">The CMS Problem — Solved</div>
+          <div class="call-meta">How to go from agentic HTML to live Webflow or WordPress</div>
+        </div>
+        <div class="call-chevron">▼</div>
+      </div>
+      <div class="call-body">
+        <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">
+          The biggest bottleneck in client delivery: SA's agentic tools output raw HTML, but clients need CMS platforms (WordPress, Webflow). The April 13 call solved this with a concrete workflow.
+        </p>
+        <div class="highlight-grid">
+          <div class="highlight-item">
+            <div class="h-label">The Stack</div>
+            <div class="h-value">SA MCP Playbook → Website Studio → Claude Code (refine) → CMS MCP (import)</div>
+          </div>
+          <div class="highlight-item">
+            <div class="h-label">Coming Soon</div>
+            <div class="h-value">HTML/zip upload to Website Studio backend — Nico coordinating, expected Apr 14 update.</div>
+          </div>
+        </div>
+        <div class="quote-block">
+          <p>"Strategy by humans, execution by AI, QA by experts."</p>
+          <div class="attrib">— AMM Agency Positioning, April 2026</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- New Tools -->
+    <div class="call-card" onclick="toggleCard(this)">
+      <div class="call-card-header">
+        <div>
+          <div class="call-date">Topic 2 · New Tools Delivered</div>
+          <div class="call-title">4 Tools Dropped This Call</div>
+          <div class="call-meta">Research Oracle · Enterprise Audit · Google Ads Playbook · SEO ROI Calc</div>
+        </div>
+        <div class="call-chevron">▼</div>
+      </div>
+      <div class="call-body">
+        <div class="tool-list">
+          <span class="tool-chip new">Research Oracle</span>
+          <span class="tool-chip new">Enterprise SEO Audit</span>
+          <span class="tool-chip new">Google Ads Audit</span>
+          <span class="tool-chip new">SEO ROI Calculator</span>
+        </div>
+        <ul class="takeaway-list" style="margin-top:16px;">
+          <li><strong style="color:var(--text)">Research Oracle</strong> — Manick's personal vault intelligence system. Passive insight generation from your data. HTML setup file was shared live on the call.</li>
+          <li><strong style="color:var(--text)">Enterprise SEO Audit</strong> — 6-phase audit using GSC + GA4 + crawl data. Based on the Roto-Rooter national client model. Repo access shared with members.</li>
+          <li><strong style="color:var(--text)">Google Ads Audit & Strategy Playbook</strong> — Developed from 29 real accounts and 925 campaigns. Drove +70% conversion lift with zero budget increase for clients.</li>
+          <li><strong style="color:var(--text)">SEO ROI Calculator</strong> — Interactive HTML tool. Use it as a sales asset to close clients. Shows projected ROI from SEO investment.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PBN Case Study -->
+    <div class="call-card" onclick="toggleCard(this)">
+      <div class="call-card-header">
+        <div>
+          <div class="call-date">Topic 3 · Internal Case Study</div>
+          <div class="call-title">202 Dormant Sites Revived in 10 Days</div>
+          <div class="call-meta">1000% impression growth · 215% click growth · 97% index rate</div>
+        </div>
+        <div class="call-chevron">▼</div>
+      </div>
+      <div class="call-body">
+        <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">
+          Manick walked through an internal PBN/satellite site campaign run at SA scale. The numbers were shared transparently with the AMM group.
+        </p>
+        <div class="highlight-grid">
+          <div class="highlight-item">
+            <div class="h-label">Starting Point</div>
+            <div class="h-value">202 dormant sites with bad content — pruned everything first</div>
+          </div>
+          <div class="highlight-item">
+            <div class="h-label">Execution</div>
+            <div class="h-value">274 new articles written, bulk GSC verify, pushed through Indexer</div>
+          </div>
+          <div class="highlight-item">
+            <div class="h-label">Index Rate</div>
+            <div class="h-value">97% — near perfect. Index rate is the metric that matters.</div>
+          </div>
+          <div class="highlight-item">
+            <div class="h-label">Key Insight</div>
+            <div class="h-value">Depth-1 and depth-2 pages from homepage set quality score. Make those exceptional first.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLATFORM ROADMAP -->
+  <div id="platform-roadmap" class="section">
+    <div class="section-header">
+      <div class="section-icon icon-blue">🚀</div>
+      <div>
+        <div class="section-title">Platform Roadmap</div>
+        <div class="section-subtitle">What's shipping from the April 13 call</div>
+      </div>
+    </div>
+
+    <div class="roadmap-row">
+      <div>
+        <span class="roadmap-status status-shipping">Shipping Now</span>
+      </div>
+      <div>
+        <div class="roadmap-name">Atlas Brain v2</div>
+        <div class="roadmap-desc">2x faster, GSC + socials MCP integration built in. Shipping end of the week of Apr 13.</div>
+      </div>
+    </div>
+
+    <div class="roadmap-row">
+      <div>
+        <span class="roadmap-status status-coming">~30 Days</span>
+      </div>
+      <div>
+        <div class="roadmap-name">Atlas CLI</div>
+        <div class="roadmap-desc">Free and unlimited. Runs on Atlas One model. Marketing execution replacement for Claude. AMM members get it free.</div>
+      </div>
+    </div>
+
+    <div class="roadmap-row">
+      <div>
+        <span class="roadmap-status status-coming">Coming</span>
+      </div>
+      <div>
+        <div class="roadmap-name">Atlas Command</div>
+        <div class="roadmap-desc">Visual agent steering UI. Mobile app. Brand Vault integration. Research Oracle built in. Designed for non-technical users to run agentic workflows.</div>
+      </div>
+    </div>
+
+    <div class="roadmap-row">
+      <div>
+        <span class="roadmap-status status-coming">Coming</span>
+      </div>
+      <div>
+        <div class="roadmap-name">Universal Credits</div>
+        <div class="roadmap-desc">Unified credit bank across all SA tools. Per-user quota logging. Agent credit caps. One number to manage.</div>
+      </div>
+    </div>
+
+    <div class="roadmap-row">
+      <div>
+        <span class="roadmap-status status-live">Live</span>
+      </div>
+      <div>
+        <div class="roadmap-name">Content Genius v2</div>
+        <div class="roadmap-desc">Half the cost, 2x faster, fully agentic. Already available to AMM members.</div>
+      </div>
+    </div>
+
+    <div class="roadmap-row">
+      <div>
+        <span class="roadmap-status status-coming">Coming</span>
+      </div>
+      <div>
+        <div class="roadmap-name">Atlas One LLM</div>
+        <div class="roadmap-desc">SA's own marketing-specialized model. Trained on 1.8 billion data points from the SA platform. Free for AMM members.</div>
+      </div>
+    </div>
+
+    <div class="roadmap-row">
+      <div>
+        <span class="roadmap-status status-coming">Coming</span>
+      </div>
+      <div>
+        <div class="roadmap-name">New Ad Channels</div>
+        <div class="roadmap-desc">Meta, LinkedIn, Uber Ads, ChatGPT Ads — all being added to the SA ad management stack.</div>
+      </div>
+    </div>
+
+    <div class="roadmap-row">
+      <div>
+        <span class="roadmap-status status-live">Live</span>
+      </div>
+      <div>
+        <div class="roadmap-name">CloudStacks</div>
+        <div class="roadmap-desc">Expanding from 14 to 35+ sites. Better interlinking architecture for index retention.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEY TOOLS -->
+  <div id="key-tools" class="section">
+    <div class="section-header">
+      <div class="section-icon icon-teal">🛠</div>
+      <div>
+        <div class="section-title">Key Tools to Know</div>
+        <div class="section-subtitle">What Manick's calls consistently reference</div>
+      </div>
+    </div>
+
+    <div class="tool-list">
+      <span class="tool-chip">SA MCP</span>
+      <span class="tool-chip">Website Studio</span>
+      <span class="tool-chip">Atlas Brain</span>
+      <span class="tool-chip">Research Oracle</span>
+      <span class="tool-chip">GSC Integration</span>
+      <span class="tool-chip">Indexer</span>
+      <span class="tool-chip">Content Genius</span>
+      <span class="tool-chip">CloudStacks</span>
+      <span class="tool-chip">Site Lens</span>
+      <span class="tool-chip">LinkLab</span>
+      <span class="tool-chip">Brand Vault</span>
+      <span class="tool-chip">Enterprise SEO Audit</span>
+      <span class="tool-chip">Google Ads Playbook</span>
+      <span class="tool-chip">SEO ROI Calculator</span>
+    </div>
+
+    <div class="quote-block" style="margin-top:24px;">
+      <p>"Run keyword and entity research via SA before building — not after. The sequence matters."</p>
+      <div class="attrib">— Manick Bhan, April 13, 2026</div>
+    </div>
+  </div>
+
+  <!-- ACTION ITEMS -->
+  <div id="action-items" class="section">
+    <div class="section-header">
+      <div class="section-icon icon-red">✅</div>
+      <div>
+        <div class="section-title">Assigned Action Items</div>
+        <div class="section-subtitle">From the April 13 call · Due before May monthly</div>
+      </div>
+    </div>
+
+    <table class="action-table">
+      <thead>
+        <tr>
+          <th>Owner</th>
+          <th>Action</th>
+          <th>Deadline</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>All Members</td>
+          <td>Fill keyword ranking boost sheet</td>
+          <td>Apr 15</td>
+        </tr>
+        <tr>
+          <td>All Members</td>
+          <td>Set up Research Oracle in your workspace</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>All Members</td>
+          <td>Run Google Ads Audit playbook on one client account</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>All Members</td>
+          <td>Use SEO ROI Calculator as a sales tool in at least one pitch</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>All Members</td>
+          <td>Build more satellite sites (this is ongoing homework)</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>All Members</td>
+          <td>Run Enterprise SEO Audit on your top client</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>All Members</td>
+          <td>Submit agency growth bottleneck feedback to the group</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Arman</td>
+          <td>Build custom playbook: website strategy → wireframes → briefs → keywords → copy → build</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>JD</td>
+          <td>Notify group when Atlas Brain v2 ships</td>
+          <td>End of week</td>
+        </tr>
+        <tr>
+          <td>JD</td>
+          <td>Add all session resources to KB (Circle)</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- AGENCY MODEL -->
+  <div id="agency-model" class="section">
+    <div class="section-header">
+      <div class="section-icon icon-gold">💼</div>
+      <div>
+        <div class="section-title">The Agency Model Manick Endorses</div>
+        <div class="section-subtitle">Land & Expand — the AMM go-to-market</div>
+      </div>
+    </div>
+
+    <div class="highlight-grid">
+      <div class="highlight-item">
+        <div class="h-label">Approach</div>
+        <div class="h-value">Land & Expand — use agentic tools to deliver fast ROI first, then grow the account into a full-stack partnership</div>
+      </div>
+      <div class="highlight-item">
+        <div class="h-label">Retention Signal</div>
+        <div class="h-value">SA enterprise cohorts: all expanded, none churned. The model is validated at scale.</div>
+      </div>
+      <div class="highlight-item">
+        <div class="h-label">Core 4</div>
+        <div class="h-value">Search · Ads · Website · CRM — offer these four pillars as your complete marketing department</div>
+      </div>
+      <div class="highlight-item">
+        <div class="h-label">Pricing</div>
+        <div class="h-value">Bolt-on marketing department: $3K–$5K/mo. 65% margin when running agentic delivery.</div>
+      </div>
+    </div>
+
+    <div class="quote-block" style="margin-top:20px;">
+      <p>"Month 1 is minimum. Month 2 is expansion. The machine does the delivery — you do the relationship."</p>
+      <div class="attrib">— Manick Bhan, April 13, 2026</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--dim);text-align:center;padding-bottom:20px;">
+    AMM INTERNAL · MONTHLY BRIEF · LAST UPDATED APR 13, 2026<br>
+    <a href="Catchup-Weekly.html" style="color:var(--muted);text-decoration:none;margin-top:8px;display:inline-block;">→ View Weekly Catch-Up</a>
+  </div>
+
+</div>
+</div>
+
+<script>
+  function toggleCard(card) {
+    card.classList.toggle('open');
+  }
+
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(l => {
+      l.classList.remove('active');
+      if (l.getAttribute('href') === '#' + current) l.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

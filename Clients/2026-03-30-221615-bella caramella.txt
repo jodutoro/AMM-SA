@@ -1,0 +1,636 @@
+ ▐▛███▜▌   Claude Code v2.1.88
+▝▜█████▛▘  Sonnet 4.6 · Claude Pro
+  ▘▘ ▝▝    ~/Desktop/Agentic
+
+❯ let's start a new project, create a folder named "Bella Caramella" is a       
+client who needs to start by building a website                                 
+
+⏺ Skill(superpowers:brainstorm)
+  ⎿  Successfully loaded skill
+
+⏺ The /brainstorm skill is deprecated and will be removed in the next major
+  release. Please ask me to use the "superpowers brainstorming" skill instead.
+
+⏺ Skill(superpowers:brainstorming)
+  ⎿  Successfully loaded skill
+
+⏺ Now let me create the folder and explore context.
+
+⏺ Bash(mkdir -p "/Users/eillacs/Desktop/Agentic/Bella Caramella" && ls
+      /Users/eillacs/Desktop/Agentic/)
+  ⎿  AI_rules.md
+     Bella Caramella
+     CLAUDE.md
+     … +31 lines (ctrl+o to expand)
+⏺ Folder created at /Users/eillacs/Desktop/Agentic/Bella Caramella.
+
+  ---
+  Some of what we're working on might be easier to explain if I can show it to
+  you in a web browser. I can put together mockups, diagrams, comparisons, and
+  other visuals as we go. This feature is still new and can be token-intensive.
+  Want to try it? (Requires opening a local URL)
+  ⎿  Stop says: 🧠 BRAIN SYNC: Update _brain/memory/ with any new learnings, 
+     fixes, or decisions from this session. Check MEMORY.md index is current.
+
+✻ Worked for 1m 10s
+
+❯ here's the brandkit, that might save us some work                             
+/Users/eillacs/Library/Application Support/Claude/local-agent-mode-sessions/b34 
+d35dc-3d76-4453-8754-cd2754768167/c1864bce-abf0-485c-ae01-21c8d991e64a/local_a8 
+9257e0-7063-4898-9772-741a5c5783b3/outputs/bella-caramella-brand-kit.md         
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ This brand kit is extremely thorough — colors, fonts, site map, copy tone, CSS
+   variables, everything. This saves a ton of work.
+
+  Let me copy it into the project folder first.
+
+⏺ Bash(cp "/Users/eillacs/Library/Application
+      Support/Claude/local-agent-mode-sessions/b34d35dc-3d76-4453-8754-cd2754768
+      167/c1864bce-abf0-485c-ae01-21c8d991e64a/local_…)
+  ⎿  Done
+
+⏺ The brand kit covers almost everything — architecture, colors, fonts, copy,
+  SEO. Basically only a few things are still open.
+
+  First question: Do you have the logo files and product photos ready to use, or
+   should we build the site with placeholders and pull imagery from the
+  Instagram feed (@bellacaramella) in the meantime?
+  ⎿  Stop says: 🧠 BRAIN SYNC: Update _brain/memory/ with any new learnings, 
+     fixes, or decisions from this session. Check MEMORY.md index is current.
+
+✻ Worked for 43s
+
+❯ /Users/eillacs/Downloads/Manual\ de\ identidad\ corporativa\ Bella\           
+Caramella.pdf these are the only media files available now, use whatever you    
+can gather from instagram too                                                   
+
+  Read 1 file (ctrl+o to expand)
+
+❯ [Image #2]                                                                    
+  ⎿  [Image #2]
+
+⏺ The user also sent Image #2 — that's the full-color logo on white background
+  (the clean PNG version). I'll grab that. Let me read the rest of the PDF.
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Now I have the full picture. The PDF confirms everything — the complete icon
+  set, all three social templates (brush stroke, polaroid, gradient card), the
+  Instagram grid mockup, and all brand applications. Crucially, the clean
+  white-background logo was sent as Image #2.
+
+  Everything I need is in hand. One last clarifying question before I propose
+  approaches:
+
+  Who updates the product catalog and how often? Specifically:
+
+  - A) The founder does it herself, frequently (weekly new arrivals) — she needs
+   zero-code updates
+  - B) You (Jonathan) manage it for her and can edit a simple file
+  - C) She already posts everything on Instagram — the feed IS the catalog, just
+   redirect there
+
+  This decides the entire tech architecture.
+  ⎿  Stop says: 🧠 BRAIN SYNC: Update _brain/memory/ with any new learnings, 
+     fixes, or decisions from this session. Check MEMORY.md index is current.
+
+✻ Churned for 1m 3s
+
+❯ A and C                                                                       
+
+⏺ Perfect. That tells me everything.
+⏺ Here are 3 approaches — all static HTML, no framework, fits the workspace
+  stack:
+
+  ---
+  Option A — Instagram-as-Catalog ⭐ Recommended
+
+  The Instagram feed is the product catalog. An embed widget (e.g. SnapWidget
+  free tier or a lightweight JS solution) pulls @bellacaramella's posts
+  directly. Every new post she makes automatically appears on the site — zero
+  maintenance, zero code. Static HTML pages for Home, Nosotras, Contacto.
+  WhatsApp CTAs everywhere.
+
+  Pros: Truly zero-effort for the founder. The catalog is always current. No
+  JSON to manage.
+  Cons: Layout is grid-only, no per-product detail pages. Relies on Instagram
+  embed staying live.
+
+  ---
+  Option B — JSON Catalog + Instagram Feed
+
+  Products live in a products.json file (name, category, image URL,
+  description). The site reads it on load and renders category-filtered product
+  cards. A separate Instagram section shows the latest feed. When a new product
+  arrives, you add one object to the JSON.
+
+  Pros: Full control over product layout, categories, detail pages, WhatsApp
+  pre-filled messages per product.
+  Cons: Still requires you (Jonathan) to update the file — not truly
+  founder-self-service.
+
+  ---
+  Option C — Google Sheet as CMS
+
+  Products live in a published Google Sheet. The site fetches it as a CSV on
+  page load and renders the catalog. Founder adds a row → site updates
+  automatically.
+
+  Pros: Genuinely zero-code for the founder (she fills in a spreadsheet).
+  Cons: Extra setup, Google dependency, slightly slower load. Overkill for a
+  boutique with ~20–30 products.
+
+  ---
+  My recommendation: Option A for launch.
+
+  The founder already runs the business through Instagram. Her content workflow
+  doesn't change at all — she posts, the site updates. If she later wants proper
+   per-product pages (with pre-filled WhatsApp messages per item), we can layer
+  Option B on top as Phase 2.
+
+  Does this work for you?
+  ⎿  Stop says: 🧠 BRAIN SYNC: Update _brain/memory/ with any new learnings, 
+     fixes, or decisions from this session. Check MEMORY.md index is current.
+
+✻ Churned for 45s
+
+❯ option A is ok for now but let's include a mockup of a fully product designed 
+ approach, that has detailed pictures, and everything is top level product      
+oriented, can be a single section no need to overdo                             
+
+⏺ Here's the full site design. I'll go section by section — tell me if anything
+  needs adjusting before we move on.
+
+  ---
+  Architecture
+
+  3 static HTML pages. No framework, no build step.
+
+  index.html       → Home
+  nosotras.html    → About
+  contacto.html    → Contact
+
+  ---
+  Section 1 — Home Page Structure
+
+  7 sections stacked vertically:
+
+  ┌─────┬─────────────────────────────────┬───────────────────────────────┐
+  │  #  │             Section             │          Background           │
+  ├─────┼─────────────────────────────────┼───────────────────────────────┤
+  │ 1   │ Nav                             │ White / transparent on scroll │
+  ├─────┼─────────────────────────────────┼───────────────────────────────┤
+  │ 2   │ Hero                            │ Holographic gradient          │
+  ├─────┼─────────────────────────────────┼───────────────────────────────┤
+  │ 3   │ Categorías                      │ White                         │
+  ├─────┼─────────────────────────────────┼───────────────────────────────┤
+  │ 4   │ Nuestros Favoritos ← the mockup │ Soft Blush #f8d3ce            │
+  ├─────┼─────────────────────────────────┼───────────────────────────────┤
+  │ 5   │ Catálogo Instagram              │ White                         │
+  ├─────┼─────────────────────────────────┼───────────────────────────────┤
+  │ 6   │ Manifesto / Nosotras snippet    │ Holographic gradient          │
+  ├─────┼─────────────────────────────────┼───────────────────────────────┤
+  │ 7   │ Footer                          │ Near-white + branded icons    │
+  └─────┴─────────────────────────────────┴───────────────────────────────┘
+
+  Sticky floating WhatsApp button (bottom-right) on all pages.
+
+  ---
+  Section 2 — "Nuestros Favoritos" (The Product Mockup Section)
+
+  This is the single polished product section — Phase 2 in miniature. 3 product 
+  cards in a horizontal row (single-column stack on mobile).
+
+  Each card contains:
+  - Full product image (square, object-fit: cover) — placeholder for now
+  - Product name in Tahu font
+  - One-line description in Ordinary font
+  - Size tags: S M L XL XXL as small pill badges
+  - "Consultar por WhatsApp" button in Bella Pink — pre-filled message per
+  product:
+  Hola Bella Caramella! Me interesa [PRODUCTO], ¿tienen disponibilidad?
+
+  Card design: white background, soft rounded corners (1.5rem), subtle shadow,
+  thin blush border on hover.
+
+  ---
+  Section 3 — Instagram Catalog
+
+  A labeled section — "Nuestro catálogo" — with the SnapWidget free embed (or a
+  manual <blockquote> Instagram embed approach that doesn't require a
+  third-party account). Grid layout matching the brand's 3-column feed
+  aesthetic. Below the grid: a pink CTA — "¿Te gustó algo? Pregúntanos por 
+  WhatsApp".
+
+  ---
+  Tech Stack
+
+  ┌─────────────┬───────────────────────────────────────────────────────────┐
+  │   Concern   │                         Solution                          │
+  ├─────────────┼───────────────────────────────────────────────────────────┤
+  │             │ Google Fonts: Dancing Script (Tahu stand-in) + Nunito     │
+  │ Fonts       │ (Ordinary stand-in). Swap for real fonts when licensed    │
+  │             │ files arrive.                                             │
+  ├─────────────┼───────────────────────────────────────────────────────────┤
+  │ Logo        │ The white-background PNG you sent — embedded as <img>     │
+  ├─────────────┼───────────────────────────────────────────────────────────┤
+  │ Colors      │ CSS custom properties from the brand kit (already ready)  │
+  ├─────────────┼───────────────────────────────────────────────────────────┤
+  │ Icons       │ SVG recreations of the branded flower icons from the PDF  │
+  ├─────────────┼───────────────────────────────────────────────────────────┤
+  │ Instagram   │ SnapWidget free tier OR native Instagram oEmbed           │
+  │ embed       │                                                           │
+  ├─────────────┼───────────────────────────────────────────────────────────┤
+  │ Hosting     │ Railway (already in the stack) or Netlify                 │
+  ├─────────────┼───────────────────────────────────────────────────────────┤
+  │ Product     │ 3 hardcoded cards in HTML for now — easy to extend to     │
+  │ data        │ JSON later                                                │
+  └─────────────┴───────────────────────────────────────────────────────────┘
+
+  ---
+  Does this look right? Any section you want to adjust before I write the spec
+  doc?
+  ⎿  Stop says: 🧠 BRAIN SYNC: Update _brain/memory/ with any new learnings, 
+     fixes, or decisions from this session. Check MEMORY.md index is current.
+
+✻ Cooked for 47s
+
+❯ make sure to use the latest learnings on our repo for the best possible       
+design, it needs to be a pleasent website, good experience                      
+
+⏺ Per the CLAUDE.md rules, I need to read the full design stack before touching
+  any code. Let me do all of this in parallel.
+
+  Read 2 files (ctrl+o to expand)
+
+⏺ Skill(frontend-design:frontend-design)
+  ⎿  Successfully loaded skill
+
+  Read 2 files (ctrl+o to expand)
+
+⏺ Good. Now I have everything: brand kit, full PDF visual language, Emil's craft
+   principles, and the design spec. Let me synthesize this into a concrete
+  design direction.
+
+  ---
+  Design Direction: "Pastel Editorial"
+
+  Named mode: Sweet Editorial Maximalism — poster-thinking and typographic scale
+   applied through the brand's holographic-pastel, feminine vocabulary. Every
+  section = a complete visual unit. Type does the heavy lifting.
+
+  The one unforgettable thing: The hero opens like a fashion magazine cover.
+  "Bella Caramella" in Tahu at ~120px fills the viewport. The gradient
+  background breathes. Everything else is hierarchy underneath that.
+
+  ---
+  Visual System
+
+  ┌─────────────┬───────────────────────────────────────────────────────────┐
+  │   Element   │                         Decision                          │
+  ├─────────────┼───────────────────────────────────────────────────────────┤
+  │ Hero bg     │ Holographic gradient animated — soft CSS @keyframes       │
+  │             │ hue-rotate, barely perceptible movement                   │
+  ├─────────────┼───────────────────────────────────────────────────────────┤
+  │ Headlines   │ Google Fonts Pinyon Script or Great Vibes (closest free   │
+  │             │ match to Tahu's flowing script) — massive, dominant       │
+  ├─────────────┼───────────────────────────────────────────────────────────┤
+  │ Body        │ Nunito (rounded, friendly — matches Ordinary's            │
+  │             │ personality exactly)                                      │
+  ├─────────────┼───────────────────────────────────────────────────────────┤
+  │ Logo        │ PNG from your image, embedded inline in nav + hero        │
+  ├─────────────┼───────────────────────────────────────────────────────────┤
+  │ Section     │ White → Soft Blush → White → Gradient → White footer —    │
+  │ rhythm      │ hard edges between each                                   │
+  ├─────────────┼───────────────────────────────────────────────────────────┤
+  │ Cards       │ White, border-radius: 20px, soft box-shadow — NOT brutal. │
+  │             │  This is a sweet brand.                                   │
+  ├─────────────┼───────────────────────────────────────────────────────────┤
+  │ CTAs        │ Bella Pink #e9828f pill buttons, all-caps Nunito Bold,    │
+  │             │ scale(0.97) on :active                                    │
+  ├─────────────┼───────────────────────────────────────────────────────────┤
+  │ Hover       │ Product images scale 1.0 → 1.03, card lifts               │
+  │             │ translateY(-4px)                                          │
+  └─────────────┴───────────────────────────────────────────────────────────┘
+
+  ---
+  Animations (Emil-calibrated)
+
+  - Page load: Hero headline + tagline stagger in with translateY(20px) 
+  opacity:0 → 0 opacity:1, 60ms between elements, cubic-bezier(0.23, 1, 0.32, 1)
+   ease-out
+  - Scroll-triggered: Product cards and sections fade+lift in via
+  IntersectionObserver — scale(0.97) opacity:0 → natural, once: true
+  - WhatsApp button: Enters with a gentle bounce (scale(0) → scale(1.1) → 
+  scale(1)), then pulses on idle
+  - Card hover: translateY(-4px) + shadow deepens, image zooms 1.03 — 200ms,
+  ease-out
+  - Reduced motion: All transforms removed, opacity-only fades kept
+
+  ---
+  "Nuestros Favoritos" Product Section
+
+  Layout: 3 cards. On desktop — 1fr 1fr 1fr. On mobile — horizontal scroll snap.
+   Asymmetric card heights: middle card is taller (raised center).
+
+  Each card:
+  ┌─────────────────────┐
+  │  [product image]    │  ← 280px, object-fit: cover, slight zoom on hover
+  │  aspect: 3/4        │
+  ├─────────────────────┤
+  │  Nombre del Producto │  ← Pinyon Script / Great Vibes, 28px
+  │  Descripción corta  │  ← Nunito, 14px, warm dark
+  │  S · M · L · XL ·XXL│  ← pink pill badges
+  │  [Consultar por WA] │  ← full-width Bella Pink button
+  └─────────────────────┘
+
+  Placeholder images: high-quality Unsplash fashion photos (feminine, bright,
+  pastel backgrounds) — same art direction as the brand's own templates.
+  Swappable when real photos arrive.
+
+  ---
+  Instagram Section
+
+  Labeled "Nuestro catálogo" in Tahu at large scale. SnapWidget free embed in
+  3-col grid layout. Below: animated marquee ticker — "¿Te gustó algo? · 
+  Consulta disponibilidad · Pedidos por WhatsApp · @bellacaramella ·" — in Bella
+   Pink on white, looping.
+
+  ---
+  Does this direction feel right? Approve and I'll write the spec doc and plan.
+  ⎿  Stop says: 🧠 BRAIN SYNC: Update _brain/memory/ with any new learnings, 
+     fixes, or decisions from this session. Check MEMORY.md index is current.
+
+✻ Brewed for 1m 18s
+
+❯ fire                                                                          
+
+⏺ Bash(mkdir -p "/Users/eillacs/Desktop/Agentic/Bella
+      Caramella/docs/superpowers/specs")
+  ⎿  Done
+
+⏺ Write(Bella Caramella/docs/superpowers/specs/2026-03-30-bella-caramella-websit
+       e-design.md)
+  ⎿  Wrote 281 lines to Bella Caramella/docs/superpowers/specs/2026-03-30-b
+     ella-caramella-website-design.md
+       1 # Bella Caramella — Website Design Spec
+       2 **Date:** 2026-03-30  
+       3 **Status:** Approved  
+       4 **Project:** `/Users/eillacs/Desktop/Agentic/Bella Caramella/`
+       5 
+       6 ---
+       7 
+       8 ## 1. Project Overview
+       9 
+      10 **Client:** Bella Caramella — women's fashion boutique, Colombia
+           
+     … +271 lines (ctrl+o to expand)
+⏺ Now running the spec review.
+
+⏺ feature-dev:code-reviewer(Review Bella Caramella website spec)
+  ⎿  Done (2 tool uses · 23.5k tokens · 1m 13s)
+  (ctrl+o to expand)
+
+⏺ Good catches. Patching all HIGH + MEDIUM issues now.
+
+⏺ Update(Bella Caramella/docs/superpowers/specs/2026-03-30-bella-caramella-websi
+        te-design.md)
+  ⎿  Added 1 line, removed 4 lines
+      71  
+      72  ```css
+      73  /* Google Fonts — free match for brand fonts */
+      74 -@import url('https://fonts.googleapis.com/css2?                
+      75 -  family=Great+Vibes&                                          
+      76 -  family=Nunito:wght@400;600;700;800&                          
+      77 -  display=swap');                                              
+      74 +@import url('https://fonts.googleapis.com/css2?family=Great+Vib
+         +es&family=Nunito:wght@400;600;700;800&display=swap');          
+      75  
+      76  --font-display: 'Great Vibes', cursive;   /* Tahu stand-in — fl
+          owing script */
+      77  --font-body:    'Nunito', sans-serif;      /* Ordinary stand-in
+           — rounded, friendly */
+
+⏺ Context at 79% — moving fast. Let me patch the remaining issues and wrap up.
+
+⏺ Update(Bella Caramella/docs/superpowers/specs/2026-03-30-bella-caramella-websi
+        te-design.md)
+  ⎿  Added 4 lines, removed 4 lines
+      79  
+      80  **Size scale:**
+      81  
+      82 -| Role | Font | Size | Weight |                                
+      83 -|---|---|---|---|                                              
+      84 -| Hero H1 | Great Vibes | 96–120px | 400 |                     
+      85 -| Section H2 | Great Vibes | 52–64px | 400 |                   
+      82 +| Role | Font | Desktop | Mobile | Weight |                    
+      83 +|---|---|---|---|---|                                          
+      84 +| Hero H1 | Great Vibes | 96–120px | 56–72px | 400 |           
+      85 +| Section H2 | Great Vibes | 52–64px | 36–44px | 400 |         
+      86  | Sub-heading H3 | Nunito | 22–26px | 700 |
+      87  | Body | Nunito | 16–18px | 400 |
+      88  | Labels/tags | Nunito | 11–12px | 700, uppercase, ls: 0.08em |
+
+⏺ Update(Bella Caramella/docs/superpowers/specs/2026-03-30-bella-caramella-websi
+        te-design.md)
+  ⎿  Added 10 lines, removed 3 lines
+      268  
+      269  ---
+      270  
+      271 -## 10. Constraints                                            
+      271 +## 10. Constraints & Deployment Notes                         
+      272  
+      273  - No backend. Pure static HTML/CSS/JS.
+      274  - No npm, no build tools, no frameworks.
+      275 -- WhatsApp number: placeholder `[NUMBER]` — client to provide.
+      275 +- **WhatsApp number:** Define once as `const WA_NUMBER = "57XX
+          +XXXXXXXX"` (Colombia country code, no `+`, no spaces) at the t
+          +op of each page's `<script>` block. All `wa.me/` links built f
+          +rom this constant — never hardcoded inline. Client to provide 
+          +number.                                                       
+      276 +- **OG image:** `og:image` must be an absolute URL at deploy t
+          +ime — `https://bellacaramella.co/assets/og-cover.jpg`. Create 
+          +a dedicated 1200×630px OG cover (hero section crop) — not the 
+          +logo alone. Mark as deploy-time substitution.                 
+      277  - Tahu/Ordinary fonts not available as web fonts → Great Vibes
+            + Nunito as approved stand-ins until licensed files provided.
+      277 -- SnapWidget embed requires free account at snapwidget.com — c
+          -lient or Jonathan to set up with @bellacaramella credentials. 
+      278 +- **SnapWidget fallback:** Wrap embed in a `<div class="ig-emb
+          +ed">` and render a fallback 3×3 grid of Unsplash placeholder t
+          +iles by default. JS hides fallback only after SnapWidget confi
+          +rms render via its callback. Fallback tiles link to `https://i
+          +nstagram.com/bellacaramella`.                                 
+      279 +- **Mobile nav overlay:** Full-screen gradient overlay (`--gra
+          +dient-brand`), z-index 1001. Links centered column at Great Vi
+          +bes 40px. Close button (×) top-right, same position as hamburg
+          +er. Overlay suppresses floating WA button behind it (z-index s
+          +tacking).                                                     
+      280 +- **prefers-reduced-motion:** Marquee → static centered text. 
+          +Gradient → static. All entry animations → instant opacity 0→1 
+          +only (no translateY/scale). WA button pulse → suppressed entir
+          +ely.                                                          
+      281 +- **Nosotras mid-page CTA:** Add a single full-width Bella Pin
+          +k stripe between Values Grid and Size Inclusivity sections wit
+          +h one line of copy + WhatsApp button.                         
+      282 +- **Card style note:** `border-radius: 20px` + pink shadow is 
+          +an intentional client-specific override of the Neo-Brutalist c
+          +ard default in design-spec.md — appropriate for this brand's s
+          +oft/feminine aesthetic.                                       
+      283 +- **Spacing tokens** (add to `:root`): `--radius-card: 20px; -
+          +-radius-pill: 100px; --space-sm: 16px; --space-md: 24px; --spa
+          +ce-lg: 48px; --space-xl: 80px;`                               
+      284 +- **Contacto:** Add `mailto:` placeholder link as secondary co
+          +ntact channel for non-WhatsApp users.                         
+      285  - All copy in Spanish.
+
+⏺ Spec written and patched at:
+  Bella 
+  Caramella/docs/superpowers/specs/2026-03-30-bella-caramella-website-design.md
+
+  Key fixes applied from review:
+  - WhatsApp number as a single WA_NUMBER constant (no scattered [NUMBER]
+  placeholders)
+  - SnapWidget fallback grid fully specified
+  - Mobile font sizes added
+  - Nav overlay fully speced
+  - prefers-reduced-motion per-element behavior
+  - OG image as absolute URL at deploy time
+  - Nosotras mid-page CTA added
+  - Spacing/radius tokens added
+  - Card style deviation documented
+
+  Please review the spec before we move to implementation. Let me know if
+  anything needs changing — then I'll invoke writing-plans to build the build
+  plan.
+  ⎿  Stop says: 🧠 BRAIN SYNC: Update _brain/memory/ with any new learnings, 
+     fixes, or decisions from this session. Check MEMORY.md index is current.
+
+✻ Cooked for 4m 9s
+
+❯ speed up                                                                      
+
+⏺ Skill(superpowers:writing-plans)
+  ⎿  Successfully loaded skill
+
+⏺ I'm using the writing-plans skill to create the implementation plan.
+
+⏺ Bash(cp "/Users/eillacs/Library/Application
+      Support/Claude/local-agent-mode-sessions/b34d35dc-3d76-4453-8754-cd2754768
+      167/c1864bce-abf0-485c-ae01-21c8d991e64a/local_…)
+  ⎿  done
+
+⏺ Write(Bella
+       Caramella/docs/superpowers/plans/2026-03-30-bella-caramella-website.md)
+  ⎿  Wrote 1043 lines to Bella 
+     Caramella/docs/superpowers/plans/2026-03-30-bella-caramella-website.md
+      1 # Bella Caramella Website Implementation Plan
+      2 
+      3 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:su
+        bagent-driven-development (recommended) or superpowers:executing-
+        plans to implement this plan task-by-task. Steps use checkbox (`-
+         [ ]`) syntax for tracking.
+      4 
+      5 **Goal:** Build a 3-page static catalog website for Bella Caramel
+        la boutique — brand-faithful, mobile-first, every page drives to 
+        WhatsApp.
+      6 
+      7 **Architecture:** Pure static HTML/CSS/JS across 3 pages sharing 
+        a single CSS design system and JS module. No framework, no build 
+        step. Shared styles in `css/styles.css`, shared logic in `js/main
+        .js`, page-specific markup inline. Logo PNG embedded as `<img>`, 
+        Instagram feed via SnapWidget with a hardcoded fallback grid.
+      8 
+      9 **Tech Stack:** HTML5, CSS3 (custom properties, grid, scroll-snap
+        , @keyframes, IntersectionObserver), vanilla JS, Google Fonts (Gr
+        eat Vibes + Nunito), SnapWidget free embed.
+     … +1033 lines (ctrl+o to expand)
+⏺ Plan saved to Bella 
+  Caramella/docs/superpowers/plans/2026-03-30-bella-caramella-website.md
+
+  10 tasks, build-ready:
+
+  ┌──────┬─────────────────────────────────────────────────────────┐
+  │ Task │                          What                           │
+  ├──────┼─────────────────────────────────────────────────────────┤
+  │ 1    │ Design system CSS — tokens, typography, buttons, reveal │
+  ├──────┼─────────────────────────────────────────────────────────┤
+  │ 2    │ Nav + floating WhatsApp button                          │
+  ├──────┼─────────────────────────────────────────────────────────┤
+  │ 3    │ main.js — WA links, scroll, observers, animations       │
+  ├──────┼─────────────────────────────────────────────────────────┤
+  │ 4    │ Hero + gradient animation                               │
+  ├──────┼─────────────────────────────────────────────────────────┤
+  │ 5    │ Product cards + Categorías                              │
+  ├──────┼─────────────────────────────────────────────────────────┤
+  │ 6    │ Marquee, Instagram section, manifesto, footer           │
+  ├──────┼─────────────────────────────────────────────────────────┤
+  │ 7    │ index.html — full home page                             │
+  ├──────┼─────────────────────────────────────────────────────────┤
+  │ 8    │ nosotras.html                                           │
+  ├──────┼─────────────────────────────────────────────────────────┤
+  │ 9    │ contacto.html                                           │
+  ├──────┼─────────────────────────────────────────────────────────┤
+  │ 10   │ Mobile pass + structured data + deploy checklist        │
+  └──────┴─────────────────────────────────────────────────────────┘
+
+  ---
+  Two execution options:
+
+  1. Subagent-Driven (recommended) — I dispatch a fresh subagent per task,
+  review between tasks, fast parallel iteration
+
+  2. Inline — Execute right here in this session task by task
+
+  Which approach?
+  ⎿  Stop says: 🧠 BRAIN SYNC: Update _brain/memory/ with any new learnings, 
+     fixes, or decisions from this session. Check MEMORY.md index is current.
+
+✻ Brewed for 4m 11s
+
+❯ 1                                                                             
+
+⏺ Skill(superpowers:subagent-driven-development)
+  ⎿  Successfully loaded skill
+
+⏺ I'm using Subagent-Driven Development to execute the Bella Caramella website
+  plan.
+
+⏺ Dispatching Task 1 — design system CSS.
+
+⏺ coder(Build Bella Caramella design system CSS)
+  ⎿  Done (4 tool uses · 32.4k tokens · 32s)
+  (ctrl+o to expand)
+⏺ Task 1 done — css/styles.css written and committed.
+
+  Context is critical (96%). I need to hand off cleanly. Here's the state:
+
+  ---
+  Handoff — Continue in a new session
+
+  Project: /Users/eillacs/Desktop/Agentic/Bella Caramella/
+  Plan: docs/superpowers/plans/2026-03-30-bella-caramella-website.md
+  Spec: docs/superpowers/specs/2026-03-30-bella-caramella-website-design.md
+
+  Completed so far (Tasks 1):
+  - ✅ css/styles.css — design system committed
+
+  Remaining tasks (2–10):
+  - Task 2: Nav + floating WhatsApp button CSS
+  - Task 3: js/main.js
+  - Task 4: Hero + gradient animation CSS
+  - Task 5: Product card + Categorías CSS
+  - Task 6: Marquee, Instagram, manifesto, footer CSS
+  - Task 7: index.html
+  - Task 8: nosotras.html
+  - Task 9: contacto.html
+  - Task 10: Mobile pass + structured data
+
+  Start a new session, tell me "continue Bella Caramella" and I'll pick up at
+  Task 2 with fresh context.
+  ⎿  Stop says: 🧠 BRAIN SYNC: Update _brain/memory/ with any new learnings, 
+     fixes, or decisions from this session. Check MEMORY.md index is current.
+
+✻ Crunched for 2m 20s

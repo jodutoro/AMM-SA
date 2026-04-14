@@ -1,0 +1,48 @@
+.env
+.DS_Store
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+node_modules/
+feedback.jsonl
+
+# Generated / runtime output
+logs/
+*.log
+_scratch/
+
+# Obsidian — workspace state changes per session, don't track
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+.trash/
+.stfolder/
+
+# Third-party tool sources (cloned repos — tracked by their own repos)
+get-shit-done/
+superpowers/
+stitch-mcp/
+Bella Caramella/assets/.claude-flow/
+
+# Standalone local projects (own git repos, not tracked here)
+Work stuff/clientops-backend/
+Work stuff/intercom-t2-triage/
+intercom-t2-triage/
+Skills/anthropic-skills/
+Skills/threejs-skills/
+agentic-mastermind/
+
+# Claude Code + tool runtime state
+.claude/
+.claude-flow/
+.swarm/
+.playwright-mcp/
+.obsidian/
+
+# Large assets — not in git
+Resources/design-inspo/
+
+# Large static asset library — not edited, ignore for git performance
+Skills/galaxy/

@@ -1,0 +1,2274 @@
+WEBVTT
+
+1
+00:00:46.280 --> 00:00:51.489
+Matt Bailey: Alright, looks like everyone's starting to make their way in. How is everyone doing today?
+
+2
+00:00:52.790 --> 00:00:54.190
+Justin Day: Doing good.
+
+3
+00:00:54.670 --> 00:00:55.730
+Matt Bailey: Good, good.
+
+4
+00:00:58.890 --> 00:01:02.109
+Bryan Fikes: Terrible. We were up one, and we just got down one, so…
+
+5
+00:01:04.200 --> 00:01:06.140
+Matt Bailey: Are you playing golf, Brian?
+
+6
+00:01:06.700 --> 00:01:08.509
+Bryan Fikes: You're gonna see me every Thursday.
+
+7
+00:01:11.100 --> 00:01:14.430
+Kav: Hey, man, tee time's important, man, I appreciate that.
+
+8
+00:01:15.700 --> 00:01:22.499
+Matt Bailey: I, you know, I love the priorities, because he's calling in from the course. That's great.
+
+9
+00:01:23.130 --> 00:01:27.010
+Jonathan Duque: Hey, Liz, I have an idea, let's meet up… of a golf…
+
+10
+00:01:27.450 --> 00:01:28.410
+Matt Bailey: Camp.
+
+11
+00:01:28.410 --> 00:01:31.380
+Jonathan Duque: Right? Next time, we'll do that in person.
+
+12
+00:01:34.200 --> 00:01:34.840
+Matt Bailey: That's.
+
+13
+00:01:34.840 --> 00:01:39.000
+Bryan Fikes: You don't have to… you don't have to beg me at all, dude, I'm in, let's go. Flight's booked.
+
+14
+00:01:42.550 --> 00:02:01.230
+Matt Bailey: All right, well, wanted to check in with everyone. I know, going back two weeks ago to, you know, Monica was presenting and gave everyone a number of goals, and two of the goals specifically I wanted to check in with you is… I know, number one, he said, if you're gonna do anything for your site.
+
+15
+00:02:01.230 --> 00:02:02.610
+Matt Bailey: Because
+
+16
+00:02:02.960 --> 00:02:15.130
+Matt Bailey: to develop that authority, it's some of these microsites. You know, kind of that third-party, independent, you know, evaluation of the options that are out there, and it points to you to build the authority.
+
+17
+00:02:15.130 --> 00:02:39.680
+Matt Bailey: So that was going to be one of the assignments, is to build one of those satellite sites. But he did say, number one, make sure your site is bulletproof. Running all of the, you know, anything from a technical side that needs to be run, taken care of. And I know a couple of you shared some of those satellite sites. So at this meeting, I'd like to make sure everyone has
+
+18
+00:02:39.680 --> 00:02:49.929
+Matt Bailey: done that. If you've done that, please share it, would love to see it. And anything that, you know, from a process standpoint you ran into, or…
+
+19
+00:02:49.950 --> 00:02:55.019
+Matt Bailey: You know, saw from your standpoint, or any of the prompting that you did?
+
+20
+00:03:03.760 --> 00:03:04.390
+Matt Bailey: It looks like.
+
+21
+00:03:04.390 --> 00:03:07.320
+Jonathan Giner: I'll go… I'll go… I'll go first, Matt. I.
+
+22
+00:03:07.320 --> 00:03:08.000
+Matt Bailey: open.
+
+23
+00:03:08.500 --> 00:03:16.989
+Jonathan Giner: Yeah, so I went ahead, and if you go onto my agency site right now, the URL, I changed it to a website studio site.
+
+24
+00:03:17.460 --> 00:03:25.309
+Jonathan Giner: But, you know, I know I mentioned it on Circle, but I had a lot of issues with it. I mean, I did it just for the sake of, once again, completing the assignment.
+
+25
+00:03:25.480 --> 00:03:32.890
+Jonathan Giner: But, but I had a lot of… I mean, I feel like I spent a good amount of time in Website Studio, and I don't know if it was…
+
+26
+00:03:33.130 --> 00:03:40.820
+Jonathan Giner: you know, user error, you know, lack of, you know, being able to prompt it. I mean, I don't consider… when it comes to, like, AI, I feel like I'm…
+
+27
+00:03:41.240 --> 00:03:59.799
+Jonathan Giner: I'm pretty, I'm pretty confident just in my ability to prompt and make sure, you know, I kind of get what I want, and kind of talk to it in a way that tech is going to kind of understand, what my final product should, look like. But yeah, I had a lot of issues with Website Studio, so that's kind of how I stumbled upon
+
+28
+00:04:00.150 --> 00:04:10.309
+Jonathan Giner: going ahead and making the sites, via warp and cloud code, and just kind of making them, you know, HTML, CSS, and,
+
+29
+00:04:10.720 --> 00:04:15.869
+Jonathan Giner: And yeah, I mean, I've done now, I posted those two sites,
+
+30
+00:04:17.089 --> 00:04:34.020
+Jonathan Giner: I've done now two additional ones that are pretty, are pretty large sites, and man, I haven't had one hiccup. I mean, it's been, I mean, a life-changing experience. I mean, this is, like, the next best thing to a meeting Jesus. I mean, it's been incredible. Just so,
+
+31
+00:04:34.100 --> 00:04:38.359
+Jonathan Giner: yeah, just… it's been very painless, it's just been a great experience, so…
+
+32
+00:04:38.550 --> 00:04:53.819
+Jonathan Giner: you know, that's kind of been what was my experience with Website Studio. Obviously, I know that, you know, the team, the dev team is working on solutions and updates and stuff like that, and I have no doubt that it's gonna be, you know, pretty amazing. But yeah, I did have those issues.
+
+33
+00:04:54.410 --> 00:05:11.729
+Justin Day: Yeah, I want to echo that, just going through this week, too, just trying to develop, like, consistent development around the, like, homepage design. I'm trying to create a route design that I can have a baseline on, and then, like, expand the website based off of what I like, and, you know, versus creating multiple pages.
+
+34
+00:05:11.730 --> 00:05:20.179
+Justin Day: And I'm finding when I'm doing iterations, it'll hang, or the updates aren't kind of exact, so I don't know if there's a prompting that is off.
+
+35
+00:05:20.180 --> 00:05:26.430
+Justin Day: And then, yeah, sometimes it doesn't always go to…
+
+36
+00:05:26.430 --> 00:05:43.419
+Justin Day: the website studio so I can get a URL and fetch it, and I've lost some work occasionally here, not massive amount, but I just wonder if I'm doing all the right steps to make sure the connection's correct, and, you know, whatever else, so I don't disrupt anything to make it hang.
+
+37
+00:05:45.030 --> 00:05:45.500
+Kav: Madam.
+
+38
+00:05:45.500 --> 00:05:47.730
+Matt Bailey: Go ahead, Justin, yeah.
+
+39
+00:05:47.730 --> 00:06:03.139
+Kav: Yeah, on my end, too, I actually have had some pretty good success with the website studio. I'm not… I might not be sure on how to connect it to the root domain so that it aligns with everything, but we're… we're actually… we moved to…
+
+40
+00:06:03.140 --> 00:06:16.809
+Kav: websites to just landing pages for location services, which works really well with the speed and consistency. So, I don't know if that might actually help you, Justin, or Jonathan. Instead of going website-side, we went landing pages for location.
+
+41
+00:06:16.810 --> 00:06:17.140
+Justin Day: Yeah.
+
+42
+00:06:17.140 --> 00:06:33.589
+Kav: so that it helps on the SEO front, with a ton of success. But I also don't necessarily know how to actually drive it. Now, when I do back… when I do go back in there, it always has to… restoring the project files. That's the only thing that it… I run into. But as far as, like.
+
+43
+00:06:33.790 --> 00:06:35.460
+Kav: I did 3 prompts.
+
+44
+00:06:35.630 --> 00:06:36.890
+Kav: And it was done.
+
+45
+00:06:37.150 --> 00:06:44.850
+Kav: So, I think it's good there. The concern I have is, like, what's the next step, connecting it to the root domain so that we leverage it from an SEO perspective?
+
+46
+00:06:45.160 --> 00:06:46.060
+Jonathan Giner: Okay, so you're saying…
+
+47
+00:06:46.060 --> 00:06:50.539
+Justin Day: Are you doing that through the… through the website studio interface, or are you doing that through Warp?
+
+48
+00:06:50.730 --> 00:06:56.139
+Kav: No, mine's right here. Like, for context, it's like, this was a location services page.
+
+49
+00:06:56.140 --> 00:06:56.490
+Justin Day: Okay.
+
+50
+00:06:56.490 --> 00:07:01.309
+Kav: It came out. Like, look at the prompts, guys, like, I only did 3 prompts.
+
+51
+00:07:01.790 --> 00:07:03.919
+Kav: Please update something, that was the only…
+
+52
+00:07:03.920 --> 00:07:04.640
+Justin Day: Right.
+
+53
+00:07:04.640 --> 00:07:08.219
+Kav: And then everything else was frickin' light speed, it was awesome.
+
+54
+00:07:09.090 --> 00:07:14.120
+Kav: And that's damn good. Yeah. What I struggled with is, what do I do with this now?
+
+55
+00:07:14.870 --> 00:07:18.059
+Bryan Fikes: So I applaud that, but again, I know that what we're…
+
+56
+00:07:18.160 --> 00:07:23.310
+Bryan Fikes: focused on, because I've been trying to tell myself not to go to Website Studio, is forced myself to go through the MCU
+
+57
+00:07:23.650 --> 00:07:40.899
+Bryan Fikes: because again, that's what I want to learn. And, so I went from using Website Studio, and if I'm building a one, two, or three-page flawless, easy Atlas brain, I've discovered if I'm building a slightly larger site. And I had JD on with me yesterday, trying to complete my hub site, my micro hub site.
+
+58
+00:07:40.960 --> 00:07:44.510
+Bryan Fikes: And it produced a phenomenal multi-page
+
+59
+00:07:44.690 --> 00:08:01.759
+Bryan Fikes: product. The problem is, it just kept saying it was pushing to Website Studio, it wasn't working, so I'm gonna get with JD when he has time to figure that out. But, again, in terms of, what MCP can do, he kind of went through my configuration. We realized that one of the files that it was dumping into
+
+60
+00:08:01.810 --> 00:08:12.979
+Bryan Fikes: wasn't the core file that it should be, and so that was my mistake, and so that's why it kept looking like it was going into Warp Agent, because I wasn't following the correct file structure, which is vital, the more I kept reading, so…
+
+61
+00:08:13.050 --> 00:08:15.640
+Bryan Fikes: But yeah, love the sites, man, by the way. Good sites.
+
+62
+00:08:16.270 --> 00:08:16.970
+Kav: Awesome.
+
+63
+00:08:17.310 --> 00:08:37.630
+Matt Bailey: The file structure is an issue that, yeah, a number of you have been asking about, and I've been asking about it as well, because, you know, again, come from the SEO side, not a programmer side, and so file structure in, you know, in a prompt, is not something I'm familiar with, so JD's gonna be working on that to get out sort of a, here's how it works.
+
+64
+00:08:37.630 --> 00:08:38.289
+Bryan Fikes: Here's.
+
+65
+00:08:38.299 --> 00:08:49.159
+Matt Bailey: how to do it, kind of align us a little better, because I think that's probably part of the issues of taking things live from Warp, is, you know, getting that file structure right.
+
+66
+00:08:49.400 --> 00:09:01.090
+Bryan Fikes: Yeah, and I had a… I had ChatGPT draw me up a diagram, I printed it out, put it as big as night and day on my wallet. I do, do this exactly! Stop thinking like an SEO. I think more like a scientist.
+
+67
+00:09:01.360 --> 00:09:01.890
+Justin Day: Yeah.
+
+68
+00:09:02.390 --> 00:09:11.899
+Jonathan Duque: I'll drop now my, like, next infogram, I'll drop my, like, my face in it, so you'll have it printed on your desktop, and reminding me every time.
+
+69
+00:09:12.370 --> 00:09:25.690
+Jonathan Duque: Jokes aside, I… yeah, I do think that would be valuable to maybe go over the basics of the way that you would want to keep everything organized so you can navigate it easily, because
+
+70
+00:09:25.690 --> 00:09:35.059
+Jonathan Duque: I know it gets to a point where you're like, where the heck was that file, or why is it not understanding what I'm asking, if it was right here?
+
+71
+00:09:35.490 --> 00:09:43.990
+Bryan Fikes: Yeah, JD, I'm willing to bet that there's a lot of guys that… the problem that you've diagnosed for me, I bet you're gonna, when you have one-on-ones with them, you're gonna find… probably have some similar stuff going on.
+
+72
+00:09:43.990 --> 00:09:48.110
+Justin Day: Yeah, I had that yesterday, I think I patched it, but I'd love to hear what you.
+
+73
+00:09:48.110 --> 00:09:48.910
+Jonathan Duque: Right, right, right.
+
+74
+00:09:48.910 --> 00:09:49.540
+Justin Day: Yeah.
+
+75
+00:09:49.940 --> 00:09:56.559
+Jonathan Duque: And I have some good news as well, because I was discussing that with Manic. So, we're implementing
+
+76
+00:09:56.690 --> 00:09:59.450
+Jonathan Duque: The file structure and architecture?
+
+77
+00:09:59.620 --> 00:10:01.840
+Jonathan Duque: In the vault itself.
+
+78
+00:10:02.090 --> 00:10:03.110
+Justin Day: So…
+
+79
+00:10:03.110 --> 00:10:07.340
+Jonathan Duque: Not sure how they would, like, how would…
+
+80
+00:10:07.450 --> 00:10:14.229
+Jonathan Duque: be materialized, per se, but I do… the way I see it is we'll create this ball that would include
+
+81
+00:10:14.230 --> 00:10:27.729
+Jonathan Duque: all of the infrastructure and the architecture for a quad or for your model, and so then you have the bolts for each of the projects, and there's markdown files for each of those individually as well, so everything will be linked
+
+82
+00:10:27.760 --> 00:10:36.309
+Jonathan Duque: And on Search Atlas. So… so yeah, not sure if we want to jump right into that, Matt, or if you want to cover some first.
+
+83
+00:10:36.650 --> 00:10:55.499
+Matt Bailey: Well, first, yeah, today was, you know, typically these are sharing some wins, but I know, you know, this file structure thing is a big question. So if you could answer any of those questions, I think on this session, I think it'd be pretty valuable. Is that… would that help you guys, understanding a little more how that works?
+
+84
+00:10:56.710 --> 00:10:58.260
+Matt Bailey: Right, it's good.
+
+85
+00:10:58.490 --> 00:11:08.480
+Jonathan Duque: Good, good. Do you have a particular question right now, or would you like me just to do a quick, like, walkthrough over the best practices, or how do you guys want to handle it?
+
+86
+00:11:10.450 --> 00:11:12.829
+Justin Day: A walkthrough on the best practices would be great.
+
+87
+00:11:15.140 --> 00:11:20.240
+Jonathan Duque: Okay, cool, cool, cool, cool. So, let me go ahead and share my screen real quick.
+
+88
+00:11:20.550 --> 00:11:27.739
+Jonathan Duque: Now, keep in mind that I'm not an agency, right? I do have a file structure that I consider.
+
+89
+00:11:27.840 --> 00:11:33.990
+Jonathan Duque: To be hand… to be helpful for you guys, but you need to, like,
+
+90
+00:11:34.860 --> 00:11:36.100
+Jonathan Duque: That was the right term.
+
+91
+00:11:36.100 --> 00:11:36.750
+Clayton Joyner: I'd love to help with.
+
+92
+00:11:36.750 --> 00:11:48.730
+Jonathan Duque: yeah, like, translate this into your current state of things, right? Of course, some of you may have already a structure that is better than this, but I'm just gonna show you the way I handle it.
+
+93
+00:11:49.310 --> 00:12:01.230
+Jonathan Duque: So, remember that from the very start, we asked you guys to create a folder where you were gonna keep everything together? That folder is the root domain, like, I'm sorry, the root,
+
+94
+00:12:01.340 --> 00:12:02.590
+Jonathan Duque: directory.
+
+95
+00:12:02.820 --> 00:12:12.589
+Jonathan Duque: And I strongly suggest you to stay there. The reason is, when you start, like, downloading files here and there, and then connecting those to your,
+
+96
+00:12:13.500 --> 00:12:24.049
+Jonathan Duque: Setup, it gets messy, and sometimes it would lose context, so you would be just finding yourself trying to figure where the file is and asking it to get back to that file, right?
+
+97
+00:12:24.160 --> 00:12:31.800
+Jonathan Duque: So, this is how I handle it. As you can see, I have this main folder, which is Agentech. I keep it on my desktop.
+
+98
+00:12:32.160 --> 00:12:37.989
+Jonathan Duque: One sec… So, right here, I got, like, tree stuff in there.
+
+99
+00:12:38.270 --> 00:12:42.849
+Jonathan Duque: Three folders, and then under that folder, I keep everything
+
+100
+00:12:43.120 --> 00:12:47.150
+Jonathan Duque: Related with their individual projects. So instead of, like.
+
+101
+00:12:47.580 --> 00:12:52.990
+Jonathan Duque: Products, as it looks in my end, you would have your projects, right?
+
+102
+00:12:53.200 --> 00:12:59.850
+Jonathan Duque: It's likely that you would have them in your Agentic Mastermind ripple,
+
+103
+00:13:00.360 --> 00:13:06.490
+Jonathan Duque: But it depends on you, really. Like, either if you want this to grant fatter the projects.
+
+104
+00:13:06.860 --> 00:13:13.480
+Jonathan Duque: I'm sorry, the projects to be ran fattered in this specific folder, or just, like, as parallel to it?
+
+105
+00:13:13.900 --> 00:13:14.750
+Jonathan Duque: Nope.
+
+106
+00:13:15.180 --> 00:13:19.180
+Jonathan Duque: The most important files in here are these ones.
+
+107
+00:13:19.740 --> 00:13:27.739
+Jonathan Duque: the markdown files. So, remember I was talking to you last time that we need to guarantee those are there? These are the ones that you would want to keep.
+
+108
+00:13:28.050 --> 00:13:30.880
+Jonathan Duque: So, the AI rules markdown, which is…
+
+109
+00:13:31.920 --> 00:13:44.889
+Jonathan Duque: who am I working with? What are the hard rules for whatever I process for this person that is prompting? What is it that I need to always consider, right?
+
+110
+00:13:46.320 --> 00:13:52.599
+Jonathan Duque: you can ask, with whatever setup you got already, you can ask it to just create an AI rules file for it.
+
+111
+00:13:52.730 --> 00:13:57.299
+Jonathan Duque: So, it can guideline everything. Benefit is…
+
+112
+00:13:57.300 --> 00:14:10.970
+Bryan Fikes: But after, after JD showed me this yesterday, it was about 2 o'clock, I went… I went into the rabbit hole for the rest of the night. That's what produced that voice bonsai, the site, it just, it followed everything. It's like… it's like the rules of engagement.
+
+113
+00:14:11.320 --> 00:14:12.030
+Bryan Fikes: It's vital.
+
+114
+00:14:12.030 --> 00:14:12.640
+Jonathan Duque: Exactly.
+
+115
+00:14:12.640 --> 00:14:17.799
+Clayton Joyner: Just a skills file, then, I guess, that you've created, so that it knows how to implement?
+
+116
+00:14:18.850 --> 00:14:25.209
+Clayton Joyner: What, what's… this AI rules, what are you programming into the AI rules specifically? Is it just for website builds? Is it, like…
+
+117
+00:14:25.670 --> 00:14:41.999
+Jonathan Duque: everything related with plot. So, this is… these are the rules for plot, like, the guidelines. So, plot knows how to behave with whatever prompt you request. So, for instance, these are the core principles for my, approach.
+
+118
+00:14:42.070 --> 00:14:51.470
+Jonathan Duque: Which, when it comes to… I'm a visual learner, right? So I always want to have visibility over what's going on and how the code is being built.
+
+119
+00:14:51.560 --> 00:15:06.449
+Jonathan Duque: So, every time I create something, I wanted to create a visualization file where I can understand how things are connected, right? You might be just a… you might prefer, some… a different approach, right?
+
+120
+00:15:06.730 --> 00:15:07.580
+Jonathan Duque: So…
+
+121
+00:15:08.380 --> 00:15:18.730
+Jonathan Duque: it's totally up to you, right? How do you build this? But this is going to be visited in every session that you have with Claude, you would have this memory record to know how to behave.
+
+122
+00:15:18.730 --> 00:15:29.149
+Jonathan Duque: So you don't need to get back and say, hey, why are you answering me like that? Let's just get back to the basics and give me ABC instead of, like, A1, 2, 1, whatever.
+
+123
+00:15:29.450 --> 00:15:33.499
+Rick Janson | Janson.ai: How do you have… how do you have Claude or Warp, reference this file?
+
+124
+00:15:35.150 --> 00:15:50.099
+Jonathan Duque: you would just create it at the root domain, at the root main… let me rephrase that, at the root folder. So, for instance, if I were in any other project, say I want to create… say I start a new session here, right? And then I just go into…
+
+125
+00:15:50.340 --> 00:15:53.270
+Jonathan Duque: infographs, whatever, right?
+
+126
+00:15:53.760 --> 00:15:56.949
+Jonathan Duque: From there, you can ask it.
+
+127
+00:15:57.500 --> 00:16:05.540
+Jonathan Duque: to generate a markdown file with the AI rules according to your previously prompted queries.
+
+128
+00:16:06.030 --> 00:16:08.349
+Jonathan Duque: So, it's like, use your memory.
+
+129
+00:16:08.660 --> 00:16:15.620
+Jonathan Duque: To add whatever specifics and whatever, like, reasoning, whatever preferences you identify.
+
+130
+00:16:16.210 --> 00:16:23.179
+Jonathan Duque: from the prompts I've shared on this particular project, and add those to the AI Rules Smartdown. Does that make sense?
+
+131
+00:16:23.280 --> 00:16:27.429
+Jonathan Duque: Like, you're asking it to build itself, or memory.
+
+132
+00:16:27.650 --> 00:16:30.539
+Jonathan Duque: And then… You can ask it to
+
+133
+00:16:31.930 --> 00:16:39.900
+Jonathan Duque: use this or implement this for any project that you work on, because this is at the root level, this is at the user's level, right? So this is…
+
+134
+00:16:40.300 --> 00:16:43.619
+Jonathan Duque: your preference, this is your personalization of clot.
+
+135
+00:16:43.720 --> 00:16:50.060
+Jonathan Duque: So it applies it to every project that you're working on, instead of just that individual project that you created the prompt initially in.
+
+136
+00:16:50.360 --> 00:16:51.400
+Jonathan Duque: Does Emphasis?
+
+137
+00:16:52.190 --> 00:17:01.729
+Justin Day: And that's globally applied when it's on the route, and you don't have to call back for it, right? It just happens because it's set, as these are, like, the settings that are configured here.
+
+138
+00:17:02.670 --> 00:17:08.130
+Jonathan Duque: That is exactly the point here. And as a matter of fact, you can, like, confirm by asking Slack.
+
+139
+00:17:08.359 --> 00:17:13.770
+Jonathan Duque: to connect those Markdown files and make those, like, Always…
+
+140
+00:17:14.349 --> 00:17:17.430
+Jonathan Duque: A starting point for whatever project you're working on.
+
+141
+00:17:17.569 --> 00:17:30.429
+Jonathan Duque: And so this comes to, like, and you can layer it as you want it. These are the, like, the basic ones, right? To make sure that the project is consistent, and it, like, it's clear and
+
+142
+00:17:30.780 --> 00:17:34.439
+Jonathan Duque: Product to product, because this is super personalized.
+
+143
+00:17:34.550 --> 00:17:38.310
+Jonathan Duque: But you could get to a point where you could create a markdown file.
+
+144
+00:17:38.910 --> 00:17:57.570
+Jonathan Duque: for the bulk of that project, right? So say a business or a client is more technical than the other, or likes graphs besides the other one that just wants a summary, right? You can create those type of preferences in here, like your personas, right?
+
+145
+00:17:58.100 --> 00:17:59.989
+Jonathan Duque: So, very, very important here.
+
+146
+00:18:00.200 --> 00:18:02.680
+Jonathan Duque: So yeah, let me just…
+
+147
+00:18:03.380 --> 00:18:06.230
+Jonathan Duque: maybe I can share disk files as a…
+
+148
+00:18:06.560 --> 00:18:12.070
+Jonathan Duque: Or maybe the guidelines. I'll ask you to create a graph that includes those.
+
+149
+00:18:12.690 --> 00:18:15.319
+Jonathan Duque: Because this is what we're trying to get to.
+
+150
+00:18:15.540 --> 00:18:28.929
+Jonathan Duque: this is my brain, and this is a third-party software, so I do not condone it or recommend you using it as of now, because this is going to be built in Search Atlas, but just want to give you an idea on how this would look.
+
+151
+00:18:29.050 --> 00:18:31.890
+Jonathan Duque: Because of a good file structuring.
+
+152
+00:18:31.890 --> 00:18:32.510
+Justin Day: Hmm.
+
+153
+00:18:32.510 --> 00:18:38.370
+Jonathan Duque: This is the brain, this is my claw, this is how it thinks and interconnects data.
+
+154
+00:18:38.760 --> 00:18:40.810
+Jonathan Duque: configure what I'm asking.
+
+155
+00:18:41.000 --> 00:18:48.670
+Jonathan Duque: Because if… I might not be the right… like, I'm not a AI engineer, right? I don't know how to prompt it as they would.
+
+156
+00:18:48.980 --> 00:18:56.839
+Jonathan Duque: But this is the map to navigate my prompts. So, for instance, this has a brain index, which is where everything goes to.
+
+157
+00:18:58.280 --> 00:19:03.590
+Jonathan Duque: And each of those projects would have their independent skills, as you can see here.
+
+158
+00:19:03.780 --> 00:19:11.049
+Jonathan Duque: and their own, like, APIs, their own, MCPs, their own topics or connections.
+
+159
+00:19:11.510 --> 00:19:16.510
+Jonathan Duque: And everything just goes back to the home, which is this file
+
+160
+00:19:17.010 --> 00:19:35.259
+Jonathan Duque: that documents how everything here has been built, what type of files I got, what's included in each of those, what the core documents are, the, everything, what plugins I'm using, every single thing is interconnected. So the AI
+
+161
+00:19:36.490 --> 00:19:39.840
+Jonathan Duque: can think exactly as they wanted to think, right?
+
+162
+00:19:40.260 --> 00:19:46.799
+Jonathan Duque: So, very, very important to follow that structure. My recommendation is, if you have not
+
+163
+00:19:46.960 --> 00:19:49.079
+Jonathan Duque: Done this from the very beginning.
+
+164
+00:19:49.810 --> 00:19:51.739
+Jonathan Duque: maybe I can give you a prompt.
+
+165
+00:19:52.470 --> 00:19:56.099
+Jonathan Duque: So you can ask Claude to build it for you.
+
+166
+00:19:56.200 --> 00:20:05.780
+Jonathan Duque: And the benefit is, it would just reorganize the files. Just make sure the files are in the same folder, or to the same directory, which in this case I called Agentic.
+
+167
+00:20:06.420 --> 00:20:08.920
+Jonathan Duque: So then you can ask it to reorganize it.
+
+168
+00:20:09.490 --> 00:20:14.919
+Jonathan Duque: Right? And then, that's pretty much it, right?
+
+169
+00:20:15.380 --> 00:20:18.880
+Jonathan Duque: Then we have the markdowns for Claude, which is…
+
+170
+00:20:19.490 --> 00:20:30.510
+Jonathan Duque: how to, like, use the context. And so, for instance, in this particular setup, I ask it to, every time, first, check the brain. Check your core memories, like.
+
+171
+00:20:30.600 --> 00:20:42.510
+Jonathan Duque: your own knowledge before jumping into, like, on-tropic knowledge base, or the internet, or whatever, like, reasoning is behind that LLM structure.
+
+172
+00:20:42.820 --> 00:20:52.270
+Jonathan Duque: So, it is thinking for me, and from my standpoint, rather than thinking from the LLM, regular, natural approach.
+
+173
+00:20:55.010 --> 00:21:04.509
+Jonathan Duque: The home, which is just what I just showed you, which is how the memory works, and the client operations, and everything. The product description, you don't need this, but it's good to have.
+
+174
+00:21:04.820 --> 00:21:11.320
+Jonathan Duque: This is more… you developed, like, an app or a specific, like, feature or stuff?
+
+175
+00:21:12.940 --> 00:21:19.540
+Jonathan Duque: the planning, and so on and so forth. So, let me stop there for a second and ask you guys, have you explored this?
+
+176
+00:21:19.770 --> 00:21:23.390
+Jonathan Duque: Have you tested this? Do you have these files?
+
+177
+00:21:23.590 --> 00:21:28.470
+Jonathan Duque: how do you work on a daily basis? Like, do you need to prompt everything?
+
+178
+00:21:28.610 --> 00:21:32.430
+Jonathan Duque: Every time? Or how do you… Have it set up.
+
+179
+00:21:34.570 --> 00:21:38.680
+Clayton Joyner: Well, can I… I kind of have a question and a response,
+
+180
+00:21:38.680 --> 00:21:39.880
+Jonathan Duque: Yeah, yeah, yeah, go ahead.
+
+181
+00:21:40.380 --> 00:21:46.830
+Clayton Joyner: So… I'm trying to translate away from developer brain into production.
+
+182
+00:21:47.290 --> 00:21:48.100
+Jonathan Duque: Yeah, so…
+
+183
+00:21:48.100 --> 00:21:58.139
+Clayton Joyner: This is very abstract to me, what you're… the way you're describing it. Brilliant, by the way, and I'm sure in some way my brain actually reflects whatever the diagram you just showed, but…
+
+184
+00:21:59.850 --> 00:22:19.650
+Clayton Joyner: But I'm thinking of it in terms of silos, right, that interconnect. So I'm looking at… we do SEO, we do web development, we do advertising, right, and then we do automation and feedback, you know, client response and nurture and things like that, right? So, I'm definitely coming from an agency perspective.
+
+185
+00:22:20.540 --> 00:22:24.510
+Clayton Joyner: My goal will be, while not reducing
+
+186
+00:22:24.970 --> 00:22:37.289
+Clayton Joyner: staff count is very, noble. In a perfect world, if I could sit by myself in a room and robots did it all, I'd be very thrilled about that, right? Or at the very least, there's a co-pilot.
+
+187
+00:22:37.290 --> 00:22:37.720
+Jonathan Duque: Excuse me.
+
+188
+00:22:37.720 --> 00:22:41.570
+Clayton Joyner: person on the team, you know, that would then help them navigate. They're the human in the
+
+189
+00:22:41.900 --> 00:22:46.939
+Clayton Joyner: it would work. I have to think, to some degree, in a sequential order.
+
+190
+00:22:46.940 --> 00:22:48.780
+Jonathan Duque: Right, right, right.
+
+191
+00:22:48.780 --> 00:22:56.290
+Clayton Joyner: the ability to call and rag and, you know, to retrieve information may not be a, you know, synchronistic, it may bounce around, but…
+
+192
+00:22:56.550 --> 00:23:00.610
+Clayton Joyner: I'm trying to figure out, okay, like, because I know an order that I go in now.
+
+193
+00:23:00.720 --> 00:23:03.790
+Clayton Joyner: And I'm coming back to your file structure here, but…
+
+194
+00:23:05.030 --> 00:23:11.509
+Clayton Joyner: when I see what you just wrote there about, you know, I have a, you know, my top layer of instruction, right, the way that we're.
+
+195
+00:23:11.510 --> 00:23:11.850
+Jonathan Duque: Right.
+
+196
+00:23:11.850 --> 00:23:15.020
+Clayton Joyner: program… the interface itself for the CLI to work.
+
+197
+00:23:15.920 --> 00:23:18.900
+Clayton Joyner: Then I have to drop down into different project silos and say.
+
+198
+00:23:23.800 --> 00:23:26.050
+Jonathan Duque: I lost you, not sure if it's just me.
+
+199
+00:23:26.050 --> 00:23:27.490
+Matt Bailey: Dropped out there, Clayton.
+
+200
+00:23:27.710 --> 00:23:28.790
+Jonathan Giner: Yeah, yeah.
+
+201
+00:23:28.790 --> 00:23:31.320
+Clayton Joyner: It's this… this Zoom, for whatever reason, Zoom hates.
+
+202
+00:23:31.320 --> 00:23:32.359
+Jonathan Duque: Okay, you're back.
+
+203
+00:23:32.360 --> 00:23:32.810
+Matt Bailey: Yeah.
+
+204
+00:23:32.810 --> 00:23:37.980
+Clayton Joyner: Yeah, I'm sorry. So, anyway, I'm gonna eat my microphone while I talk to you to avoid that.
+
+205
+00:23:38.050 --> 00:23:57.609
+Clayton Joyner: But I have to, you know, when I have to think in terms of, I bring a new client on, I have to onboard them, I have to do the research, I have to build the plan, and then have to then execute that plan, right? And then I have to be able to evaluate the success of that execution in the future, right? So that's kind of my flywheel.
+
+206
+00:23:57.860 --> 00:24:03.380
+Clayton Joyner: So, with the instructions here at the top level of, you know, I wouldn't even know what to tell
+
+207
+00:24:03.700 --> 00:24:07.880
+Clayton Joyner: how to tell Claude code to behave to begin with, to know what I should… I don't know what I.
+
+208
+00:24:07.880 --> 00:24:08.430
+Jonathan Duque: prior…
+
+209
+00:24:08.430 --> 00:24:08.950
+Clayton Joyner: Right?
+
+210
+00:24:09.060 --> 00:24:19.180
+Clayton Joyner: And then when we get into, like, in a perfect world, my perfect version of this, and again, this is my imagination, may not be reality, but I'd love to be able to bring on a new client.
+
+211
+00:24:19.180 --> 00:24:33.499
+Clayton Joyner: do a full brand research, develop a company brief. This is what we do now, right? From the company brief, the competitor analysis, the product analysis, right? Then do research around successful campaign structures, nodes, entities, etc.
+
+212
+00:24:33.540 --> 00:24:43.540
+Clayton Joyner: Then we develop our sitemap. Sitemap develops all of our holistic entity mapping, keyword structures, canonical structures, so we plan through the sitemap and slugs.
+
+213
+00:24:43.550 --> 00:24:52.379
+Clayton Joyner: Then we develop all of our, you know, meta titles and descriptions, and then we, you know, have a core concept, and so ideally, it'd be nice to, you know, prompt a page
+
+214
+00:24:52.380 --> 00:25:07.110
+Clayton Joyner: or create a page prompt based off of rules, so that essentially I could feed that spreadsheet into the machine. It knows in exact order what pages to create. You know, obviously there's a design layer that I need to wrap my head around, but…
+
+215
+00:25:07.130 --> 00:25:07.920
+Clayton Joyner: But it was.
+
+216
+00:25:07.920 --> 00:25:08.250
+Jonathan Duque: should be.
+
+217
+00:25:08.250 --> 00:25:27.180
+Clayton Joyner: to then, at that point, know, okay, here's the page orders, here's all the canatical structures, here's the interlinking, here's the prompt for every page, and it just… and I put it in and come back tomorrow, and I've got a 400-page website that's optimized for SEO that I can then show to the client. That would be a dream scenario. So how does that…
+
+218
+00:25:27.780 --> 00:25:29.990
+Clayton Joyner: Sorry, long-winded explanation.
+
+219
+00:25:30.130 --> 00:25:32.140
+Bryan Fikes: That's what we're all here for.
+
+220
+00:25:32.140 --> 00:25:41.070
+Jonathan Duque: Yeah. Thank you. So, yeah, so let me, let me… I think I can do, like, a good analogy now. I do appreciate it, because it…
+
+221
+00:25:41.560 --> 00:25:48.379
+Jonathan Duque: it does help me, and I'm not a developer, I'm… I mean, I study anthropology. Can you figure that out? Anyway, so…
+
+222
+00:25:49.980 --> 00:25:54.139
+Jonathan Duque: The way that… The best, like, the best approach…
+
+223
+00:25:54.470 --> 00:25:58.550
+Jonathan Duque: Would be starting from general to specific, right?
+
+224
+00:25:59.040 --> 00:26:07.629
+Jonathan Duque: However, given that your main goal is to replace manpower and to automate most of the features and most of the processes.
+
+225
+00:26:08.100 --> 00:26:10.490
+Jonathan Duque: My suggestion is…
+
+226
+00:26:10.920 --> 00:26:18.830
+Jonathan Duque: if you're using AI, if you're… like, let me rephrase that, if you've used in the past, like, GPT, Cloud, I don't know.
+
+227
+00:26:19.070 --> 00:26:20.810
+Jonathan Duque: Gemini, whatever.
+
+228
+00:26:20.920 --> 00:26:28.610
+Jonathan Duque: You can ask it to learn from or to generate your specific
+
+229
+00:26:29.310 --> 00:26:38.820
+Jonathan Duque: profile preferences, because the way it works is that it reacts to your prompts, so… and it identifies patterns.
+
+230
+00:26:38.980 --> 00:26:42.339
+Jonathan Duque: And that is what's called the context window, right?
+
+231
+00:26:42.630 --> 00:26:45.610
+Jonathan Duque: You, as a user, have a context
+
+232
+00:26:45.910 --> 00:26:50.290
+Jonathan Duque: for that Gemini GPT Cloud AI.
+
+233
+00:26:50.800 --> 00:26:54.259
+Jonathan Duque: And you have already generated that data by just using it.
+
+234
+00:26:54.450 --> 00:26:57.099
+Jonathan Duque: You can ask it and use it on your favor.
+
+235
+00:26:57.220 --> 00:27:03.360
+Jonathan Duque: So my recommendation would be to ask it, to… extract…
+
+236
+00:27:03.760 --> 00:27:13.050
+Jonathan Duque: From your conversations, all of the customer… profile, preferences.
+
+237
+00:27:14.080 --> 00:27:20.420
+Jonathan Duque: So that you can use that for the creation of a markdown file for your clot.
+
+238
+00:27:20.710 --> 00:27:34.640
+Bryan Fikes: When you had me go through that process of the file structure, I've been using ChatGPT for quite some time, and I've set up all my projects, and it's got the memory. I literally can go in and go client.
+
+239
+00:27:34.640 --> 00:27:35.280
+Jonathan Duque: It's happening.
+
+240
+00:27:35.350 --> 00:27:46.020
+Bryan Fikes: I need this display for this campaign that we're running. It'll remember all the campaigns previously. As I'm dropping my kid off at school, by the time I get back to my laptop, I've got 16
+
+241
+00:27:46.020 --> 00:27:56.769
+Bryan Fikes: beautiful, displays ready for retargeting, perfectly sized. So that's my goal in transferring that over into the MCP, the first test that I started doing over the weekend.
+
+242
+00:27:56.850 --> 00:28:10.849
+Bryan Fikes: telling my chat GPT, I need to give this… the memory that you have to Claude. And for right now, it's… I mean, it literally is like saying, absolutely, I'm here to help you. You know, it's got my tone, it's got my zen, you know, surfer, you know, crap.
+
+243
+00:28:10.850 --> 00:28:18.670
+Bryan Fikes: going on, and it, like, puts the prompt, and I put that into MCP, and then it just starts acting closer to what my ChatGPT is now, so…
+
+244
+00:28:18.670 --> 00:28:30.949
+Bryan Fikes: The more I start seeing what you're saying in terms of the markdown, there's definitely that capability, Clayton, of taking all the time and energy that you put into other areas, and then duplicate that, and even further that in the NCP.
+
+245
+00:28:30.950 --> 00:28:31.570
+Jonathan Duque: Certainly.
+
+246
+00:28:31.700 --> 00:28:38.890
+Jonathan Duque: So yeah, and it does not need to be complicated. You can literally save just your GPT, whatever you've used, even personally.
+
+247
+00:28:39.070 --> 00:28:41.240
+Jonathan Duque: Is…
+
+248
+00:28:42.460 --> 00:28:53.699
+Jonathan Duque: I mean, everything you know about me in a format that helps what build the markdown files for my projects and my agentic marketing, work.
+
+249
+00:28:54.030 --> 00:29:12.489
+Jonathan Duque: So it extracts the data. I mean, companies are using it, why wouldn't you, right? They know what you like, they know how you like it, you might as well just use that on your advantage and bring that into cloud. So that would be the foundation of any project that you drop in there. However, to your point, Clayton.
+
+250
+00:29:12.830 --> 00:29:26.140
+Jonathan Duque: Yes, you do need to build those for each of the projects as well, because of the personas, because of the type of user, because of the type of business, and the general or the specific objectives that you have with it.
+
+251
+00:29:26.430 --> 00:29:32.559
+Jonathan Duque: So, for instance, as you mentioned, yeah, this is the core, right? And this is, like, applied
+
+252
+00:29:32.670 --> 00:29:34.370
+Jonathan Duque: All across the project.
+
+253
+00:29:34.500 --> 00:29:42.300
+Jonathan Duque: But each of those projects, for instance, the BionOps backend, does have do have.
+
+254
+00:29:42.510 --> 00:29:45.379
+Jonathan Duque: their own Mogdown files.
+
+255
+00:29:45.640 --> 00:29:49.359
+Jonathan Duque: Right? So it gets much more specific.
+
+256
+00:29:49.770 --> 00:30:02.759
+Jonathan Duque: And these are not shared with the rest of the projects that I got. Because, for instance, in this project, I don't want to, like, overcharge the API calls that I do to Slack, because there's a rate limit.
+
+257
+00:30:02.910 --> 00:30:03.970
+Jonathan Duque: So…
+
+258
+00:30:03.970 --> 00:30:07.820
+Justin Day: So in the subfolders, those overwrite global, is that right?
+
+259
+00:30:08.910 --> 00:30:22.860
+Jonathan Duque: they add to the global, but you can as well ask them to ignore, for instance, like, previously stated stuff, so you don't need to go back and forth, but you can as well just use that as a baseline, and then maybe refine towards the specific project.
+
+260
+00:30:22.970 --> 00:30:32.179
+Jonathan Duque: So, for instance, in this project, because I had an issue, and it rewrite the entire thing, and I had to get back, there's a hard rule that is not for the rest of the project, which is…
+
+261
+00:30:32.250 --> 00:30:43.630
+Jonathan Duque: never rewrite existing files, right? So those type… and then on your specific use case, you have instances such as always generate graphs to show
+
+262
+00:30:44.420 --> 00:30:47.850
+Jonathan Duque: Last month's results versus new month's results, right?
+
+263
+00:30:47.990 --> 00:30:51.690
+Jonathan Duque: Because that line requires that, or it's a parameter that they expect.
+
+264
+00:30:52.460 --> 00:30:57.770
+Jonathan Duque: So, this can be implemented on each of the projects that you're working on.
+
+265
+00:30:58.390 --> 00:31:02.900
+Jonathan Duque: You just need to… ask Lot for it.
+
+266
+00:31:03.260 --> 00:31:09.949
+Jonathan Duque: And since you've done already most of the work, you can ask Claude to use that memory and those, like, sessions that it has
+
+267
+00:31:10.140 --> 00:31:11.459
+Jonathan Duque: To build it for you.
+
+268
+00:31:11.630 --> 00:31:16.740
+Clayton Joyner: I was gonna ask that. So, being… most of my stuff is built-in, Claude, it's all.
+
+269
+00:31:17.130 --> 00:31:23.499
+Clayton Joyner: projects or skills, it has, when I'm logged into Cloud Code, I assume, it's gonna have access to all of that, is that right?
+
+270
+00:31:24.390 --> 00:31:27.879
+Jonathan Duque: If it is under the same, like, s…
+
+271
+00:31:28.020 --> 00:31:33.809
+Jonathan Duque: I'm not sure if you're using API or if you're using your login, but either way, if it is on the same, like.
+
+272
+00:31:34.000 --> 00:31:35.050
+Jonathan Duque: account?
+
+273
+00:31:35.180 --> 00:31:41.129
+Jonathan Duque: It will allow you to… yes, it should be able to retrieve data from any other sessions that you had.
+
+274
+00:31:41.340 --> 00:31:43.970
+Jonathan Duque: And as a matter of fact, something that
+
+275
+00:31:45.480 --> 00:31:49.259
+Jonathan Duque: I find very helpful here is When you open plot.
+
+276
+00:31:53.590 --> 00:31:55.860
+Jonathan Duque: Just give it a minute.
+
+277
+00:31:56.510 --> 00:31:59.010
+Jonathan Duque: My computer's having a hard time right now.
+
+278
+00:31:59.450 --> 00:32:03.940
+Jonathan Duque: But what I'm saying is, when you open it, and let's say you had a conversation, whatever it is.
+
+279
+00:32:04.090 --> 00:32:06.859
+Jonathan Duque: You can even export that conversation.
+
+280
+00:32:07.490 --> 00:32:19.520
+Jonathan Duque: So you can reference back to it and resume what you were doing, or you can just use that to be implemented in other projects. So maybe you did something in your workflow that live coding session went
+
+281
+00:32:19.770 --> 00:32:22.810
+Jonathan Duque: googot, right? And you're like, oh, I wish I could do that.
+
+282
+00:32:23.070 --> 00:32:27.020
+Jonathan Duque: Every time, right? Because it saved me time, and I didn't have to go back and forth.
+
+283
+00:32:27.480 --> 00:32:28.939
+Jonathan Duque: You can just ask it.
+
+284
+00:32:29.270 --> 00:32:31.660
+Jonathan Duque: You just hit export.
+
+285
+00:32:33.790 --> 00:32:37.169
+Jonathan Duque: And then it would export a conversation to a file.
+
+286
+00:32:37.810 --> 00:32:40.449
+Jonathan Duque: So you can use that file to feed
+
+287
+00:32:41.010 --> 00:32:44.809
+Jonathan Duque: Other plot session, and it would just use that as a baseline.
+
+288
+00:32:45.030 --> 00:32:52.119
+Jonathan Duque: So, I think that it's the most powerful thing I've done with this, like, setup, and it's just, I'm constantly using
+
+289
+00:32:52.220 --> 00:33:01.209
+Jonathan Duque: The outcome of the sessions to re-learn and to make it rethink the way that it is reacting to my new prompts, right?
+
+290
+00:33:01.640 --> 00:33:07.329
+Jonathan Duque: And that would just… Yeah, that would change the entire thing. That's what I was gonna say.
+
+291
+00:33:07.330 --> 00:33:13.469
+Clayton Joyner: Custom Clod projects. I created a custom Cloud project to create custom Clod project instructions.
+
+292
+00:33:13.730 --> 00:33:18.869
+Clayton Joyner: So I started to prompt it to then write the instructions for future Clod custom projects.
+
+293
+00:33:18.870 --> 00:33:31.680
+Jonathan Duque: This is a clot from Markdown, you have it right there, just a different format. Why would the markdown be better? Because that is the cloud's language, right? So, this is default.
+
+294
+00:33:31.950 --> 00:33:38.180
+Jonathan Duque: You can ask it to, like, give me what are the top 4 files, or markdown files that you need to work
+
+295
+00:33:38.430 --> 00:33:41.609
+Jonathan Duque: Perfectly. And it would tell you, read me, plan.
+
+296
+00:33:41.870 --> 00:33:47.399
+Jonathan Duque: harm, maybe harm, no, but clot NEI rules. That is guaranteed.
+
+297
+00:33:48.240 --> 00:33:53.029
+Clayton Joyner: So do you recommend building the instruction sets like this? I know you said it can be nested.
+
+298
+00:33:53.210 --> 00:33:59.449
+Clayton Joyner: is this, like, if I… I have a set for web development, a set for, you know, ongoing SEO.
+
+299
+00:33:59.450 --> 00:33:59.940
+Jonathan Duque: Exactly.
+
+300
+00:33:59.940 --> 00:34:03.989
+Clayton Joyner: for advertising, I would create all of these as subsets.
+
+301
+00:34:05.140 --> 00:34:18.729
+Jonathan Duque: I would… those would be part of the same one, really, because it's not like it would apply to all of them, it's just, these are the rules, but some rules would be applicable for a specific type of users, or a specific type of projects, rather than others.
+
+302
+00:34:18.730 --> 00:34:26.859
+Jonathan Duque: It's not, like, all or nothing. It's… you can use fractions of it. So as long as you have it properly categorized, you can do it.
+
+303
+00:34:26.920 --> 00:34:30.419
+Jonathan Duque: And the best way to do it, guys, is… This is…
+
+304
+00:34:30.840 --> 00:34:39.019
+Jonathan Duque: I have it on my price mode, because I started it with the Dangerous Leasekeeper missions, but if I hit Chief Tab.
+
+305
+00:34:39.420 --> 00:34:45.480
+Jonathan Duque: It would switch from that mode into Accept Edits, and then Plan Mode On.
+
+306
+00:34:45.790 --> 00:34:47.550
+Jonathan Duque: The blend mode would allow you to
+
+307
+00:34:48.300 --> 00:35:04.150
+Jonathan Duque: interact with it in a way that it will tell you what it's thinking and how it would react to your prompts. So you can fine-tune it, and then sign off on the plan before it modifies anything. Because sometimes you find it… you find yourself trying to, like, undo whatever you did.
+
+308
+00:35:04.260 --> 00:35:07.140
+Jonathan Duque: Or trying to keep stuff, but then remove the rest.
+
+309
+00:35:07.490 --> 00:35:10.759
+Jonathan Duque: And that is when the skills are so valuable.
+
+310
+00:35:11.100 --> 00:35:16.240
+Jonathan Duque: I can… and this is something I promised to Brian I was going to share with you today.
+
+311
+00:35:16.390 --> 00:35:18.060
+Jonathan Duque: So I'll build it.
+
+312
+00:35:18.290 --> 00:35:22.980
+Jonathan Duque: But there are some repos, and that is the, like, the beauty of the resource.
+
+313
+00:35:23.110 --> 00:35:26.940
+Jonathan Duque: Type of, code.
+
+314
+00:35:28.000 --> 00:35:33.389
+Jonathan Duque: That those repos would have skills that are handicrafted specifically for
+
+315
+00:35:33.530 --> 00:35:40.779
+Jonathan Duque: outcomes that you care about. So, for instance, this one, sort of with animation and… and,
+
+316
+00:35:41.720 --> 00:35:53.200
+Jonathan Duque: and, like, design, so that would level up your, outcome on WebBuilder as well, on the website studio, because you're doing it through this. And to your point, Justin, earlier.
+
+317
+00:35:53.630 --> 00:35:57.189
+Jonathan Duque: And, don't quote me on this, and I hope…
+
+318
+00:35:57.550 --> 00:36:00.320
+Jonathan Duque: Nobody shares this with my and the team just yet.
+
+319
+00:36:00.480 --> 00:36:05.699
+Jonathan Duque: But the… using the UI gives an extra layer to the process.
+
+320
+00:36:06.070 --> 00:36:14.490
+Jonathan Duque: That sometimes is counterproductive. So I would rather just signal the website studio from Cloud itself, because this is…
+
+321
+00:36:15.090 --> 00:36:17.100
+Jonathan Duque: on a… like…
+
+322
+00:36:17.580 --> 00:36:25.100
+Bryan Fikes: Yeah, Monik did say that going through the FCP is way faster and cleaner than going through Website Studio, because it's got that extra layer, so that we all need to find
+
+323
+00:36:25.420 --> 00:36:26.690
+Bryan Fikes: to get out of that website studio.
+
+324
+00:36:26.690 --> 00:36:27.180
+Jonathan Duque: Awesome.
+
+325
+00:36:27.180 --> 00:36:29.499
+Bryan Fikes: All visual builders, I'm assuming, so that's why.
+
+326
+00:36:29.500 --> 00:36:32.119
+Jonathan Duque: Gotcha, yeah, yeah, yeah, I gotcha. So…
+
+327
+00:36:32.400 --> 00:36:40.610
+Jonathan Duque: Yeah, and this would help you, because this would have new fundamentals and new stuff that you can implement, because it's a skill. Like.
+
+328
+00:36:41.600 --> 00:36:56.549
+Jonathan Duque: to be honest, it's like building… Do you ever… I don't know, maybe you did. I don't know if you remember, like, Fade, or any of those, like, video games that we had on Authority, and I don't know if you were from that generation, anyway. But what I'm trying to say is that
+
+329
+00:36:57.430 --> 00:37:02.700
+Jonathan Duque: you're building… character. You're building, like, a…
+
+330
+00:37:03.280 --> 00:37:11.750
+Jonathan Duque: like a robot from scratch, right? So you need to give it skills. You need to give it, hey, learn this, hey, this is…
+
+331
+00:37:12.110 --> 00:37:15.900
+Jonathan Duque: This is everything you need to know about design, and the design I care about.
+
+332
+00:37:16.260 --> 00:37:23.370
+Jonathan Duque: Take it, learn it, digest it, and implement that for the rest, right? So it's like you're customizing it constantly.
+
+333
+00:37:23.690 --> 00:37:28.969
+Jonathan Duque: I will share with you a list of repos that I consider very, very powerful.
+
+334
+00:37:29.330 --> 00:37:33.140
+Jonathan Duque: Some of those are… this one's massive.
+
+335
+00:37:33.280 --> 00:37:37.200
+Jonathan Duque: And I didn't name it, so… It's GSD.
+
+336
+00:37:37.490 --> 00:37:38.699
+Jonathan Duque: It would just…
+
+337
+00:37:39.660 --> 00:37:51.569
+Jonathan Duque: be so, like, action-oriented, but it would have also, like, QA processes that would guarantee that you're not, like, skipping
+
+338
+00:37:51.810 --> 00:37:56.030
+Jonathan Duque: The building process, and you're not, like, getting gaps all over.
+
+339
+00:37:56.290 --> 00:37:59.710
+Jonathan Duque: But, very, very important when you want to do that.
+
+340
+00:38:00.070 --> 00:38:05.379
+Jonathan Duque: let's, yeah, there's some others, for instance, I can…
+
+341
+00:38:05.650 --> 00:38:07.780
+Jonathan Duque: This one's also for the sign.
+
+342
+00:38:08.430 --> 00:38:12.929
+Justin Day: And can you drop that… Drop those in circle, or how do we get access to these so that we can install them?
+
+343
+00:38:12.930 --> 00:38:19.800
+Clayton Joyner: I was just gonna say, is there a way to share skill files and have our own repo that we know is a Galete that are.
+
+344
+00:38:19.800 --> 00:38:31.020
+Jonathan Duque: I will build those for you. I'll build a repo, or not a repo, but I will just put together the links, so you can just bring them in, and I'll build those specifically for what you want.
+
+345
+00:38:31.320 --> 00:38:38.149
+Jonathan Duque: Yes, there is one that I do recommend, like, is… Installing right now.
+
+346
+00:38:38.520 --> 00:38:47.330
+Jonathan Duque: And it is called… Let me just see if I can find it here. It's called Superpowers.
+
+347
+00:38:47.330 --> 00:38:47.990
+Justin Day: Yeah.
+
+348
+00:38:48.320 --> 00:38:54.910
+Jonathan Duque: And, there's one superpower that is, brainstorming?
+
+349
+00:38:57.060 --> 00:38:58.190
+Jonathan Duque: I'm sick.
+
+350
+00:38:59.690 --> 00:39:04.110
+Jonathan Duque: Oh, I wish… oh, there… I have been working with that, it's just I run out of limit.
+
+351
+00:39:04.530 --> 00:39:05.800
+Jonathan Duque: But.
+
+352
+00:39:06.430 --> 00:39:12.059
+Bryan Fikes: Hey, JD, while you're at it, could you please make one that's, gonna give me about a 315-yard drive again, please?
+
+353
+00:39:12.560 --> 00:39:13.480
+Jonathan Duque: Yeah.
+
+354
+00:39:13.480 --> 00:39:13.820
+Clayton Joyner: Huh.
+
+355
+00:39:13.820 --> 00:39:15.249
+Jonathan Duque: I'll automate that in a minute.
+
+356
+00:39:15.250 --> 00:39:15.580
+Bryan Fikes: Thank you.
+
+357
+00:39:15.580 --> 00:39:16.059
+Justin Day: Appreciate it.
+
+358
+00:39:16.060 --> 00:39:16.869
+Jonathan Duque: You know what I think.
+
+359
+00:39:16.870 --> 00:39:22.080
+Matt Bailey: I was gonna say, to put it in kind of, like, our generation, that would be like the Matrix, when they learn.
+
+360
+00:39:22.080 --> 00:39:22.490
+Justin Day: Yeah.
+
+361
+00:39:22.490 --> 00:39:24.900
+Matt Bailey: The Matrix, they just load it up.
+
+362
+00:39:24.900 --> 00:39:30.270
+Jonathan Duque: Exactly, exactly, yeah, yeah, that's perfect, yeah, like, you know karate now, yeah.
+
+363
+00:39:30.950 --> 00:39:31.929
+Jonathan Duque: Exactly that.
+
+364
+00:39:32.320 --> 00:39:36.249
+Jonathan Duque: And this one, I love, because it has this…
+
+365
+00:39:36.820 --> 00:39:47.699
+Jonathan Duque: This is always going to be applicable whenever I use that skill. So, hey, I'm going to explore the project context, and he's going to ask me questions about it. So you can use this whenever you're onboarding with clients.
+
+366
+00:39:48.360 --> 00:39:53.220
+Jonathan Duque: So it's gonna ask you stuff such as, jeez.
+
+367
+00:39:53.390 --> 00:39:58.019
+Jonathan Duque: I don't know, here are these options, which one do you prefer? Or is it something different?
+
+368
+00:39:59.120 --> 00:40:04.269
+Jonathan Duque: And so it would start just asking probing questions to better understand what you're trying to get at.
+
+369
+00:40:04.490 --> 00:40:05.660
+Jonathan Duque: done.
+
+370
+00:40:06.040 --> 00:40:07.880
+Jonathan Duque: Denny would just,
+
+371
+00:40:09.340 --> 00:40:17.720
+Jonathan Duque: propose two or different approaches, then we'll just pre-same the design, the entire plan, how it would look, how the outcome would look like.
+
+372
+00:40:17.850 --> 00:40:23.559
+Jonathan Duque: And then it would just write the documentation for you, so you don't need to ask Claude to do it.
+
+373
+00:40:24.080 --> 00:40:26.260
+Jonathan Duque: And then, implement it.
+
+374
+00:40:26.400 --> 00:40:30.920
+Jonathan Duque: Sort of like a… same as a playbook, literally a playbook for plot.
+
+375
+00:40:32.010 --> 00:40:37.990
+Jonathan Duque: So, yeah, very, very powerful. Somebody was, like, trying to talk, I think there's a delay, but… Yeah.
+
+376
+00:40:38.860 --> 00:40:40.280
+Jonathan Duque: You wanted to mention some?
+
+377
+00:40:40.480 --> 00:40:42.109
+Clayton Joyner: Oh, I was just gonna say, like.
+
+378
+00:40:42.570 --> 00:40:46.430
+Clayton Joyner: what would be interesting to… like, I'm a pattern thinker, right? So I'm like…
+
+379
+00:40:46.430 --> 00:40:47.150
+Jonathan Duque: Yeah, yeah.
+
+380
+00:40:47.150 --> 00:40:55.240
+Clayton Joyner: Based on what we're all trying to do, we're trying to do so much of the same exact thing. Some of us are much better at different parts of the thing than others.
+
+381
+00:40:55.610 --> 00:40:59.940
+Clayton Joyner: Like, I could imagine a wish list of skills being built that would.
+
+382
+00:40:59.940 --> 00:41:00.559
+Justin Day: You know what?
+
+383
+00:41:00.560 --> 00:41:01.550
+Clayton Joyner: collaborate on.
+
+384
+00:41:01.550 --> 00:41:02.500
+Justin Day: That'd be awesome.
+
+385
+00:41:02.500 --> 00:41:03.010
+Matt Bailey: Room.
+
+386
+00:41:03.560 --> 00:41:14.680
+Clayton Joyner: Because then we could say, like, okay, let's go into SEO. Like, who's great at the perfect keyword research? Who's got the best at canonical structure? Who's got the best at, you know, entity design? Like, all of that.
+
+387
+00:41:14.750 --> 00:41:31.589
+Clayton Joyner: you know, advertising, like CRO, landing pages, like, just… there's so… we could build a collective wish list of skills, and maybe people can volunteer to develop the SOPs if they're just elite at the thing, that part of it, and then we can get it to convert to an MD file, and then we can…
+
+388
+00:41:31.990 --> 00:41:34.070
+Clayton Joyner: Share a repository library for that.
+
+389
+00:41:34.300 --> 00:41:38.719
+Clayton Joyner: I think that'd be valuable to me, selfishly. I don't know if anyone else would say it.
+
+390
+00:41:39.420 --> 00:41:46.150
+Jonathan Duque: Well, I think we all agree, and definitely would take that, just, I believe that
+
+391
+00:41:46.280 --> 00:41:53.120
+Jonathan Duque: You need some foundational files or skills before being able to build your own.
+
+392
+00:41:53.310 --> 00:42:00.550
+Jonathan Duque: To be perfectly honest. Reason being, the outcome of whatever you built will be much more accurate and much more powerful.
+
+393
+00:42:00.730 --> 00:42:01.070
+Justin Day: Yeah.
+
+394
+00:42:01.070 --> 00:42:07.520
+Jonathan Duque: With those skills. To give you an, like, a very, very simple example, just trying to look it up.
+
+395
+00:42:07.870 --> 00:42:11.749
+Jonathan Duque: I… Let me see if I have it here.
+
+396
+00:42:15.780 --> 00:42:20.889
+Jonathan Duque: I'll look it up, just continue the discussion, but I want to show you how the skills
+
+397
+00:42:21.470 --> 00:42:25.639
+Jonathan Duque: took one bio of association, and that is another topic.
+
+398
+00:42:26.620 --> 00:42:37.829
+Jonathan Duque: you can build, or you can ask the plot, and that is, for me, was a game changer. You can ask it to create a visualization of how the code is built and how it works.
+
+399
+00:42:38.080 --> 00:42:46.430
+Jonathan Duque: So, you can… Have this, like, mental map, or you can have this, like, a structure, official.
+
+400
+00:42:46.670 --> 00:42:57.060
+Jonathan Duque: diagram that shows what is connected now, and what the outcome is, or what the thought process is. And again, it's just simpler to show you, so I'm just going to look it up.
+
+401
+00:42:57.530 --> 00:43:09.809
+Jonathan Duque: But yeah, I took notes, so I'm gonna share the repos that I consider you should be cloning, and I'm also going to share the skills that I find more helpful for a marketing agency.
+
+402
+00:43:10.910 --> 00:43:14.580
+Jonathan Duque: Help me, and maybe send on, like, a circle.
+
+403
+00:43:14.770 --> 00:43:15.710
+Jonathan Duque: what…
+
+404
+00:43:16.060 --> 00:43:26.179
+Jonathan Duque: your preferences are. So, for instance, some of you would prefer to build a website with 3D designs, right, and make it very interactive and very, like.
+
+405
+00:43:26.310 --> 00:43:33.679
+Jonathan Duque: I don't know, impactful to the eye. Some others would rather have, she's the…
+
+406
+00:43:33.980 --> 00:43:35.480
+Jonathan Duque: You know, a different approach.
+
+407
+00:43:36.820 --> 00:43:39.270
+Jonathan Duque: So yeah, that would be, like, a wish list?
+
+408
+00:43:39.450 --> 00:43:42.740
+Jonathan Duque: That would make it… That would be super helpful for me.
+
+409
+00:43:42.740 --> 00:43:52.019
+Clayton Joyner: Is there… is there an import function for, like, Webflow? Like, if we were to design it and then be able to port it into Webflow, is that an… is that something that can be done, do you know?
+
+410
+00:43:53.600 --> 00:43:56.800
+Jonathan Duque: Not that I'm aware of, but I can totally investigate it.
+
+411
+00:43:57.590 --> 00:43:58.140
+Clayton Joyner: because I'm nervous.
+
+412
+00:43:58.140 --> 00:43:59.060
+Jonathan Duque: Today, I'm interested.
+
+413
+00:43:59.060 --> 00:44:05.050
+Clayton Joyner: I don't have developers that code from scratch and manage servers, you know, themselves.
+
+414
+00:44:05.240 --> 00:44:11.019
+Clayton Joyner: and dealing with all the CDN network stuff on the back end, that's the only part that kind of gets me a little nervous.
+
+415
+00:44:11.180 --> 00:44:20.500
+Clayton Joyner: It'd be pretty dope if we could develop the perfect canonical structure, SEO strategy, interlinking strategy, and the design was amazing, and then we could just port it right into our platform.
+
+416
+00:44:20.500 --> 00:44:21.250
+Justin Day: Yep.
+
+417
+00:44:22.260 --> 00:44:26.270
+Jonathan Duque: So I know, as of now, the NCD is…
+
+418
+00:44:26.440 --> 00:44:39.939
+Jonathan Duque: capable of, like, the agency must… the agentic mastermind does have specific workflows designed for towards the building, GPP, GP optimization, LM civility, PPC,
+
+419
+00:44:40.290 --> 00:44:47.690
+Jonathan Duque: the monthly SEO and the SEO onboardings. So, I'm guessing, and that might need to be checked with Manic, that we're gonna keep on adding to those.
+
+420
+00:44:48.050 --> 00:44:49.630
+Jonathan Duque: Like, 3 volts.
+
+421
+00:44:49.840 --> 00:44:55.290
+Jonathan Duque: Workflows that you can apply even for the web building.
+
+422
+00:44:55.640 --> 00:45:00.200
+Jonathan Duque: So… So that is definitely part of that.
+
+423
+00:45:00.500 --> 00:45:03.970
+Jonathan Duque: of the… Glen.
+
+424
+00:45:04.170 --> 00:45:06.660
+Jonathan Duque: But yeah, I agree with you, that would be great, because…
+
+425
+00:45:07.200 --> 00:45:09.579
+Jonathan Duque: Yeah, that would save us some money and time, for sure.
+
+426
+00:45:09.790 --> 00:45:27.580
+Clayton Joyner: Well, if you look at ReLoom, right, so ReLoom has an ability to agnically create wireframes and design and copy, and then it automatically can port directly using client-first development methodology, naming classes, and, you know, things like that, combo classes, right into Webflow.
+
+427
+00:45:27.790 --> 00:45:34.729
+Clayton Joyner: Natively. Same thing can happen with Figma, so there's Figma to… Webflow as well.
+
+428
+00:45:35.010 --> 00:45:44.109
+Clayton Joyner: And so, even if it was just ported maybe into Figma, and then Figma can then, you know, handle that, but I know it already exists in a couple different… and there's also another one,
+
+429
+00:45:44.550 --> 00:45:57.629
+Clayton Joyner: Moduleify? I have to find out the exact name of it, but there's several of them now that already have porting architecture, so I'm sure there's a GitHub somewhere that can compile all the code and get it into the format Webflow wants.
+
+430
+00:45:58.070 --> 00:46:00.380
+Jonathan Giner: And why do you want it on Webflow?
+
+431
+00:46:00.660 --> 00:46:02.009
+Jonathan Giner: Like, what's the advantage of that?
+
+432
+00:46:02.600 --> 00:46:17.260
+Clayton Joyner: The advantage to me is that's where all of our websites currently are. It's a no bloat. It's really fast, it's enterprise level, it's integrated natively, or its backend hosting is already connected with Cloudflare.
+
+433
+00:46:17.280 --> 00:46:35.739
+Clayton Joyner: So it's one of the fastest platforms, enterprise level, can scale to any size. It's secure as crap. You don't have plugins to manage. I hate WordPress with a passion. The amount of energy you have to take to keep that thing alive is crazy. Once you build it in Webflow, again, it's fast, no code bloat.
+
+434
+00:46:35.750 --> 00:46:48.680
+Clayton Joyner: And it's all contained ecosystem with a built-in CDN based off the Cloudflare backend. So you don't have to do any kind of management. Once it's up, it's… I don't ever have a… I've not had a site go down in years.
+
+435
+00:46:50.370 --> 00:46:55.879
+Jonathan Giner: I mean, the reason why I ask is, I mean, I'm by no means, like, am I, yeah, I guess,
+
+436
+00:46:56.000 --> 00:47:00.859
+Jonathan Giner: web developer or whatnot, you know, obviously we've done websites, I've always,
+
+437
+00:47:01.410 --> 00:47:03.210
+Jonathan Giner: We've always worked in terms of
+
+438
+00:47:03.330 --> 00:47:21.730
+Jonathan Giner: designing the front end, but I've always had a developer that would do it. And when I say developer, I even say that loosely, because we've always done it on WordPress, which I concur with you in terms of the mission and the headache that WordPress is. I'm not a big WordPress fan. Seems like everything's… something's always breaking, sites going down, it's a lot of issues, but nonetheless.
+
+439
+00:47:21.900 --> 00:47:40.420
+Jonathan Giner: in the small amount of time that I've been doing these sites now, man, I can tell you that, plain, that the sites are… when they're HTML, CSS, I mean, they're extremely fast. I don't see any type of maintenance, really, that would be required. Once again, I could be speaking out of ignorance, so…
+
+440
+00:47:40.610 --> 00:47:45.550
+Jonathan Giner: So forgive me, but but yeah, man, I don't know, I don't… I don't… I'm not…
+
+441
+00:47:45.980 --> 00:47:58.480
+Jonathan Giner: based on my experience, I'm not seeing the value necessarily in Webflow, and I almost see it as kind of like an extra step. I think if you just kind of host it on any, you know, legitimate, secure host, partner, I think,
+
+442
+00:47:59.130 --> 00:48:05.669
+Jonathan Giner: I think you'll get the same, if not even potentially better, results. I don't know what your thoughts are on that.
+
+443
+00:48:05.670 --> 00:48:17.710
+Clayton Joyner: The challenge I run into, so one is programmatic SEO, want to modularly add on to programmatic services, but I… the skill requirement, like, for someone to go in and edit, or fix a broken site.
+
+444
+00:48:17.920 --> 00:48:24.399
+Clayton Joyner: You know, at least in my team at the moment, I mean, they're used to working off of… I mean, they're developers, they can go in and do code.
+
+445
+00:48:24.580 --> 00:48:27.440
+Clayton Joyner: But I don't have a code-first team, so, like.
+
+446
+00:48:27.440 --> 00:48:35.309
+Jonathan Giner: But the thing is that now… I just feel that now, with Claude, you don't… you don't need a… I mean, I don't know anything about code, like, I'm talking about zero.
+
+447
+00:48:35.620 --> 00:48:37.399
+Jonathan Giner: Well, man…
+
+448
+00:48:37.400 --> 00:48:40.710
+Clayton Joyner: I don't understand how you're using it, yet, so if I can…
+
+449
+00:48:40.710 --> 00:48:46.789
+Jonathan Giner: I literally tell… I literally tell Claude what it is that I want. I even…
+
+450
+00:48:46.920 --> 00:48:51.380
+Jonathan Giner: Even when I was having issues with the website studio, I even had Claude
+
+451
+00:48:52.460 --> 00:48:56.319
+Jonathan Giner: And, like, one of the issues that I was having, I had a site that was almost done.
+
+452
+00:48:56.460 --> 00:49:03.169
+Jonathan Giner: And it broke, and the site, like, literally, like, literally disappeared off Westside Studio.
+
+453
+00:49:03.380 --> 00:49:06.449
+Jonathan Giner: And I was able to actually get Claude to go in there.
+
+454
+00:49:06.550 --> 00:49:14.139
+Jonathan Giner: And actually look at the code, and basically fix what the web studio had essentially broken on one of those updates, and get the site back up.
+
+455
+00:49:14.510 --> 00:49:33.289
+Jonathan Giner: So… and once again, there could be a lot of ignorance to what I was saying, man, so take it with a grain of salt, but it just seems that now, with Cloud, you don't essentially need a developer. You don't need, you know, to know code, because the AI is essentially going to be able to go in there and make any edits
+
+456
+00:49:33.570 --> 00:49:40.779
+Jonathan Giner: you know, fixes or improvements or whatnot that you request. So that's just kind of been my experience so far.
+
+457
+00:49:40.780 --> 00:49:42.100
+Bryan Fikes: Go ahead, jump, jump…
+
+458
+00:49:42.100 --> 00:49:53.069
+Kav: Yeah, go ahead. Yeah, let me jump in. Clayton, I was, like, ReLoom's first adopter. I know Dan pretty well, so I understand that. We work on Webflow as well, directly ported there.
+
+459
+00:49:53.070 --> 00:50:07.270
+Kav: We have 400-plus sites on WordPress as well. So, WordPress backend ecosystem, WP Stack, it will solve 99% of your problems if you are a hybrid WordPress Webflow. If you're Webflow only.
+
+460
+00:50:07.270 --> 00:50:10.229
+Kav: Like, then it's easy hosting structure there.
+
+461
+00:50:10.230 --> 00:50:27.970
+Kav: If you're looking for, like, how to set up the architecture from an SEO standpoint, like, follow… inside a search atlas, just run the Webflow, header on the top, and then run that setup. And it will literally do all of the adjustments for you. Like, it literally… it will make the adjustments inside of any Webflow site.
+
+462
+00:50:28.350 --> 00:50:29.749
+Kav: For the SEO side.
+
+463
+00:50:30.300 --> 00:50:32.080
+Kav: So it's already, it's already built up.
+
+464
+00:50:32.080 --> 00:50:39.489
+Clayton Joyner: up now, and I wasn't sure… I got confused at one point, because someone had mentioned that it was, like, a temporary layer on top of the code or something.
+
+465
+00:50:39.490 --> 00:50:42.020
+Kav: It just sits at the top. It just sits at the top.
+
+466
+00:50:42.410 --> 00:50:42.930
+Clayton Joyner: Okay.
+
+467
+00:50:42.930 --> 00:51:00.489
+Kav: basically controls the site, like, it's basically the original auto. I would, you know, I would say Jonathan and Matt probably know the technical side better than I do, but it's… it will make all those changes for you the way that you want, like, from the conical tags to the H1s all the way to H6s, like, exactly the way you want it.
+
+468
+00:51:00.570 --> 00:51:06.919
+Kav: But when it comes to, like, the build aspect, right, like, from starting from scratch, like, where we're going in the future, I think that…
+
+469
+00:51:07.300 --> 00:51:16.160
+Kav: I think the benefit of WordPress and the benefit of a builder on WordPress or Webflow is the front-end builder, like, client-facing front-end work.
+
+470
+00:51:16.670 --> 00:51:17.320
+Jonathan Duque: Cool.
+
+471
+00:51:17.660 --> 00:51:33.879
+Kav: But that's irrelevant, in my opinion, today with where, like, this whole thing is going. But if you do have live business that is, like, the current business you're running that needs to be working, then yeah, you're going to want to be able to make those changes in that environment. I would say…
+
+472
+00:51:34.030 --> 00:51:40.110
+Kav: we're, like, rebuilding almost all of our sites. Obviously, we have almost 500, so it's gonna take some time.
+
+473
+00:51:41.320 --> 00:51:54.219
+Clayton Joyner: How are you getting the design fine-tuned, though? Because what I'm dealing with, like, we, like, a lot of times, we have two vertical splits. We have the home services, they're less… I mean, they have, they have a lot of opinions, but not too much as the medical side. The medical side is very aesthetic-driven.
+
+474
+00:51:54.250 --> 00:52:03.619
+Clayton Joyner: For us, and they want a round revision, and they want, this there, and this image there, and switching out galleries, and doing all that stuff. How are you…
+
+475
+00:52:04.170 --> 00:52:05.190
+Jonathan Giner: You have… you…
+
+476
+00:52:05.630 --> 00:52:17.870
+Jonathan Giner: you have total control, man. I mean, with Cloud, you have total, total, total control. Like, whatever it is that you want to do, you literally tell Cloud Code to do it, and it does it. Like, it's literally that simple.
+
+477
+00:52:17.870 --> 00:52:22.290
+Clayton Joyner: mock-up and give it a file, a mock-up file, and it would replicate it? Like, how would you…
+
+478
+00:52:22.290 --> 00:52:23.869
+Bryan Fikes: Hey, Clayton, I am dealing.
+
+479
+00:52:23.870 --> 00:52:24.220
+Justin Day: What's…
+
+480
+00:52:24.220 --> 00:52:33.960
+Bryan Fikes: exact issue on a couple different levels. The one is, he's a red pen. He's always been a red pen. He's in the home improvement space. It's an independent. They've got five locations.
+
+481
+00:52:34.180 --> 00:52:36.299
+Bryan Fikes: If he has to have his red pen. I said.
+
+482
+00:52:36.530 --> 00:52:38.430
+Bryan Fikes: I go, Tony, do me a favor.
+
+483
+00:52:38.500 --> 00:52:45.619
+Bryan Fikes: record yourself of what your change is that you want, send me the recording, I dictated it, I put it into…
+
+484
+00:52:45.620 --> 00:53:02.190
+Bryan Fikes: at this time, I was using ChatGPT to give me the prompt to then go to Claude. I tested it on the site that I'm building inside of Website Studio, and then to use Atlas Brain, and it did exactly what it wanted. Like, it changed… I want… it says this, I want it to say this. Noted. Changed. The galleries.
+
+485
+00:53:02.190 --> 00:53:03.279
+Clayton Joyner: dream come true.
+
+486
+00:53:03.280 --> 00:53:03.810
+Jonathan Giner: And he
+
+487
+00:53:03.810 --> 00:53:04.690
+Justin Day: No, it's…
+
+488
+00:53:05.420 --> 00:53:07.859
+Bryan Fikes: Experiment with it. You gotta experiment with it. It's crazy, dude.
+
+489
+00:53:07.860 --> 00:53:19.549
+Kav: That's where we are right now, like, what we're trying to do, and to Clayton, to your point, I think where some of the other people have mentioned, I think what we're trying to do is go from customer requests, like a change request.
+
+490
+00:53:20.250 --> 00:53:33.670
+Kav: to, like, does it… can we actually get a change request from a customer? Now, we've been 11 years in business with 1,500 websites been built, we have almost 500 live right now, so there's a lot of fucking inquiries. Can we get from change requests via an email?
+
+491
+00:53:33.830 --> 00:53:34.540
+Clayton Joyner: Right.
+
+492
+00:53:34.800 --> 00:53:36.140
+Kav: directly
+
+493
+00:53:36.490 --> 00:53:58.780
+Kav: to the clawed adjustment inside the studio to fix it, like, to where it's literally, like, we made your change. So there's no human interventional problem of, like, misunderstanding context. That is my dream on the current business. The future business is, like, so much easier, because I think we all know what best practices is for building a, like, we plumbers, HVAC, dentists is our wheelhouse.
+
+494
+00:53:59.170 --> 00:54:16.819
+Bryan Fikes: Hey guys, there's a… there is a problem that I wanted to bring up in this particular text, because I'm at a point where I'm starting to introduce some of my more complex clients. One of them is in e-commerce, and it's in a space, you know, whatever, but they're the top. Like, they have all the money, and if you get it right, they have all the money.
+
+495
+00:54:16.830 --> 00:54:36.020
+Bryan Fikes: And it's in the adult space, but he's got 68,000 SKUs that are changing from a database. What I'm having a problem with is some of the plugins that we use to talk to other things that have been customized. That's where my brain I can't get to, where I'm like, okay, well, shit, how do I actually interface with that? Because I'm so… I've got the plugin for WordPress, so I'm trying to solve
+
+496
+00:54:36.100 --> 00:54:39.850
+Bryan Fikes: That… that one, that's my, like, if I can get this guy, this is one of those…
+
+497
+00:54:39.850 --> 00:54:46.310
+Justin Day: Spending 50 grand a month. Drop that zip file in Cloud and have it… Reverse engineer it.
+
+498
+00:54:47.480 --> 00:54:56.400
+Bryan Fikes: Yeah, so I'm dealing with a platform that the guy who built the cart system is with the top 3, you know.
+
+499
+00:54:56.580 --> 00:55:00.709
+Bryan Fikes: adult sites and all this stuff. He won't give me enough access to.
+
+500
+00:55:00.710 --> 00:55:01.519
+Justin Day: Like, he…
+
+501
+00:55:01.520 --> 00:55:14.779
+Bryan Fikes: purposely layered it, and so that… yeah. So what I… what I… what we started to do was we're just building on top of the site that he already currently has. So that's plan one, and so we're gonna do that as a test. I mean, this is the kind of guy that spends 70 grand on a test and is like, okay.
+
+502
+00:55:14.780 --> 00:55:15.250
+Justin Day: Yeah.
+
+503
+00:55:15.250 --> 00:55:29.559
+Bryan Fikes: because margins are pretty good on silicon and rubber, so… But yeah, I'm having a problem, like, we get to the simple stuff, like, you know, service plumbers, okay, yeah, maybe they have a contact form, I got past that, like, multiple contact forms, multiple people, multiple sends.
+
+504
+00:55:29.600 --> 00:55:35.859
+Bryan Fikes: But when we get to the complex stuff, like, you know, databases and stuff that we have to plug into, I don't know enough
+
+505
+00:55:35.940 --> 00:55:38.419
+Bryan Fikes: I have to train myself again to know enough
+
+506
+00:55:38.550 --> 00:55:55.040
+Bryan Fikes: of programmatically solving it, and versus, like, visually going, well, if I take this box and put it into WordPress, and this plugin will magically make all this shit happen. Like, with that 301 redirect issue that I was dealing with, I've got a 195-page site that I'm trying to launch as part of my first, like, big win with this system.
+
+507
+00:55:55.140 --> 00:55:58.669
+Bryan Fikes: And, thank you for sharing that.
+
+508
+00:55:58.980 --> 00:56:00.820
+Bryan Fikes: By the way, that's helping, so…
+
+509
+00:56:00.900 --> 00:56:19.829
+Bryan Fikes: I'd love to, while we're exploring, you know, obviously all of us have to change our mindsets, moving forward. If you guys are having, you know, similar situations where it's getting a little more complex in terms of what you're trying to do, Justin, please share. Clayton, please share. And I'm sorry, is it Cav? I don't want to ever want to say names wrong again in here.
+
+510
+00:56:19.830 --> 00:56:22.399
+Kav: Strong at whatever you want, asshole, don't matter to me. Be good.
+
+511
+00:56:23.950 --> 00:56:27.320
+Bryan Fikes: About… Okay, cool.
+
+512
+00:56:27.320 --> 00:56:34.270
+Jonathan Duque: I… what I want to mention here is it all goes back to the skills that you've added to your law.
+
+513
+00:56:35.110 --> 00:56:41.639
+Jonathan Duque: There is likely always going to be a skill built for that, that you're asking for, and if not.
+
+514
+00:56:41.830 --> 00:56:46.559
+Jonathan Duque: there's a skill that you can use to build skills, right? So…
+
+515
+00:56:46.900 --> 00:56:58.400
+Jonathan Duque: what I would suggest, and I'm gonna share those with you, but there's a scale that literally asks you, hey, what is it that you're trying to get? What is it that I need to be knowledgeable about, so I can work with
+
+516
+00:56:58.500 --> 00:57:09.899
+Jonathan Duque: your resources that can work with whatever you've shared. And, you would just start grabbing stuff from the internet, from whatever public sources it can have, to…
+
+517
+00:57:10.900 --> 00:57:24.780
+Jonathan Duque: learn that skill so you can use that skill moving forward. So, I don't have the right answer right now for you, Brian, unfortunately. I'm not super familiar as well, like, either way with the programmatic stuff on WordPress.
+
+518
+00:57:25.140 --> 00:57:25.990
+Jonathan Duque: But.
+
+519
+00:57:25.990 --> 00:57:34.510
+Bryan Fikes: We all have a huge… we all have a huge skill. We have you for 48 more weeks, 49 more weeks. I mean, between you and…
+
+520
+00:57:34.890 --> 00:57:39.739
+Matt Bailey: Well, you guys do… I will say, you guys do get some free time with JD, because that is built into.
+
+521
+00:57:39.740 --> 00:57:40.399
+Jonathan Duque: Actually, yeah.
+
+522
+00:57:40.400 --> 00:57:46.249
+Matt Bailey: So, we will, we're probably gonna set up some sort of calendar, or.
+
+523
+00:57:46.250 --> 00:57:46.780
+Jonathan Duque: tooth.
+
+524
+00:57:46.780 --> 00:57:47.620
+Matt Bailey: You know.
+
+525
+00:57:47.620 --> 00:57:48.019
+Jonathan Duque: For sure.
+
+526
+00:57:48.020 --> 00:57:50.459
+Matt Bailey: So that you can get in there,
+
+527
+00:57:50.460 --> 00:58:14.090
+Matt Bailey: But yeah, I want to respect your guys' time. I think it's fantastic. If you guys think this needs to be longer, or if maybe we need to move it to 5 o'clock and have evening beers, as we talk here, let me know. Two things, Coach Cav and Kane, I want to be sure you guys are set up. You haven't… we haven't gone through the onboarding with you, but I want to make sure you're set up. Do you need onboarding time?
+
+528
+00:58:16.320 --> 00:58:26.320
+Kane Sivesind: We could probably set them up. We got the MCP server set up, we got everything in the Agentic repo in there, we got the Rufilo Swarm all set up, so we got all that stuff set up, so…
+
+529
+00:58:26.320 --> 00:58:34.749
+Matt Bailey: Fantastic. Fantastic. All right, hopefully, with what JD's gonna produce with the file structure will help us as well. Coach Cav, catch with you.
+
+530
+00:58:35.020 --> 00:58:44.220
+Kav: Kane's gonna do it all, because I just talk to Claude, or talk to robots, but yeah, I don't set them up. Me and Jonathan go hang out, that's about it. I ain't gonna… I ain't gonna do any dev work.
+
+531
+00:58:44.730 --> 00:58:51.660
+Matt Bailey: Alright. Alright, guys, this has been fantastic. Post and circle.
+
+532
+00:58:51.660 --> 00:59:00.500
+Jonathan Duque: Before you go, before you go, sorry to cut you off, but I just want to share in the chat the link to my calendar, so you can drop there, and ask.
+
+533
+00:59:00.750 --> 00:59:04.789
+Jonathan Duque: Like, yeah, to schedule the session, just whatever time works for you, works for me.
+
+534
+00:59:04.790 --> 00:59:07.909
+Jonathan Giner: How much time do we have with you, you said, Jonathan? Like, overall?
+
+535
+00:59:08.810 --> 00:59:14.430
+Jonathan Duque: I don't… Honestly, I don't… I don't have a cap. This is my, you know.
+
+536
+00:59:14.760 --> 00:59:17.040
+Jonathan Duque: I'm passionate about this, so…
+
+537
+00:59:17.040 --> 00:59:18.429
+Jonathan Giner: I want to use your time wisely, that's why.
+
+538
+00:59:18.430 --> 00:59:20.150
+Matt Bailey: I do have a cap, JD, I want to let you know.
+
+539
+00:59:20.150 --> 00:59:24.860
+Justin Day: Yeah, I'd be careful about that, because I'll… I will book you out straight.
+
+540
+00:59:25.650 --> 00:59:29.410
+Matt Bailey: It's a couple hours a quarter, I will double check on that and let you know.
+
+541
+00:59:29.410 --> 00:59:30.020
+Jonathan Duque: Oh, okay.
+
+542
+00:59:30.020 --> 00:59:31.320
+Justin Day: Post answer.
+
+543
+00:59:31.320 --> 00:59:35.709
+Jonathan Duque: Oops, let's just rewind that and delete that from the recording, please.
+
+544
+00:59:35.710 --> 00:59:36.109
+Justin Day: Right there.
+
+545
+00:59:37.820 --> 00:59:39.230
+Matt Bailey: It's gonna be flying.
+
+546
+00:59:39.230 --> 00:59:39.580
+Jonathan Duque: No.
+
+547
+00:59:39.580 --> 00:59:40.960
+Matt Bailey: The country.
+
+548
+00:59:40.960 --> 00:59:51.720
+Jonathan Duque: I'll drop it in the chat, and then, yeah, we'll get back to you on that. As of now, you can book, like, 30-minute sessions, so we can, like, see where you're at, and then maybe what's your specific need.
+
+549
+00:59:51.830 --> 00:59:54.280
+Jonathan Duque: So, I can get back to you on that.
+
+550
+00:59:55.670 --> 00:59:56.160
+Matt Bailey: Fantastic.
+
+551
+00:59:56.160 --> 00:59:56.880
+Jonathan Duque: So let me just…
+
+552
+00:59:56.880 --> 01:00:03.659
+Clayton Joyner: post, maybe, Matt, like, what all we should have done to this point, because I feel like I need to catch up a little bit. I think I was behind a bit.
+
+553
+01:00:03.880 --> 01:00:07.879
+Matt Bailey: Yeah, well, right now, I would say this file structure's probably one of the most important things.
+
+554
+01:00:07.880 --> 01:00:08.580
+Justin Day: Yeah. It's.
+
+555
+01:00:08.580 --> 01:00:18.919
+Matt Bailey: structure, the instructions, you know, let's get that in order. And then number two is, you know, I like Brian's ideas, you know.
+
+556
+01:00:18.960 --> 01:00:36.770
+Matt Bailey: where are your instructions? Where do you think your instructions are the best, and let's start putting together this whole workflow, wherever everyone's got their strengths. So I'm gonna try… I'm gonna get with the circle people and have them set up, like, a section just for wish lists, and…
+
+557
+01:00:36.770 --> 01:00:41.170
+Matt Bailey: You know, prompts, instructions, whatever that we can share and build from there.
+
+558
+01:00:42.060 --> 01:00:44.400
+Bryan Fikes: Ayton owns that idea, by the way. Trademarked.
+
+559
+01:00:45.090 --> 01:00:51.179
+Matt Bailey: Alright. You can get your… you can get your matrix, matrix learning there.
+
+560
+01:00:54.420 --> 01:01:04.489
+Jonathan Duque: I just dropped in the chat that I'm gonna be publishing that on the Sirco group that we have, and I know there's some pending questions, so I'll get back to you on those. She's been…
+
+561
+01:01:04.930 --> 01:01:12.079
+Jonathan Duque: Yeah, a lot of things going on, but yeah, I'll get back to you on there. With the time, I think 101 will be much more progress.
+
+562
+01:01:12.330 --> 01:01:12.870
+Matt Bailey: Yep.
+
+563
+01:01:12.870 --> 01:01:13.300
+Jonathan Duque: So, yeah.
+
+564
+01:01:13.300 --> 01:01:22.069
+Matt Bailey: I'll follow up, yeah, specifically with everything we covered here, and what to have ready for the next session, but yeah, use Circle if you've got a question about anything.
+
+565
+01:01:23.700 --> 01:01:25.489
+Matt Bailey: Alright guys, have a great afternoon.
+
+566
+01:01:25.490 --> 01:01:25.880
+Justin Day: Thank you.
+
+567
+01:01:25.880 --> 01:01:27.109
+Jonathan Duque: bigger, two rounds.
+
+568
+01:01:27.950 --> 01:01:29.120
+Michael Vassar: Thanks, y'all.
+
