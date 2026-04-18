@@ -4,6 +4,9 @@ Latest additions and updates to the Agentic Marketing Mastermind toolkit.
 
 ---
 
+## 2026-04-18 — Claude Code v2.1.113 / v2.1.114
+Native binary migration, new `sandbox.network.deniedDomains` setting, `/loop` Esc cancel, readline-style Ctrl+A/Ctrl+E in multiline input, and an Agent Teams permission-dialog crash fix. → [Changelog](changelog/2026-04.md)
+
 ## 2026-04-17 — Claude Code v2.1.111 / v2.1.112
 New `xhigh` effort level for Opus 4.7, auto mode for Max subscribers, and a bugfix for transient "temporarily unavailable" errors. → [Changelog](changelog/2026-04.md)
 
