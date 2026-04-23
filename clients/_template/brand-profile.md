@@ -100,6 +100,9 @@
 
 ---
 
-## Last Updated
-- **Pulled from brand vault:** [Date]
-- **Brand Vault UUID:** [UUID]
+## Sync
+<!-- Updated automatically by /onboard-client and /sync-client — do not edit manually -->
+- **Last pulled from SA:** [ISO datetime]
+- **Last pushed to SA:**   [ISO datetime]
+- **Brand Vault UUID:**    [UUID]
+- **Hostname:**            [domain]

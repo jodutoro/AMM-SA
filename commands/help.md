@@ -13,8 +13,9 @@ Display this command reference to the user:
   /my-account          Show all businesses, projects, campaigns, and GBP locations
   /business-report     Deep dive report on a single business
 
-🚀 ONBOARDING
-  /onboard-client      Guided new client onboarding wizard
+🚀 CLIENT MANAGEMENT
+  /onboard-client      Guided new client onboarding wizard (pull from brand vault or manual)
+  /sync-client         Two-way sync between local brand-profile.md and SearchAtlas brand vault
 
 🔧 WORKFLOWS
   /run-seo             SEO onboarding or monthly maintenance

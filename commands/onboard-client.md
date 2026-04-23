@@ -2,11 +2,11 @@
 
 Guided wizard to onboard a new client into SearchAtlas. Supports two paths: pulling full brand data automatically from an existing SearchAtlas brand vault, or setting up a brand new client from scratch.
 
+All data collected in either path is synced back to the SearchAtlas brand vault — local files and SA stay in sync from day one.
+
 ## Instructions
 
 ### Phase 0: Choose Onboarding Path
-
-Start by asking which scenario applies:
 
 ```
 How would you like to onboard this client?
@@ -21,75 +21,66 @@ Which option? (1 or 2)
 
 ## Path A — Existing Client (Brand Vault Pull)
 
-Use when the client already has a brand vault in the member's SearchAtlas account.
-
 ### A1: Select Client From Account
 
 1. Call `brand_vault` → `list_brand_vaults` with empty params `{}`
-2. Display as a numbered list:
-   ```
-   Which client are you onboarding?
-   1. Coastal Dental Group (coastaldentalgroup.com)
-   2. Sunrise Home Services (sunrisehomeservices.com)
-   3. Rivera Law Firm (riveralaw.com)
-   ```
-3. Member picks a number
+2. Display as a numbered list, member picks a number
 
 ### A2: Full Brand Vault Pull (4 parallel calls)
 
-After selection, make all four calls simultaneously:
-
 | Call | Tool | Params | What It Returns |
 |------|------|--------|-----------------|
-| 1 | `brand_vault` → `retrieve_brand_vault_details` | `brand_vault_uuid` | Full vault data: name, domain, logo URL, brand colors, description, assets |
-| 2 | `brand_vault` → `get_brand_vault_business_info` | `brand_vault_uuid` | Contact info: address, city, state, zip, phone, email, hours, social links |
-| 3 | `brand_vault` → `get_knowledge_graph` | `hostname` | Entity graph: main topics, semantic clusters, competitor entities |
-| 4 | `brand_vault` → `list_voice_profiles` | `hostname` | Brand voice: tone, writing style, example phrases, active profile |
+| 1 | `brand_vault` → `retrieve_brand_vault_details` | `brand_vault_uuid` | Name, domain, logo URL, brand colors, description, assets |
+| 2 | `brand_vault` → `get_brand_vault_business_info` | `brand_vault_uuid` | Address, city, state, zip, phone, email, hours, social links |
+| 3 | `brand_vault` → `get_knowledge_graph` | `hostname` | Entity graph, topic clusters, competitor entities |
+| 4 | `brand_vault` → `list_voice_profiles` | `hostname` | Tone, writing style, example phrases, active voice profile |
 
-### A3: Discover Service IDs (parallel, while member reviews data)
+### A3: Confirm — Member Reviews and Edits
 
-Simultaneously fetch the IDs needed for this client's workflows:
-- **OTTO Project ID** → `project_management` → `list_otto_projects`, match by domain
-- **GBP Location ID** → `gbp_locations_crud` → `list_locations`, match by domain
-- **PPC Business ID** → `business_crud` → `list_businesses`, match by domain
+Show the full confirmation block (see A4 format). Member types "yes" or specifies fields to edit.
 
-If an ID isn't found, mark as "not configured yet."
+**If member edits any field:** push the change back to SA immediately using the correct update tool (see sync map below), then confirm the write succeeded before continuing.
 
-### A4: Confirm With Member
-
-Present a summary of what was pulled — member confirms or edits specific fields:
+### A4: Confirmation Block
 
 ```
 Here's everything I pulled from your SearchAtlas brand vault:
 
-━━ Business ━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━ Business ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 🏢  Name           Coastal Dental Group
 🌐  Domain         coastaldentalgroup.com
 🏷️  Industry       Dental Clinic
-📍  Address        123 Ocean Blvd, Miami, FL 33101
+📝  Description    [first 120 chars...]
 📞  Phone          (305) 555-0182
 ✉️  Email          hello@coastaldentalgroup.com
+📍  Address        123 Ocean Blvd, Miami, FL 33101
 🕐  Hours          Mon–Fri 8AM–5PM, Sat 9AM–1PM
 
-━━ Brand ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📝  Description    [first 120 chars of description...]
-🎨  Brand colors   #1A3C6E (primary), #F5F5F5 (background)
+━━ Brand ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎨  Colors         #1A3C6E (primary) · #F5F5F5 (bg)
 🖼️  Logo           [URL on file]
-🔊  Voice profile  Professional & Reassuring (active)
+🔊  Voice          Professional & Reassuring (active)
+✍️  Style          Clear, patient-focused, jargon-free
 
-━━ SEO & Content ━━━━━━━━━━━━━━━━━━━━━
+━━ SEO & Content ━━━━━━━━━━━━━━━━━━━━━━━
 🔑  Primary KW     dentist miami fl
 🧠  Key entities   [top 5 from knowledge graph]
 🏆  Competitors    [top 3 competitor domains]
 
-━━ IDs ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━ IDs ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 🔗  Brand Vault    [uuid]
 🚀  OTTO Project   [project_id or: not configured]
 📍  GBP Location   [location_id or: not configured]
 💰  PPC Business   [business_id or: not configured]
 
-Does this look right? (yes / edit any field)
+Does this look right? (yes / edit [field name])
 ```
+
+### A5: Discover Service IDs (parallel, silent)
+
+- **OTTO Project ID** → `project_management` → `list_otto_projects`, match by domain
+- **GBP Location ID** → `gbp_locations_crud` → `list_locations`, match by domain
+- **PPC Business ID** → `business_crud` → `list_businesses`, match by domain
 
 → Skip to **Phase 2: Identify Needs**
 
@@ -97,50 +88,85 @@ Does this look right? (yes / edit any field)
 
 ## Path B — New Client (Manual Setup)
 
-Use when the client is not yet in SearchAtlas, or when the member prefers to enter details manually.
-
 ### B1: Collect Client Information
 
-Ask the following one at a time:
+Ask one at a time:
 
-**Business basics:**
-1. **Client name** — business or brand name
-2. **Domain** — primary website URL
-3. **Industry** — what the business does (e.g., Dental Clinic, Home Services, Law Firm)
-4. **Business description** — 2–3 sentences describing what they do and who they serve
-5. **Phone number**
-6. **Email**
+**Business:**
+1. Client name
+2. Domain (primary website URL)
+3. Industry (e.g., Dental Clinic, Home Services, Law Firm)
+4. Business description (2–3 sentences: what they do, who they serve, what makes them different)
+5. Phone number
+6. Email
 
 **Location:**
-7. **Full address** — street, city, state, zip
-8. **Service areas** — additional cities/regions they serve (if any)
-
-**SEO & Content:**
-9. **Primary keyword** — their main pillar keyword
-10. **Pillar URL** — the main page to build content around (e.g., /services)
-11. **Top competitors** — 2–3 competitor domains to track
+7. Full address (street, city, state, zip)
+8. Service areas (additional cities/regions, if any)
+9. Business hours
 
 **Brand:**
-12. **Brand voice / tone** — how they like to communicate (professional, friendly, authoritative, etc.)
+10. Brand voice / tone (professional, friendly, authoritative, etc.)
+11. Writing style notes (anything Claude should know when writing for this client)
 
-### B2: Create Brand Vault
+**SEO:**
+12. Primary keyword (main pillar keyword)
+13. Pillar URL (main page to build content around)
+14. Top 2–3 competitor domains
 
-Create the brand vault with all collected info:
-- `brand_vault` → `create_brand_vault` with business info
-- `brand_vault` → `update_brand_vault_business_info` with contact details
-- Note the new `brand_vault_uuid`
+**Assets (optional):**
+15. Logo URL (if available)
+16. Brand colors (primary hex code, if known)
+17. Any existing content to load into brand vault (paste or describe — press Enter to skip)
+
+### B2: Create Brand Vault and Push Everything
+
+After collecting all info, create the brand vault and immediately push all collected data:
+
+**Step 1 — Create vault:**
+- `brand_vault` → `create_brand_vault` with name + domain
+- Capture the returned `brand_vault_uuid`
+
+**Step 2 — Push business info:**
+- `brand_vault` → `update_brand_vault_business_info` with phone, email, address, hours, description
+
+**Step 3 — Push brand data:**
+- `brand_vault` → `update_brand_vault` with logo, colors, industry
+
+**Step 4 — Push voice profile:**
+- `brand_vault` → `update_refine_prompt` with tone, writing style, style notes
+
+**Step 5 — Seed knowledge graph:**
+- `brand_vault` → `update_knowledge_graph` with primary keyword, competitor domains, key service topics
+
+**Step 6 — Push transcripts (if provided):**
+- `brand_vault` → `update_refine_prompt` appending any pasted content as brand voice training material
+
+Show progress as each step completes. Confirm SA write succeeded before moving on.
 
 → Continue to **Phase 2: Identify Needs**
 
 ---
 
-## Phase 2: Identify Needs
+## Sync Map — Field → Update Tool
 
-Ask which services the client needs (works for both paths):
+Use this mapping whenever pushing local changes back to SA (Path A edits, Path B creation, or `/sync-client`):
+
+| `brand-profile.md` Section | Fields | SA Tool | Params |
+|----------------------------|--------|---------|--------|
+| Business | Name, description, industry, logo, colors | `update_brand_vault` | `brand_vault_uuid` |
+| Contact & Location | Phone, email, address, city, state, zip, hours | `update_brand_vault_business_info` | `brand_vault_uuid` |
+| Brand Voice | Tone, writing style, example phrases, avoid list | `update_refine_prompt` | `hostname` |
+| Knowledge Graph | Entities, topic clusters, competitors | `update_knowledge_graph` | `hostname` |
+| Transcripts & Assets | Pasted content, uploaded text | `update_refine_prompt` (append) | `hostname` |
+
+---
+
+## Phase 2: Identify Needs
 
 ```
 Which services does this client need?
-(Type the numbers separated by commas, e.g. 1,2,4)
+(Type numbers separated by commas, e.g. 1,2,4)
 
 1. SEO     — OTTO project, audit, content, indexing
 2. GBP     — Google Business Profile optimization
@@ -152,73 +178,56 @@ Which services does this client need?
 
 ## Phase 3: Create Client Files
 
-Create two files in the client's workspace folder:
+Create two files in `clients/{client-slug}/`:
 
-### File 1: `clients/{client-slug}/CLAUDE.md`
-Lean session context — loaded by Claude at the start of every session.
-Copy from `clients/_template/CLAUDE.md` and populate all fields.
+- **`CLAUDE.md`** — lean session context (IDs, active services, quick brand ref)
+- **`brand-profile.md`** — full brand data populated from the vault pull or manual entry
 
-### File 2: `clients/{client-slug}/brand-profile.md`
-Full brand data — loaded when running content, GBP, or SEO workflows that need brand context.
-Copy from `clients/_template/brand-profile.md` and populate all fields pulled from the vault.
+Add sync metadata at the bottom of `brand-profile.md`:
+```
+## Sync
+- Last pulled from SA: [ISO datetime]
+- Last pushed to SA:   [ISO datetime]
+- Brand Vault UUID:    [uuid]
+- Hostname:            [domain]
+```
 
-Also create: `clients/{client-slug}/plans/` directory
+Also create `clients/{client-slug}/plans/`
 
 ## Phase 4: Execute Setup
 
-Based on service selections:
-
-**If SEO selected:**
-1. Load `workflows/seo-onboarding.yaml` — all client data already populated
-2. Execute steps 1–7
-
-**If GBP selected:**
-1. Confirm GBP Location ID (discovered in A3 or find now)
-2. Load `workflows/gbp-optimization.yaml`
-3. Execute full optimization — brand description and voice from `brand-profile.md` inform GBP copy
-
-**If PPC selected:**
-1. Ask for Google Ads account ID and landing page URLs
-2. Load `workflows/ppc-launch.yaml`
-
-**If Content selected (without SEO):**
-1. Brand vault exists — use voice profile from `brand-profile.md` for article generation
-2. Build keyword research via `keyword_research` → `create_keyword_research_project`
-3. Create topical map and generate articles
-
-**If PR selected:**
-1. Load `workflows/authority-building.yaml`
-2. Ask for press release topic and angle
-
-**If LLM selected:**
-1. Load `workflows/llm-visibility.yaml`
-2. Use competitor domains already captured in `brand-profile.md`
+**If SEO:** Load `workflows/seo-onboarding.yaml` → execute steps 1–7
+**If GBP:** Confirm GBP Location ID → `workflows/gbp-optimization.yaml` → brand description + voice from `brand-profile.md` inform all GBP copy
+**If PPC:** Ask for Google Ads account ID and landing pages → `workflows/ppc-launch.yaml`
+**If Content:** Brand vault already seeded → keyword research → topical map → articles using active voice profile
+**If PR:** `workflows/authority-building.yaml` → ask for press release topic + angle
+**If LLM:** `workflows/llm-visibility.yaml` → competitors already in `brand-profile.md`
 
 ## Phase 5: Summary
 
 ```
-✅ {Client Name} — Onboarding Complete
+✅ {Client Name} — Onboarding Complete · Synced with SearchAtlas
 
 📁  CLAUDE.md         clients/{slug}/CLAUDE.md
 📋  Brand Profile     clients/{slug}/brand-profile.md
-🔗  Brand Vault       {brand_vault_uuid}
+🔗  Brand Vault       {brand_vault_uuid} ✓ synced
 🚀  OTTO Project      {project_id}
 📍  GBP Location      {location_id}
 
 {emoji} {Product}  {result summary}  [View →](url)
 ...
 
-{total} actions completed · {failed} failed
-Next steps: {recommendations}
+To sync changes later: /sync-client {client-slug}
 ```
 
 ## Golden Rules
 
-- **Always offer both paths** — never assume a client is new or existing; ask first
-- **Pull everything on Path A** — run all 4 brand vault calls in parallel, not just business info
-- **Two files per client** — CLAUDE.md (lean) + brand-profile.md (full brand data)
-- **Schema discovery** — call any tool with `{}` before first use to see real schema
+- **Always offer both paths** — never assume; ask first
+- **Two-way sync always** — any data collected or edited gets pushed back to SA immediately
+- **Pull everything on Path A** — all 4 parallel calls, not just business info
+- **Two files per client** — CLAUDE.md (lean) + brand-profile.md (full)
+- **Use the sync map** — always know which SA tool handles which field
+- **Schema discovery** — call tools with `{}` before first use
 - **Never hardcode IDs** — discover all IDs via API
-- **Poll async tasks** — poll with 5–10 second intervals until status = SUCCESS
+- **Confirm writes** — after any push to SA, verify the response confirms success
 - **Confirm before destructive actions** — ask before publishing, activating campaigns, deploying GBP
-- **Never ask for data you can pull** — fetch silently and confirm, don't prompt
