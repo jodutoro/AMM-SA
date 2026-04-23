@@ -11,6 +11,7 @@
 |------------|--------------|-------------------|
 | "audit", "site health", "issues", "crawl" | `audit_management`, `holistic_audit` | A or B |
 | "new client", "onboard", "set up project" | `project_management`, full onboarding flow | **A — New Client SEO Onboarding** |
+| "sync client", "push to brand vault", "pull from SA", "update brand profile", "brand vault out of date" | `brand_vault` (push/pull) | `/sync-client` |
 | "monthly", "maintenance", "recurring SEO" | `suggestion_management`, `schema_markup` | **B — Monthly SEO Maintenance** |
 | "brand vault", "brand voice", "brand profile", "brand" | `brand_vault` | A (step 4) |
 | "topical map", "content strategy", "content plan", "content calendar" | `topical_maps` | A (step 6) or B (step 5) |

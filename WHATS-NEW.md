@@ -55,6 +55,32 @@ Run it inside Claude Code anytime: `/setup-integrations`
 ### Example Client Plans
 The `plans/examples/` folder now has three filled-in YAML examples showing what a real plan looks like after running a workflow — including IDs, step results, and output summaries.
 
+### `/onboard-client` — Full Brand Vault Integration
+
+The onboarding wizard now supports two paths:
+
+**Path A — Existing client in SearchAtlas:** Runs 4 parallel brand vault calls to pull everything automatically — name, domain, phone, address, hours, colors, logo, brand voice, knowledge graph entities, competitors, and all linked IDs (OTTO, GBP, PPC). Displays a confirmation block before creating any files.
+
+**Path B — New client:** Guided 17-field form, then immediately pushes all data into a new brand vault — business info, contact details, voice profile, and knowledge graph seeded from day one.
+
+Both paths end with the same two-file client structure:
+- `clients/{slug}/CLAUDE.md` — session context (IDs, services, brand voice)
+- `clients/{slug}/brand-profile.md` — full brand data synced with SA
+
+### `/sync-client` — New Command
+
+Two-way sync between a client's local `brand-profile.md` and their SearchAtlas brand vault. Three modes:
+
+- **Push** — update SA with local edits
+- **Pull** — refresh local file with latest SA data
+- **Both** — full sync (pull first to avoid overwriting SA changes, then push local additions)
+
+Always shows a diff before writing anything.
+
+### Auto-Sync on Every Session
+
+Client `CLAUDE.md` files now include an Auto-Sync block. At session start, Claude silently runs a 4-call brand vault pull and updates `brand-profile.md` if anything changed in SA. At session end, it diffs the file and pushes any changed fields back to SA using the correct update tool for each section.
+
 ---
 
 ## How to Update

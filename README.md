@@ -41,7 +41,8 @@ Your workspace will look like this:
 ```
 /my-account          # All businesses, projects, campaigns, GBP locations
 /business-report     # Deep dive on a single business
-/onboard-client      # Guided new client setup
+/onboard-client      # Guided new client setup (brand vault pull or manual)
+/sync-client         # Two-way sync: local brand-profile.md ↔ SA brand vault
 ```
 
 ### Execute Workflows
@@ -67,7 +68,8 @@ Your workspace will look like this:
 | Command | Description |
 |---------|-------------|
 | `/my-account` | Show all businesses, projects, campaigns, and GBP locations |
-| `/onboard-client` | Guided client onboarding — collect info, map needs to tools, execute |
+| `/onboard-client` | Guided client onboarding — pull from brand vault or enter manually |
+| `/sync-client` | Two-way sync between local brand-profile.md and SearchAtlas brand vault |
 | `/business-report` | Deep dive report on a single business |
 | `/run-seo` | SEO onboarding or monthly maintenance workflow |
 | `/run-gbp` | Optimize a Google Business Profile |

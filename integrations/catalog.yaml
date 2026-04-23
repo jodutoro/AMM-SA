@@ -156,6 +156,26 @@ integrations:
     policy_note: "Same Google Workspace policy restrictions as Gmail."
     verify: "Ask Claude: what's on my calendar today?"
 
+  # ── Spreadsheets ────────────────────────────────────────────────────────────
+
+  - id: google_sheets
+    name: Google Sheets
+    category: Reporting
+    description: Export rows to a Google Sheet via Apps Script webhook
+    use_case: Push SEO reports, client summaries, and workflow results to a Google Sheet
+    mcp_type: webhook
+    setup:
+      script: "integrations/google/export-to-sheet.sh"
+      note: "Deploy the Apps Script endpoint (see integrations/google/README.md) — takes ~5 min"
+      env:
+        GOOGLE_SHEETS_WEBHOOK:
+          label: Apps Script Web App URL
+          how_to_get: "script.google.com → New project → paste the doPost function → Deploy → Web app → copy URL"
+    requires:
+      - GOOGLE_SHEETS_WEBHOOK
+    policy_risk: false
+    verify: "bash integrations/google/export-to-sheet.sh --sheet-id YOUR_ID --tab Test --data '[[\"Hello\",\"World\"]]'"
+
   # ── Development ──────────────────────────────────────────────────────────────
 
   - id: github

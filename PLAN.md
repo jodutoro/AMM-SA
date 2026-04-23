@@ -12,7 +12,8 @@
 - [x] Phase 5: Documentation (docs/) — MCP setup, tool reference, golden rules, workflows guide
 - [x] Phase 6: Onboarding (scripts/) — one-command quickstart for Mac + Windows, preflight guard
 - [x] Phase 7: Example Plans (plans/examples/) — filled-in SEO, monthly, and GBP examples
-- [x] Phase 8: Client Template (clients/_template/) — starter CLAUDE.md for new client folders
+- [x] Phase 8: Client Template (clients/_template/) — CLAUDE.md + brand-profile.md with auto-sync
+- [x] Phase 9: Brand Vault Sync — /sync-client command + two-way auto-sync via client CLAUDE.md
 
 ---
 
@@ -53,10 +54,10 @@
 
 ---
 
-## Stretch Goals (not yet built)
+## Stretch Goals
 
-- [ ] Google Sheets integration (integrations/google/)
-- [ ] Topical Maps tool reference (in TOOL_REFERENCE.md — tool exists but wasn't in original catalog)
-- [ ] Example client plan files (plans/examples/)
+- [x] Google Sheets integration (integrations/google/) — Apps Script webhook + export script
+- [x] Topical Maps tool reference (TOOL_REFERENCE.md lines 156–157)
+- [x] Example client plan files (plans/examples/ — 3 filled examples)
+- [x] Schema discovery script (scripts/discover-tools.sh) — generates + copies discovery prompt
 - [ ] Video walkthrough / demo recording
-- [ ] Schema discovery script (scripts/discover-tools.sh)

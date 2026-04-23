@@ -108,6 +108,7 @@ When a user mentions a client or domain, route to the right command based on how
 | "tell me about {client}" / "look at this client" / "what do we have for {domain}" / "deep dive" / "full report" | **`/business-report`** — pulls OTTO, brand vault, content, Site Explorer, GBP, PPC, LLM visibility, and gives recommendations |
 | "show me my account" / "what clients do I have" / "list everything" | **`/my-account`** — all businesses, projects, campaigns, GBP locations, quota |
 | "set up a new client" / "onboard {client}" | **`/onboard-client`** — guided wizard |
+| "sync {client}" / "push to brand vault" / "pull from SA" / "brand profile out of date" | **`/sync-client`** — two-way brand vault sync |
 
 ### Specific requests → Run only what they ask for
 
@@ -169,7 +170,8 @@ All commands live in `commands/` as markdown files. They are installed to `~/.cl
 
 | Command | File | Purpose |
 |---------|------|---------|
-| `/onboard-client` | `commands/onboard-client.md` | Core onboarding wizard |
+| `/onboard-client` | `commands/onboard-client.md` | Core onboarding wizard (brand vault pull or manual) |
+| `/sync-client` | `commands/sync-client.md` | Two-way sync: brand-profile.md ↔ SA brand vault |
 | `/my-account` | `commands/my-account.md` | Account overview |
 | `/business-report` | `commands/business-report.md` | Single business deep dive |
 | `/run-seo` | `commands/run-seo.md` | SEO workflow |
