@@ -57,62 +57,80 @@ Write-Hr
 Write-Host ""
 Write-Host "  Step 2 of 2 — Choose your coding environment" -ForegroundColor White
 Write-Host ""
-Write-Host "  Claude Code runs inside your terminal. Pick the one you use"
-Write-Host "  — or choose one below to download if you haven't set one up yet."
-Write-Host "  Not sure? Cursor is recommended for agentic work."
+Write-Host "  You only need one. We'll detect what you already have"
+Write-Host "  and suggest it — or you can pick a different one to download."
 Write-Host ""
 
-# Fixed list of supported options
-$IDE_NAMES    = @("Cursor", "Warp", "Windsurf", "VS Code", "PowerShell (stay here)")
-$IDE_URLS     = @("https://cursor.com", "https://www.warp.dev", "https://windsurf.com", "https://code.visualstudio.com", "")
-$IDE_OPEN     = @('cursor "{0}"', '& "{1}" "{0}"', 'windsurf "{0}"', 'code "{0}"', "")
-$IDE_STATUS   = @()
+# Fixed list of supported options (priority order for recommendation)
+$IDE_NAMES  = @("Cursor", "Warp", "VS Code", "Windsurf", "PowerShell (stay here)")
+$IDE_URLS   = @("https://cursor.com", "https://www.warp.dev", "https://code.visualstudio.com", "https://windsurf.com", "")
+$IDE_STATUS = @()
 
-# Warp Windows executable path
 $WarpExe = "$env:LOCALAPPDATA\Programs\Warp\Warp.exe"
 
 # Detect which are installed
 for ($i = 0; $i -lt $IDE_NAMES.Count; $i++) {
   switch ($IDE_NAMES[$i]) {
-    "Cursor"    {
-      $IDE_STATUS += if (Get-Command cursor -ErrorAction SilentlyContinue) { "ready" } else { "not installed" }
-    }
-    "Warp"      {
-      $IDE_STATUS += if (Test-Path $WarpExe) { "ready" } else { "not installed" }
-    }
-    "Windsurf"  {
-      $IDE_STATUS += if (Get-Command windsurf -ErrorAction SilentlyContinue) { "ready" } else { "not installed" }
-    }
-    "VS Code"   {
+    "Cursor"   { $IDE_STATUS += if (Get-Command cursor -ErrorAction SilentlyContinue) { "ready" } else { "not installed" } }
+    "Warp"     { $IDE_STATUS += if (Test-Path $WarpExe) { "ready" } else { "not installed" } }
+    "VS Code"  {
       $vsFound = (Get-Command code -ErrorAction SilentlyContinue) -or
                  (Test-Path "$env:LOCALAPPDATA\Programs\Microsoft VS Code\Code.exe") -or
                  (Test-Path "C:\Program Files\Microsoft VS Code\Code.exe")
       $IDE_STATUS += if ($vsFound) { "ready" } else { "not installed" }
     }
-    default     { $IDE_STATUS += "ready" }
+    "Windsurf" { $IDE_STATUS += if (Get-Command windsurf -ErrorAction SilentlyContinue) { "ready" } else { "not installed" } }
+    default    { $IDE_STATUS += "ready" }
   }
 }
 
-# Display all options with install status
+# Find best already-installed option (priority order, PowerShell is last resort)
+$REC_IDX  = $IDE_NAMES.Count - 1
+$REC_NAME = "PowerShell (stay here)"
+for ($i = 0; $i -lt ($IDE_NAMES.Count - 1); $i++) {
+  if ($IDE_STATUS[$i] -eq "ready") {
+    $REC_IDX  = $i
+    $REC_NAME = $IDE_NAMES[$i]
+    break
+  }
+}
+
+# Contextual intro based on what's found
+if ($REC_NAME -eq "PowerShell (stay here)") {
+  Write-Host "  You don't have a dedicated coding environment installed yet."
+  Write-Host "  We recommend Cursor — it's built for AI-assisted work."
+  Write-Host "  Enter 1 to download it, or pick any option from the list."
+} else {
+  Write-Host "  We found $REC_NAME on your PC — that's a solid choice." -ForegroundColor White
+  Write-Host "  Press Enter to use it, or pick something else from the list below."
+}
+
+Write-Host ""
+
+# Display all options with status and recommendation marker
 for ($i = 0; $i -lt $IDE_NAMES.Count; $i++) {
   $name   = $IDE_NAMES[$i]
   $status = $IDE_STATUS[$i]
   $num    = $i + 1
   $pad    = $name.PadRight(24)
-  if ($status -eq "ready") {
+  if ($i -eq $REC_IDX -and $status -eq "ready") {
     Write-Host "  $num. $pad" -NoNewline
-    Write-Host "[OK] ready" -ForegroundColor Green
+    Write-Host "[OK] installed" -NoNewline -ForegroundColor Green
+    Write-Host "  <- recommended"
+  } elseif ($status -eq "ready") {
+    Write-Host "  $num. $pad" -NoNewline
+    Write-Host "[OK] installed" -ForegroundColor Green
   } else {
     Write-Host "  $num. $pad— not installed" -ForegroundColor DarkGray
   }
 }
 
 Write-Host ""
-$IDE_INPUT = Read-Host "  Enter number"
-if ([string]::IsNullOrWhiteSpace($IDE_INPUT)) { $IDE_INPUT = "$($IDE_NAMES.Count)" }
+$IDE_INPUT = Read-Host "  Enter number (Enter for $REC_NAME)"
+if ([string]::IsNullOrWhiteSpace($IDE_INPUT)) { $IDE_INPUT = "$($REC_IDX + 1)" }
 
 $IDX = ([int]$IDE_INPUT) - 1
-if ($IDX -lt 0 -or $IDX -ge $IDE_NAMES.Count) { $IDX = $IDE_NAMES.Count - 1 }
+if ($IDX -lt 0 -or $IDX -ge $IDE_NAMES.Count) { $IDX = $REC_IDX }
 
 $IDE_NAME         = $IDE_NAMES[$IDX]
 $IDE_STATUS_CHOSEN = $IDE_STATUS[$IDX]

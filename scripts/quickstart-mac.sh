@@ -58,15 +58,14 @@ hr
 echo ""
 echo -e "  ${BOLD}Step 2 of 2 — Choose your coding environment${NC}"
 echo ""
-echo "  Claude Code runs inside your terminal. Pick the one you use"
-echo "  — or choose one below to download if you haven't set one up yet."
-echo "  Not sure? Cursor is recommended for agentic work."
+echo "  You only need one. We'll detect what you already have"
+echo "  and suggest it — or you can pick a different one to download."
 echo ""
 
-# Fixed list of supported options
-IDE_NAMES=("Cursor" "Warp" "Windsurf" "VS Code" "iTerm2" "Terminal (built-in)")
-IDE_URLS=("https://cursor.com" "https://www.warp.dev" "https://windsurf.com" "https://code.visualstudio.com" "https://iterm2.com" "")
-IDE_OPEN_CMDS=('cursor "$WORKSPACE_DIR"' 'open -a Warp "$WORKSPACE_DIR"' 'windsurf "$WORKSPACE_DIR"' 'code "$WORKSPACE_DIR"' 'open -a iTerm "$WORKSPACE_DIR"' '')
+# Fixed list of supported options (priority order for recommendation)
+IDE_NAMES=("Cursor" "Warp" "VS Code" "Windsurf" "iTerm2" "Terminal (built-in)")
+IDE_URLS=("https://cursor.com" "https://www.warp.dev" "https://code.visualstudio.com" "https://windsurf.com" "https://iterm2.com" "")
+IDE_OPEN_CMDS=('cursor "$WORKSPACE_DIR"' 'open -a Warp "$WORKSPACE_DIR"' 'code "$WORKSPACE_DIR"' 'windsurf "$WORKSPACE_DIR"' 'open -a iTerm "$WORKSPACE_DIR"' '')
 IDE_STATUS=()
 
 # Detect which are installed
@@ -78,11 +77,11 @@ for i in "${!IDE_NAMES[@]}"; do
     "Warp")
       [[ -d "/Applications/Warp.app" ]] && IDE_STATUS[$i]="ready" || IDE_STATUS[$i]="not installed"
       ;;
-    "Windsurf")
-      ([[ -d "/Applications/Windsurf.app" ]] || command -v windsurf &>/dev/null) && IDE_STATUS[$i]="ready" || IDE_STATUS[$i]="not installed"
-      ;;
     "VS Code")
       ([[ -d "/Applications/Visual Studio Code.app" ]] || command -v code &>/dev/null) && IDE_STATUS[$i]="ready" || IDE_STATUS[$i]="not installed"
+      ;;
+    "Windsurf")
+      ([[ -d "/Applications/Windsurf.app" ]] || command -v windsurf &>/dev/null) && IDE_STATUS[$i]="ready" || IDE_STATUS[$i]="not installed"
       ;;
     "iTerm2")
       [[ -d "/Applications/iTerm.app" ]] && IDE_STATUS[$i]="ready" || IDE_STATUS[$i]="not installed"
@@ -93,25 +92,51 @@ for i in "${!IDE_NAMES[@]}"; do
   esac
 done
 
-# Display all options with install status
+# Find best already-installed option (in priority order, Terminal is last resort)
+REC_IDX=5
+REC_NAME="Terminal (built-in)"
+for i in 0 1 2 3 4; do
+  if [[ "${IDE_STATUS[$i]}" == "ready" ]]; then
+    REC_IDX=$i
+    REC_NAME="${IDE_NAMES[$i]}"
+    break
+  fi
+done
+
+# Contextual intro based on what's found
+if [[ "$REC_NAME" == "Terminal (built-in)" ]]; then
+  echo "  You don't have a dedicated coding environment installed yet."
+  echo "  We recommend Cursor — it's built for AI-assisted work."
+  echo "  Enter 1 to download it, or pick any option from the list."
+else
+  echo -e "  We found ${BOLD}$REC_NAME${NC} on your Mac — that's a solid choice."
+  echo "  Press Enter to use it, or pick something else from the list below."
+fi
+
+echo ""
+
+# Display all options with status and recommendation marker
 for i in "${!IDE_NAMES[@]}"; do
   name="${IDE_NAMES[$i]}"
   status="${IDE_STATUS[$i]}"
   num="$((i+1))"
-  if [[ "$status" == "ready" ]]; then
-    echo -e "  $num. $(printf '%-22s' "$name") ${GREEN}✓ ready${NC}"
+  label="$(printf '%-22s' "$name")"
+  if [[ "$i" == "$REC_IDX" && "$status" == "ready" ]]; then
+    echo -e "  $num. ${label} ${GREEN}✓ installed${NC}  ← recommended"
+  elif [[ "$status" == "ready" ]]; then
+    echo -e "  $num. ${label} ${GREEN}✓ installed${NC}"
   else
-    echo -e "  $num. $(printf '%-22s' "$name") ${DIM}— not installed${NC}"
+    echo -e "  $num. ${label} ${DIM}— not installed${NC}"
   fi
 done
 
 echo ""
-echo -n "  Enter number: "
+echo -n "  Enter number (Enter for $REC_NAME): "
 read -r IDE_NUM </dev/tty
-IDE_NUM="${IDE_NUM:-6}"
+IDE_NUM="${IDE_NUM:-$((REC_IDX+1))}"
 
 if ! [[ "$IDE_NUM" =~ ^[0-9]+$ ]] || (( IDE_NUM < 1 || IDE_NUM > ${#IDE_NAMES[@]} )); then
-  IDE_NUM=6
+  IDE_NUM=$((REC_IDX+1))
 fi
 
 IDX=$((IDE_NUM - 1))
