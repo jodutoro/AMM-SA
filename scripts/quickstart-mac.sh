@@ -13,12 +13,12 @@ GREEN='\033[0;32m'
 CYAN='\033[0;36m'
 YELLOW='\033[1;33m'
 BOLD='\033[1m'
+DIM='\033[2m'
 NC='\033[0m'
 
 ok()   { echo -e "  ${GREEN}✓${NC}  $1"; }
 step() { echo -e "\n  ${CYAN}[$1]${NC} $2"; }
 warn() { echo -e "  ${YELLOW}⚠${NC}  $1"; }
-fail() { echo -e "  [X]  $1"; exit 1; }
 info() { echo -e "  $1"; }
 hr()   { echo "  ─────────────────────────────────────────────────────"; }
 
@@ -39,9 +39,9 @@ echo -e "  ${BOLD}Step 1 of 2 — Name your workspace${NC}"
 echo ""
 echo "  This is the root folder where everything lives:"
 echo "  your toolkit, client folders, and AI memory."
-echo "  Choose a name that reflects your agency."
+echo "  Name it after your agency so it's easy to find."
 echo ""
-echo "  Examples: MyAgency-Agentic  |  JohnSmith-AMM  |  AMM-Workspace"
+echo "  Examples:  CoastalMedia-AMM  |  SunriseAgency-AI  |  AMM-Workspace"
 echo ""
 echo -n "  Workspace name (Enter for 'AMM-Workspace'): "
 read -r WORKSPACE_NAME </dev/tty
@@ -58,63 +58,91 @@ hr
 echo ""
 echo -e "  ${BOLD}Step 2 of 2 — Choose your coding environment${NC}"
 echo ""
-echo "  Claude Code will run from inside your workspace in this tool."
-echo "  Select what you use (only installed apps are shown):"
+echo "  Claude Code runs inside your terminal. Pick the one you use"
+echo "  — or choose one below to download if you haven't set one up yet."
+echo "  Not sure? Cursor is recommended for agentic work."
 echo ""
 
-IDE_NAMES=()
-IDE_OPEN_CMDS=()
+# Fixed list of supported options
+IDE_NAMES=("Cursor" "Warp" "Windsurf" "VS Code" "iTerm2" "Terminal (built-in)")
+IDE_URLS=("https://cursor.com" "https://www.warp.dev" "https://windsurf.com" "https://code.visualstudio.com" "https://iterm2.com" "")
+IDE_OPEN_CMDS=('cursor "$WORKSPACE_DIR"' 'open -a Warp "$WORKSPACE_DIR"' 'windsurf "$WORKSPACE_DIR"' 'code "$WORKSPACE_DIR"' 'open -a iTerm "$WORKSPACE_DIR"' '')
+IDE_STATUS=()
 
-# Detect installed editors on this Mac
-if [[ -d "/Applications/Cursor.app" ]] || command -v cursor &>/dev/null; then
-  IDE_NAMES+=("Cursor")
-  IDE_OPEN_CMDS+=("cursor \"$WORKSPACE_DIR\"")
-fi
-
-if [[ -d "/Applications/Windsurf.app" ]] || command -v windsurf &>/dev/null; then
-  IDE_NAMES+=("Windsurf")
-  IDE_OPEN_CMDS+=("windsurf \"$WORKSPACE_DIR\"")
-fi
-
-if [[ -d "/Applications/Visual Studio Code.app" ]] || command -v code &>/dev/null; then
-  IDE_NAMES+=("VS Code")
-  IDE_OPEN_CMDS+=("code \"$WORKSPACE_DIR\"")
-fi
-
-if [[ -d "/Applications/Warp.app" ]]; then
-  IDE_NAMES+=("Warp")
-  IDE_OPEN_CMDS+=("open -a Warp \"$WORKSPACE_DIR\"")
-fi
-
-if [[ -d "/Applications/iTerm.app" ]]; then
-  IDE_NAMES+=("iTerm2")
-  IDE_OPEN_CMDS+=("open -a iTerm \"$WORKSPACE_DIR\"")
-fi
-
-# Always include Terminal as the fallback
-IDE_NAMES+=("Terminal (stay here)")
-IDE_OPEN_CMDS+=("")
-
+# Detect which are installed
 for i in "${!IDE_NAMES[@]}"; do
-  echo "  $((i+1)). ${IDE_NAMES[$i]}"
+  case "${IDE_NAMES[$i]}" in
+    "Cursor")
+      ([[ -d "/Applications/Cursor.app" ]] || command -v cursor &>/dev/null) && IDE_STATUS[$i]="ready" || IDE_STATUS[$i]="not installed"
+      ;;
+    "Warp")
+      [[ -d "/Applications/Warp.app" ]] && IDE_STATUS[$i]="ready" || IDE_STATUS[$i]="not installed"
+      ;;
+    "Windsurf")
+      ([[ -d "/Applications/Windsurf.app" ]] || command -v windsurf &>/dev/null) && IDE_STATUS[$i]="ready" || IDE_STATUS[$i]="not installed"
+      ;;
+    "VS Code")
+      ([[ -d "/Applications/Visual Studio Code.app" ]] || command -v code &>/dev/null) && IDE_STATUS[$i]="ready" || IDE_STATUS[$i]="not installed"
+      ;;
+    "iTerm2")
+      [[ -d "/Applications/iTerm.app" ]] && IDE_STATUS[$i]="ready" || IDE_STATUS[$i]="not installed"
+      ;;
+    "Terminal (built-in)")
+      IDE_STATUS[$i]="ready"
+      ;;
+  esac
+done
+
+# Display all options with install status
+for i in "${!IDE_NAMES[@]}"; do
+  name="${IDE_NAMES[$i]}"
+  status="${IDE_STATUS[$i]}"
+  num="$((i+1))"
+  if [[ "$status" == "ready" ]]; then
+    echo -e "  $num. $(printf '%-22s' "$name") ${GREEN}✓ ready${NC}"
+  else
+    echo -e "  $num. $(printf '%-22s' "$name") ${DIM}— not installed${NC}"
+  fi
 done
 
 echo ""
-DEFAULT_N="${#IDE_NAMES[@]}"
-echo -n "  Enter number (Enter for option $DEFAULT_N — Terminal): "
+echo -n "  Enter number: "
 read -r IDE_NUM </dev/tty
-IDE_NUM="${IDE_NUM:-$DEFAULT_N}"
+IDE_NUM="${IDE_NUM:-6}"
 
 if ! [[ "$IDE_NUM" =~ ^[0-9]+$ ]] || (( IDE_NUM < 1 || IDE_NUM > ${#IDE_NAMES[@]} )); then
-  IDE_NUM="$DEFAULT_N"
+  IDE_NUM=6
 fi
 
 IDX=$((IDE_NUM - 1))
 IDE_NAME="${IDE_NAMES[$IDX]}"
+IDE_STATUS_CHOSEN="${IDE_STATUS[$IDX]}"
+IDE_URL="${IDE_URLS[$IDX]}"
 IDE_OPEN_CMD="${IDE_OPEN_CMDS[$IDX]}"
+IDE_NOT_INSTALLED=0
 
 echo ""
-ok "Using: $IDE_NAME"
+
+if [[ "$IDE_STATUS_CHOSEN" == "not installed" ]]; then
+  IDE_NOT_INSTALLED=1
+  echo -e "  ${YELLOW}⚠${NC}  $IDE_NAME is not installed yet."
+  echo ""
+  echo "  Download: $IDE_URL"
+  echo ""
+  echo -n "  Open the download page now? (y/n): "
+  read -r OPEN_DL </dev/tty
+  if [[ "$OPEN_DL" == "y" || "$OPEN_DL" == "Y" ]]; then
+    open "$IDE_URL" 2>/dev/null || true
+    echo ""
+    info "Download page opened. Install $IDE_NAME, then come back here."
+    info "Setup will continue and finish — you can open your workspace"
+    info "in $IDE_NAME afterwards."
+  fi
+  IDE_OPEN_CMD=""
+else
+  ok "Using: $IDE_NAME"
+fi
+
 echo ""
 hr
 
@@ -184,12 +212,10 @@ fi
 # ── Step 5: Workspace + AMM-SA Toolkit ──────────────────────────────────────
 step "5/5" "Creating workspace + installing toolkit"
 
-# Workspace folder structure
 mkdir -p "$WORKSPACE_DIR/clients"
 info "Created: $WORKSPACE_DIR/"
 info "Created: $WORKSPACE_DIR/clients/"
 
-# Clone or update AMM-SA
 if [[ -d "$REPO_DIR" ]]; then
   warn "AMM-SA already exists — pulling latest..."
   git -C "$REPO_DIR" pull origin INT 2>/dev/null || true
@@ -197,9 +223,8 @@ else
   info "Cloning AMM-SA toolkit..."
   git clone -b INT "$REPO_URL" "$REPO_DIR"
 fi
-ok "AMM-SA toolkit ready at $REPO_DIR"
+ok "AMM-SA toolkit ready"
 
-# Workspace-level CLAUDE.md so Claude knows the layout on first open
 if [[ ! -f "$WORKSPACE_DIR/CLAUDE.md" ]]; then
   cat > "$WORKSPACE_DIR/CLAUDE.md" <<CLAUDEMD
 # $WORKSPACE_NAME — Agentic Workspace
@@ -217,8 +242,6 @@ CLAUDEMD
   info "Created: $WORKSPACE_DIR/CLAUDE.md"
 fi
 
-# Run AMM-SA setup (slash commands + SA MCP + optional comms)
-echo ""
 cd "$REPO_DIR"
 bash setup.sh
 
@@ -235,18 +258,25 @@ echo ""
 hr
 echo ""
 
-if [[ -n "$IDE_OPEN_CMD" ]]; then
+if [[ "$IDE_NOT_INSTALLED" == "1" ]]; then
+  echo "  Once $IDE_NAME is installed, open your workspace with:"
+  echo ""
+  echo -e "    ${BOLD}${IDE_OPEN_CMDS[$IDX]}${NC}    (or drag the folder into the app)"
+  echo ""
+  echo "  Then in the integrated terminal, run:"
+  echo ""
+  echo -e "    ${BOLD}claude${NC}"
+elif [[ -n "$IDE_OPEN_CMD" ]]; then
   echo "  Opening $IDE_NAME at your workspace..."
   eval "$IDE_OPEN_CMD" 2>/dev/null || true
   echo ""
   echo "  In $IDE_NAME, open the integrated terminal and run:"
   echo ""
-  echo -e "    ${BOLD}cd ~/\"$WORKSPACE_NAME\"${NC}"
   echo -e "    ${BOLD}claude${NC}"
 else
   echo "  Run these two commands to start:"
   echo ""
-  echo -e "    ${BOLD}cd ~/\"$WORKSPACE_NAME\"${NC}"
+  echo -e "    ${BOLD}cd ~/$WORKSPACE_NAME${NC}"
   echo -e "    ${BOLD}claude${NC}"
 fi
 

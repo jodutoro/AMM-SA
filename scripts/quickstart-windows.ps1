@@ -38,9 +38,9 @@ Write-Host "  Step 1 of 2 — Name your workspace" -ForegroundColor White
 Write-Host ""
 Write-Host "  This is the root folder where everything lives:"
 Write-Host "  your toolkit, client folders, and AI memory."
-Write-Host "  Choose a name that reflects your agency."
+Write-Host "  Name it after your agency so it's easy to find."
 Write-Host ""
-Write-Host "  Examples: MyAgency-Agentic  |  JohnSmith-AMM  |  AMM-Workspace"
+Write-Host "  Examples:  CoastalMedia-AMM  |  SunriseAgency-AI  |  AMM-Workspace"
 Write-Host ""
 $WORKSPACE_NAME = Read-Host "  Workspace name (Enter for 'AMM-Workspace')"
 if ([string]::IsNullOrWhiteSpace($WORKSPACE_NAME)) { $WORKSPACE_NAME = "AMM-Workspace" }
@@ -57,61 +57,88 @@ Write-Hr
 Write-Host ""
 Write-Host "  Step 2 of 2 — Choose your coding environment" -ForegroundColor White
 Write-Host ""
-Write-Host "  Claude Code will run from inside your workspace in this tool."
-Write-Host "  Select what you use (only installed apps are shown):"
+Write-Host "  Claude Code runs inside your terminal. Pick the one you use"
+Write-Host "  — or choose one below to download if you haven't set one up yet."
+Write-Host "  Not sure? Cursor is recommended for agentic work."
 Write-Host ""
 
-$IDE_NAMES   = [System.Collections.ArrayList]@()
-$IDE_OPEN    = [System.Collections.ArrayList]@()
+# Fixed list of supported options
+$IDE_NAMES    = @("Cursor", "Warp", "Windsurf", "VS Code", "PowerShell (stay here)")
+$IDE_URLS     = @("https://cursor.com", "https://www.warp.dev", "https://windsurf.com", "https://code.visualstudio.com", "")
+$IDE_OPEN     = @('cursor "{0}"', '& "{1}" "{0}"', 'windsurf "{0}"', 'code "{0}"', "")
+$IDE_STATUS   = @()
 
-# Detect installed editors on Windows
-if (Get-Command cursor -ErrorAction SilentlyContinue) {
-  [void]$IDE_NAMES.Add("Cursor")
-  [void]$IDE_OPEN.Add("cursor `"$WORKSPACE_DIR`"")
-}
+# Warp Windows executable path
+$WarpExe = "$env:LOCALAPPDATA\Programs\Warp\Warp.exe"
 
-if (Get-Command windsurf -ErrorAction SilentlyContinue) {
-  [void]$IDE_NAMES.Add("Windsurf")
-  [void]$IDE_OPEN.Add("windsurf `"$WORKSPACE_DIR`"")
-}
-
-$vscodePaths = @(
-  "$env:LOCALAPPDATA\Programs\Microsoft VS Code\Code.exe",
-  "C:\Program Files\Microsoft VS Code\Code.exe"
-)
-if ((Get-Command code -ErrorAction SilentlyContinue) -or ($vscodePaths | Where-Object { Test-Path $_ })) {
-  [void]$IDE_NAMES.Add("VS Code")
-  [void]$IDE_OPEN.Add("code `"$WORKSPACE_DIR`"")
-}
-
-# Warp for Windows
-$warpPath = "$env:LOCALAPPDATA\Programs\Warp\Warp.exe"
-if (Test-Path $warpPath) {
-  [void]$IDE_NAMES.Add("Warp")
-  [void]$IDE_OPEN.Add("& `"$warpPath`" `"$WORKSPACE_DIR`"")
-}
-
-# Always include PowerShell as fallback
-[void]$IDE_NAMES.Add("PowerShell (stay here)")
-[void]$IDE_OPEN.Add("")
-
+# Detect which are installed
 for ($i = 0; $i -lt $IDE_NAMES.Count; $i++) {
-  Write-Host "  $($i+1). $($IDE_NAMES[$i])"
+  switch ($IDE_NAMES[$i]) {
+    "Cursor"    {
+      $IDE_STATUS += if (Get-Command cursor -ErrorAction SilentlyContinue) { "ready" } else { "not installed" }
+    }
+    "Warp"      {
+      $IDE_STATUS += if (Test-Path $WarpExe) { "ready" } else { "not installed" }
+    }
+    "Windsurf"  {
+      $IDE_STATUS += if (Get-Command windsurf -ErrorAction SilentlyContinue) { "ready" } else { "not installed" }
+    }
+    "VS Code"   {
+      $vsFound = (Get-Command code -ErrorAction SilentlyContinue) -or
+                 (Test-Path "$env:LOCALAPPDATA\Programs\Microsoft VS Code\Code.exe") -or
+                 (Test-Path "C:\Program Files\Microsoft VS Code\Code.exe")
+      $IDE_STATUS += if ($vsFound) { "ready" } else { "not installed" }
+    }
+    default     { $IDE_STATUS += "ready" }
+  }
+}
+
+# Display all options with install status
+for ($i = 0; $i -lt $IDE_NAMES.Count; $i++) {
+  $name   = $IDE_NAMES[$i]
+  $status = $IDE_STATUS[$i]
+  $num    = $i + 1
+  $pad    = $name.PadRight(24)
+  if ($status -eq "ready") {
+    Write-Host "  $num. $pad" -NoNewline
+    Write-Host "[OK] ready" -ForegroundColor Green
+  } else {
+    Write-Host "  $num. $pad— not installed" -ForegroundColor DarkGray
+  }
 }
 
 Write-Host ""
-$DEFAULT_N = $IDE_NAMES.Count
-$IDE_INPUT = Read-Host "  Enter number (Enter for option $DEFAULT_N — PowerShell)"
-if ([string]::IsNullOrWhiteSpace($IDE_INPUT)) { $IDE_INPUT = "$DEFAULT_N" }
+$IDE_INPUT = Read-Host "  Enter number"
+if ([string]::IsNullOrWhiteSpace($IDE_INPUT)) { $IDE_INPUT = "$($IDE_NAMES.Count)" }
 
 $IDX = ([int]$IDE_INPUT) - 1
 if ($IDX -lt 0 -or $IDX -ge $IDE_NAMES.Count) { $IDX = $IDE_NAMES.Count - 1 }
 
-$IDE_NAME     = $IDE_NAMES[$IDX]
-$IDE_OPEN_CMD = $IDE_OPEN[$IDX]
+$IDE_NAME         = $IDE_NAMES[$IDX]
+$IDE_STATUS_CHOSEN = $IDE_STATUS[$IDX]
+$IDE_URL          = $IDE_URLS[$IDX]
+$IDE_NOT_INSTALLED = $false
 
 Write-Host ""
-Write-Ok "Using: $IDE_NAME"
+
+if ($IDE_STATUS_CHOSEN -eq "not installed") {
+  $IDE_NOT_INSTALLED = $true
+  Write-Host "  [!]  $IDE_NAME is not installed yet." -ForegroundColor Yellow
+  Write-Host ""
+  Write-Host "  Download: $IDE_URL" -ForegroundColor White
+  Write-Host ""
+  $openDl = Read-Host "  Open the download page now? (y/n)"
+  if ($openDl -eq "y" -or $openDl -eq "Y") {
+    Start-Process $IDE_URL
+    Write-Host ""
+    Write-Info "Download page opened. Install $IDE_NAME, then come back here."
+    Write-Info "Setup will continue and finish — you can open your workspace"
+    Write-Info "in $IDE_NAME afterwards."
+  }
+} else {
+  Write-Ok "Using: $IDE_NAME"
+}
+
 Write-Host ""
 Write-Hr
 
@@ -174,12 +201,10 @@ if (Get-Command claude -ErrorAction SilentlyContinue) {
 # ── Step 5: Workspace + AMM-SA Toolkit ───────────────────────────────────────
 Write-Step "5/5" "Creating workspace + installing toolkit"
 
-# Workspace structure
 New-Item -ItemType Directory -Force -Path "$WORKSPACE_DIR\clients" | Out-Null
 Write-Info "Created: $WORKSPACE_DIR\"
 Write-Info "Created: $WORKSPACE_DIR\clients\"
 
-# Clone or update
 if (Test-Path $REPO_DIR) {
   Write-Warn "AMM-SA already exists — pulling latest..."
   git -C $REPO_DIR pull origin INT 2>$null
@@ -187,9 +212,8 @@ if (Test-Path $REPO_DIR) {
   Write-Info "Cloning AMM-SA toolkit..."
   git clone -b INT $REPO_URL $REPO_DIR
 }
-Write-Ok "Toolkit ready at $REPO_DIR"
+Write-Ok "AMM-SA toolkit ready"
 
-# Workspace CLAUDE.md
 $claudeMdPath = "$WORKSPACE_DIR\CLAUDE.md"
 if (-not (Test-Path $claudeMdPath)) {
   @"
@@ -208,7 +232,6 @@ if (-not (Test-Path $claudeMdPath)) {
   Write-Info "Created: $WORKSPACE_DIR\CLAUDE.md"
 }
 
-# Run setup.sh via Git Bash
 if (Test-Path $GIT_BASH) {
   Write-Info "Running setup via Git Bash..."
   $unixDir = $REPO_DIR -replace "\\", "/" -replace "^([A-Za-z]):", { "/$($_.Value[0].ToString().ToLower())" }
@@ -219,8 +242,6 @@ if (Test-Path $GIT_BASH) {
   Write-Warn "Open Git Bash (search 'Git Bash' in Start) and run:"
   Write-Host "    cd '$REPO_DIR'" -ForegroundColor White
   Write-Host "    bash setup.sh" -ForegroundColor White
-  Write-Host ""
-  Write-Warn "Then continue from there."
 }
 
 # ── Done ─────────────────────────────────────────────────────────────────────
@@ -236,13 +257,25 @@ Write-Host ""
 Write-Hr
 Write-Host ""
 
-if (-not [string]::IsNullOrWhiteSpace($IDE_OPEN_CMD)) {
+if ($IDE_NOT_INSTALLED) {
+  Write-Host "  Once $IDE_NAME is installed, open your workspace with:"
+  Write-Host ""
+  Write-Host "    $IDE_NAME `"$WORKSPACE_DIR`"    (or drag the folder into the app)" -ForegroundColor Cyan
+  Write-Host ""
+  Write-Host "  Then in the integrated terminal, run:"
+  Write-Host ""
+  Write-Host "    claude" -ForegroundColor Cyan
+} elseif ($IDE_NAME -ne "PowerShell (stay here)" -and -not [string]::IsNullOrWhiteSpace($IDE_URL)) {
   Write-Host "  Opening $IDE_NAME at your workspace..."
-  Invoke-Expression $IDE_OPEN_CMD
+  switch ($IDE_NAME) {
+    "Cursor"   { cursor $WORKSPACE_DIR }
+    "Windsurf" { windsurf $WORKSPACE_DIR }
+    "VS Code"  { code $WORKSPACE_DIR }
+    "Warp"     { & $WarpExe $WORKSPACE_DIR }
+  }
   Write-Host ""
   Write-Host "  In $IDE_NAME, open the integrated terminal and run:" -ForegroundColor White
   Write-Host ""
-  Write-Host "    cd `"$WORKSPACE_DIR`"" -ForegroundColor Cyan
   Write-Host "    claude" -ForegroundColor Cyan
 } else {
   Write-Host "  Run these two commands to start:" -ForegroundColor White
