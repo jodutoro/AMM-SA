@@ -180,16 +180,20 @@ Which services does this client need?
 
 Create two files in `clients/{client-slug}/`:
 
-- **`CLAUDE.md`** — lean session context (IDs, active services, quick brand ref)
-- **`brand-profile.md`** — full brand data populated from the vault pull or manual entry
+**`CLAUDE.md`** — copy from `clients/_template/CLAUDE.md` and fill in all fields:
+- Replace all `[Client business name]`, `[example.com]`, etc. with real values
+- Fill in all SearchAtlas IDs (Brand Vault ID, OTTO Project ID, GBP Location ID, PPC Business ID)
+- Mark active services checkboxes
+- Fill in Brand Context (voice + one-line description)
+- **Critical:** The Auto-Sync section at the bottom references `Brand Vault ID` and `Domain` — these must be filled in with the real values so the auto-sync runs correctly at every session start/end
 
-Add sync metadata at the bottom of `brand-profile.md`:
+**`brand-profile.md`** — copy from `clients/_template/brand-profile.md` and populate all sections with data pulled or collected. Fill in the Sync section:
 ```
 ## Sync
-- Last pulled from SA: [ISO datetime]
-- Last pushed to SA:   [ISO datetime]
-- Brand Vault UUID:    [uuid]
-- Hostname:            [domain]
+- Last pulled from SA: [current ISO datetime]
+- Last pushed to SA:   [current ISO datetime]
+- Brand Vault UUID:    [real uuid]
+- Hostname:            [real domain]
 ```
 
 Also create `clients/{client-slug}/plans/`
