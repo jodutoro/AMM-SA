@@ -5,10 +5,11 @@
 - **Domain:** [example.com]
 - **Industry:** [e.g. Home Services, Dental, Law Firm]
 - **Location:** [City, State]
+- **Phone:** [Phone number]
 - **Primary keyword:** [e.g. "plumber miami fl"]
 
 ## SearchAtlas IDs
-<!-- Fill these in after running /onboard-client -->
+<!-- Populated automatically by /onboard-client -->
 - **OTTO Project ID:** 
 - **Brand Vault ID:** 
 - **GBP Location ID:** 
@@ -23,10 +24,15 @@
 - [ ] Authority — press releases + cloud stacks
 - [ ] LLM Visibility — AI search monitoring
 
+## Brand Context
+<!-- Quick reference for Claude — full brand data in brand-profile.md -->
+- **Voice:** [e.g. Professional & Reassuring]
+- **Description:** [One-line business description]
+
 ## Notes
 <!-- Any client-specific context Claude should know -->
 - 
 
-## Plans
-<!-- Link to plan files for this client -->
-- `../../plans/clients/[client-slug]/`
+## Files
+- Full brand data: `brand-profile.md`
+- Plans: `plans/`
