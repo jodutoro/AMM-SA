@@ -4,18 +4,32 @@ AI-powered digital marketing toolkit for [SearchAtlas](https://searchatlas.com) 
 
 ## Setup (~5 minutes)
 
+Run the one-command quickstart for your platform — it installs all prerequisites (Git, Node.js, npm) and sets everything up automatically.
+
+**macOS** — paste into Terminal:
 ```bash
-git clone https://github.com/jodutoro/AMM-SA.git
-cd AMM-SA
-bash setup.sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/jodutoro/AMM-SA/INT/scripts/quickstart-mac.sh)"
+```
+
+**Windows** — paste into PowerShell (run as Administrator):
+```powershell
+irm https://raw.githubusercontent.com/jodutoro/AMM-SA/INT/scripts/quickstart-windows.ps1 | iex
 ```
 
 The setup will:
+- Install Git and Node.js if not already present
+- Clone this repo into `~/AMM-SA`
 - Add the SearchAtlas MCP to Claude Code (OAuth — no API key needed)
 - Optionally configure Slack, Discord, Email, and Circle integrations
 - Install all slash commands
 
 **First use:** When you run any SearchAtlas command, Claude Code will prompt you to authorize via your SearchAtlas account. One-time OAuth flow.
+
+> **Already have Git and Node?** You can clone and run setup manually:
+> ```bash
+> git clone -b INT https://github.com/jodutoro/AMM-SA.git ~/AMM-SA
+> cd ~/AMM-SA && bash setup.sh
+> ```
 
 ## Commands
 

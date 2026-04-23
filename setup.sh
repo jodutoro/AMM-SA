@@ -13,11 +13,7 @@ echo ""
 
 # ── 1. Check prerequisites ───────────────────────────────────────────────────
 
-if ! command -v claude &>/dev/null; then
-    echo "ERROR: Claude Code CLI not found."
-    echo "Install it first: https://claude.ai/code"
-    exit 1
-fi
+bash "$SCRIPT_DIR/scripts/preflight.sh"
 
 # ── 2. Install slash commands ────────────────────────────────────────────────
 
