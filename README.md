@@ -2,9 +2,9 @@
 
 AI-powered digital marketing toolkit for [SearchAtlas](https://searchatlas.com) agencies. Run SEO, GBP, PPC, content, and LLM visibility workflows — all from your terminal with Claude Code.
 
-## Setup (~5 minutes)
+## Setup (~5–10 minutes)
 
-Run the one-command quickstart for your platform — it installs all prerequisites (Git, Node.js, npm) and sets everything up automatically.
+One command. It will ask you two questions — your workspace name and which IDE you use — then handle everything else automatically.
 
 **macOS** — paste into Terminal:
 ```bash
@@ -17,19 +17,23 @@ irm https://raw.githubusercontent.com/jodutoro/AMM-SA/INT/scripts/quickstart-win
 ```
 
 The setup will:
-- Install Git and Node.js if not already present
-- Clone this repo into `~/AMM-SA`
-- Add the SearchAtlas MCP to Claude Code (OAuth — no API key needed)
-- Optionally configure Slack, Discord, Email, and Circle integrations
-- Install all slash commands
+1. Create your agency workspace folder (you choose the name)
+2. Ask which IDE you use — Cursor, Warp, VS Code, Windsurf, etc.
+3. Install Git and Node.js if not already present
+4. Install Claude Code via npm (`npm install -g @anthropic-ai/claude-code`)
+5. Clone this toolkit into `~/YourWorkspace/AMM-SA/`
+6. Connect the SearchAtlas MCP (OAuth — no API key needed)
+7. Install all slash commands
+8. Open your workspace in your chosen IDE
 
-**First use:** When you run any SearchAtlas command, Claude Code will prompt you to authorize via your SearchAtlas account. One-time OAuth flow.
+Your workspace will look like this:
+```
+~/YourWorkspace/
+├── AMM-SA/       ← this toolkit (commands, workflows, docs)
+└── clients/      ← one folder per client project
+```
 
-> **Already have Git and Node?** You can clone and run setup manually:
-> ```bash
-> git clone -b INT https://github.com/jodutoro/AMM-SA.git ~/AMM-SA
-> cd ~/AMM-SA && bash setup.sh
-> ```
+**First use:** Open your workspace in Claude Code (`claude` in terminal), then run `/my-account`. Claude will prompt you to authorize your SearchAtlas account — one-time OAuth flow.
 
 ## Commands
 
