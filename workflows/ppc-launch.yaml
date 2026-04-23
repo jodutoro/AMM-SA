@@ -1,0 +1,141 @@
+# Workflow Template: PPC Campaign Launch
+# Use when launching a new Google Ads campaign for a client.
+# Copy to plans/clients/{client-slug}/{YYYY-MM}.yaml and fill in the variables.
+
+template: ppc-launch
+version: "1.0"
+description: "PPC campaign launch — business setup, products, keyword clusters, Google Ads submission, activation"
+
+# ── Client Info ───────────────────────────────────────────────────────────────
+client: ""
+domain: ""
+period: ""
+status: pending
+
+# ── IDs (fill as steps complete) ─────────────────────────────────────────────
+ids:
+  ppc_business_id: ""
+  ads_account_id: ""              # Google Ads account to link
+
+# ── Configuration ─────────────────────────────────────────────────────────────
+config:
+  business_name: ""
+  business_type: ""               # e.g. "aesthetic medicine clinic"
+  landing_pages:                  # list of landing page URLs to generate products from
+    - url: ""
+      name: ""
+  daily_budget_usd: 50
+  campaign_type: SEARCH           # SEARCH | DISPLAY | PERFORMANCE_MAX
+  target_location: ""             # e.g. "Cape Coral, FL"
+  keywords_per_product: 20        # keyword clusters per product/ad group
+  create_landing_pages: false     # set true to use website_studio_tools
+
+# ── Steps ─────────────────────────────────────────────────────────────────────
+steps:
+  - id: 1
+    name: "Create + validate business"
+    tool: otto_ppc_business_crud
+    operations:
+      - op: create
+        params:
+          name: "{{config.business_name}}"
+          type: "{{config.business_type}}"
+          domain: "{{domain}}"
+      - op: validate_business
+        params:
+          business_id: "{{ids.ppc_business_id}}"
+    output_key: ids.ppc_business_id
+    status: pending
+
+  - id: 2
+    name: "Generate + add products from landing pages"
+    tool: otto_ppc_product_crud
+    operations:
+      - op: generate_product_details
+        params:
+          business_id: "{{ids.ppc_business_id}}"
+          url: "{{landing_page.url}}"          # iterate per landing page
+      - op: add_product
+        params:
+          business_id: "{{ids.ppc_business_id}}"
+          name: "{{landing_page.name}}"
+          url: "{{landing_page.url}}"
+    repeat: "{{config.landing_pages}}"
+    status: pending
+    depends_on: [1]
+
+  - id: 3
+    name: "Validate landing page URLs + approve products"
+    tool: otto_ppc_product_mgmt
+    operations:
+      - op: bulk_validate_landing_page_urls
+        params:
+          business_id: "{{ids.ppc_business_id}}"
+      - op: bulk_approve_products
+        params:
+          business_id: "{{ids.ppc_business_id}}"
+    status: pending
+    depends_on: [2]
+
+  - id: 4
+    name: "Bulk create keyword clusters"
+    tool: otto_ppc_product_crud
+    operations:
+      - op: bulk_create_keyword_clusters
+        params:
+          business_id: "{{ids.ppc_business_id}}"
+          keywords_per_product: "{{config.keywords_per_product}}"
+          location: "{{config.target_location}}"
+    status: pending
+    depends_on: [3]
+
+  - id: 5
+    name: "Set campaign budget + send to Google Ads"
+    tool: otto_ppc_campaign
+    operations:
+      - op: list_campaigns_with_metrics
+        params:
+          business_id: "{{ids.ppc_business_id}}"
+      - op: send_to_google_ads_account
+        params:
+          business_id: "{{ids.ppc_business_id}}"
+          ads_account_id: "{{ids.ads_account_id}}"
+          daily_budget: "{{config.daily_budget_usd}}"
+    status: pending
+    depends_on: [4]
+
+  - id: 6
+    name: "Activate campaigns (set remote status ENABLED)"
+    tool: otto_ppc_product_mgmt
+    operations:
+      - op: bulk_update_remote_status
+        params:
+          business_id: "{{ids.ppc_business_id}}"
+          status: ENABLED
+    status: pending
+    depends_on: [5]
+
+  - id: 7
+    name: "Create landing pages (optional)"
+    tool: website_studio_tools
+    operations:
+      - op: create_project
+        params:
+          name: "{{client}} — {{period}} Landing Pages"
+          domain: "{{domain}}"
+    status: pending
+    condition: "{{config.create_landing_pages}}"
+
+# ── Results ───────────────────────────────────────────────────────────────────
+results: []
+
+# ── Output Summary Template ────────────────────────────────────────────────────
+# ✅  {client} — PPC Campaign Launch · {period}
+#
+# 🏢  Business        created + validated                      View →
+# 🛍️  Products        {N} products generated from landing pages View →
+# 🔑  Keywords        {N} clusters created · {K} total keywords View →
+# 📤  Google Ads      campaigns sent to account                View →
+# ▶️  Campaigns       activated + running                       View →
+#
+# {total} actions completed · {failed} failed

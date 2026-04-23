@@ -1,0 +1,131 @@
+# Workflow Template: GBP Profile Optimization
+# Use for first-time or deep GBP profile cleanup.
+# Copy to plans/clients/{client-slug}/{YYYY-MM}.yaml and fill in the variables.
+
+template: gbp-optimization
+version: "1.0"
+description: "Full GBP profile optimization — recommendations, categories, services, attributes, AI description, deploy"
+
+# ── Client Info ───────────────────────────────────────────────────────────────
+client: ""
+domain: ""
+period: ""
+status: pending
+
+# ── IDs ───────────────────────────────────────────────────────────────────────
+ids:
+  gbp_location_id: ""              # REQUIRED — from gbp_locations_crud.list_locations
+
+# ── Configuration ─────────────────────────────────────────────────────────────
+config:
+  primary_category: ""             # e.g. "Aesthetic Medicine Clinic"
+  additional_categories: []        # e.g. ["Medical Spa", "Plastic Surgeon"]
+  services:                        # list of services to add/update
+    - name: ""
+      description: ""              # leave blank for AI-generated description
+  auto_apply_recommendations: true # apply CHANGE + ADD type recommendations automatically
+  deploy_after_changes: true       # deploy all changes to Google after workflow
+
+# ── Steps ─────────────────────────────────────────────────────────────────────
+steps:
+  - id: 1
+    name: "Load location + get current state"
+    tool: gbp_locations_crud
+    operations:
+      - op: load_location
+        params:
+          location_id: "{{ids.gbp_location_id}}"
+      - op: get_location
+        params:
+          location_id: "{{ids.gbp_location_id}}"
+      - op: get_location_stats
+        params:
+          location_id: "{{ids.gbp_location_id}}"
+    output: current_location_state
+    status: pending
+
+  - id: 2
+    name: "Generate AI recommendations + bulk apply"
+    tool: gbp_locations_recommendations
+    operations:
+      - op: generate_recommendations
+        params:
+          location_id: "{{ids.gbp_location_id}}"
+      - op: bulk_apply_recommendations
+        params:
+          location_id: "{{ids.gbp_location_id}}"
+          types: [CHANGE, ADD]     # skip DELETE type — review manually
+    output: recommendations_applied
+    status: pending
+    depends_on: [1]
+
+  - id: 3
+    name: "Fix categories (primary + additional)"
+    tool: gbp_locations_categories_crud
+    operations:
+      - op: update_primary_category
+        params:
+          location_id: "{{ids.gbp_location_id}}"
+          category: "{{config.primary_category}}"
+      - op: update_additional_categories
+        params:
+          location_id: "{{ids.gbp_location_id}}"
+          categories: "{{config.additional_categories}}"
+    status: pending
+    depends_on: [2]
+
+  - id: 4
+    name: "Add / update services with AI descriptions"
+    tool: gbp_locations_services_crud
+    operations:
+      - op: add_service
+        params:
+          location_id: "{{ids.gbp_location_id}}"
+          name: "{{service.name}}"
+          description: "{{service.description}}"   # AI generates if blank
+    repeat: "{{config.services}}"
+    status: pending
+    depends_on: [2]
+
+  - id: 5
+    name: "Add missing attributes"
+    tool: gbp_locations_attributes_crud
+    operations:
+      - op: get_available_attributes
+        params:
+          location_id: "{{ids.gbp_location_id}}"
+      - op: set_attributes
+        params:
+          location_id: "{{ids.gbp_location_id}}"
+    status: pending
+    depends_on: [2]
+
+  - id: 6
+    name: "Generate AI description + deploy all changes"
+    tool: gbp_locations_deployment
+    operations:
+      - op: suggest_description
+        params:
+          location_id: "{{ids.gbp_location_id}}"
+      - op: deploy_location
+        params:
+          location_id: "{{ids.gbp_location_id}}"
+    output: deploy_confirmation
+    status: pending
+    depends_on: [3, 4, 5]
+    condition: "{{config.deploy_after_changes}}"
+
+# ── Results ───────────────────────────────────────────────────────────────────
+results: []
+
+# ── Output Summary Template ────────────────────────────────────────────────────
+# ✅  {client} — GBP Profile Optimization
+#
+# 📍  Location        synced from Google                       View →
+# 🤖  Recommendations {N} applied (CHANGE + ADD)              View →
+# 🏷️  Categories      primary + {N} additional fixed           View →
+# 🛎️  Services        {N} services added/updated               View →
+# ✅  Attributes      {N} missing attributes added             View →
+# 📝  Description     AI description generated + deployed      View →
+#
+# {total} actions completed · {failed} failed

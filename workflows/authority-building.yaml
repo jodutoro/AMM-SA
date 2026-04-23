@@ -1,0 +1,143 @@
+# Workflow Template: Authority Building
+# Use to build domain authority via press releases, cloud stacks, and digital PR outreach.
+# Copy to plans/clients/{client-slug}/{YYYY-MM}.yaml and fill in the variables.
+
+template: authority-building
+version: "1.0"
+description: "Authority building — press release creation + distribution, cloud stack, digital PR outreach, backlink monitoring"
+
+# ── Client Info ───────────────────────────────────────────────────────────────
+client: ""
+domain: ""
+period: ""
+status: pending
+
+# ── IDs (fill as steps complete) ─────────────────────────────────────────────
+ids:
+  press_release_id: ""
+  cloud_stack_id: ""
+  digital_pr_campaign_id: ""
+
+# ── Configuration ─────────────────────────────────────────────────────────────
+config:
+  press_release:
+    topic: ""                       # e.g. "Acme Co Launches New Service Line"
+    angle: ""                       # e.g. "expansion", "award", "new service launch"
+    target_keywords: []             # SEO keywords to weave in
+    distribution_network: premium   # standard | premium | elite
+  cloud_stack:
+    template: ""                    # cloud stack template to use
+    anchor_text: ""                 # primary anchor for cloud stack links
+    target_url: ""                  # page to point cloud stack links to
+  digital_pr:
+    outreach_topic: ""              # e.g. "aesthetic medicine trends 2026"
+    template_id: ""                 # PR email template to use
+    target_publications: []         # optional: specific publications to target
+  monitor_backlinks: true
+
+# ── Steps ─────────────────────────────────────────────────────────────────────
+steps:
+  - id: 1
+    name: "Create + write press release"
+    tool: press_release_content
+    operations:
+      - op: create
+        params:
+          client: "{{client}}"
+          topic: "{{config.press_release.topic}}"
+          keywords: "{{config.press_release.target_keywords}}"
+      - op: write_press_release
+        params:
+          press_release_id: "{{ids.press_release_id}}"
+          angle: "{{config.press_release.angle}}"
+    output_key: ids.press_release_id
+    status: pending
+
+  - id: 2
+    name: "Distribute press release to networks"
+    tool: press_release_distribution
+    operations:
+      - op: get_press_release_categories
+      - op: publish_press_release
+        params:
+          press_release_id: "{{ids.press_release_id}}"
+          network: "{{config.press_release.distribution_network}}"
+    status: pending
+    depends_on: [1]
+
+  - id: 3
+    name: "Create + build cloud stack"
+    tool: cloud_stack_content
+    operations:
+      - op: list_templates
+      - op: create
+        params:
+          client: "{{client}}"
+          template: "{{config.cloud_stack.template}}"
+          anchor_text: "{{config.cloud_stack.anchor_text}}"
+          target_url: "{{config.cloud_stack.target_url}}"
+      - op: get_status
+        params:
+          cloud_stack_id: "{{ids.cloud_stack_id}}"
+    output_key: ids.cloud_stack_id
+    status: pending
+
+  - id: 4
+    name: "Publish cloud stack"
+    tool: cloud_stack_distribution
+    operations:
+      - op: get_cloud_stack_providers
+      - op: build_cloud_stack
+        params:
+          cloud_stack_id: "{{ids.cloud_stack_id}}"
+      - op: publish_cloud_stack
+        params:
+          cloud_stack_id: "{{ids.cloud_stack_id}}"
+    status: pending
+    depends_on: [3]
+
+  - id: 5
+    name: "Set up digital PR outreach campaign"
+    tool: digital_pr_campaign_service
+    operations:
+      - op: create_campaign
+        params:
+          client: "{{client}}"
+          topic: "{{config.digital_pr.outreach_topic}}"
+          template_id: "{{config.digital_pr.template_id}}"
+          publications: "{{config.digital_pr.target_publications}}"
+      - op: toggle_campaign
+        params:
+          campaign_id: "{{ids.digital_pr_campaign_id}}"
+          active: true
+    output_key: ids.digital_pr_campaign_id
+    status: pending
+
+  - id: 6
+    name: "Monitor new backlinks"
+    tool: backlinks
+    operations:
+      - op: get_site_backlinks
+        params:
+          domain: "{{domain}}"
+          filter: new_this_month
+      - op: get_site_referring_domains
+        params:
+          domain: "{{domain}}"
+    output: new_backlinks_report
+    status: pending
+    condition: "{{config.monitor_backlinks}}"
+    depends_on: [2, 4]
+
+# ── Results ───────────────────────────────────────────────────────────────────
+results: []
+
+# ── Output Summary Template ────────────────────────────────────────────────────
+# ✅  {client} — Authority Building · {period}
+#
+# 📰  Press Release   written + distributed ({network})        View →
+# ☁️  Cloud Stack     built + published · {N} properties       View →
+# 📧  Digital PR      outreach campaign live · {N} targets     View →
+# 🔗  Backlinks       {N} new backlinks detected               View →
+#
+# {total} actions completed · {failed} failed
