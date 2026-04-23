@@ -6,10 +6,13 @@
 ## Status
 
 - [x] Phase 1: Foundation (.gitignore, .env.example, LICENSE, README, CLAUDE.md, setup.sh)
-- [x] Phase 2: Core Skills (commands/) — 12 slash commands
+- [x] Phase 2: Core Skills (commands/) — 15 slash commands (added /send-email, /send-discord, /setup-integrations)
 - [x] Phase 3: Workflow Templates (workflows/) — 7 YAML templates
-- [x] Phase 4: Communication Integrations (integrations/) — Slack + Circle
+- [x] Phase 4: Communication Integrations (integrations/) — Slack + Circle + Email + Discord
 - [x] Phase 5: Documentation (docs/) — MCP setup, tool reference, golden rules, workflows guide
+- [x] Phase 6: Onboarding (scripts/) — one-command quickstart for Mac + Windows, preflight guard
+- [x] Phase 7: Example Plans (plans/examples/) — filled-in SEO, monthly, and GBP examples
+- [x] Phase 8: Client Template (clients/_template/) — starter CLAUDE.md for new client folders
 
 ---
 
