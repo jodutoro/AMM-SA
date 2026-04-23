@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Agentic Marketing Mastermind — Setup Script
-# Installs slash commands and runs the interactive setup wizard.
+# Installs slash commands and configures the SearchAtlas MCP.
 
 set -e
 
@@ -11,7 +11,15 @@ COMMANDS_DST="$HOME/.claude/commands"
 echo "=== Agentic Marketing Mastermind Setup ==="
 echo ""
 
-# ── 1. Install slash commands ────────────────────────────────────────────────
+# ── 1. Check prerequisites ───────────────────────────────────────────────────
+
+if ! command -v claude &>/dev/null; then
+    echo "ERROR: Claude Code CLI not found."
+    echo "Install it first: https://claude.ai/code"
+    exit 1
+fi
+
+# ── 2. Install slash commands ────────────────────────────────────────────────
 
 mkdir -p "$COMMANDS_DST"
 
@@ -28,40 +36,39 @@ fi
 
 echo ""
 
-# ── 2. Run interactive setup wizard ─────────────────────────────────────────
+# ── 3. Configure SearchAtlas MCP ─────────────────────────────────────────────
 
-WIZARD="$SCRIPT_DIR/scripts/setup-interactive.sh"
-
-if [ -f "$WIZARD" ]; then
-    if [ ! -f "$SCRIPT_DIR/.env" ]; then
-        echo "No .env file found — launching setup wizard..."
-        echo ""
-        bash "$WIZARD"
-    else
-        echo ".env already exists. To reconfigure, run:"
-        echo "  bash scripts/setup-interactive.sh"
-        echo ""
-
-        # Still check MCP config
-        SETTINGS_FILE="$HOME/.claude/settings.json"
-        CLAUDE_JSON="$HOME/.claude.json"
-        if [ -f "$SETTINGS_FILE" ] && grep -q "searchatlas" "$SETTINGS_FILE" 2>/dev/null; then
-            echo "SearchAtlas MCP server found in Claude Code settings."
-        elif [ -f "$CLAUDE_JSON" ] && grep -q "searchatlas" "$CLAUDE_JSON" 2>/dev/null; then
-            echo "SearchAtlas MCP server found in Claude Code config."
-        else
-            echo "NOTE: SearchAtlas MCP server not configured."
-            echo "  See docs/MCP_SETUP.md or re-run: bash scripts/setup-interactive.sh"
-        fi
-    fi
+if claude mcp list 2>/dev/null | grep -q "searchatlas"; then
+    echo "SearchAtlas MCP already configured."
 else
-    # Fallback: manual setup guidance
-    if [ ! -f "$SCRIPT_DIR/.env" ]; then
-        echo "NOTE: No .env file found."
-        echo "  Copy .env.example to .env and add your SearchAtlas API key:"
-        echo "  cp .env.example .env"
-    fi
+    echo "Adding SearchAtlas MCP server..."
+    claude mcp add searchatlas --type http https://mcp.searchatlas.com/mcp
+    echo "SearchAtlas MCP configured."
 fi
 
 echo ""
-echo "Setup complete! Open Claude Code in this directory and try /help"
+
+# ── 4. Optional: communication channels ──────────────────────────────────────
+
+WIZARD="$SCRIPT_DIR/scripts/setup-interactive.sh"
+
+if [ ! -f "$SCRIPT_DIR/.env" ] && [ -f "$WIZARD" ]; then
+    echo "No communication channels configured yet."
+    read -p "Set up Slack/Discord/Email/Circle integrations? (y/n): " SETUP_COMMS
+    if [[ "$SETUP_COMMS" == "y" || "$SETUP_COMMS" == "Y" ]]; then
+        bash "$WIZARD"
+    else
+        echo "Skipped. Run 'bash scripts/setup-interactive.sh' anytime to configure."
+    fi
+elif [ -f "$SCRIPT_DIR/.env" ]; then
+    echo "Communication channels already configured."
+    echo "To reconfigure, run: bash scripts/setup-interactive.sh"
+fi
+
+echo ""
+echo "Setup complete!"
+echo ""
+echo "Next steps:"
+echo "  1. Open Claude Code in this directory"
+echo "  2. Try: /my-account  (will prompt OAuth authorization on first use)"
+echo "  3. Verify: bash scripts/verify-setup.sh"

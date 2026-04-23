@@ -2,6 +2,8 @@
 
 Complete catalog of all SearchAtlas MCP tool groups and operations.
 
+> **Always use schema discovery first.** The tool names and operations below reflect the current known surface — but the MCP may expose a different or extended set depending on your account and the server version. Before calling any tool, ask Claude to list available SearchAtlas tools, or describe what you want to do and let it route correctly.
+>
 > **Tip:** Call any tool with `op: "help"` and `params: {}` to see its live schema.
 
 ---
