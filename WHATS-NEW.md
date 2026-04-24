@@ -13,12 +13,12 @@ Getting started is now a single paste into your terminal. The quickstart scripts
 
 **macOS:**
 ```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/jodutoro/AMM-SA/INT/scripts/quickstart-mac.sh)"
+/bin/bash -c "$(curl -fsSL https://forge.internal.searchatlas.com/search-atlas-group/agentic-marketing-mastermind/amm-toolkit/-/raw/main/Scripts/quickstart-mac.sh)"
 ```
 
 **Windows (PowerShell as Admin):**
 ```powershell
-irm https://raw.githubusercontent.com/jodutoro/AMM-SA/INT/scripts/quickstart-windows.ps1 | iex
+irm https://forge.internal.searchatlas.com/search-atlas-group/agentic-marketing-mastermind/amm-toolkit/-/raw/main/Scripts/quickstart-windows.ps1 | iex
 ```
 
 What it does:
