@@ -313,6 +313,12 @@ if [[ ! -f "$WORKSPACE_DIR/CLAUDE.md" ]]; then
 2. Confirm which client you are working on before touching any files
 3. Run \`/my-account\` if you need a fresh view of the SearchAtlas account
 
+## Working Directory Check
+If you are not running from inside the \`$WORKSPACE_NAME\` workspace folder,
+stop and tell the user: "It looks like Claude is running from the wrong folder.
+Open your IDE from $WORKSPACE_NAME/ and restart the session."
+Never work from the system home directory or any folder outside this workspace.
+
 ## My Agency
 <!-- Fill in: agency name, niche, location, team size -->
 
@@ -336,6 +342,11 @@ if [[ ! -f "$WORKSPACE_DIR/CLAUDE.md" ]]; then
 - Save new learnings to \`memory/\` before closing a session
 - Never paste API keys into the chat — they live in \`.env\` only
 - Confirm before creating campaigns, publishing content, or sending messages
+
+## Multi-Machine Note
+MCP connections are machine-specific and do not sync between computers.
+If you set up a second machine, run the quickstart again on that machine —
+your files sync but your MCP config does not carry over automatically.
 
 ## Workspace Layout
 - \`AMM-SA/\`     — toolkit: slash commands, workflows, scripts (do not edit)
@@ -459,11 +470,33 @@ else
 fi
 
 echo ""
-echo "  Claude Code will open in your workspace."
-echo "  Then type: /my-account"
+echo "  ─────────────────────────────────────────────────────"
+echo ""
+echo -e "  ${BOLD}Important: first-time permission prompt${NC}"
+echo ""
+echo "  Claude Code may show a permission warning on first launch."
+echo "  This is expected. When prompted, choose:"
+echo -e "    ${BOLD}Yes, allow for this session${NC}  (or the equivalent option)"
+echo ""
+echo "  Or launch with permissions pre-approved (recommended for beginners):"
+echo ""
+echo -e "    ${BOLD}claude --dangerously-skip-permissions${NC}"
+echo ""
+echo "  ─────────────────────────────────────────────────────"
+echo ""
+echo -e "  ${BOLD}Verify everything works:${NC}"
+echo ""
+echo "  Once Claude Code opens, type:"
+echo ""
+echo -e "    ${BOLD}/my-account${NC}"
+echo ""
+echo "  You should see your SearchAtlas account summary."
+echo "  If you do — you're fully set up. If not, re-run:"
+echo ""
+echo "    claude mcp add searchatlas --type http https://mcp.searchatlas.com/mcp"
 echo ""
 hr
 echo ""
 echo "  Next: /setup-integrations inside Claude Code to connect"
-echo "  HubSpot, ClickUp, Linear, Notion, Slack, Gmail, GitHub."
+echo "  Slack, Email, Discord, or Circle."
 echo ""

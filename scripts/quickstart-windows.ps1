@@ -300,6 +300,12 @@ if (-not (Test-Path $claudeMdPath)) {
 2. Confirm which client you are working on before touching any files
 3. Run ``/my-account`` if you need a fresh view of the SearchAtlas account
 
+## Working Directory Check
+If you are not running from inside the $WORKSPACE_NAME workspace folder,
+stop and tell the user: "It looks like Claude is running from the wrong folder.
+Open your IDE from $WORKSPACE_NAME\ and restart the session."
+Never work from the system home directory or any folder outside this workspace.
+
 ## My Agency
 <!-- Fill in: agency name, niche, location, team size -->
 
@@ -323,6 +329,11 @@ if (-not (Test-Path $claudeMdPath)) {
 - Save new learnings to ``memory/`` before closing a session
 - Never paste API keys into the chat — they live in ``.env`` only
 - Confirm before creating campaigns, publishing content, or sending messages
+
+## Multi-Machine Note
+MCP connections are machine-specific and do not sync between computers.
+If you set up a second machine, run the quickstart again on that machine —
+your files sync but your MCP config does not carry over automatically.
 
 ## Workspace Layout
 - ``AMM-SA/``     — toolkit: slash commands, workflows, scripts (do not edit)
@@ -463,11 +474,33 @@ if ($IDE_NOT_INSTALLED) {
 }
 
 Write-Host ""
-Write-Host "  Claude Code will open in your workspace."
-Write-Host "  Then type: /my-account"
+Write-Host "  ─────────────────────────────────────────────────────"
+Write-Host ""
+Write-Host "  Important: first-time permission prompt" -ForegroundColor White
+Write-Host ""
+Write-Host "  Claude Code may show a permission warning on first launch."
+Write-Host "  This is expected. When prompted, choose:"
+Write-Host "    Yes, allow for this session  (or the equivalent option)" -ForegroundColor Cyan
+Write-Host ""
+Write-Host "  Or launch with permissions pre-approved (recommended for beginners):"
+Write-Host ""
+Write-Host "    claude --dangerously-skip-permissions" -ForegroundColor Cyan
+Write-Host ""
+Write-Host "  ─────────────────────────────────────────────────────"
+Write-Host ""
+Write-Host "  Verify everything works:" -ForegroundColor White
+Write-Host ""
+Write-Host "  Once Claude Code opens, type:"
+Write-Host ""
+Write-Host "    /my-account" -ForegroundColor Cyan
+Write-Host ""
+Write-Host "  You should see your SearchAtlas account summary."
+Write-Host "  If you do — you're fully set up. If not, re-run:"
+Write-Host ""
+Write-Host "    claude mcp add searchatlas --type http https://mcp.searchatlas.com/mcp" -ForegroundColor Cyan
 Write-Host ""
 Write-Hr
 Write-Host ""
 Write-Host "  Next: /setup-integrations inside Claude Code to connect"
-Write-Host "  HubSpot, ClickUp, Linear, Notion, Slack, Gmail, GitHub."
+Write-Host "  Slack, Email, Discord, or Circle."
 Write-Host ""
