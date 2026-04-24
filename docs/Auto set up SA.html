@@ -147,6 +147,41 @@
   .tag-user { background: var(--tag-user); color: var(--tag-user-text); }
   .tag-done { background: var(--tag-done); color: var(--tag-done-text); }
 
+  /* ── CALLOUT NOTE ── */
+  .callout-note {
+    background: #FFFBEB;
+    border: 1px solid #F59E0B;
+    border-left: 3px solid #F59E0B;
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin-top: 16px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .callout-note-icon {
+    font-size: 15px;
+    line-height: 1.5;
+    flex-shrink: 0;
+  }
+  .callout-note-body {
+    font-size: 12px;
+    color: #78350F;
+    line-height: 1.65;
+  }
+  .callout-note-title {
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #92400E;
+    margin-bottom: 4px;
+  }
+  .callout-note-body a {
+    color: #B45309;
+    text-decoration: underline;
+  }
+
   .tag svg { width: 10px; height: 10px; flex-shrink: 0; }
 
   /* ── FLOW ── */
@@ -696,6 +731,26 @@
       </div>
 
     </div>
+
+    <div class="callout-note">
+      <div class="callout-note-icon">⊞</div>
+      <div class="callout-note-body">
+        <div class="callout-note-title">Windows users — what to expect during this phase</div>
+        If a step pauses or an error appears, these are the three most common causes:
+        <br><br>
+        <strong>Not running as Administrator.</strong> PowerShell must be opened with "Run as Administrator"
+        before pasting the quickstart command. If winget or npm fails, this is almost always why.
+        <br><br>
+        <strong>WSL prompt.</strong> Some tools may ask to install Windows Subsystem for Linux.
+        Accept it — it's required. A reboot may follow. After rebooting, re-run the quickstart command;
+        it will pick up where it left off.
+        <br><br>
+        <strong>Network error during download.</strong> Hotel or public Wi-Fi can cause SSL handshake
+        failures that look like setup errors. If you see "exit code 35" or a curl/npm fetch failure,
+        switch to a mobile hotspot and re-run the command.
+      </div>
+    </div>
+
   </div>
 
   <div class="connector">
