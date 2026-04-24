@@ -1,0 +1,197 @@
+# AMM Integration Catalog
+# Used by /setup-integrations to configure member tech stacks.
+# Each entry defines how to connect a tool to Claude Code via MCP.
+
+integrations:
+
+  # ── CRM ─────────────────────────────────────────────────────────────────────
+
+  - id: hubspot
+    name: HubSpot
+    category: CRM
+    description: Contacts, companies, deals, pipeline, tickets
+    use_case: Look up clients, log activity, pull deal status without leaving Claude
+    mcp_type: cli
+    setup:
+      prereq: "HubSpot CLI v8.2.0+"
+      install_prereq: "npm install -g @hubspot/cli"
+      configure: "hs mcp setup"
+      note: "Interactive — select Claude Code when prompted"
+    requires: []
+    policy_risk: false
+    verify: "claude /mcp → look for HubSpotDev"
+
+  # ── Task Management ──────────────────────────────────────────────────────────
+
+  - id: clickup
+    name: ClickUp
+    category: Task Management
+    description: Tasks, lists, spaces, folders, time tracking, docs
+    use_case: Create tasks, update status, query workload, log time — all from Claude
+    mcp_type: stdio_npm
+    setup:
+      package: "@chykalophia/clickup-mcp-server"
+      command: "npx -y @chykalophia/clickup-mcp-server"
+      env:
+        CLICKUP_API_TOKEN:
+          label: ClickUp API Token
+          how_to_get: "ClickUp → Settings → Apps → Generate API Token"
+    requires:
+      - CLICKUP_API_TOKEN
+    policy_risk: false
+    verify: "Ask Claude: list my ClickUp spaces"
+
+  - id: linear
+    name: Linear
+    category: Task Management
+    description: Issues, projects, cycles, teams, roadmaps
+    use_case: Create and update issues, check project status, manage sprints
+    mcp_type: http_oauth
+    setup:
+      command: "claude mcp add linear --type http https://mcp.linear.app/sse"
+      note: "OAuth — authorize on first use inside Claude Code"
+    requires: []
+    policy_risk: false
+    verify: "Ask Claude: show my Linear issues"
+
+  - id: notion
+    name: Notion
+    category: Knowledge Base
+    description: Pages, databases, workspace search, blocks
+    use_case: Read/write docs, search knowledge base, update databases
+    mcp_type: stdio_npm
+    setup:
+      package: "@modelcontextprotocol/server-notion"
+      command: "npx -y @modelcontextprotocol/server-notion"
+      env:
+        NOTION_API_KEY:
+          label: Notion Integration Token
+          how_to_get: "notion.so/my-integrations → New integration → copy Internal Integration Token. Then share pages with the integration."
+    requires:
+      - NOTION_API_KEY
+    policy_risk: false
+    verify: "Ask Claude: search my Notion workspace for [anything]"
+
+  # ── Communication ────────────────────────────────────────────────────────────
+
+  - id: slack
+    name: Slack
+    category: Communication
+    description: Read messages, search channels, post updates
+    use_case: Check threads, post reports, search conversation history
+    mcp_type: stdio_npm
+    setup:
+      package: "@modelcontextprotocol/server-slack"
+      command: "npx -y @modelcontextprotocol/server-slack"
+      env:
+        SLACK_BOT_TOKEN:
+          label: Slack Bot Token
+          how_to_get: "api.slack.com/apps → Create New App → OAuth & Permissions → Bot Token Scopes (add: channels:read, channels:history, chat:write, search:read) → Install to Workspace → copy Bot User OAuth Token (starts with xoxb-)"
+        SLACK_TEAM_ID:
+          label: Slack Team/Workspace ID
+          how_to_get: "Open Slack in browser → URL shows /client/T0XXXXXXX — that T-code is your Team ID"
+    requires:
+      - SLACK_BOT_TOKEN
+      - SLACK_TEAM_ID
+    policy_risk: false
+    verify: "Ask Claude: list my Slack channels"
+
+  # ── Email & Calendar ─────────────────────────────────────────────────────────
+
+  - id: gmail
+    name: Gmail
+    category: Email
+    description: Read threads, search email, send/draft messages
+    use_case: Pull client emails into context, draft replies, search history
+    mcp_type: stdio_npm
+    setup:
+      package: "google-workspace-mcp-server"
+      command: "npx -y google-workspace-mcp-server"
+      env:
+        GOOGLE_CLIENT_ID:
+          label: Google OAuth Client ID
+          how_to_get: "console.cloud.google.com → APIs & Services → Credentials → Create OAuth 2.0 Client ID (Desktop app) → copy Client ID"
+        GOOGLE_CLIENT_SECRET:
+          label: Google OAuth Client Secret
+          how_to_get: "Same credential → copy Client Secret"
+        GOOGLE_REFRESH_TOKEN:
+          label: Google Refresh Token
+          how_to_get: "Run: npx google-workspace-mcp-server auth → follow browser flow → token printed to terminal"
+    requires:
+      - GOOGLE_CLIENT_ID
+      - GOOGLE_CLIENT_SECRET
+      - GOOGLE_REFRESH_TOKEN
+    policy_risk: true
+    policy_note: "Google Workspace admins can block external OAuth apps. If your org uses Google Workspace, check with IT first. Personal Gmail accounts work without restrictions."
+    alternative:
+      id: gmail_policy_blocked
+      suggestion: "If Gmail is blocked, consider: (1) Use Outlook/Microsoft 365 instead, (2) Export emails manually for context, (3) Ask your IT team to allowlist the OAuth app"
+    verify: "Ask Claude: search my Gmail for [recent client name]"
+
+  - id: google_calendar
+    name: Google Calendar
+    category: Calendar
+    description: Read events, check availability, meeting details
+    use_case: Pull today's schedule into context, prep for calls, log meeting outcomes
+    mcp_type: stdio_npm
+    setup:
+      package: "google-workspace-mcp-server"
+      command: "npx -y google-workspace-mcp-server"
+      note: "Same package as Gmail — configure both at once if using Gmail too"
+      env:
+        GOOGLE_CLIENT_ID:
+          label: Google OAuth Client ID
+          how_to_get: "Same as Gmail setup above"
+        GOOGLE_CLIENT_SECRET:
+          label: Google OAuth Client Secret
+          how_to_get: "Same as Gmail setup above"
+        GOOGLE_REFRESH_TOKEN:
+          label: Google Refresh Token
+          how_to_get: "Same as Gmail setup above — one token covers both Gmail and Calendar"
+    requires:
+      - GOOGLE_CLIENT_ID
+      - GOOGLE_CLIENT_SECRET
+      - GOOGLE_REFRESH_TOKEN
+    policy_risk: true
+    policy_note: "Same Google Workspace policy restrictions as Gmail."
+    verify: "Ask Claude: what's on my calendar today?"
+
+  # ── Spreadsheets ────────────────────────────────────────────────────────────
+
+  - id: google_sheets
+    name: Google Sheets
+    category: Reporting
+    description: Export rows to a Google Sheet via Apps Script webhook
+    use_case: Push SEO reports, client summaries, and workflow results to a Google Sheet
+    mcp_type: webhook
+    setup:
+      script: "integrations/google/export-to-sheet.sh"
+      note: "Deploy the Apps Script endpoint (see integrations/google/README.md) — takes ~5 min"
+      env:
+        GOOGLE_SHEETS_WEBHOOK:
+          label: Apps Script Web App URL
+          how_to_get: "script.google.com → New project → paste the doPost function → Deploy → Web app → copy URL"
+    requires:
+      - GOOGLE_SHEETS_WEBHOOK
+    policy_risk: false
+    verify: "bash integrations/google/export-to-sheet.sh --sheet-id YOUR_ID --tab Test --data '[[\"Hello\",\"World\"]]'"
+
+  # ── Development ──────────────────────────────────────────────────────────────
+
+  - id: github
+    name: GitHub
+    category: Development
+    description: Repos, issues, PRs, code search, file management
+    use_case: Review PRs, create issues, search code, manage repos from Claude
+    mcp_type: stdio_npm
+    setup:
+      package: "@modelcontextprotocol/server-github"
+      command: "npx -y @modelcontextprotocol/server-github"
+      env:
+        GITHUB_PERSONAL_ACCESS_TOKEN:
+          label: GitHub Personal Access Token
+          how_to_get: "github.com → Settings → Developer settings → Personal access tokens → Tokens (classic) → Generate new token → Select scopes: repo, read:org → copy token"
+    requires:
+      - GITHUB_PERSONAL_ACCESS_TOKEN
+    policy_risk: false
+    verify: "Ask Claude: list my GitHub repos"

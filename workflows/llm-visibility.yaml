@@ -1,0 +1,127 @@
+# Workflow Template: LLM Visibility & Reporting
+# Use to track how the client appears in AI-generated responses (ChatGPT, Perplexity, etc.)
+# and generate monthly SEO summary exports.
+# Copy to plans/clients/{client-slug}/{YYYY-MM}.yaml and fill in the variables.
+
+template: llm-visibility
+version: "1.0"
+description: "LLM visibility audit — brand mentions, sentiment, prompt simulation, SERP analysis, summary export"
+
+# ── Client Info ───────────────────────────────────────────────────────────────
+client: ""
+domain: ""
+period: ""
+status: pending
+
+# ── IDs ───────────────────────────────────────────────────────────────────────
+ids:
+  otto_project_id: ""              # for work_summary_export
+  site_explorer_id: ""             # for SERP analysis
+
+# ── Configuration ─────────────────────────────────────────────────────────────
+config:
+  brand_name: ""                   # exact brand name as known to LLMs
+  competitors: []                  # e.g. ["Competitor A", "Competitor B"]
+  prompts_to_simulate:             # questions an ideal customer would ask an LLM
+    - ""                           # e.g. "Best aesthetic medicine clinic in Cape Coral"
+    - ""                           # e.g. "Who does Botox in Cape Coral Florida?"
+  topics_to_track: []             # sentiment/visibility topics
+  export_to_google_sheet: true
+
+# ── Steps ─────────────────────────────────────────────────────────────────────
+steps:
+  - id: 1
+    name: "Brand overview + competitor share of voice"
+    tool: Visibility_Analysis_Tools
+    operations:
+      - op: get_brand_overview
+        params:
+          brand: "{{config.brand_name}}"
+          domain: "{{domain}}"
+      - op: get_visibility_trend
+        params:
+          brand: "{{config.brand_name}}"
+          period: "{{period}}"
+      - op: get_competitor_visibility_rank
+        params:
+          brand: "{{config.brand_name}}"
+          competitors: "{{config.competitors}}"
+      - op: get_competitor_share_of_voice
+        params:
+          brand: "{{config.brand_name}}"
+          competitors: "{{config.competitors}}"
+    output: visibility_report
+    status: pending
+
+  - id: 2
+    name: "Sentiment trends by topic"
+    tool: Sentiment_Analysis_Tools
+    operations:
+      - op: get_sentiment_overview
+        params:
+          brand: "{{config.brand_name}}"
+      - op: get_sentiment_trend
+        params:
+          brand: "{{config.brand_name}}"
+          topics: "{{config.topics_to_track}}"
+    output: sentiment_report
+    status: pending
+
+  - id: 3
+    name: "Simulate AI prompts + get results"
+    tool: Prompt_Simulator_Tools
+    operations:
+      - op: submit_prompts
+        params:
+          brand: "{{config.brand_name}}"
+          domain: "{{domain}}"
+          prompts: "{{config.prompts_to_simulate}}"
+      - op: check_ps_status             # poll until completed
+      - op: get_ps_responses
+      - op: get_ps_summary
+      - op: get_ps_visibility
+    output: prompt_simulation_results
+    status: pending
+
+  - id: 4
+    name: "SERP features + position distribution"
+    tool: Site_Explorer_Analysis_Tool
+    operations:
+      - op: get_serp_features
+        params:
+          domain: "{{domain}}"
+      - op: get_position_distribution
+        params:
+          domain: "{{domain}}"
+      - op: get_historical_trends
+        params:
+          domain: "{{domain}}"
+          period: "{{period}}"
+    output: serp_analysis
+    status: pending
+
+  - id: 5
+    name: "Export monthly work summary to Google Sheet"
+    tool: OTTO_Project_Management
+    operations:
+      - op: work_summary_export
+        params:
+          project_id: "{{ids.otto_project_id}}"
+          period: "{{period}}"
+    output: google_sheet_link
+    status: pending
+    condition: "{{config.export_to_google_sheet}}"
+
+# ── Results ───────────────────────────────────────────────────────────────────
+results: []
+
+# ── Output Summary Template ────────────────────────────────────────────────────
+# ✅  {client} — LLM Visibility Report · {period}
+#
+# 👁️  AI Visibility   {score}% brand presence · #{rank} vs competitors  View →
+# 💬  Sentiment       {positive}% positive · {neutral}% neutral          View →
+# 🤖  Prompt Sims     {N} prompts run · mentioned in {M}/{N}             View →
+# 📈  SERP            {N} features captured · avg position {X}           View →
+# 📊  Export          monthly summary exported to Google Sheet           View →
+#
+# {total} actions completed · {failed} failed

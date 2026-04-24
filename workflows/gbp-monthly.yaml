@@ -1,0 +1,121 @@
+# Workflow Template: GBP Monthly Recurring
+# Run this every month to keep GBP active and engaging.
+# Copy to plans/clients/{client-slug}/{YYYY-MM}.yaml and fill in the variables.
+
+template: gbp-monthly
+version: "1.0"
+description: "Monthly GBP cycle — reply to reviews, generate + schedule posts, performance summary"
+
+# ── Client Info ───────────────────────────────────────────────────────────────
+client: ""
+domain: ""
+period: ""                          # e.g. "2026-02"
+status: pending
+
+# ── IDs ───────────────────────────────────────────────────────────────────────
+ids:
+  gbp_location_id: ""              # REQUIRED
+
+# ── Configuration ─────────────────────────────────────────────────────────────
+config:
+  posts_to_generate: 8             # number of posts for the month
+  post_type: STANDARD              # STANDARD | OFFER | EVENT
+  post_topics: []                  # optional: specific topics to post about
+  auto_publish_reviews: true       # auto-publish AI-generated review replies
+  enable_automated_posting: true   # enable recurring post automation
+
+# ── Steps ─────────────────────────────────────────────────────────────────────
+steps:
+  - id: 1
+    name: "List unanswered reviews + generate + publish replies"
+    tool: gbp_reviews
+    operations:
+      - op: list_reviews
+        params:
+          location_id: "{{ids.gbp_location_id}}"
+          filter: unanswered
+      - op: ai_generate_review_reply
+        params:
+          review_id: "{{review.id}}"       # iterate per unanswered review
+      - op: publish_review_reply
+        params:
+          review_id: "{{review.id}}"
+    output:
+      reviews_replied: 0
+    status: pending
+
+  - id: 2
+    name: "Bulk generate posts for the month"
+    tool: gbp_posts_generation
+    operations:
+      - op: bulk_generate_posts
+        params:
+          location_id: "{{ids.gbp_location_id}}"
+          count: "{{config.posts_to_generate}}"
+          post_type: "{{config.post_type}}"
+          topics: "{{config.post_topics}}"
+      - op: bulk_create_posts
+        params:
+          location_id: "{{ids.gbp_location_id}}"
+    output:
+      posts_generated: 0
+    status: pending
+
+  - id: 3
+    name: "Configure + enable automated posting"
+    tool: gbp_posts_automation
+    operations:
+      - op: get_automated_posting_settings
+        params:
+          location_id: "{{ids.gbp_location_id}}"
+      - op: update_automated_posting_settings
+        params:
+          location_id: "{{ids.gbp_location_id}}"
+      - op: enable_automated_posting
+        params:
+          location_id: "{{ids.gbp_location_id}}"
+    status: pending
+    condition: "{{config.enable_automated_posting}}"
+
+  - id: 4
+    name: "Approve + publish posts"
+    tool: gbp_posts_crud
+    operations:
+      - op: list_posts
+        params:
+          location_id: "{{ids.gbp_location_id}}"
+          filter: pending_approval
+      - op: approve_post
+        params:
+          post_id: "{{post.id}}"           # iterate
+      - op: publish_post
+        params:
+          post_id: "{{post.id}}"
+    output:
+      posts_published: 0
+    status: pending
+    depends_on: [2]
+
+  - id: 5
+    name: "GBP performance summary"
+    tool: gbp_stats
+    operations:
+      - op: get_location_stats
+        params:
+          location_id: "{{ids.gbp_location_id}}"
+          period: "{{period}}"
+    output: performance_summary
+    status: pending
+
+# ── Results ───────────────────────────────────────────────────────────────────
+results: []
+
+# ── Output Summary Template ────────────────────────────────────────────────────
+# ✅  {client} — GBP Monthly · {period}
+#
+# ⭐  Reviews         {N} replies published                    View →
+# 📢  Posts           {N} posts generated + published          View →
+# 🤖  Auto-posting    enabled · {frequency} schedule           View →
+# 📊  Performance     {impressions} views · {clicks} clicks    View →
+#
+# {total} actions completed · {failed} failed

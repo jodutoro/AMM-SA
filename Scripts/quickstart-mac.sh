@@ -1,0 +1,502 @@
+#!/usr/bin/env bash
+# Agentic Marketing Mastermind — macOS Quick Start
+# Creates your workspace, installs all prerequisites, and launches Claude Code.
+#
+# Usage (copy-paste into Terminal):
+#   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/jodutoro/AMM-SA/INT/scripts/quickstart-mac.sh)"
+
+set -e
+
+REPO_URL="https://github.com/jodutoro/AMM-SA.git"
+
+GREEN='\033[0;32m'
+CYAN='\033[0;36m'
+YELLOW='\033[1;33m'
+BOLD='\033[1m'
+DIM='\033[2m'
+NC='\033[0m'
+
+ok()   { echo -e "  ${GREEN}✓${NC}  $1"; }
+step() { echo -e "\n  ${CYAN}[$1]${NC} $2"; }
+warn() { echo -e "  ${YELLOW}⚠${NC}  $1"; }
+info() { echo -e "  $1"; }
+hr()   { echo "  ─────────────────────────────────────────────────────"; }
+
+clear
+echo ""
+echo "  ╔══════════════════════════════════════════════════════╗"
+echo "  ║    Agentic Marketing Mastermind — macOS Setup       ║"
+echo "  ╚══════════════════════════════════════════════════════╝"
+echo ""
+echo "  This sets up your full agentic workspace from scratch."
+echo "  Estimated time: 5–10 minutes. You'll only need to do this once."
+echo ""
+
+# ── 0a: Workspace Naming ─────────────────────────────────────────────────────
+hr
+echo ""
+echo -e "  ${BOLD}Step 1 of 2 — Name your workspace${NC}"
+echo ""
+echo "  This is the root folder where everything lives:"
+echo "  your toolkit, client folders, and AI memory."
+echo "  Name it after your agency so it's easy to find."
+echo ""
+echo "  Examples:  CoastalMedia-AMM  |  SunriseAgency-AI  |  AMM-Workspace"
+echo ""
+echo -n "  Workspace name (Enter for 'AMM-Workspace'): "
+read -r WORKSPACE_NAME </dev/tty
+WORKSPACE_NAME="${WORKSPACE_NAME:-AMM-Workspace}"
+WORKSPACE_DIR="$HOME/$WORKSPACE_NAME"
+REPO_DIR="$WORKSPACE_DIR/AMM-SA"
+
+echo ""
+ok "Workspace → $WORKSPACE_DIR"
+echo ""
+
+# ── 0b: IDE / Terminal Selection ─────────────────────────────────────────────
+hr
+echo ""
+echo -e "  ${BOLD}Step 2 of 2 — Choose your coding environment${NC}"
+echo ""
+echo "  You only need one. We'll detect what you already have"
+echo "  and suggest it — or you can pick a different one to download."
+echo ""
+
+# Fixed list of supported options (priority order for recommendation)
+IDE_NAMES=("Cursor" "Warp" "VS Code" "Windsurf" "iTerm2" "Terminal (built-in)")
+IDE_URLS=("https://cursor.com" "https://www.warp.dev" "https://code.visualstudio.com" "https://windsurf.com" "https://iterm2.com" "")
+IDE_OPEN_CMDS=('cursor "$WORKSPACE_DIR"' 'open -a Warp "$WORKSPACE_DIR"' 'code "$WORKSPACE_DIR"' 'windsurf "$WORKSPACE_DIR"' 'open -a iTerm "$WORKSPACE_DIR"' '')
+IDE_STATUS=()
+
+# Detect which are installed
+for i in "${!IDE_NAMES[@]}"; do
+  case "${IDE_NAMES[$i]}" in
+    "Cursor")
+      ([[ -d "/Applications/Cursor.app" ]] || command -v cursor &>/dev/null) && IDE_STATUS[$i]="ready" || IDE_STATUS[$i]="not installed"
+      ;;
+    "Warp")
+      [[ -d "/Applications/Warp.app" ]] && IDE_STATUS[$i]="ready" || IDE_STATUS[$i]="not installed"
+      ;;
+    "VS Code")
+      ([[ -d "/Applications/Visual Studio Code.app" ]] || command -v code &>/dev/null) && IDE_STATUS[$i]="ready" || IDE_STATUS[$i]="not installed"
+      ;;
+    "Windsurf")
+      ([[ -d "/Applications/Windsurf.app" ]] || command -v windsurf &>/dev/null) && IDE_STATUS[$i]="ready" || IDE_STATUS[$i]="not installed"
+      ;;
+    "iTerm2")
+      [[ -d "/Applications/iTerm.app" ]] && IDE_STATUS[$i]="ready" || IDE_STATUS[$i]="not installed"
+      ;;
+    "Terminal (built-in)")
+      IDE_STATUS[$i]="ready"
+      ;;
+  esac
+done
+
+# Find best already-installed option (in priority order, Terminal is last resort)
+REC_IDX=5
+REC_NAME="Terminal (built-in)"
+for i in 0 1 2 3 4; do
+  if [[ "${IDE_STATUS[$i]}" == "ready" ]]; then
+    REC_IDX=$i
+    REC_NAME="${IDE_NAMES[$i]}"
+    break
+  fi
+done
+
+# Contextual intro based on what's found
+if [[ "$REC_NAME" == "Terminal (built-in)" ]]; then
+  echo "  You don't have a dedicated coding environment installed yet."
+  echo "  We recommend Cursor — it's built for AI-assisted work."
+  echo "  Enter 1 to download it, or pick any option from the list."
+else
+  echo -e "  We found ${BOLD}$REC_NAME${NC} on your Mac — that's a solid choice."
+  echo "  Press Enter to use it, or pick something else from the list below."
+fi
+
+echo ""
+
+# Display all options with status and recommendation marker
+for i in "${!IDE_NAMES[@]}"; do
+  name="${IDE_NAMES[$i]}"
+  status="${IDE_STATUS[$i]}"
+  num="$((i+1))"
+  label="$(printf '%-22s' "$name")"
+  if [[ "$i" == "$REC_IDX" && "$status" == "ready" ]]; then
+    echo -e "  $num. ${label} ${GREEN}✓ installed${NC}  ← recommended"
+  elif [[ "$status" == "ready" ]]; then
+    echo -e "  $num. ${label} ${GREEN}✓ installed${NC}"
+  else
+    echo -e "  $num. ${label} ${DIM}— not installed${NC}"
+  fi
+done
+
+echo ""
+echo -n "  Enter number (Enter for $REC_NAME): "
+read -r IDE_NUM </dev/tty
+IDE_NUM="${IDE_NUM:-$((REC_IDX+1))}"
+
+if ! [[ "$IDE_NUM" =~ ^[0-9]+$ ]] || (( IDE_NUM < 1 || IDE_NUM > ${#IDE_NAMES[@]} )); then
+  IDE_NUM=$((REC_IDX+1))
+fi
+
+IDX=$((IDE_NUM - 1))
+IDE_NAME="${IDE_NAMES[$IDX]}"
+IDE_STATUS_CHOSEN="${IDE_STATUS[$IDX]}"
+IDE_URL="${IDE_URLS[$IDX]}"
+IDE_OPEN_CMD="${IDE_OPEN_CMDS[$IDX]}"
+IDE_NOT_INSTALLED=0
+
+echo ""
+
+if [[ "$IDE_STATUS_CHOSEN" == "not installed" ]]; then
+  IDE_NOT_INSTALLED=1
+  echo -e "  ${YELLOW}⚠${NC}  $IDE_NAME is not installed yet."
+  echo ""
+  echo "  Download: $IDE_URL"
+  echo ""
+  echo -n "  Open the download page now? (y/n): "
+  read -r OPEN_DL </dev/tty
+  if [[ "$OPEN_DL" == "y" || "$OPEN_DL" == "Y" ]]; then
+    open "$IDE_URL" 2>/dev/null || true
+    echo ""
+    info "Download page opened. Install $IDE_NAME, then come back here."
+    info "Setup will continue and finish — you can open your workspace"
+    info "in $IDE_NAME afterwards."
+  fi
+  IDE_OPEN_CMD=""
+else
+  ok "Using: $IDE_NAME"
+fi
+
+echo ""
+hr
+
+# ── Step 1: Xcode Command Line Tools ────────────────────────────────────────
+step "1/5" "Xcode Command Line Tools"
+
+if ! xcode-select -p &>/dev/null; then
+  warn "Not found — installing..."
+  xcode-select --install 2>/dev/null || true
+  echo ""
+  echo "  A macOS dialog just opened — click Install and wait for it to finish."
+  echo "  Then re-run this script:"
+  echo ""
+  echo '  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/jodutoro/AMM-SA/INT/scripts/quickstart-mac.sh)"'
+  echo ""
+  exit 0
+fi
+ok "Xcode Command Line Tools"
+
+# ── Step 2: Homebrew ─────────────────────────────────────────────────────────
+step "2/5" "Homebrew"
+
+if ! command -v brew &>/dev/null; then
+  warn "Not found — installing..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+  if [[ "$(uname -m)" == "arm64" ]]; then
+    BREW_PREFIX="/opt/homebrew"
+  else
+    BREW_PREFIX="/usr/local"
+  fi
+  eval "$("$BREW_PREFIX/bin/brew" shellenv)"
+
+  SHELL_PROFILE="$HOME/.zprofile"
+  [[ "$SHELL" == *"bash"* ]] && SHELL_PROFILE="$HOME/.bash_profile"
+  echo "" >> "$SHELL_PROFILE"
+  echo 'eval "$('"$BREW_PREFIX"'/bin/brew shellenv)"' >> "$SHELL_PROFILE"
+fi
+ok "Homebrew $(brew --version 2>/dev/null | head -1 | awk '{print $2}')"
+
+# ── Version requirements ──────────────────────────────────────────────────────
+MIN_NODE_MAJOR=18
+MIN_GIT="2.30"
+MIN_JAVA_MAJOR=17
+
+semver_gte() {
+  [ "$(printf '%s\n' "$1" "$2" | sort -V | head -1)" = "$2" ]
+}
+node_ok() {
+  command -v node &>/dev/null || return 1
+  local m; m=$(node --version | tr -d 'v' | cut -d. -f1)
+  [[ "$m" -ge "$MIN_NODE_MAJOR" ]]
+}
+git_ok() {
+  command -v git &>/dev/null || return 1
+  semver_gte "$(git --version | awk '{print $3}')" "$MIN_GIT"
+}
+java_ok() {
+  command -v java &>/dev/null || return 1
+  local v; v=$(java -version 2>&1 | head -1 | awk -F'"' '{print $2}')
+  local m; m=$(echo "$v" | cut -d. -f1)
+  [[ "$m" == "1" ]] && m=$(echo "$v" | cut -d. -f2)
+  [[ "$m" -ge "$MIN_JAVA_MAJOR" ]]
+}
+
+# ── Step 3: Git + Node.js ────────────────────────────────────────────────────
+step "3/6" "Git + Node.js"
+
+if ! command -v git &>/dev/null; then
+  warn "Git not found — installing..."
+  brew install git
+elif ! git_ok; then
+  warn "Git $(git --version | awk '{print $3}') is outdated (need $MIN_GIT+) — upgrading..."
+  brew upgrade git 2>/dev/null || brew install git
+fi
+ok "$(git --version)"
+
+if ! command -v node &>/dev/null; then
+  warn "Node.js not found — installing LTS..."
+  brew install node
+elif ! node_ok; then
+  warn "Node $(node --version) is outdated (need v$MIN_NODE_MAJOR+) — upgrading..."
+  brew upgrade node 2>/dev/null || brew install node
+fi
+ok "Node $(node --version) · npm $(npm --version)"
+
+# ── Step 4: Java ─────────────────────────────────────────────────────────────
+step "4/6" "Java (JDK $MIN_JAVA_MAJOR+ required)"
+
+if ! command -v java &>/dev/null; then
+  warn "Not found — installing OpenJDK 21..."
+  brew install openjdk@21
+  sudo ln -sfn "$(brew --prefix openjdk@21)/libexec/openjdk.jdk" \
+    /Library/Java/JavaVirtualMachines/openjdk-21.jdk 2>/dev/null || true
+  export PATH="$(brew --prefix openjdk@21)/bin:$PATH"
+  ok "Java $(java -version 2>&1 | head -1 | awk -F'"' '{print $2}')"
+elif ! java_ok; then
+  warn "Java version is below $MIN_JAVA_MAJOR — upgrading to OpenJDK 21..."
+  brew install openjdk@21 2>/dev/null || brew upgrade openjdk@21 2>/dev/null || true
+  sudo ln -sfn "$(brew --prefix openjdk@21)/libexec/openjdk.jdk" \
+    /Library/Java/JavaVirtualMachines/openjdk-21.jdk 2>/dev/null || true
+  export PATH="$(brew --prefix openjdk@21)/bin:$PATH"
+  ok "Java $(java -version 2>&1 | head -1 | awk -F'"' '{print $2}')"
+else
+  ok "Java $(java -version 2>&1 | head -1 | awk -F'"' '{print $2}') — up to date"
+fi
+
+# ── Step 5: Claude Code ──────────────────────────────────────────────────────
+step "5/6" "Claude Code"
+
+if command -v claude &>/dev/null; then
+  ok "Already installed — $(claude --version 2>/dev/null | head -1)"
+else
+  info "Installing via npm..."
+  npm install -g @anthropic-ai/claude-code
+  ok "Installed — $(claude --version 2>/dev/null | head -1)"
+fi
+
+# ── Step 6: Workspace + AMM-SA Toolkit ──────────────────────────────────────
+step "6/6" "Creating workspace + installing toolkit"
+
+mkdir -p "$WORKSPACE_DIR/clients" "$WORKSPACE_DIR/memory"
+info "Created: $WORKSPACE_DIR/"
+info "Created: $WORKSPACE_DIR/clients/"
+info "Created: $WORKSPACE_DIR/memory/"
+
+if [[ -d "$REPO_DIR" ]]; then
+  warn "AMM-SA already exists — pulling latest..."
+  git -C "$REPO_DIR" pull origin INT 2>/dev/null || true
+else
+  info "Cloning AMM-SA toolkit..."
+  git clone -b INT "$REPO_URL" "$REPO_DIR"
+fi
+ok "AMM-SA toolkit ready"
+
+# ── CLAUDE.md (workspace session contract) ───────────────────────────────────
+if [[ ! -f "$WORKSPACE_DIR/CLAUDE.md" ]]; then
+  cat > "$WORKSPACE_DIR/CLAUDE.md" <<CLAUDEMD
+# $WORKSPACE_NAME — Agentic Marketing Workspace
+
+## Session Start (every session, no exceptions)
+1. Read \`memory/MEMORY.md\` — reload all active rules and client context
+2. Confirm which client you are working on before touching any files
+3. Run \`/my-account\` if you need a fresh view of the SearchAtlas account
+
+## Working Directory Check
+If you are not running from inside the \`$WORKSPACE_NAME\` workspace folder,
+stop and tell the user: "It looks like Claude is running from the wrong folder.
+Open your IDE from $WORKSPACE_NAME/ and restart the session."
+Never work from the system home directory or any folder outside this workspace.
+
+## My Agency
+<!-- Fill in: agency name, niche, location, team size -->
+
+## My Clients
+<!-- One line per client once onboarded — e.g.:
+- Acme Roofing (acme-roofing/) — local SEO, GBP, monthly retainer
+- Coastal Dental (coastal-dental/) — PPC + content, active campaign
+-->
+
+## My Integrations
+- SearchAtlas — SEO, GBP, PPC, content, authority building
+<!-- Add yours after /setup-integrations:
+- Slack webhook: SLACK_WEBHOOK_URL in .env
+- Email (Resend): RESEND_API_KEY in .env
+- Discord: DISCORD_WEBHOOK_URL in .env
+-->
+
+## Session Rules
+- \`/clear\` between every client — never carry one client's context into another
+- \`/compact\` when responses slow down (or proactively at ~70% context)
+- Save new learnings to \`memory/\` before closing a session
+- Never paste API keys into the chat — they live in \`.env\` only
+- Confirm before creating campaigns, publishing content, or sending messages
+
+## Multi-Machine Note
+MCP connections are machine-specific and do not sync between computers.
+If you set up a second machine, run the quickstart again on that machine —
+your files sync but your MCP config does not carry over automatically.
+
+## Workspace Layout
+- \`AMM-SA/\`     — toolkit: slash commands, workflows, scripts (do not edit)
+- \`clients/\`   — one subfolder per client with brief.md + assets/
+- \`memory/\`    — persistent notes Claude reads and writes across sessions
+- \`.env\`        — API keys and webhook URLs (never committed to git)
+CLAUDEMD
+  info "Created: $WORKSPACE_DIR/CLAUDE.md"
+fi
+
+# ── memory/MEMORY.md (persistent context index) ──────────────────────────────
+if [[ ! -f "$WORKSPACE_DIR/memory/MEMORY.md" ]]; then
+  cat > "$WORKSPACE_DIR/memory/MEMORY.md" <<MEMORYMD
+# Memory Index
+
+> Claude reads this file at the start of every session.
+> Keep this file under 150 lines — link to separate files for detail.
+
+## How to add a memory
+Save a .md file in this folder and add a one-line link below.
+Format: \`- [Title](filename.md) — one-line description\`
+
+## Active Rules
+<!-- Claude adds feedback and learned rules here -->
+
+## Client Notes
+<!-- One entry per client once you start building context
+- [Acme Roofing](acme-roofing.md) — niche: residential, top keyword: roof repair Phoenix
+-->
+
+## Tool Notes
+<!-- SearchAtlas gotchas, integration quirks, API patterns -->
+
+## Open Items
+<!-- Follow-ups, pending tasks, questions for next session -->
+MEMORYMD
+  info "Created: $WORKSPACE_DIR/memory/MEMORY.md"
+fi
+
+# ── .env scaffold (API keys, never committed) ─────────────────────────────────
+if [[ ! -f "$WORKSPACE_DIR/.env" ]]; then
+  cat > "$WORKSPACE_DIR/.env" <<ENVFILE
+# Agentic Marketing Workspace — Environment Variables
+# Fill in what you use. Never commit this file.
+
+# ── Communication integrations ────────────────────────────────────────────────
+SLACK_WEBHOOK_URL=
+DISCORD_WEBHOOK_URL=
+RESEND_API_KEY=
+EMAIL_FROM=
+
+# ── Circle ────────────────────────────────────────────────────────────────────
+CIRCLE_API_KEY=
+CIRCLE_COMMUNITY_ID=
+
+# ── Optional CRM / PM integrations ───────────────────────────────────────────
+# (fill after running /setup-integrations)
+ENVFILE
+  info "Created: $WORKSPACE_DIR/.env"
+fi
+
+# ── .gitignore (protect secrets and local files) ─────────────────────────────
+if [[ ! -f "$WORKSPACE_DIR/.gitignore" ]]; then
+  cat > "$WORKSPACE_DIR/.gitignore" <<GITIGNORE
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+
+# Client assets stay local (logos, docs, binaries)
+clients/*/assets/
+
+# Session logs and OS files
+memory/sessions/
+*.log
+.DS_Store
+Thumbs.db
+GITIGNORE
+  info "Created: $WORKSPACE_DIR/.gitignore"
+fi
+
+cd "$REPO_DIR"
+bash setup.sh
+
+# ── Done ─────────────────────────────────────────────────────────────────────
+echo ""
+hr
+echo ""
+echo -e "  ${BOLD}Your workspace is ready.${NC}"
+echo ""
+echo "  $WORKSPACE_DIR/"
+echo "  ├── AMM-SA/       ← toolkit (slash commands, workflows)"
+echo "  ├── clients/      ← one folder per client"
+echo "  ├── memory/       ← Claude's persistent notes"
+echo "  ├── CLAUDE.md     ← your session rules and client list"
+echo "  └── .env          ← API keys (fill in after /setup-integrations)"
+echo ""
+hr
+echo ""
+
+if [[ "$IDE_NOT_INSTALLED" == "1" ]]; then
+  echo "  Once $IDE_NAME is installed, open your workspace with:"
+  echo ""
+  echo -e "    ${BOLD}${IDE_OPEN_CMDS[$IDX]}${NC}    (or drag the folder into the app)"
+  echo ""
+  echo "  Then in the integrated terminal, run:"
+  echo ""
+  echo -e "    ${BOLD}claude${NC}"
+elif [[ -n "$IDE_OPEN_CMD" ]]; then
+  echo "  Opening $IDE_NAME at your workspace..."
+  eval "$IDE_OPEN_CMD" 2>/dev/null || true
+  echo ""
+  echo "  In $IDE_NAME, open the integrated terminal and run:"
+  echo ""
+  echo -e "    ${BOLD}claude${NC}"
+else
+  echo "  Run these two commands to start:"
+  echo ""
+  echo -e "    ${BOLD}cd ~/$WORKSPACE_NAME${NC}"
+  echo -e "    ${BOLD}claude${NC}"
+fi
+
+echo ""
+echo "  ─────────────────────────────────────────────────────"
+echo ""
+echo -e "  ${BOLD}Important: first-time permission prompt${NC}"
+echo ""
+echo "  Claude Code may show a permission warning on first launch."
+echo "  This is expected. When prompted, choose:"
+echo -e "    ${BOLD}Yes, allow for this session${NC}  (or the equivalent option)"
+echo ""
+echo "  Or launch with permissions pre-approved (recommended for beginners):"
+echo ""
+echo -e "    ${BOLD}claude --dangerously-skip-permissions${NC}"
+echo ""
+echo "  ─────────────────────────────────────────────────────"
+echo ""
+echo -e "  ${BOLD}Verify everything works:${NC}"
+echo ""
+echo "  Once Claude Code opens, type:"
+echo ""
+echo -e "    ${BOLD}/my-account${NC}"
+echo ""
+echo "  You should see your SearchAtlas account summary."
+echo "  If you do — you're fully set up. If not, re-run:"
+echo ""
+echo "    claude mcp add searchatlas --type http https://mcp.searchatlas.com/mcp"
+echo ""
+hr
+echo ""
+echo "  Next: /setup-integrations inside Claude Code to connect"
+echo "  Slack, Email, Discord, or Circle."
+echo ""

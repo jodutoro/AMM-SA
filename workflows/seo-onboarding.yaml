@@ -1,0 +1,154 @@
+# Workflow Template: New Client SEO Onboarding
+# Use this template when setting up a brand-new client in SearchAtlas.
+# Copy to plans/clients/{client-slug}/{YYYY-MM}.yaml and fill in the variables.
+
+template: new-client-seo
+version: "1.0"
+description: "Full SEO onboarding — project setup, audit, brand vault, keyword research, topical map, first content batch"
+
+# ── Client Info ───────────────────────────────────────────────────────────────
+client: ""                          # e.g. "Acme Digital Marketing"
+domain: ""                          # e.g. "example-client.com"
+period: ""                          # e.g. "2026-02"
+status: pending                     # pending | in_progress | completed
+
+# ── IDs (fill as each step completes) ─────────────────────────────────────────
+ids:
+  otto_project_id: ""
+  audit_id: ""
+  brand_vault_id: ""
+  keyword_research_id: ""
+  topical_map_id: ""
+
+# ── Configuration ─────────────────────────────────────────────────────────────
+config:
+  pillar_keyword: ""                # e.g. "digital marketing services austin"
+  pillar_url: ""                    # e.g. "https://example-client.com/services"
+  target_location: ""               # e.g. "Austin, TX"
+  articles_to_generate: 4           # how many articles in first batch
+  voice_profile: ""                 # leave blank to use brand default
+
+# ── Steps ─────────────────────────────────────────────────────────────────────
+steps:
+  - id: 1
+    name: "Create & verify OTTO project"
+    tool: project_management
+    operations:
+      - op: engage_otto_project
+        params:
+          domain: "{{domain}}"
+      - op: verify_otto_installation
+        params:
+          project_id: "{{ids.otto_project_id}}"
+    output_key: ids.otto_project_id
+    status: pending
+
+  - id: 2
+    name: "Create site audit"
+    tool: audit_management
+    operations:
+      - op: create_audit
+        params:
+          project_id: "{{ids.otto_project_id}}"
+    output_key: ids.audit_id
+    status: pending
+    depends_on: [1]
+
+  - id: 3
+    name: "Get holistic SEO pillar scores"
+    tool: holistic_audit
+    operations:
+      - op: get_holistic_seo_pillar_scores
+        params:
+          domain: "{{domain}}"
+    output: pillar_scores        # Technical, Content, Authority, UX
+    status: pending
+    depends_on: [2]
+
+  - id: 4
+    name: "Create brand vault + voice profile"
+    tool: brand_vault
+    operations:
+      - op: create_brand_vault
+        params:
+          domain: "{{domain}}"
+          client_name: "{{client}}"
+      - op: select_voice_profile
+        params:
+          brand_vault_id: "{{ids.brand_vault_id}}"
+          profile: "{{config.voice_profile}}"
+    output_key: ids.brand_vault_id
+    status: pending
+    notes: "⚠️ BrandVaultTools may have auth issues — retry if needed"
+
+  - id: 5
+    name: "Build keyword research project"
+    tool: keyword_research
+    operations:
+      - op: create_keyword_research_project
+        params:
+          domain: "{{domain}}"
+          keyword: "{{config.pillar_keyword}}"
+          location: "{{config.target_location}}"
+    output_key: ids.keyword_research_id
+    status: pending
+    depends_on: [1]
+
+  - id: 6
+    name: "Create topical map from pillar keyword"
+    tool: topical_maps
+    operations:
+      - op: create_topical_map
+        params:
+          keyword: "{{config.pillar_keyword}}"
+          domain: "{{domain}}"
+          pillar_url: "{{config.pillar_url}}"
+    output_key: ids.topical_map_id
+    output: article_titles       # clusters + article titles returned
+    status: pending
+    depends_on: [5]
+
+  - id: 7
+    name: "Generate first article batch from topical map"
+    tool: content_generation
+    description: "Run 4-step workflow per article: create → info retrieval → headings → generate"
+    operations:
+      - op: create_content_instance
+        params:
+          topical_map_id: "{{ids.topical_map_id}}"
+          title: "{{article_title}}"          # iterate per title
+          brand_vault_id: "{{ids.brand_vault_id}}"
+      - op: start_information_retrieval
+        params:
+          content_id: "{{content_id}}"
+      - op: poll_information_retrieval       # poll until completed
+        params:
+          content_id: "{{content_id}}"
+      - op: start_headings_outline
+        params:
+          content_id: "{{content_id}}"
+      - op: poll_headings_outline            # poll until completed
+        params:
+          content_id: "{{content_id}}"
+      - op: generate_complete_article
+        params:
+          content_id: "{{content_id}}"
+    repeat: "{{config.articles_to_generate}}"
+    output: article_editor_links
+    status: pending
+    depends_on: [4, 6]
+
+# ── Results (filled after execution) ──────────────────────────────────────────
+results: []
+
+# ── Output Summary Template ────────────────────────────────────────────────────
+# ✅  {client} — {period}
+#
+# 🏗️  OTTO Project    installed + verified                    View →
+# 🔍  Site Audit      created · pillar scores: T/C/A/UX       View →
+# 🏷️  Brand Vault     created + voice profile set             View →
+# 🔑  Keywords        research project built                   View →
+# 🗺️  Topical Map     {N} article ideas generated             View →
+# ✍️  Content         {N} articles created · avg score {X}    View →
+#
+# {total} actions completed · {failed} failed

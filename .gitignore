@@ -1,0 +1,46 @@
+# Environment variables
+.env
+.env.local
+.env.production
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Claude Code local config
+.mcp.json
+.claudeignore
+
+# Client data — generated locally, never committed
+clients/
+Clients/
+!clients/_template/
+!clients/_template/**
+
+# Logs
+*.log
+logs/
+
+# Node modules
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Internal — never in this repo
+AMM-Internal/
+_brain/
+amm-guardian/
+dashboard/
+tools/
+Work stuff/
+_private/
+_scratch/
