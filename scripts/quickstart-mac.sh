@@ -289,9 +289,10 @@ fi
 # ── Step 6: Workspace + AMM-SA Toolkit ──────────────────────────────────────
 step "6/6" "Creating workspace + installing toolkit"
 
-mkdir -p "$WORKSPACE_DIR/clients"
+mkdir -p "$WORKSPACE_DIR/clients" "$WORKSPACE_DIR/memory"
 info "Created: $WORKSPACE_DIR/"
 info "Created: $WORKSPACE_DIR/clients/"
+info "Created: $WORKSPACE_DIR/memory/"
 
 if [[ -d "$REPO_DIR" ]]; then
   warn "AMM-SA already exists — pulling latest..."
@@ -302,21 +303,118 @@ else
 fi
 ok "AMM-SA toolkit ready"
 
+# ── CLAUDE.md (workspace session contract) ───────────────────────────────────
 if [[ ! -f "$WORKSPACE_DIR/CLAUDE.md" ]]; then
   cat > "$WORKSPACE_DIR/CLAUDE.md" <<CLAUDEMD
-# $WORKSPACE_NAME — Agentic Workspace
+# $WORKSPACE_NAME — Agentic Marketing Workspace
 
-## Layout
-- \`AMM-SA/\`   — toolkit: slash commands, workflows, SearchAtlas MCP
-- \`clients/\`  — one subfolder per client (e.g. \`clients/acme-roofing/\`)
+## Session Start (every session, no exceptions)
+1. Read \`memory/MEMORY.md\` — reload all active rules and client context
+2. Confirm which client you are working on before touching any files
+3. Run \`/my-account\` if you need a fresh view of the SearchAtlas account
 
-## Quick Start
-1. Run \`/my-account\` — see your SearchAtlas account at a glance
-2. Run \`/setup-integrations\` — connect HubSpot, ClickUp, Linear, and more
-3. Run \`/onboard-client\` — guided setup for a new client
-4. Run \`/help\` — full command list
+## My Agency
+<!-- Fill in: agency name, niche, location, team size -->
+
+## My Clients
+<!-- One line per client once onboarded — e.g.:
+- Acme Roofing (acme-roofing/) — local SEO, GBP, monthly retainer
+- Coastal Dental (coastal-dental/) — PPC + content, active campaign
+-->
+
+## My Integrations
+- SearchAtlas — SEO, GBP, PPC, content, authority building
+<!-- Add yours after /setup-integrations:
+- Slack webhook: SLACK_WEBHOOK_URL in .env
+- Email (Resend): RESEND_API_KEY in .env
+- Discord: DISCORD_WEBHOOK_URL in .env
+-->
+
+## Session Rules
+- \`/clear\` between every client — never carry one client's context into another
+- \`/compact\` when responses slow down (or proactively at ~70% context)
+- Save new learnings to \`memory/\` before closing a session
+- Never paste API keys into the chat — they live in \`.env\` only
+- Confirm before creating campaigns, publishing content, or sending messages
+
+## Workspace Layout
+- \`AMM-SA/\`     — toolkit: slash commands, workflows, scripts (do not edit)
+- \`clients/\`   — one subfolder per client with brief.md + assets/
+- \`memory/\`    — persistent notes Claude reads and writes across sessions
+- \`.env\`        — API keys and webhook URLs (never committed to git)
 CLAUDEMD
   info "Created: $WORKSPACE_DIR/CLAUDE.md"
+fi
+
+# ── memory/MEMORY.md (persistent context index) ──────────────────────────────
+if [[ ! -f "$WORKSPACE_DIR/memory/MEMORY.md" ]]; then
+  cat > "$WORKSPACE_DIR/memory/MEMORY.md" <<MEMORYMD
+# Memory Index
+
+> Claude reads this file at the start of every session.
+> Keep this file under 150 lines — link to separate files for detail.
+
+## How to add a memory
+Save a .md file in this folder and add a one-line link below.
+Format: \`- [Title](filename.md) — one-line description\`
+
+## Active Rules
+<!-- Claude adds feedback and learned rules here -->
+
+## Client Notes
+<!-- One entry per client once you start building context
+- [Acme Roofing](acme-roofing.md) — niche: residential, top keyword: roof repair Phoenix
+-->
+
+## Tool Notes
+<!-- SearchAtlas gotchas, integration quirks, API patterns -->
+
+## Open Items
+<!-- Follow-ups, pending tasks, questions for next session -->
+MEMORYMD
+  info "Created: $WORKSPACE_DIR/memory/MEMORY.md"
+fi
+
+# ── .env scaffold (API keys, never committed) ─────────────────────────────────
+if [[ ! -f "$WORKSPACE_DIR/.env" ]]; then
+  cat > "$WORKSPACE_DIR/.env" <<ENVFILE
+# Agentic Marketing Workspace — Environment Variables
+# Fill in what you use. Never commit this file.
+
+# ── Communication integrations ────────────────────────────────────────────────
+SLACK_WEBHOOK_URL=
+DISCORD_WEBHOOK_URL=
+RESEND_API_KEY=
+EMAIL_FROM=
+
+# ── Circle ────────────────────────────────────────────────────────────────────
+CIRCLE_API_KEY=
+CIRCLE_COMMUNITY_ID=
+
+# ── Optional CRM / PM integrations ───────────────────────────────────────────
+# (fill after running /setup-integrations)
+ENVFILE
+  info "Created: $WORKSPACE_DIR/.env"
+fi
+
+# ── .gitignore (protect secrets and local files) ─────────────────────────────
+if [[ ! -f "$WORKSPACE_DIR/.gitignore" ]]; then
+  cat > "$WORKSPACE_DIR/.gitignore" <<GITIGNORE
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+
+# Client assets stay local (logos, docs, binaries)
+clients/*/assets/
+
+# Session logs and OS files
+memory/sessions/
+*.log
+.DS_Store
+Thumbs.db
+GITIGNORE
+  info "Created: $WORKSPACE_DIR/.gitignore"
 fi
 
 cd "$REPO_DIR"
@@ -330,7 +428,10 @@ echo -e "  ${BOLD}Your workspace is ready.${NC}"
 echo ""
 echo "  $WORKSPACE_DIR/"
 echo "  ├── AMM-SA/       ← toolkit (slash commands, workflows)"
-echo "  └── clients/      ← add one folder per client here"
+echo "  ├── clients/      ← one folder per client"
+echo "  ├── memory/       ← Claude's persistent notes"
+echo "  ├── CLAUDE.md     ← your session rules and client list"
+echo "  └── .env          ← API keys (fill in after /setup-integrations)"
 echo ""
 hr
 echo ""
