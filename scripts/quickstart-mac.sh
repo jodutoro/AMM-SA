@@ -208,23 +208,75 @@ if ! command -v brew &>/dev/null; then
 fi
 ok "Homebrew $(brew --version 2>/dev/null | head -1 | awk '{print $2}')"
 
+# ── Version requirements ──────────────────────────────────────────────────────
+MIN_NODE_MAJOR=18
+MIN_GIT="2.30"
+MIN_JAVA_MAJOR=17
+
+semver_gte() {
+  [ "$(printf '%s\n' "$1" "$2" | sort -V | head -1)" = "$2" ]
+}
+node_ok() {
+  command -v node &>/dev/null || return 1
+  local m; m=$(node --version | tr -d 'v' | cut -d. -f1)
+  [[ "$m" -ge "$MIN_NODE_MAJOR" ]]
+}
+git_ok() {
+  command -v git &>/dev/null || return 1
+  semver_gte "$(git --version | awk '{print $3}')" "$MIN_GIT"
+}
+java_ok() {
+  command -v java &>/dev/null || return 1
+  local v; v=$(java -version 2>&1 | head -1 | awk -F'"' '{print $2}')
+  local m; m=$(echo "$v" | cut -d. -f1)
+  [[ "$m" == "1" ]] && m=$(echo "$v" | cut -d. -f2)
+  [[ "$m" -ge "$MIN_JAVA_MAJOR" ]]
+}
+
 # ── Step 3: Git + Node.js ────────────────────────────────────────────────────
-step "3/5" "Git + Node.js"
+step "3/6" "Git + Node.js"
 
 if ! command -v git &>/dev/null; then
   warn "Git not found — installing..."
   brew install git
+elif ! git_ok; then
+  warn "Git $(git --version | awk '{print $3}') is outdated (need $MIN_GIT+) — upgrading..."
+  brew upgrade git 2>/dev/null || brew install git
 fi
 ok "$(git --version)"
 
 if ! command -v node &>/dev/null; then
   warn "Node.js not found — installing LTS..."
   brew install node
+elif ! node_ok; then
+  warn "Node $(node --version) is outdated (need v$MIN_NODE_MAJOR+) — upgrading..."
+  brew upgrade node 2>/dev/null || brew install node
 fi
 ok "Node $(node --version) · npm $(npm --version)"
 
-# ── Step 4: Claude Code ──────────────────────────────────────────────────────
-step "4/5" "Claude Code"
+# ── Step 4: Java ─────────────────────────────────────────────────────────────
+step "4/6" "Java (JDK $MIN_JAVA_MAJOR+ required)"
+
+if ! command -v java &>/dev/null; then
+  warn "Not found — installing OpenJDK 21..."
+  brew install openjdk@21
+  sudo ln -sfn "$(brew --prefix openjdk@21)/libexec/openjdk.jdk" \
+    /Library/Java/JavaVirtualMachines/openjdk-21.jdk 2>/dev/null || true
+  export PATH="$(brew --prefix openjdk@21)/bin:$PATH"
+  ok "Java $(java -version 2>&1 | head -1 | awk -F'"' '{print $2}')"
+elif ! java_ok; then
+  warn "Java version is below $MIN_JAVA_MAJOR — upgrading to OpenJDK 21..."
+  brew install openjdk@21 2>/dev/null || brew upgrade openjdk@21 2>/dev/null || true
+  sudo ln -sfn "$(brew --prefix openjdk@21)/libexec/openjdk.jdk" \
+    /Library/Java/JavaVirtualMachines/openjdk-21.jdk 2>/dev/null || true
+  export PATH="$(brew --prefix openjdk@21)/bin:$PATH"
+  ok "Java $(java -version 2>&1 | head -1 | awk -F'"' '{print $2}')"
+else
+  ok "Java $(java -version 2>&1 | head -1 | awk -F'"' '{print $2}') — up to date"
+fi
+
+# ── Step 5: Claude Code ──────────────────────────────────────────────────────
+step "5/6" "Claude Code"
 
 if command -v claude &>/dev/null; then
   ok "Already installed — $(claude --version 2>/dev/null | head -1)"
@@ -234,8 +286,8 @@ else
   ok "Installed — $(claude --version 2>/dev/null | head -1)"
 fi
 
-# ── Step 5: Workspace + AMM-SA Toolkit ──────────────────────────────────────
-step "5/5" "Creating workspace + installing toolkit"
+# ── Step 6: Workspace + AMM-SA Toolkit ──────────────────────────────────────
+step "6/6" "Creating workspace + installing toolkit"
 
 mkdir -p "$WORKSPACE_DIR/clients"
 info "Created: $WORKSPACE_DIR/"

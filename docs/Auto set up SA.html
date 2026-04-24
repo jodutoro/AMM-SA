@@ -473,7 +473,7 @@
       </div>
       <div class="meta-item">
         <span class="meta-label">Automated Steps</span>
-        <span class="meta-value">8 of 12</span>
+        <span class="meta-value">9 of 13</span>
       </div>
       <div class="meta-item">
         <span class="meta-label">Platforms</span>
@@ -522,8 +522,10 @@
           One line. No setup knowledge required.
         </div>
         <div class="cmd">
-          macOS → paste into Terminal<br>
-          Windows → paste into PowerShell (Admin)
+          macOS:<br>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/jodutoro/AMM-SA/INT/scripts/quickstart-mac.sh)"
+        </div>
+        <div class="cmd" style="margin-top:6px">
+          Windows (PowerShell as Admin):<br>irm https://raw.githubusercontent.com/jodutoro/AMM-SA/INT/scripts/quickstart-windows.ps1 | iex
         </div>
         <div class="step-footer">
           <span class="step-time">~30 seconds</span>
@@ -614,7 +616,7 @@
   <!-- PHASE 2: AUTO-INSTALL -->
   <div class="phase-group">
     <div class="phase-label">Phase 2 — Automated Installation (zero input required)</div>
-    <div class="steps-row cols-4">
+    <div class="steps-row cols-3" style="margin-bottom:12px">
 
       <div class="step">
         <div class="step-header">
@@ -649,6 +651,23 @@
       <div class="step">
         <div class="step-header">
           <div class="step-num muted">7</div>
+          <div class="step-title">Java</div>
+        </div>
+        <div class="step-body">
+          Required by certain MCP tooling. Installed silently via package manager if not detected. Members never see this step.
+        </div>
+        <div class="step-footer">
+          <span class="step-time">0–120s</span>
+          <span class="tag tag-auto">Automated</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="steps-row cols-2">
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-num muted">8</div>
           <div class="step-title">Claude Code CLI</div>
         </div>
         <div class="step-body">
@@ -663,7 +682,7 @@
 
       <div class="step">
         <div class="step-header">
-          <div class="step-num muted">8</div>
+          <div class="step-num muted">9</div>
           <div class="step-title">Workspace structure</div>
         </div>
         <div class="step-body">
@@ -690,7 +709,7 @@
 
       <div class="step">
         <div class="step-header">
-          <div class="step-num muted">9</div>
+          <div class="step-num muted">10</div>
           <div class="step-title">Clone AMM-SA toolkit</div>
         </div>
         <div class="step-body">
@@ -705,7 +724,7 @@
 
       <div class="step">
         <div class="step-header">
-          <div class="step-num muted">10</div>
+          <div class="step-num muted">11</div>
           <div class="step-title">Install slash commands</div>
         </div>
         <div class="step-body">
@@ -724,7 +743,7 @@
 
       <div class="step">
         <div class="step-header">
-          <div class="step-num muted">11</div>
+          <div class="step-num muted">12</div>
           <div class="step-title">Connect SearchAtlas MCP</div>
         </div>
         <div class="step-body">
@@ -751,7 +770,7 @@
 
       <div class="step">
         <div class="step-header">
-          <div class="step-num">12</div>
+          <div class="step-num">13</div>
           <div class="step-title">Open workspace in chosen IDE</div>
         </div>
         <div class="step-body">
@@ -769,7 +788,7 @@
 
       <div class="step">
         <div class="step-header">
-          <div class="step-num">13</div>
+          <div class="step-num">14</div>
           <div class="step-title">Launch Claude Code</div>
         </div>
         <div class="step-body">
@@ -784,7 +803,7 @@
 
       <div class="step">
         <div class="step-header">
-          <div class="step-num">14</div>
+          <div class="step-num">15</div>
           <div class="step-title">Authorize SearchAtlas account</div>
         </div>
         <div class="step-body">
@@ -815,7 +834,7 @@
       <div class="step wide">
         <div class="step-content">
           <div class="step-header" style="margin-bottom:12px">
-            <div class="step-num">15</div>
+            <div class="step-num">16</div>
             <div class="step-title">Connect existing tools via /setup-integrations</div>
           </div>
           <div class="step-body">

@@ -187,12 +187,44 @@ if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
 }
 Write-Ok "winget available"
 
+# ── Version requirements ──────────────────────────────────────────────────────
+$MIN_NODE_MAJOR = 18
+$MIN_GIT_MINOR  = 30   # 2.30+
+$MIN_JAVA_MAJOR = 17
+
+function Test-NodeOk {
+  if (-not (Get-Command node -ErrorAction SilentlyContinue)) { return $false }
+  $major = [int]((node --version) -replace 'v','').Split('.')[0]
+  $major -ge $MIN_NODE_MAJOR
+}
+
+function Test-GitOk {
+  if (-not (Get-Command git -ErrorAction SilentlyContinue)) { return $false }
+  $parts = ((git --version) -replace 'git version ','').Split('.')
+  [int]$parts[0] -gt 2 -or ([int]$parts[0] -eq 2 -and [int]$parts[1] -ge $MIN_GIT_MINOR)
+}
+
+function Test-JavaOk {
+  if (-not (Get-Command java -ErrorAction SilentlyContinue)) { return $false }
+  $out = java -version 2>&1 | Select-Object -First 1
+  if ($out -match '"(\d+)\.?(\d*)') {
+    $major = [int]$Matches[1]
+    if ($major -eq 1) { $major = [int]$Matches[2] }
+    return $major -ge $MIN_JAVA_MAJOR
+  }
+  return $false
+}
+
 # ── Step 3: Git + Node.js ─────────────────────────────────────────────────────
-Write-Step "3/5" "Git + Node.js"
+Write-Step "3/6" "Git + Node.js"
 
 if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
   Write-Warn "Git not found — installing..."
   winget install -e --id Git.Git --accept-source-agreements --accept-package-agreements
+  Update-SessionPath
+} elseif (-not (Test-GitOk)) {
+  Write-Warn "Git version is outdated (need 2.$MIN_GIT_MINOR+) — upgrading..."
+  winget upgrade -e --id Git.Git --accept-source-agreements --accept-package-agreements
   Update-SessionPath
 }
 Write-Ok "$(git --version)"
@@ -201,11 +233,34 @@ if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
   Write-Warn "Node.js not found — installing LTS..."
   winget install -e --id OpenJS.NodeJS.LTS --accept-source-agreements --accept-package-agreements
   Update-SessionPath
+} elseif (-not (Test-NodeOk)) {
+  Write-Warn "Node $(node --version) is outdated (need v$MIN_NODE_MAJOR+) — upgrading..."
+  winget upgrade -e --id OpenJS.NodeJS.LTS --accept-source-agreements --accept-package-agreements
+  Update-SessionPath
 }
 Write-Ok "Node $(node --version) - npm $(npm --version)"
 
-# ── Step 4: Claude Code ───────────────────────────────────────────────────────
-Write-Step "4/5" "Claude Code"
+# ── Step 4: Java ─────────────────────────────────────────────────────────────
+Write-Step "4/6" "Java (JDK $MIN_JAVA_MAJOR+ required)"
+
+if (-not (Get-Command java -ErrorAction SilentlyContinue)) {
+  Write-Warn "Not found — installing Microsoft OpenJDK 21..."
+  winget install -e --id Microsoft.OpenJDK.21 --accept-source-agreements --accept-package-agreements
+  Update-SessionPath
+  Write-Ok "Java installed"
+} elseif (-not (Test-JavaOk)) {
+  Write-Warn "Java version is below $MIN_JAVA_MAJOR — upgrading to OpenJDK 21..."
+  winget upgrade -e --id Microsoft.OpenJDK.21 --accept-source-agreements --accept-package-agreements 2>$null
+  winget install -e --id Microsoft.OpenJDK.21 --accept-source-agreements --accept-package-agreements 2>$null
+  Update-SessionPath
+  Write-Ok "Java upgraded"
+} else {
+  $jver = (java -version 2>&1 | Select-Object -First 1) -replace '.*"(.*)".*','$1'
+  Write-Ok "Java $jver — up to date"
+}
+
+# ── Step 5: Claude Code ───────────────────────────────────────────────────────
+Write-Step "5/6" "Claude Code"
 
 if (Get-Command claude -ErrorAction SilentlyContinue) {
   Write-Ok "Already installed"
@@ -216,8 +271,8 @@ if (Get-Command claude -ErrorAction SilentlyContinue) {
   Write-Ok "Installed"
 }
 
-# ── Step 5: Workspace + AMM-SA Toolkit ───────────────────────────────────────
-Write-Step "5/5" "Creating workspace + installing toolkit"
+# ── Step 6: Workspace + AMM-SA Toolkit ───────────────────────────────────────
+Write-Step "6/6" "Creating workspace + installing toolkit"
 
 New-Item -ItemType Directory -Force -Path "$WORKSPACE_DIR\clients" | Out-Null
 Write-Info "Created: $WORKSPACE_DIR\"

@@ -12,9 +12,62 @@ FAIL="[FAIL]"
 WARN="[WARN]"
 errors=0
 
+MIN_NODE_MAJOR=18
+MIN_GIT="2.30"
+MIN_JAVA_MAJOR=17
+
+semver_gte() { [ "$(printf '%s\n' "$1" "$2" | sort -V | head -1)" = "$2" ]; }
+
 echo "SearchAtlas MCP — Setup Verification"
 echo "════════════════════════════════════════"
 echo ""
+
+# ── Check 0: Git ─────────────────────────────────────────────────────────────
+
+if ! command -v git &>/dev/null; then
+  echo "$FAIL Git: not installed"
+  echo "       Fix: brew install git  (or re-run quickstart)"
+  errors=$((errors + 1))
+elif ! semver_gte "$(git --version | awk '{print $3}')" "$MIN_GIT"; then
+  echo "$WARN Git: $(git --version | awk '{print $3}') — outdated (need $MIN_GIT+)"
+  echo "       Fix: brew upgrade git"
+else
+  echo "$PASS Git: $(git --version | awk '{print $3}')"
+fi
+
+# ── Check 0b: Node.js ────────────────────────────────────────────────────────
+
+if ! command -v node &>/dev/null; then
+  echo "$FAIL Node.js: not installed"
+  echo "       Fix: brew install node  (or re-run quickstart)"
+  errors=$((errors + 1))
+else
+  NODE_MAJOR=$(node --version | tr -d 'v' | cut -d. -f1)
+  if [[ "$NODE_MAJOR" -lt "$MIN_NODE_MAJOR" ]]; then
+    echo "$WARN Node.js: $(node --version) — outdated (need v$MIN_NODE_MAJOR+)"
+    echo "       Fix: brew upgrade node"
+  else
+    echo "$PASS Node.js: $(node --version) · npm $(npm --version)"
+  fi
+fi
+
+# ── Check 0c: Java ───────────────────────────────────────────────────────────
+
+if ! command -v java &>/dev/null; then
+  echo "$FAIL Java: not installed"
+  echo "       Fix: brew install openjdk@21  (or re-run quickstart)"
+  errors=$((errors + 1))
+else
+  JAVA_VER=$(java -version 2>&1 | head -1 | awk -F'"' '{print $2}')
+  JAVA_MAJOR=$(echo "$JAVA_VER" | cut -d. -f1)
+  [[ "$JAVA_MAJOR" == "1" ]] && JAVA_MAJOR=$(echo "$JAVA_VER" | cut -d. -f2)
+  if [[ "$JAVA_MAJOR" -lt "$MIN_JAVA_MAJOR" ]]; then
+    echo "$WARN Java: $JAVA_VER — outdated (need $MIN_JAVA_MAJOR+)"
+    echo "       Fix: brew install openjdk@21"
+  else
+    echo "$PASS Java: $JAVA_VER"
+  fi
+fi
 
 # ── Check 1: Claude Code CLI ─────────────────────────────────────────────────
 
@@ -23,7 +76,7 @@ if command -v claude &>/dev/null; then
   echo "$PASS Claude Code CLI: $VERSION"
 else
   echo "$FAIL Claude Code CLI not found"
-  echo "       Fix: install from https://claude.ai/code"
+  echo "       Fix: npm install -g @anthropic-ai/claude-code"
   errors=$((errors + 1))
 fi
 
