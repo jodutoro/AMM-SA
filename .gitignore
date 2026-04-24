@@ -23,3 +23,12 @@ clients/
 
 # Node modules (if any integrations use npm)
 node_modules/
+
+# Internal-only — local workspace, never in public repo
+AMM-Internal/
+_brain/
+amm-guardian/
+dashboard/
+tools/
+.mcp.json
+agentic-mastermind/WHATS-NEW.md
